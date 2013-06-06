@@ -1,0 +1,2 @@
+class Group < Resources
+end

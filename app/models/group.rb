@@ -1,2 +1,0 @@
-class Group < Resources
-end

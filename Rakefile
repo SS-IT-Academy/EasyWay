@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Hello::Application.load_tasks
+EasyW::Application.load_tasks

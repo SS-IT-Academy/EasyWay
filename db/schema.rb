@@ -13,6 +13,13 @@
 
 ActiveRecord::Schema.define(:version => 20130613001634) do
 
+  create_table "easies", :force => true do |t|
+    t.string   "name"
+    t.string   "password"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "field_types", :force => true do |t|
     t.string   "title"
     t.datetime "created_at", :null => false

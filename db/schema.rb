@@ -10,7 +10,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612132138) do
+ActiveRecord::Schema.define(:version => 20130612134906) do
+
+  create_table "field_types", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "fields", :force => true do |t|
+    t.string   "field_title"
+    t.integer  "resource_type_id"
+    t.integer  "field_type_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "resource_types", :force => true do |t|
+    t.string   "resource_type_title"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  create_table "resource_values", :force => true do |t|
+    t.integer  "resource_id"
+    t.integer  "field_id"
+    t.string   "value"
+    t.integer  "resource_reference_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
 
   create_table "resources", :force => true do |t|
     t.string   "description"

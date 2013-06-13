@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  table_template_id: 1
+  resource_type_id: MyString
+  position_num: 1
+  parent_id: 1
+  orientation: 1
+
+two:
+  table_template_id: 1
+  resource_type_id: MyString
+  position_num: 1
+  parent_id: 1
+  orientation: 1

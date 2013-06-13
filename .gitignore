@@ -1,15 +1,30 @@
-*.rbc
-*.sassc
-.sass-cache
-.rspec
-.rvmrc
+
+# Игнорирование конфига bundler
 /.bundle
-/vendor/bundle
-/log/*
-/tmp/*
+
+# Игнорирование дефолтной базы данных SQLite.
 /db/*.sqlite3
-/public/system/*
-/coverage/
-/spec/tmp/*
-**.orig
+
+# Игнорирование всех логов и временных файлов.
+/log/*.log
+/tmp
+
+# Игнорирование прочих ненужных файлов.
+doc/
+*.swp
+*~
 .project
+.DS_Store
+.idea
+
+
+
+
+
+ 
+
+
+
+
+
+

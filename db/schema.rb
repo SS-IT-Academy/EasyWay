@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,13 +11,100 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612132138) do
+ActiveRecord::Schema.define(:version => 20130613001634) do
+
+  create_table "easies", :force => true do |t|
+    t.string   "name"
+    t.string   "password"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "field_types", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "fields", :force => true do |t|
+    t.string   "field_title"
+    t.integer  "resource_type_id"
+    t.integer  "field_type_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "resource_types", :force => true do |t|
+    t.string   "resource_type_title"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  create_table "resource_values", :force => true do |t|
+    t.integer  "resource_id"
+    t.integer  "field_id"
+    t.string   "value"
+    t.integer  "resource_reference_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
 
   create_table "resources", :force => true do |t|
     t.string   "description"
     t.integer  "resource_type_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "table_cell_items", :force => true do |t|
+    t.integer  "table_template_id"
+    t.string   "resource_type_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "table_filters", :force => true do |t|
+    t.integer  "table_template_id"
+    t.integer  "resource_id"
+    t.integer  "position_num"
+    t.integer  "position_float"
+    t.string   "delimiter"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "table_headers", :force => true do |t|
+    t.integer  "table_template_id"
+    t.string   "resource_type_id"
+    t.integer  "position_num"
+    t.integer  "parent_id"
+    t.integer  "orientation"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "table_templates", :force => true do |t|
+    t.text     "cell_body"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "email"
+    t.string   "password_hash"
+    t.string   "password_salt"
+    t.integer  "roleid"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.string   "authentication_token"
   end
 
 end

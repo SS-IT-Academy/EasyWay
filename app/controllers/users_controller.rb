@@ -57,6 +57,7 @@ class UsersController < ApplicationController
 
     if @user.valid?
       @user.save
+      #UserMailer.welcome_email(@user).deliver
       session[:user_id] = @user.id
       flash[:notice] = 'Welcome.'
       redirect_to :root

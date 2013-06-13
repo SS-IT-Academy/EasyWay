@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  table_template_id: 1
+  resource_id: 1
+  position_num: 1
+  position_float: 1
+  delimiter: MyString
+
+two:
+  table_template_id: 1
+  resource_id: 1
+  position_num: 1
+  position_float: 1
+  delimiter: MyString

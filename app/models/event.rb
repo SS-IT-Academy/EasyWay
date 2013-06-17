@@ -1,7 +1,4 @@
-class Event < ActionContoller::Base
-  attr_accessor :duration, :started_at
-  def intialize(duration, started_at)
-    @duration = duration
-    @started_at = started_at
-  end
+class Event < ActiveRecord::Base
+  belongs_to :notifyevents
+# attr_accessible :title, :body
 end

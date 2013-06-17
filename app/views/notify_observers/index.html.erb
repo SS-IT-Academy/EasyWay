@@ -1,0 +1,23 @@
+<h1>Listing notify_observers</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @notify_observers.each do |notify_observer| %>
+  <tr>
+    <td><%= notify_observer.name %></td>
+    <td><%= link_to 'Show', notify_observer %></td>
+    <td><%= link_to 'Edit', edit_notify_observer_path(notify_observer) %></td>
+    <td><%= link_to 'Destroy', notify_observer, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Notify observer', new_notify_observer_path %>

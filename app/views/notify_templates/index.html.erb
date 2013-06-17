@@ -1,0 +1,27 @@
+<h1>Listing notify_templates</h1>
+
+<table>
+  <tr>
+    <th>Template name</th>
+    <th>Body</th>
+    <th>Desc</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @notify_templates.each do |notify_template| %>
+  <tr>
+    <td><%= notify_template.template_name %></td>
+    <td><%= notify_template.body %></td>
+    <td><%= notify_template.desc %></td>
+    <td><%= link_to 'Show', notify_template %></td>
+    <td><%= link_to 'Edit', edit_notify_template_path(notify_template) %></td>
+    <td><%= link_to 'Destroy', notify_template, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Notify template', new_notify_template_path %>

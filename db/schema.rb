@@ -11,7 +11,57 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613001634) do
+ActiveRecord::Schema.define(:version => 20130617113517) do
+
+  create_table "event_properties", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "notify_events", :force => true do |t|
+    t.integer  "template_id"
+    t.integer  "event_id"
+    t.string   "name"
+    t.integer  "observer_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "notify_observers", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "notify_schedulers", :force => true do |t|
+    t.integer  "period"
+    t.time     "start_at"
+    t.time     "start_end"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "notify_templates", :force => true do |t|
+    t.string   "template_name"
+    t.text     "body"
+    t.text     "desc"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "recipients", :force => true do |t|
+    t.integer  "notifyevent_id"
+    t.integer  "user_id"
+    t.integer  "group_number"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "table_cell_items", :force => true do |t|
     t.integer  "table_template_id"

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  notifyevent_id: 1
+  user_id: 1
+  group_number: 1
+
+two:
+  notifyevent_id: 1
+  user_id: 1
+  group_number: 1

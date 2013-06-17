@@ -1,4 +1,18 @@
 Hello::Application.routes.draw do
+  resources :recipients
+
+  resources :event_properties
+
+  resources :notify_observers
+
+  resources :events
+
+  resources :notify_schedulers
+
+  resources :notify_events
+
+  resources :notify_templates
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

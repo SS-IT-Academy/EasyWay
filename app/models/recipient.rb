@@ -1,13 +1,4 @@
 class Recipient < ActiveRecord::Base
-  attr_accessor :notifyevent, :user
-  def initialize(n, u)
-    @notifyevent= n
-    @user = u
-
-  end
-
-  def to_s
-    "recipient"
-  end
+  belongs_to :notifyevents
+  attr_accessible :group_number, :notifyevent_id, :user_id
 end
-

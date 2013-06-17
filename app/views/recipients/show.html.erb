@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Notifyevent:</b>
+  <%= @recipient.notifyevent_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @recipient.user_id %>
+</p>
+
+<p>
+  <b>Group number:</b>
+  <%= @recipient.group_number %>
+</p>
+
+
+<%= link_to 'Edit', edit_recipient_path(@recipient) %> |
+<%= link_to 'Back', recipients_path %>

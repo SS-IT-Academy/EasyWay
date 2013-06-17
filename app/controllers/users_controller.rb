@@ -55,13 +55,19 @@ class UsersController < ApplicationController
  def create
       @user = User.new(params[:user])
 
-    if @user.valid?
-      @user.save
-      #UserMailer.welcome_email(@user).deliver
-      session[:user_id] = @user.id
-      flash[:notice] = 'Welcome.'
-      redirect_to :root
+    if verify_recaptcha
+      if @user.valid?
+        @user.save
+        #UserMailer.welcome_email(@user).deliver
+        session[:user_id] = @user.id
+        flash[:notice] = 'Welcome.'
+        redirect_to :root
+      else
+        render :action => "new_user"
+      end
     else
+      flash.delete(:recaptcha_error) # get rid of the recaptcha error being flashed by the gem.
+      flash.now[:error] = 'reCAPTCHA is incorrect. Please try again.'
       render :action => "new_user"
     end
   end

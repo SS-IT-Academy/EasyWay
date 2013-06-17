@@ -1,4 +1,23 @@
-Hello::Application.routes.draw do
+EasyW::Application.routes.draw do
+  root :to=>"home#index"
+  resources :users
+
+  get "signed_out" => "authentication#signed_out"
+  get "forgot_password" => "authentication#forgot_password"
+  get "password_sent" => "authentication#password_sent"
+
+  get "sign_in" => "authentication#sign_in"
+  post "sign_in" => "authentication#login"
+
+  get "account_settings" => "authentication#account_settings"
+  put "account_settings" => "authentication#set_account_info"
+
+  get "forgot_password" => "authentication#forgot_password"
+  put "forgot_password" => "authentication#send_password_reset_instructions"
+  
+  get "password_reset" => "authentication#password_reset"
+  put "password_reset" => "authentication#new_password"
+  
   resources :recipients
 
   resources :event_properties
@@ -12,6 +31,7 @@ Hello::Application.routes.draw do
   resources :notify_events
 
   resources :notify_templates
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -62,7 +82,7 @@ Hello::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+#  root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

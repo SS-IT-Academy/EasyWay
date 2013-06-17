@@ -1,14 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hello</title>
+  <title>EasyWay</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+<link rel="stylesheet" href="/css/bootstrap.css" type="text/css">
+<script src="/jquery-2.0.2.min.js"> </script>
+<script src="/js/bootstrap.js"> </script>
 </head>
 <body>
+	<div>
+		<div class="header">
+			<div class="headerTop">
+			<div class="logo"></div>
 
-<%= yield %>
+				<form class="easywaywell span5 pull-right form-inline" >
+				<% if current_user %>
+  				Logged in as <%= current_user.username %>.
+  					<%= link_to "Sign Out", signed_out_path, :class => "btn btn-primary"%>
+  					<%= link_to "Account Settings", account_settings_path,:class => "btn btn-primary" %>
+  				<%else%>
+					<%= link_to "Sign up", new_user_path, :class => "btn btn-primary buttonfloat textcolorbtn"%>
+					<%= link_to "Sign In", sign_in_path, :class => "btn btn-primary buttonfloat textcolorbtn"%> 
+				<% end %>		
+				</form>
+				</div>
+				<div class="headerBottom">
+					<div class="navbar ">
+						<div>
+							<ul class="nav ">
+							<li><a href="#">Home</a></li>
+							<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+								Timetables<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+							<li><a href="#">Show Prepeared</a></li>
+							<li><a href="#">Create</a></li>
+							</ul>
+							</li>
+							<li><a href="#">Manage Event</a></li>
+							<li><a href="#">Manege Resource</a></li>
+							<li><a href="#">Subscriptions</a></li>
+							<li><a href="#">User Roles</a></li>
+							<li><a href="#">About<a></li>
+							</ul>
+							</div>
+						</div>
+					</div>
+		</div>
+
+			<div class="content">
+			<%=yield%>
+		   <div class="i"></div></div>	
+				<div class="footer"></div>
+	</div>
+
+  
+ 
+
+
+
 
 </body>
 </html>

@@ -10,8 +10,13 @@
       </ul>
     </div>
   <% end %>
-
+  
+  
   <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div> 
+ <div class="field">
     <%= f.label :username %><br />
     <%= f.text_field :username %>
   </div>
@@ -19,19 +24,18 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div>
-  <%= recaptcha_tags %>
+  <div class="field">	
+  	<%= f.label 'new password: (leave blank if you are not changing your password)' %><br/>
+    <%= f.password_field :new_password %>
+	</div>
+	<div class="field">	
+  	<%= f.label 'confirm new password:' %><br/>
+    <%= f.password_field :new_password_confirmation %>
 	</div>
   </div>
+ 
+  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Update'%>
   </div>
 <% end %>

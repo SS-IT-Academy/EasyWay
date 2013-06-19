@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130613001634) do
 
-
   create_table "easies", :force => true do |t|
     t.string   "name"
     t.string   "password"
@@ -57,13 +56,11 @@ ActiveRecord::Schema.define(:version => 20130613001634) do
     t.datetime "updated_at",       :null => false
   end
 
-
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
 
   create_table "table_cell_items", :force => true do |t|
     t.integer  "table_template_id"
@@ -99,7 +96,6 @@ ActiveRecord::Schema.define(:version => 20130613001634) do
     t.datetime "updated_at", :null => false
   end
 
-
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
@@ -110,6 +106,5 @@ ActiveRecord::Schema.define(:version => 20130613001634) do
     t.datetime "updated_at",           :null => false
     t.string   "authentication_token"
   end
-
 
 end

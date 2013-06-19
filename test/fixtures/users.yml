@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  username: MyString
-  email: MyString
+  username: ''
+  email: 1
   password_hash: MyString
   password_salt: MyString
   roleid: 1
 
 two:
   username: MyString
-  email: MyString
+  email: 1
   password_hash: MyString
   password_salt: MyString
   roleid: 1

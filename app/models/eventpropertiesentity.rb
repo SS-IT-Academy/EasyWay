@@ -1,4 +1,4 @@
-class EventPropertiesEntity < ActionContoller::Base
+class EventPropertiesEntity < ActionController::Base
   attr_accessor :property
   def intialize(property)
     @property = property

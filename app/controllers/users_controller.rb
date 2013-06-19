@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @users }
+      format.json { render :json => @users }
     end
   end
 
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @user }
+      format.json { render :json => @user }
     end
   end
 
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @user }
+      format.json { render :json => @user }
     end
   end
 
@@ -55,13 +55,19 @@ class UsersController < ApplicationController
  def create
       @user = User.new(params[:user])
 
-    if @user.valid?
-      @user.save
-      #UserMailer.welcome_email(@user).deliver
-      session[:user_id] = @user.id
-      flash[:notice] = 'Welcome.'
-      redirect_to :root
+    if verify_recaptcha
+      if @user.valid?
+        @user.save
+        #UserMailer.welcome_email(@user).deliver
+        session[:user_id] = @user.id
+        flash[:notice] = 'Welcome.'
+        redirect_to :root
+      else
+        render :action => "new_user"
+      end
     else
+      flash.delete(:recaptcha_error) # get rid of the recaptcha error being flashed by the gem.
+      flash.now[:error] = 'reCAPTCHA is incorrect. Please try again.'
       render :action => "new_user"
     end
   end
@@ -72,11 +78,11 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, :notice => 'User was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @user.errors, :status => :unprocessable_entity }
       end
     end
   end

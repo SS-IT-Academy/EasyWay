@@ -1,5 +1,8 @@
-class Resource < ActionRecord :: Base
+class Resource < ActiveRecord::Base
+  # :TODO add keys add validation, :dependent => :destroy
   attr_accessible :description, :resource_type_id
-  has_one :ResourceType
-  has_many :ResourceValue
+  belongs_to :ResourceType,
+    :foreign_key => "resource_type_id"
+  has_many :ResourceValues
+  validates :resource_type_id, :presence => true
 end

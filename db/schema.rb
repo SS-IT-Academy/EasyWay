@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613001634) do
-
+ActiveRecord::Schema.define(:version => 20130621093810) do
 
   create_table "easies", :force => true do |t|
     t.string   "name"
@@ -33,6 +32,18 @@ ActiveRecord::Schema.define(:version => 20130613001634) do
     t.integer  "field_type_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "menus", :force => true do |t|
+    t.integer  "parent_id"
+    t.integer  "role_id"
+    t.string   "url"
+    t.integer  "user_id"
+    t.string   "text"
+    t.string   "title"
+    t.string   "target"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "resource_types", :force => true do |t|
@@ -57,13 +68,11 @@ ActiveRecord::Schema.define(:version => 20130613001634) do
     t.datetime "updated_at",       :null => false
   end
 
-
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
 
   create_table "table_cell_items", :force => true do |t|
     t.integer  "table_template_id"
@@ -99,7 +108,6 @@ ActiveRecord::Schema.define(:version => 20130613001634) do
     t.datetime "updated_at", :null => false
   end
 
-
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
@@ -110,6 +118,5 @@ ActiveRecord::Schema.define(:version => 20130613001634) do
     t.datetime "updated_at",           :null => false
     t.string   "authentication_token"
   end
-
 
 end

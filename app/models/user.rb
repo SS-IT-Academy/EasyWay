@@ -1,11 +1,12 @@
 class User < ActiveRecord::Base
-attr_accessible :email, :username, :password, :password_confirmation, :new_password, :new_password_confirmation, :remember_me
-attr_accessor :password, :new_password, :remember_me
+  belongs_to :roles
+  attr_accessible :email, :username, :password, :password_confirmation, :new_password, :new_password_confirmation, :remember_me
+  attr_accessor :password, :new_password, :remember_me
   before_save :encrypt_password
   
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
-  validates_presence_of :email, :on => :create
+  validates_presence_of :email
   validates_presence_of :username, :on => :create
   validates_uniqueness_of :email
   validates_uniqueness_of :username

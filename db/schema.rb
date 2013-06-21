@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130621093810) do
-=======
-ActiveRecord::Schema.define(:version => 20130618112733) do
->>>>>>> 621336a5549f2c187b92eb5c1a4f6110014bd0da
 
   create_table "easies", :force => true do |t|
     t.string   "name"
@@ -38,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20130618112733) do
     t.datetime "updated_at",       :null => false
   end
 
-<<<<<<< HEAD
   create_table "menus", :force => true do |t|
     t.integer  "parent_id"
     t.integer  "role_id"
@@ -47,22 +42,21 @@ ActiveRecord::Schema.define(:version => 20130618112733) do
     t.string   "text"
     t.string   "title"
     t.string   "target"
-=======
-  create_table "permissions", :force => true do |t|
-    t.string   "name"
->>>>>>> 621336a5549f2c187b92eb5c1a4f6110014bd0da
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-<<<<<<< HEAD
-=======
+  create_table "permissions", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "permissions_roles", :id => false, :force => true do |t|
     t.integer "permissions_id"
     t.integer "roles_id"
   end
 
->>>>>>> 621336a5549f2c187b92eb5c1a4f6110014bd0da
   create_table "resource_types", :force => true do |t|
     t.string   "resource_type_title"
     t.datetime "created_at",          :null => false

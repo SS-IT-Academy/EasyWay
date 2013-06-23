@@ -1,0 +1,2 @@
+module TableTemplatesHelper
+end

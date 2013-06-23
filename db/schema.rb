@@ -34,6 +34,29 @@ ActiveRecord::Schema.define(:version => 20130623215149) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "menus", :force => true do |t|
+    t.integer  "parent_id"
+    t.integer  "role_id"
+    t.string   "url"
+    t.integer  "user_id"
+    t.string   "text"
+    t.string   "title"
+    t.string   "target"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "permissions", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "permissions_roles", :id => false, :force => true do |t|
+    t.integer "permissions_id"
+    t.integer "roles_id"
+  end
+
   create_table "resource_types", :force => true do |t|
     t.string   "resource_type_name"
     t.datetime "created_at",         :null => false

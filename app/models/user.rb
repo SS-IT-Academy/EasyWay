@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-attr_accessible :email, :username, :password, :password_confirmation, :new_password, :new_password_confirmation, :remember_me
-attr_accessor :password, :new_password, :remember_me
+  belongs_to :roles
+ # has_many :Menus
+  attr_accessible :email, :username, :password, :password_confirmation, :new_password, :new_password_confirmation, :remember_me
+  attr_accessor :password, :new_password, :remember_me
   before_save :encrypt_password
   
   validates_confirmation_of :password

@@ -1,0 +1,35 @@
+<h1>Listing menus</h1>
+
+<table>
+  <tr>
+    <th>Parent</th>
+    <th>Role</th>
+    <th>Url</th>
+    <th>User</th>
+    <th>Text</th>
+    <th>Title</th>
+    <th>Target</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @menus.each do |menu| %>
+  <tr>
+    <td><%= menu.parent_id %></td>
+    <td><%= menu.role_id %></td>
+    <td><%= menu.url %></td>
+    <td><%= menu.user_id %></td>
+    <td><%= menu.text %></td>
+    <td><%= menu.title %></td>
+    <td><%= menu.target %></td>
+    <td><%= link_to 'Show', menu %></td>
+    <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
+    <td><%= link_to 'Destroy', menu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Menu', new_menu_path %>

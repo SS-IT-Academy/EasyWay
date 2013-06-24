@@ -7,6 +7,10 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 
+gem 'rspec-rails'
+
+gem '
+
 gem 'bcrypt-ruby', :require=>'bcrypt'
 
 gem 'recaptcha', :require => "recaptcha/rails"

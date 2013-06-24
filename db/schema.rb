@@ -13,6 +13,11 @@
 
 ActiveRecord::Schema.define(:version => 20130623215149) do
 
+  create_table "abilities", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "easies", :force => true do |t|
     t.string   "name"
     t.string   "password"
@@ -98,15 +103,6 @@ ActiveRecord::Schema.define(:version => 20130623215149) do
     t.integer  "position_num"
     t.string   "position_float"
     t.string   "delimiter"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-  end
-
-  create_table "table_headers", :force => true do |t|
-    t.integer  "table_template_id"
-    t.integer  "resource_type_id"
-    t.integer  "position_num"
-    t.integer  "parent_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end

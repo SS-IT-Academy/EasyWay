@@ -9,7 +9,7 @@ gem 'sqlite3'
 
 gem 'rspec-rails'
 
-gem '
+gem 'cancan'
 
 gem 'bcrypt-ruby', :require=>'bcrypt'
 

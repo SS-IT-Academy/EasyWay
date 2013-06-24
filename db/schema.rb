@@ -107,6 +107,15 @@ ActiveRecord::Schema.define(:version => 20130623215149) do
     t.datetime "updated_at",        :null => false
   end
 
+  create_table "table_headers", :force => true do |t|
+    t.integer  "table_template_id"
+    t.integer  "resource_type_id"
+    t.integer  "position_num"
+    t.integer  "parent_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "table_templates", :force => true do |t|
     t.string   "name"
     t.text     "cell_body"

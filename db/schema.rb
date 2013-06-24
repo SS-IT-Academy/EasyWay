@@ -21,13 +21,13 @@ ActiveRecord::Schema.define(:version => 20130613001634) do
   end
 
   create_table "field_types", :force => true do |t|
-    t.string   "title"
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "fields", :force => true do |t|
-    t.string   "field_title"
+    t.string   "field_name"
     t.integer  "resource_type_id"
     t.integer  "field_type_id"
     t.datetime "created_at",       :null => false
@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(:version => 20130613001634) do
   end
 
   create_table "resource_types", :force => true do |t|
-    t.string   "resource_type_title"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.string   "resource_type_name"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "resource_values", :force => true do |t|

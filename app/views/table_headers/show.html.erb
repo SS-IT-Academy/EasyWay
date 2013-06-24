@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Table template:</b>
+  <%= @table_header.table_template_id %>
+</p>
+
+<p>
+  <b>Resource type:</b>
+  <%= @table_header.resource_type_id %>
+</p>
+
+<p>
+  <b>Position num:</b>
+  <%= @table_header.position_num %>
+</p>
+
+<p>
+  <b>Parent:</b>
+  <%= @table_header.parent_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_table_header_path(@table_header) %> |
+<%= link_to 'Back', table_headers_path %>

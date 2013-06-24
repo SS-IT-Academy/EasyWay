@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130621093810) do
+ActiveRecord::Schema.define(:version => 20130623215149) do
 
   create_table "easies", :force => true do |t|
     t.string   "name"
@@ -21,13 +21,13 @@ ActiveRecord::Schema.define(:version => 20130621093810) do
   end
 
   create_table "field_types", :force => true do |t|
-    t.string   "title"
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "fields", :force => true do |t|
-    t.string   "field_title"
+    t.string   "field_name"
     t.integer  "resource_type_id"
     t.integer  "field_type_id"
     t.datetime "created_at",       :null => false
@@ -58,9 +58,9 @@ ActiveRecord::Schema.define(:version => 20130621093810) do
   end
 
   create_table "resource_types", :force => true do |t|
-    t.string   "resource_type_title"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.string   "resource_type_name"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "resource_values", :force => true do |t|
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20130621093810) do
 
   create_table "table_cell_items", :force => true do |t|
     t.integer  "table_template_id"
-    t.string   "resource_type_id"
+    t.integer  "resource_type_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(:version => 20130621093810) do
     t.integer  "table_template_id"
     t.integer  "resource_id"
     t.integer  "position_num"
-    t.integer  "position_float"
+    t.string   "position_float"
     t.string   "delimiter"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
@@ -104,17 +104,16 @@ ActiveRecord::Schema.define(:version => 20130621093810) do
 
   create_table "table_headers", :force => true do |t|
     t.integer  "table_template_id"
-    t.string   "resource_type_id"
+    t.integer  "resource_type_id"
     t.integer  "position_num"
     t.integer  "parent_id"
-    t.integer  "orientation"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
 
   create_table "table_templates", :force => true do |t|
-    t.text     "cell_body"
     t.string   "name"
+    t.text     "cell_body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -1,0 +1,37 @@
+<%= form_for(@table_filter) do |f| %>
+  <% if @table_filter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@table_filter.errors.count, "error") %> prohibited this table_filter from being saved:</h2>
+
+      <ul>
+      <% @table_filter.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :table_template_id %><br />
+    <%= f.number_field :table_template_id %>
+  </div>
+  <div class="field">
+    <%= f.label :resource_id %><br />
+    <%= f.number_field :resource_id %>
+  </div>
+  <div class="field">
+    <%= f.label :position_num %><br />
+    <%= f.number_field :position_num %>
+  </div>
+  <div class="field">
+    <%= f.label :position_float %><br />
+    <%= f.text_field :position_float %>
+  </div>
+  <div class="field">
+    <%= f.label :delimiter %><br />
+    <%= f.text_field :delimiter %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -14,6 +14,10 @@ EasyW::Application.routes.draw do
   resources :field_types
 
 
+
+  resources :menus
+  
+
   resources :table_cell_items
 
   resources :roles
@@ -25,6 +29,7 @@ EasyW::Application.routes.draw do
 
 
   resources :table_templates
+
 
 
   root :to=>"home#index"

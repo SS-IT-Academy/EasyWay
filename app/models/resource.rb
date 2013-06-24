@@ -1,5 +1,5 @@
 class Resource < ActiveRecord::Base
-  # :TODO add keys add validation, :dependent => :destroy
+  # :TODO :dependent => :destroy
   attr_accessible :description, :resource_type_id
   belongs_to :ResourceType,
     :foreign_key => "resource_type_id"

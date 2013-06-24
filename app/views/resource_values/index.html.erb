@@ -1,0 +1,29 @@
+<h1>Listing resource_values</h1>
+
+<table>
+  <tr>
+    <th>Field</th>
+    <th>Resource</th>
+    <th>Resource reference</th>
+    <th>Value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @resource_values.each do |resource_value| %>
+  <tr>
+    <td><%= resource_value.field_id %></td>
+    <td><%= resource_value.resource_id %></td>
+    <td><%= resource_value.resource_reference_id %></td>
+    <td><%= resource_value.value %></td>
+    <td><%= link_to 'Show', resource_value %></td>
+    <td><%= link_to 'Edit', edit_resource_value_path(resource_value) %></td>
+    <td><%= link_to 'Destroy', resource_value, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Resource value', new_resource_value_path %>

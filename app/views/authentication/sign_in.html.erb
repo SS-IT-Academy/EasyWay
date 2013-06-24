@@ -1,6 +1,6 @@
 <div class="lll ">
 <%= form_for @user, :as => :user, :url => sign_in_path(@user) do |f| %>
-  <form class="form-inline">
+  <form class="form_sign_in">
     <%= f.label 'username or email:' %>
     <%= f.text_field :username %>
   </form>

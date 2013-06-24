@@ -1,4 +1,23 @@
 EasyW::Application.routes.draw do
+  resources :resources
+
+
+  resources :resource_values
+
+
+  resources :resource_types
+
+
+  resources :fields
+
+
+  resources :field_types
+
+
+
+  resources :menus
+  
+
   resources :table_cell_items
 
   resources :roles
@@ -10,6 +29,7 @@ EasyW::Application.routes.draw do
 
 
   resources :table_templates
+
 
 
   root :to=>"home#index"
@@ -30,6 +50,8 @@ EasyW::Application.routes.draw do
   
   get "password_reset" => "authentication#password_reset"
   put "password_reset" => "authentication#new_password"
+
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

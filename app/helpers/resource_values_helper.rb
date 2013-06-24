@@ -1,0 +1,2 @@
+module ResourceValuesHelper
+end

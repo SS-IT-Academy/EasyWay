@@ -12,4 +12,5 @@ class Ability < ActiveRecord::Base
 #      can :manage, [,]  
 #     
 #  end
+
 end

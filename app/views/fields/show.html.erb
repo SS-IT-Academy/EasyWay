@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @field.name %>
+</p>
+
+<p>
+  <b>Field type:</b>
+  <%= @field.field_type_id %>
+</p>
+
+<p>
+  <b>Resource type:</b>
+  <%= @field.resource_type_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_field_path(@field) %> |
+<%= link_to 'Back', fields_path %>

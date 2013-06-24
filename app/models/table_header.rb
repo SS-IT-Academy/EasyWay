@@ -8,7 +8,7 @@ class TableHeader < ActiveRecord::Base
   
   validates :orientation, :presence => false
   validates :parent_id, :presence => true
-  validates :position_num, :presence => true
+  validates :position_num, :presence => true, :numericality => true
   validates :resource_type_id, :presence => true
   validates :table_template_id, :presence => true
 end

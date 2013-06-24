@@ -4,7 +4,7 @@ class CreateTableFilters < ActiveRecord::Migration
       t.integer :table_template_id
       t.integer :resource_id
       t.integer :position_num
-      t.integer :position_float
+      t.string :position_float
       t.string :delimiter
 
       t.timestamps

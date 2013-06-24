@@ -1,0 +1,7 @@
+<h3>There are Resources</h3>
+<% @resources.each do |resource| %>
+  <tr>
+    <td><%= resource.id %></td>
+    <td><%= resource.description %></td>
+  </tr>
+<% end %>

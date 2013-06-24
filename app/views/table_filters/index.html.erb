@@ -1,0 +1,31 @@
+<h1>Listing table_filters</h1>
+
+<table>
+  <tr>
+    <th>Table template</th>
+    <th>Resource</th>
+    <th>Position num</th>
+    <th>Position float</th>
+    <th>Delimiter</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @table_filters.each do |table_filter| %>
+  <tr>
+    <td><%= table_filter.table_template_id %></td>
+    <td><%= table_filter.resource_id %></td>
+    <td><%= table_filter.position_num %></td>
+    <td><%= table_filter.position_float %></td>
+    <td><%= table_filter.delimiter %></td>
+    <td><%= link_to 'Show', table_filter %></td>
+    <td><%= link_to 'Edit', edit_table_filter_path(table_filter) %></td>
+    <td><%= link_to 'Destroy', table_filter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Table filter', new_table_filter_path %>

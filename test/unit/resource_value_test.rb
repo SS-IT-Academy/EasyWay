@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class ResourceValueTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+   test "Resource_values validation" do
+     value = resource_values(:one)
+     assert value.valid?, "Value don't add"
+   end
 end

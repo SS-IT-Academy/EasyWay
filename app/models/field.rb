@@ -1,5 +1,5 @@
 class Field < ActiveRecord::Base
-# :TODO delete descriptions
+  # :TODO delete descriptions
   attr_accessible :field_name, :field_type_id, :resource_type_id
   belongs_to :FieldType,
     :foreign_key => "field_type_id"

@@ -1,4 +1,7 @@
 EasyW::Application.routes.draw do
+  resources :menus
+
+
   root :to=>"home#index"
   resources :users
 

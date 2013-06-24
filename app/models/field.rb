@@ -6,6 +6,4 @@ class Field < ActiveRecord::Base
   has_many :ResourceValues
   belongs_to :RecourceType,
     :foreign_key => "resource_type_id"
-    
-  validates :field_name, :field_type_id, :resource_type_id, :presence => true
 end

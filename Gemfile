@@ -6,7 +6,12 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'rspec-rails', '2.11.0'
+
+gem 'rspec-rails'
+
+gem 'cancan'
+
+
 gem 'bcrypt-ruby', :require=>'bcrypt'
 
 gem 'recaptcha', :require => "recaptcha/rails"

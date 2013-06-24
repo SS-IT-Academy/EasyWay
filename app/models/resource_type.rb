@@ -1,6 +1,6 @@
 class ResourceType < ActiveRecord::Base
   # :TODO delete descriptions
-  attr_accessible :resource_type_name
+  attr_accessible :name
   has_many :Fields
   has_many :Resources
   validates :resource_type_name, :presence => true

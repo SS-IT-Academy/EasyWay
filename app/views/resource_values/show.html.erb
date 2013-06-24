@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Field:</b>
+  <%= @resource_value.field_id %>
+</p>
+
+<p>
+  <b>Resource:</b>
+  <%= @resource_value.resource_id %>
+</p>
+
+<p>
+  <b>Resource reference:</b>
+  <%= @resource_value.resource_reference_id %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @resource_value.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_resource_value_path(@resource_value) %> |
+<%= link_to 'Back', resource_values_path %>

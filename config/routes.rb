@@ -1,4 +1,19 @@
 EasyW::Application.routes.draw do
+  resources :resources
+
+
+  resources :resource_values
+
+
+  resources :resource_types
+
+
+  resources :fields
+
+
+  resources :field_types
+
+
   resources :table_cell_items
 
   resources :roles
@@ -30,10 +45,7 @@ EasyW::Application.routes.draw do
   
   get "password_reset" => "authentication#password_reset"
   put "password_reset" => "authentication#new_password"
-  
-  get "resources" => "resources#index"
-  get "field_types" => "field_types#new"
-  post "field_types" => "field_types#create"
+
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

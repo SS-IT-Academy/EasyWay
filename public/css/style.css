@@ -54,6 +54,13 @@ width:500px;
 min-height:400px;
 outline:1px solid #FAA21A;
 padding:auto;
-#text-align:center;
+text-align:center;
 margin:auto;
+border: 1px red solid;
+}
+
+.form_sign_in{
+	display: inline;
+	text-align: center;
+	margin: auto;
 }

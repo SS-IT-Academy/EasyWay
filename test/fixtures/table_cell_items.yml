@@ -2,8 +2,8 @@
 
 one:
   table_template_id: 1
-  resource_type_id: MyString
+  resource_type_id: 1
 
 two:
   table_template_id: 1
-  resource_type_id: MyString
+  resource_type_id: 1

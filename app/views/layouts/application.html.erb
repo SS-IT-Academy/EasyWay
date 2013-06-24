@@ -7,10 +7,11 @@
   <%= csrf_meta_tags %>
 
 <link rel="stylesheet" href="/css/bootstrap.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
 <script src="/jquery-2.0.2.min.js"> </script>
 <script src="/js/bootstrap.js"> </script>
 </head>
-<body>
+<body class="bodybg">
 	<div>
 		<div class="header">
 			<div class="headerTop">
@@ -22,8 +23,8 @@
   					<%= link_to "Sign Out", signed_out_path, :class => "btn btn-primary"%>
   					<%= link_to "Account Settings", account_settings_path,:class => "btn btn-primary" %>
   				<%else%>
-					<%= link_to "Sign up", new_user_path, :class => "btn btn-primary buttonfloat textcolorbtn"%>
-					<%= link_to "Sign In", sign_in_path, :class => "btn btn-primary buttonfloat textcolorbtn"%> 
+					<%= link_to "Sign up", new_user_path, :class => "btn btn-primary buttonfloat"%>
+					<%= link_to "Sign In", sign_in_path, :class => "btn btn-primary buttonfloat"%> 
 				<% end %>		
 				</form>
 				</div>
@@ -42,7 +43,7 @@
 							</ul>
 							</li>
 							<li><a href="#">Manage Event</a></li>
-							<li><a href="#">Manege Resource</a></li>
+							<li><a href="#">Manage Resource</a></li>
 							<li><a href="#">Subscriptions</a></li>
 							<li><a href="#">User Roles</a></li>
 							<li><a href="#">About<a></li>
@@ -52,7 +53,7 @@
 					</div>
 		</div>
 
-			<div class="content">
+			<div class="content ">
 			<%=yield%>
 		   <div class="i"></div></div>	
 				<div class="footer"></div>

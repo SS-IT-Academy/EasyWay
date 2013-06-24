@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Table template:</b>
+  <%= @table_filter.table_template_id %>
+</p>
+
+<p>
+  <b>Resource:</b>
+  <%= @table_filter.resource_id %>
+</p>
+
+<p>
+  <b>Position num:</b>
+  <%= @table_filter.position_num %>
+</p>
+
+<p>
+  <b>Position float:</b>
+  <%= @table_filter.position_float %>
+</p>
+
+<p>
+  <b>Delimiter:</b>
+  <%= @table_filter.delimiter %>
+</p>
+
+
+<%= link_to 'Edit', edit_table_filter_path(@table_filter) %> |
+<%= link_to 'Back', table_filters_path %>

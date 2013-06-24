@@ -1,3 +1,4 @@
+<div class="formmargin">
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -11,27 +12,31 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <p>
+  
+<div class="lll">
+  <form class="field form-inline">
+    <%= f.label :username %>
+    <%= f.text_field :username%>
+  </form>
+  <form class="field form-inline">
+    <%= f.label :email %>
+    <%= f.text_field :email, :class =>"pull-right" %>
+  </form>
+  <form class="field form-inline">
+    <%= f.label :password %>
+    <%= f.password_field :password, :class =>"pull-right"%>
+  </form>
+  <form class="field form-inline">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, :class =>"pull-right" %>
+  </form>
+  <div class"text-center" >
   <%= recaptcha_tags %>
-	</p>
+	</div> 
+  <div class="actions text-center ">
+    <%= f.submit :class =>"btn btn-primary"%>
+
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+   </div>
 <% end %>
+</div>

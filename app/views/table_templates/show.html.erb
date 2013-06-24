@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @table_template.name %>
+</p>
+
+<p>
+  <b>Cell body:</b>
+  <%= @table_template.cell_body %>
+</p>
+
+
+<%= link_to 'Edit', edit_table_template_path(@table_template) %> |
+<%= link_to 'Back', table_templates_path %>

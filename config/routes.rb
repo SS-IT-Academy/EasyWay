@@ -1,4 +1,17 @@
 EasyW::Application.routes.draw do
+  resources :table_cell_items
+
+  resources :roles
+
+  resources :table_headers
+
+
+  resources :table_filters
+
+
+  resources :table_templates
+
+
   root :to=>"home#index"
   resources :users
 

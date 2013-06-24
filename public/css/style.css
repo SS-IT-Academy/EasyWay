@@ -1,0 +1,59 @@
+.header{
+height:100px;
+background:url(../images/header.jpg) no-repeat  ;
+background-size:100% 100%;
+border-radius:10px;
+margin: 5px 0 0 0;
+}
+.bodybg{
+background-image:url(../images/bg.png);
+}
+.footer{
+width:auto;
+height:50px;
+background-image:url(../images/footer.jpg);
+background-size:100% 100%;
+border-radius:10px 10px 0 0;
+}
+.content{
+width:100%;
+min-height:490px;
+outline:1px solid #FAA21A;
+}
+.logo{
+background:url(../images/logo1.png) no-repeat;
+width:135px;
+height:100%;
+float:left;
+background-position:100% 10%;
+background-size:80% auto;
+#outline:1px solid #ffffff;
+}
+.buttonfloat{
+float:right;
+margin:5px;
+	
+}
+.headerTop{
+width:100%;
+height:60%;
+display:inline-block;
+}
+.headerBottom{
+       width: 100%;
+      height: 40%;
+	 display: inline-block;
+	 text-align: center;
+}
+.formmargin{
+margin:auto;
+	
+	
+}.lll{
+width:500px;
+min-height:400px;
+outline:1px solid #FAA21A;
+padding:auto;
+#text-align:center;
+margin:auto;
+}

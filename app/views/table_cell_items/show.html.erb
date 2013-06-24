@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Table template:</b>
+  <%= @table_cell_item.table_template_id %>
+</p>
+
+<p>
+  <b>Resource type:</b>
+  <%= @table_cell_item.resource_type_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_table_cell_item_path(@table_cell_item) %> |
+<%= link_to 'Back', table_cell_items_path %>

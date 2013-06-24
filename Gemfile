@@ -11,7 +11,7 @@ gem 'rspec-rails'
 
 gem 'cancan'
 
-gem 'factory_girl'
+gem 'factory_girl_rails'
 
 gem 'bcrypt-ruby', :require=>'bcrypt'
 

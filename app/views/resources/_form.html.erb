@@ -16,8 +16,9 @@
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :resource_type_id %><br />
-    <%= f.number_field :resource_type_id %>
+  <%= f.label :resource_type_id %><br />
+  <%= f.select(:resource_type_id , ResourceType.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %>
+  <%= link_to "Create new type", :controller => "resource_types", :action => "new"%> 
   </div>
   <div class="actions">
     <%= f.submit %>

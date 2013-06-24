@@ -3,6 +3,6 @@ class ResourceType < ActiveRecord::Base
   attr_accessible :name
   has_many :Fields
   has_many :Resources
-  validates :resource_type_name, :presence => true
-  validates_uniqueness_of :resource_type_name
+  validates :name, :presence => true
+  validates_uniqueness_of :name
 end

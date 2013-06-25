@@ -11,6 +11,8 @@ describe User do
     it { should respond_to(:email) }
     it { should respond_to(:password) }
   
+
     it { should be_valid(:username)}
     it { should be_valid(:email)}
+
 end

@@ -21,9 +21,9 @@ min-height:490px;
 /*outline:1px solid #FAA21A;*/
 }
 .logo{
-background:url(../images/logo1.png) no-repeat;
-width:135px;
-height:100%;
+background:url(../images/logo.png) no-repeat;
+width:185px;
+height:60px;
 float:left;
 /*background-position:100% 10%;*/
 position: relative;

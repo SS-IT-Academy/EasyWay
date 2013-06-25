@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  period: 1
+  start_at: 2013-06-17 23:28:22
+  end_at: 2013-06-17 23:28:22
+
+two:
+  period: 1
+  start_at: 2013-06-17 23:28:22
+  end_at: 2013-06-17 23:28:22

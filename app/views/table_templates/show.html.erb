@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @table_template.name %>
+</p>
+
+<p>
+  <b>Cell body:</b>
+  <%= @table_template.cell_body %>
+</p>
+
+<p>
+	<%= link_to '*Add table header', new_table_header_path(@table_header)%>
+</p>
+<p>
+	<%= link_to '*Add table filter', new_table_filter_path%>
+</p>
+<p>
+	<%= link_to '*Add table cell item', new_table_cell_item_path%>
+</p>
+<%= link_to 'Edit', edit_table_template_path(@table_template) %> |
+<%= link_to 'Back', table_templates_path %>

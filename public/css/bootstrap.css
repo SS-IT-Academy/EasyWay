@@ -8,49 +8,7 @@
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
 
- .header{
-height:100px;
-background:url(../images/header.jpg) no-repeat  ;
-background-size:100% 100%;
-border-radius:10px;
-}
-.footer{
-width:auto;
-height:50px;
-background-image:url(../images/footer.jpg);
-background-size:100% 100%;
-border-radius:10px 10px 0 0;
-}
-.content{
-width:100%;
-min-height:490px;
-outline:1px solid #FAA21A;
-}
-.logo{
-background:url(../images/logo.png) no-repeat;
-width:125px;
-height:100%;
-float:left;
-background-position:right bottom;
-background-size:75% auto;
-outline:1px solid #ffffff;
-}
-.buttonfloat{
-float:right;
-margin:5px;
-	
-}
-.headerTop{
-width:100%;
-height:60%;
-display:inline-block;
-}
-.headerBottom{
-       width: 100%;
-      height: 40%;
-	 display: inline-block;
-	 text-align: center;
-}
+ 
 .clearfix {
   *zoom: 1;
 }
@@ -1936,10 +1894,9 @@ input.search-query {
 .form-inline .input-append,
 .form-horizontal .input-append {
   display: inline-block;
-  *display: inline;
   margin-bottom: 0;
   vertical-align: middle;
-  *zoom: 1;
+  zoom: 1;
 }
 
 .form-search .hide,
@@ -2959,7 +2916,7 @@ table th[class*="span"],
   padding: 5px 0;
   margin: 2px 0 0;
   list-style: none;
-  background-color: #ffffff;
+  background-color: #3985B6;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
   *border-right-width: 2px;
@@ -2996,7 +2953,7 @@ table th[class*="span"],
   clear: both;
   font-weight: normal;
   line-height: 20px;
-  color: #333333;
+  color: #0020D6;
   white-space: nowrap;
 }
 
@@ -4655,9 +4612,9 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > li > a {
   float: none;
   padding: 10px 15px 10px;
-  color: #777777;
+  color: #0943DD;
   text-decoration: none;
-  text-shadow: 0 1px 0 #ffffff;
+  font-size:10pt;
 }
 
 .navbar .nav .dropdown-toggle .caret {
@@ -4666,7 +4623,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .nav > li > a:focus,
 .navbar .nav > li > a:hover {
-  color: #333333;
+  color: #3C3B37;
   text-decoration: none;
   background-color: transparent;
 }
@@ -4674,7 +4631,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > .active > a,
 .navbar .nav > .active > a:hover,
 .navbar .nav > .active > a:focus {
-  color: #555555;
+  color: #3C3B37;
   text-decoration: none;
   background-color: #e5e5e5;
   -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);

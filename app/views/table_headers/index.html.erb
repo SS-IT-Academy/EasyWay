@@ -1,0 +1,29 @@
+<h1>Listing table_headers</h1>
+
+<table>
+  <tr>
+    <th>Table template</th>
+    <th>Resource type</th>
+    <th>Position num</th>
+    <th>Parent</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @table_headers.each do |table_header| %>
+  <tr>
+    <td><%= table_header.table_template_id %></td>
+    <td><%= table_header.resource_type_id %></td>
+    <td><%= table_header.position_num %></td>
+    <td><%= table_header.parent_id %></td>
+    <td><%= link_to 'Show', table_header %></td>
+    <td><%= link_to 'Edit', edit_table_header_path(table_header) %></td>
+    <td><%= link_to 'Destroy', table_header, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Table header', new_table_header_path %>

@@ -1,3 +1,4 @@
+<div>
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -10,28 +11,32 @@
       </ul>
     </div>
   <% end %>
+</form>
+<div class="boxforforms">
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div>
+  <form class="field form-inline">
+    <%= f.label :username, :class=>"pull-left"%>
+    <%= f.text_field :username, :class =>"pull-right"%>
+  </form><br>
+  <form class="field form-inline">
+    <%= f.label :email, :class=>"pull-left"%>
+    <%= f.text_field :email, :class =>"pull-right"%>
+  </form><br>
+  <form class="field form-inline">
+    <%= f.label :password, :class=>"pull-left" %>
+    <%= f.password_field :password, :class =>"pull-right"%>
+  </form><br>
+  <form class="field form-inline">
+    <%= f.label :password_confirmation, :class=>"pull-left"  %>
+    <%= f.password_field :password_confirmation, :class =>"pull-right" %>
+  </form><br>
+  <div class"text-center" >
   <%= recaptcha_tags %>
-	</div>
+	</div> 
+  <div class="actions text-center ">
+    <%= f.submit :class =>"btn btn-primary"%>
+
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+   </div>
 <% end %>
+</div>

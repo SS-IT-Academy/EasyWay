@@ -1,4 +1,4 @@
-<div class="formmargin">
+<div>
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -11,25 +11,25 @@
       </ul>
     </div>
   <% end %>
+</form>
+<div class="boxforforms">
 
-  
-<div class="lll">
   <form class="field form-inline">
-    <%= f.label :username %>
-    <%= f.text_field :username%>
-  </form>
+    <%= f.label :username, :class=>"pull-left"%>
+    <%= f.text_field :username, :class =>"pull-right"%>
+  </form><br>
   <form class="field form-inline">
-    <%= f.label :email %>
-    <%= f.text_field :email, :class =>"pull-right" %>
-  </form>
+    <%= f.label :email, :class=>"pull-left"%>
+    <%= f.text_field :email, :class =>"pull-right"%>
+  </form><br>
   <form class="field form-inline">
-    <%= f.label :password %>
+    <%= f.label :password, :class=>"pull-left" %>
     <%= f.password_field :password, :class =>"pull-right"%>
-  </form>
+  </form><br>
   <form class="field form-inline">
-    <%= f.label :password_confirmation %>
+    <%= f.label :password_confirmation, :class=>"pull-left"  %>
     <%= f.password_field :password_confirmation, :class =>"pull-right" %>
-  </form>
+  </form><br>
   <div class"text-center" >
   <%= recaptcha_tags %>
 	</div> 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130624121321) do
+ActiveRecord::Schema.define(:version => 20130625190446) do
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(:version => 20130624121321) do
   end
 
   create_table "fields", :force => true do |t|
-    t.string   "field_name"
-    t.integer  "resource_type_id"
+    t.string   "name"
     t.integer  "field_type_id"
+    t.integer  "resource_type_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
@@ -49,7 +49,10 @@ ActiveRecord::Schema.define(:version => 20130624121321) do
     t.string   "target"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "ancestry"
   end
+
+  add_index "menus", ["ancestry"], :name => "index_menus_on_ancestry"
 
   create_table "permissions", :force => true do |t|
     t.string   "name"
@@ -63,16 +66,16 @@ ActiveRecord::Schema.define(:version => 20130624121321) do
   end
 
   create_table "resource_types", :force => true do |t|
-    t.string   "resource_type_name"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "resource_values", :force => true do |t|
-    t.integer  "resource_id"
     t.integer  "field_id"
-    t.string   "value"
+    t.integer  "resource_id"
     t.integer  "resource_reference_id"
+    t.string   "value"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
   end

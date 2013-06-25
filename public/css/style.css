@@ -21,7 +21,7 @@ min-height:490px;
 outline:1px solid #FAA21A;
 }
 .logo{
-background:url(../images/logo1.png) no-repeat;
+background:url(../images/logo3.png) no-repeat;
 width:135px;
 height:100%;
 float:left;
@@ -45,17 +45,17 @@ display:inline-block;
 	 display: inline-block;
 	 text-align: center;
 }
-.formmargin{
-margin:auto;
+
 	
 	
-}.lll{
+.boxforforms{
 width:500px;
 min-height:400px;
 outline:1px solid #FAA21A;
 padding:auto;
 text-align:center;
 margin:auto;
+padding:10px 0 10px 0;
 border: 1px red solid;
 }
 

@@ -1,13 +1,13 @@
-<div class="lll ">
+<div class="boxforforms ">
 <%= form_for @user, :as => :user, :url => sign_in_path(@user) do |f| %>
-  <form class="form_sign_in">
-    <%= f.label 'username or email:' %>
-    <%= f.text_field :username %>
-  </form>
+  <form class="form_sign_in form-inline">
+    <%= f.label 'username or email:', :class =>"pull-left" %>
+    <%= f.text_field :username, :class =>"pull-right" %>
+  </form></br>
   <form class="form-inline">
-    <%= f.label 'password:' %>
+    <%= f.label 'password:', :class =>"pull-left" %>
     <%= f.password_field :password, :class =>"pull-right" %>
-  </form>
+  </form></br>
   <form class="text-center">
   <%= f.check_box :remember_me %>
 </form>

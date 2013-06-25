@@ -13,6 +13,8 @@ gem 'cancan'
 
 gem 'factory_girl_rails'
 
+gem 'ancestry'
+
 gem 'bcrypt-ruby', :require=>'bcrypt'
 
 gem 'recaptcha', :require => "recaptcha/rails"

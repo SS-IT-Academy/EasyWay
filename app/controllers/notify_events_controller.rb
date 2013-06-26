@@ -6,7 +6,7 @@ class NotifyEventsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @notify_events }
+      format.json { render :json => @notify_events }
     end
   end
 
@@ -17,7 +17,7 @@ class NotifyEventsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @notify_event }
+      format.json { render :json => @notify_event }
     end
   end
 
@@ -28,7 +28,7 @@ class NotifyEventsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @notify_event }
+      format.json { render :json => @notify_event }
     end
   end
 
@@ -44,11 +44,11 @@ class NotifyEventsController < ApplicationController
 
     respond_to do |format|
       if @notify_event.save
-        format.html { redirect_to @notify_event, notice: 'Notify event was successfully created.' }
-        format.json { render json: @notify_event, status: :created, location: @notify_event }
+        format.html { redirect_to @notify_event, :notice => 'Notify event was successfully created.' }
+        format.json { render :json => @notify_event, :status => created, :location => @notify_event }
       else
-        format.html { render action: "new" }
-        format.json { render json: @notify_event.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @notify_event.errors, :status => unprocessable_entity }
       end
     end
   end
@@ -60,11 +60,11 @@ class NotifyEventsController < ApplicationController
 
     respond_to do |format|
       if @notify_event.update_attributes(params[:notify_event])
-        format.html { redirect_to @notify_event, notice: 'Notify event was successfully updated.' }
+        format.html { redirect_to @notify_event, :notice => 'Notify event was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @notify_event.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @notify_event.errors, :status => :unprocessable_entity }
       end
     end
   end

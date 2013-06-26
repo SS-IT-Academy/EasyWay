@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130624123942) do
+ActiveRecord::Schema.define(:version => 20130626192557) do
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -108,8 +108,9 @@ ActiveRecord::Schema.define(:version => 20130624123942) do
   end
 
   create_table "table_headers", :force => true do |t|
-    t.integer  "table_template_id"
     t.integer  "resource_type_id"
+    t.integer  "table_template_id"
+    t.string   "orientation"
     t.integer  "position_num"
     t.integer  "parent_id"
     t.datetime "created_at",        :null => false

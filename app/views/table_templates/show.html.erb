@@ -11,7 +11,7 @@
 </p>
 
 <p>
-	<%= link_to '*Add table header', new_table_header_path(@table_header)%>
+	<%= link_to '*Add table header', new_table_header_path(:table_template => @table_template.id)%>
 </p>
 <p>
 	<%= link_to '*Add table filter', new_table_filter_path%>
@@ -21,3 +21,4 @@
 </p>
 <%= link_to 'Edit', edit_table_template_path(@table_template) %> |
 <%= link_to 'Back', table_templates_path %>
+

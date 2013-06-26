@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(:version => 20130625190446) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "event_properties", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "field_types", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -57,6 +68,37 @@ ActiveRecord::Schema.define(:version => 20130625190446) do
 
   add_index "menus", ["ancestry"], :name => "index_menus_on_ancestry"
 
+  create_table "notify_events", :force => true do |t|
+    t.integer  "template_id"
+    t.integer  "event_id"
+    t.string   "name"
+    t.integer  "observer_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "notify_observers", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "notify_schedulers", :force => true do |t|
+    t.integer  "period"
+    t.time     "start_at"
+    t.time     "end_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "notify_templates", :force => true do |t|
+    t.string   "template_name"
+    t.text     "body"
+    t.text     "desc"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "permissions", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -66,6 +108,14 @@ ActiveRecord::Schema.define(:version => 20130625190446) do
   create_table "permissions_roles", :id => false, :force => true do |t|
     t.integer "permissions_id"
     t.integer "roles_id"
+  end
+
+  create_table "recipients", :force => true do |t|
+    t.integer  "notifyevent_id"
+    t.integer  "user_id"
+    t.integer  "group_number"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "resource_types", :force => true do |t|

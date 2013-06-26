@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Template name:</b>
+  <%= @notify_template.template_name %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @notify_template.body %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= @notify_template.desc %>
+</p>
+
+
+<%= link_to 'Edit', edit_notify_template_path(@notify_template) %> |
+<%= link_to 'Back', notify_templates_path %>

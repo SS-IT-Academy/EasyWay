@@ -1,16 +1,17 @@
-<div class="boxforforms ">
+<div class="boxforforms">
 <%= form_for @user, :as => :user, :url => sign_in_path(@user) do |f| %>
-  <form class="form_sign_in form-inline">
+  <div class="form_sign_in form-inline ">
     <%= f.label 'username or email:', :class =>"pull-left" %>
     <%= f.text_field :username, :class =>"pull-right" %>
-  </form></br>
-  <form class="form-inline">
+  </div><br>
+  <div class="form-inline marginforforms">
     <%= f.label 'password:', :class =>"pull-left" %>
     <%= f.password_field :password, :class =>"pull-right" %>
-  </form></br>
-  <form class="text-center">
+  </div><br>
+  <div class="text-center marginforforms">
+  	Remember me
   <%= f.check_box :remember_me %>
-</form>
+</div><br>
   <div class="text-center">
     <%= f.submit 'Sign In', :class =>"btn btn-primary"%>&nbsp;&nbsp;&nbsp;
     <%= f.submit 'Clear Form', :type => 'reset', :class =>"btn btn-primary" %>
@@ -18,5 +19,6 @@
   <p>
   <%= link_to 'forgot your password?', :forgot_password %>
 </p>
+</form>
 <% end %>
 </div >

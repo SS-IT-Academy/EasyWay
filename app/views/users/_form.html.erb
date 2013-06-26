@@ -11,32 +11,35 @@
       </ul>
     </div>
   <% end %>
-</form>
-<div class="boxforforms">
 
-  <form class="field form-inline">
+<div class="boxforforms">
+<form>
+  <div class="field form-inline marginforforms">
     <%= f.label :username, :class=>"pull-left"%>
     <%= f.text_field :username, :class =>"pull-right"%>
-  </form><br>
-  <form class="field form-inline">
+  </div><br>
+  <div class="field form-inline marginforforms">
     <%= f.label :email, :class=>"pull-left"%>
     <%= f.text_field :email, :class =>"pull-right"%>
-  </form><br>
-  <form class="field form-inline">
+  </div><br>
+  <div class="field form-inline marginforforms">
     <%= f.label :password, :class=>"pull-left" %>
     <%= f.password_field :password, :class =>"pull-right"%>
-  </form><br>
-  <form class="field form-inline">
+  </div><br>
+  <div class="field form-inline marginforforms">
     <%= f.label :password_confirmation, :class=>"pull-left"  %>
     <%= f.password_field :password_confirmation, :class =>"pull-right" %>
-  </form><br>
-  <div class"text-center" >
-  <%= recaptcha_tags %>
+  </div><br>
+  <p></p>
+  <div class"text-center marginforforms " >
+  <%= recaptcha_tags%>
 	</div> 
-  <div class="actions text-center ">
-    <%= f.submit :class =>"btn btn-primary"%>&nbsp;&nbsp;&nbsp;
-    
+  <div class="actions text-center marginforforms ">
+    <%= f.submit :class =>"btn btn-primary"%>
+
   </div>
+  
+  </form>
    </div>
 <% end %>
 </div>

@@ -55,7 +55,7 @@ display:inline-block;
 width:500px;
 min-height:400px;
 outline:1px solid #FAA21A;
-padding:auto;
+
 text-align:center;
 margin:auto;
 padding:10px 0 10px 0;
@@ -69,4 +69,13 @@ border: 1px red solid;
 }
 .marginforforms{
 margin: 20px 0 20px 0;	
+}
+.boxforcrud{
+width:300px;
+height:400px;
+outline:1px solid #FAA21A;	
+}
+.lll{
+padding: 0 18px 0 0;
+font-size:14pt;
 }

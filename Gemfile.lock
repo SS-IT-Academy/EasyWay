@@ -172,8 +172,8 @@ DEPENDENCIES
   ancestry
   bcrypt-ruby
   cancan
-  coffee-rails (~> 3.2.1)
   capybara
+  coffee-rails (~> 3.2.1)
   factory_girl_rails
   guard-rspec
   jquery-rails

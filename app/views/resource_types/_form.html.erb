@@ -14,7 +14,9 @@
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
+    
   </div>
+  <%= link_to "Add field", :controller => "fields", :action => "new"%>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -3,7 +3,6 @@ class ResourcesController < ApplicationController
   # GET /resources.json
   def index
     @resources = Resource.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @resources }
@@ -14,7 +13,14 @@ class ResourcesController < ApplicationController
   # GET /resources/1.json
   def show
     @resource = Resource.find(params[:id])
-
+    @resource_type = ResourceType.find(@resource.resource_type_id)
+    @values = ResourceValue.where(resource_id: params[:id])
+    @field_types=[]
+    @values.each do |value|
+      @field_types << value.Field
+    end
+     
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @resource }

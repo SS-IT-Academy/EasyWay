@@ -21,9 +21,15 @@ min-height:490px;
 /*outline:1px solid #FAA21A;*/
 }
 .logo{
+<<<<<<< HEAD
 background:url(../images/logo.png) no-repeat;
 width:185px;
 height:60px;
+=======
+background:url(../images/logo3.png) no-repeat;
+width:135px;
+height:100%;
+>>>>>>> 72c18fe6ac115d48968f540536e7f86470dc86f9
 float:left;
 /*background-position:100% 10%;*/
 position: relative;
@@ -48,17 +54,17 @@ display:inline-block;
 	 display: inline-block;
 	 text-align: center;
 }
-.formmargin{
-margin:auto;
+
 	
 	
-}.lll{
+.boxforforms{
 width:500px;
 min-height:400px;
 outline:1px solid #FAA21A;
-padding:auto;
+
 text-align:center;
 margin:auto;
+padding:10px 0 10px 0;
 border: 1px red solid;
 }
 
@@ -66,4 +72,16 @@ border: 1px red solid;
 	display: inline;
 	text-align: center;
 	margin: auto;
+}
+.marginforforms{
+margin: 20px 0 20px 0;	
+}
+.boxforcrud{
+width:300px;
+height:400px;
+outline:1px solid #FAA21A;	
+}
+.lll{
+padding: 0 18px 0 0;
+font-size:14pt;
 }

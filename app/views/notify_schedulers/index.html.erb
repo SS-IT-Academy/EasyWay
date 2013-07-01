@@ -1,0 +1,27 @@
+<h1>Listing notify_schedulers</h1>
+
+<table>
+  <tr>
+    <th>Period</th>
+    <th>Start at</th>
+    <th>End at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @notify_schedulers.each do |notify_scheduler| %>
+  <tr>
+    <td><%= notify_scheduler.period %></td>
+    <td><%= notify_scheduler.start_at %></td>
+    <td><%= notify_scheduler.end_at %></td>
+    <td><%= link_to 'Show', notify_scheduler %></td>
+    <td><%= link_to 'Edit', edit_notify_scheduler_path(notify_scheduler) %></td>
+    <td><%= link_to 'Destroy', notify_scheduler, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Notify scheduler', new_notify_scheduler_path %>

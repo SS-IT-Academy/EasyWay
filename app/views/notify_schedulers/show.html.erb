@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Period:</b>
+  <%= @notify_scheduler.period %>
+</p>
+
+<p>
+  <b>Start at:</b>
+  <%= @notify_scheduler.start_at %>
+</p>
+
+<p>
+  <b>End at:</b>
+  <%= @notify_scheduler.end_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_notify_scheduler_path(@notify_scheduler) %> |
+<%= link_to 'Back', notify_schedulers_path %>

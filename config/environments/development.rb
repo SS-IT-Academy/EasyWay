@@ -39,9 +39,9 @@ EasyW::Application.configure do
   config.action_mailer.smtp_settings = {
   :address => "smtp.gmail.com",
   :port => 587,
-  :domain => '<your domain>',
-  :user_name => '<your username>',
-  :password => '<your password>',
+  :domain => 'softserve.ua',
+  :user_name => 'svystun.igor',
+  :password => '172839172839',
   :authentication => 'plain',
   :enable_starttls_auto => true } 
 end

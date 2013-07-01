@@ -1,0 +1,27 @@
+<h1>Listing recipients</h1>
+
+<table>
+  <tr>
+    <th>Notifyevent</th>
+    <th>User</th>
+    <th>Group number</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @recipients.each do |recipient| %>
+  <tr>
+    <td><%= recipient.notifyevent_id %></td>
+    <td><%= recipient.user_id %></td>
+    <td><%= recipient.group_number %></td>
+    <td><%= link_to 'Show', recipient %></td>
+    <td><%= link_to 'Edit', edit_recipient_path(recipient) %></td>
+    <td><%= link_to 'Destroy', recipient, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Recipient', new_recipient_path %>

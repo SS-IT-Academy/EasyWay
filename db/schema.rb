@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130626192557) do
+=======
+ActiveRecord::Schema.define(:version => 20130625190446) do
+>>>>>>> 72c18fe6ac115d48968f540536e7f86470dc86f9
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -21,6 +25,17 @@ ActiveRecord::Schema.define(:version => 20130626192557) do
   create_table "easies", :force => true do |t|
     t.string   "name"
     t.string   "password"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "event_properties", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "events", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -49,6 +64,49 @@ ActiveRecord::Schema.define(:version => 20130626192557) do
     t.string   "target"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "ancestry"
+  end
+
+  add_index "menus", ["ancestry"], :name => "index_menus_on_ancestry"
+
+  create_table "notify_event1s", :force => true do |t|
+    t.integer  "event_id"
+    t.string   "name"
+    t.integer  "observer_id"
+    t.integer  "template_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "notify_events", :force => true do |t|
+    t.integer  "template_id"
+    t.integer  "event_id"
+    t.string   "name"
+    t.integer  "observer_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "notify_observers", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "notify_schedulers", :force => true do |t|
+    t.integer  "period"
+    t.time     "start_at"
+    t.time     "end_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "notify_templates", :force => true do |t|
+    t.string   "template_name"
+    t.text     "body"
+    t.text     "desc"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "permissions", :force => true do |t|
@@ -60,6 +118,14 @@ ActiveRecord::Schema.define(:version => 20130626192557) do
   create_table "permissions_roles", :id => false, :force => true do |t|
     t.integer "permissions_id"
     t.integer "roles_id"
+  end
+
+  create_table "recipients", :force => true do |t|
+    t.integer  "notifyevent_id"
+    t.integer  "user_id"
+    t.integer  "group_number"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "resource_types", :force => true do |t|

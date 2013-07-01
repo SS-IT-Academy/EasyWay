@@ -1,5 +1,11 @@
 EasyW::Application.routes.draw do
   resources :table_headers
+  
+  resources :table_filters
+  
+  resources :table_templates
+  
+  resources :table_cell_item
 
 
   resources :resources
@@ -20,7 +26,9 @@ EasyW::Application.routes.draw do
 
   resources :menus
 
-  resources :table_filters
+  
+  
+  
 
   resources :notify_schedulers
   root :to=>"home#index"

@@ -2,7 +2,7 @@
 height:100px;
 background:url(../images/header.jpg) no-repeat  ;
 background-size:100% 100%;
-border-radius:10px;
+border-radius:0;
 margin: 5px 0 0 0;
 }
 .bodybg{
@@ -13,19 +13,22 @@ width:auto;
 height:50px;
 background-image:url(../images/footer.jpg);
 background-size:100% 100%;
-border-radius:10px 10px 0 0;
+/*border-radius:10px 10px 0 0;*/
 }
 .content{
 width:100%;
 min-height:490px;
-outline:1px solid #FAA21A;
+/*outline:1px solid #FAA21A;*/
 }
 .logo{
-background:url(../images/logo1.png) no-repeat;
+background:url(../images/logo3.png) no-repeat;
 width:135px;
 height:100%;
 float:left;
-background-position:100% 10%;
+/*background-position:100% 10%;*/
+position: relative;
+margin-left: 63px;
+margin-top: 5px;
 background-size:80% auto;
 #outline:1px solid #ffffff;
 }
@@ -45,17 +48,17 @@ display:inline-block;
 	 display: inline-block;
 	 text-align: center;
 }
-.formmargin{
-margin:auto;
+
 	
 	
-}.lll{
+.boxforforms{
 width:500px;
 min-height:400px;
 outline:1px solid #FAA21A;
-padding:auto;
+
 text-align:center;
 margin:auto;
+padding:10px 0 10px 0;
 border: 1px red solid;
 }
 
@@ -63,4 +66,16 @@ border: 1px red solid;
 	display: inline;
 	text-align: center;
 	margin: auto;
+}
+.marginforforms{
+margin: 20px 0 20px 0;	
+}
+.boxforcrud{
+width:300px;
+height:400px;
+outline:1px solid #FAA21A;	
+}
+.lll{
+padding: 0 18px 0 0;
+font-size:14pt;
 }

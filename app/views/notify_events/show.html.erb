@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Template:</b>
+  <%= @notify_event.template_id %>
+</p>
+
+<p>
+  <b>Event:</b>
+  <%= @notify_event.event_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @notify_event.name %>
+</p>
+
+<p>
+  <b>Observer:</b>
+  <%= @notify_event.observer_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_notify_event_path(@notify_event) %> |
+<%= link_to 'Back', notify_events_path %>

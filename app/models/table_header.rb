@@ -10,5 +10,5 @@ class TableHeader < ActiveRecord::Base
   validates :parent_id, :presence => true
   validates :position_num, :presence => true
   validates :resource_type_id, :presence => true
-  validates :table_template_id, :presence => false
+  #validates :table_template_id, :presence => true
 end

@@ -1,6 +1,14 @@
 <h1>Editing table_template</h1>
 
 <%= render 'form' %>
-
+<p>
+	<%= link_to '*Add table header', new_table_header_path(:table_template => @table_template.id)%>
+</p>
+<p>
+	<%= link_to '*Add table filter', new_table_filter_path%>
+</p>
+<p>
+	<%= link_to '*Add table cell item', new_table_cell_item_path%>
+</p>
 <%= link_to 'Show', @table_template %> |
 <%= link_to 'Back', table_templates_path %>

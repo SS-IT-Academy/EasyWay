@@ -15,10 +15,10 @@
     <%= f.label :resource_type_id %><br />
     <%= f.select(:resource_type_id , ResourceType.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %>
   </div>
-  <!--<div class="field">
+  <div class="field">
     <%= f.label :table_template_id %><br />
     <%= f.number_field :table_template_id %>
-  </div>-->
+  </div>
   <div class="field">
     <%= f.label :orientation %><br />
     <%= f.text_field :orientation %>
@@ -32,6 +32,6 @@
     <%= f.number_field :parent_id %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit%>
   </div>
 <% end %>

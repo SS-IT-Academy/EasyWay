@@ -30,27 +30,15 @@
 				</div>
 				<div class="headerBottom">
 					<div class="navbar ">
-						<div>
-							<ul class="nav ">
-							<li><a href="#">Home</a></li>
-							<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-								Timetables<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-							<li><a href="#">Show Prepeared</a></li>
-							<li><a href="#">Create</a></li>
+					
+							<ul class="nav">
+							<%@Menu_items.each do |menu_item|%>
+							   <li><%= link_to menu_item.title, menu_item.url%></li>
+							<%end%>
 							</ul>
-							</li>
-							<li><a href="#">Manage Event</a></li>
-							<li><a href="#">Manage Resource</a></li>
-							<li><a href="#">Subscriptions</a></li>
-							<li><a href="#">User Roles</a></li>
-							<li><a href="#">About<a></li>
-							</ul>
-							</div>
-						</div>
+					
 					</div>
+				</div>
 		</div>
 
 			<div class="content ">

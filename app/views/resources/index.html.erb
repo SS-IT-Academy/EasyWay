@@ -1,6 +1,20 @@
+<script>
+function update_resources(resource_type_id) {  
+  console.log(resource_type_id);
+  $.ajax({
+    url: "/update_resources",
+    type: "GET",
+    data: {"resource_type_id" : resource_type_id},
+    dataType: "html",
+    success: function(data) {
+      $("#ResourceTable").html(data);
+    }
+  }); 
+}
+</script>
 <h1>Listing resources</h1>
-
-<table>
+ <%= select_tag "resource_type_id",  options_from_collection_for_select(@resource_types, "id","name"),:prompt => "All types", :onchange => 'update_resources(this.value)' %>
+<table id="ResourceTable">
   <tr>
     <th>Description</th>
     <th>Resource type</th>

@@ -15,6 +15,7 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+  <%= render :partial => 'testing', :locals => { :f => f } %>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -31,7 +31,10 @@ class ResourceTypesController < ApplicationController
       format.json { render json: @resource_type }
     end
   end
-
+  def update_fields
+    @fields = Field.where("resource_type_id = ?", params[:resource_type_id])
+    render :partial => "resource_types/fields", :object => @resource
+  end
   # GET /resource_types/1/edit
   def edit
     @resource_type = ResourceType.find(params[:id])

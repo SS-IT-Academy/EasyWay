@@ -3,12 +3,22 @@ class ResourcesController < ApplicationController
   # GET /resources.json
   def index
     @resources = Resource.all
-    respond_to do |format|
+    @resource_types=ResourceType.all
+      respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @resources }
     end
   end
-
+  
+  def update_resources
+    if (params[:resource_type_id] == '') then
+      @resources = Resource.all
+      render :partial => "resources_filter", :object => @resource
+    else
+      @resources = Resource.where("resource_type_id = ?", params[:resource_type_id])
+      render :partial => "resources_filter", :object => @resource
+    end
+  end
   # GET /resources/1
   # GET /resources/1.json
   def show
@@ -31,12 +41,14 @@ class ResourcesController < ApplicationController
   # GET /resources/new.json
   def new
     @resource = Resource.new
+    @resource_types=ResourceType.all
 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @resource }
     end
   end
+  
 
   # GET /resources/1/edit
   def edit

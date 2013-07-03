@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130625190446) do
+ActiveRecord::Schema.define(:version => 20130701181446) do
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -65,15 +65,6 @@ ActiveRecord::Schema.define(:version => 20130625190446) do
 
   add_index "menus", ["ancestry"], :name => "index_menus_on_ancestry"
 
-  create_table "notify_event1s", :force => true do |t|
-    t.integer  "event_id"
-    t.string   "name"
-    t.integer  "observer_id"
-    t.integer  "template_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "notify_events", :force => true do |t|
     t.integer  "template_id"
     t.integer  "event_id"
@@ -81,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20130625190446) do
     t.integer  "observer_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "recipients"
   end
 
   create_table "notify_observers", :force => true do |t|

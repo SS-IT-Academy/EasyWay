@@ -9,37 +9,43 @@
       <% end %>
       </ul>
     </div>
+    </form>
   <% end %>
-
-  <div class="field">
-    <%= f.label :parent_id %><br />
-    <%= f.number_field :parent_id %>
+<div class="boxforcrud">
+  <div class="field form-inline ">
+     <div class="pull-right"> <%= f.select(:parent_id , Menu.all.collect {|p| [ p.title, p.id ] }, {:include_blank => ''}) %></div>
+  	<%= f.label :parent_id, :class =>"pull-right lll" %>
+  </div><br>
+  <div class="field form-inline marginforforms ">
+  	<%= f.number_field :role_id, :class =>"pull-right " %>
+  	<%= f.label :role_id, :class =>"pull-right lll" %>
+  	
+    
+  </div><br>
+  <div class="field form-inline marginforforms ">
+  	<%= f.text_field :url, :class =>"pull-right" %>
+    <%= f.label :url, :class =>"pull-right lll" %>
+    
+  </div><br>
+  <div class="field form-inline marginforforms ">
+  	<%= f.number_field :user_id, :class =>"pull-right" %>
+    <%= f.label :user_id, :class =>"pull-right lll" %>
+    
+  </div><br>
+  <div class="field form-inline marginforforms ">
+  	<%= f.text_field :text, :class =>"pull-right" %>
+    <%= f.label :text, :class =>"pull-right lll" %>
+     </div><br>
+  <div class="field form-inline marginforforms ">
+  	<%= f.text_field :title, :class =>"pull-right span3" %>
+  	  <%= f.label :title, :class =>"pull-right lll" %>
+      </div><br>
+  <div class="field form-inline marginforforms ">
+  	<%= f.text_field :target, :class =>"pull-right" %>
+    <%= f.label :target, :class =>"pull-right lll" %>
+      </div><br>
+  <div class="actions text-center marginforforms">
+    <%= f.submit :class =>"btn btn-primary " %>
   </div>
-  <div class="field">
-    <%= f.label :role_id %><br />
-    <%= f.number_field :role_id %>
-  </div>
-  <div class="field">
-    <%= f.label :url %><br />
-    <%= f.text_field :url %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :text %><br />
-    <%= f.text_field :text %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :target %><br />
-    <%= f.text_field :target %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
   </div>
 <% end %>

@@ -1,3 +1,17 @@
+<script>
+function update_resource_fields_div(resource_type_id) {  
+  $.ajax({
+    url: "/update_fields",
+    type: "GET",
+    data: {"resource_type_id" : resource_type_id},
+    dataType: "html",
+    success: function(data) {
+      $("#fieldsDiv").html(data);
+    }
+  }); 
+}
+
+</script>
 <%= form_for(@resource) do |f| %>
   <% if @resource.errors.any? %>
     <div id="error_explanation">
@@ -17,10 +31,12 @@
   </div>
   <div class="field">
   <%= f.label :resource_type_id %><br />
-  <%= f.select(:resource_type_id , ResourceType.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %>
+  <%= f.select :resource_type_id,  options_from_collection_for_select(@resource_types, "id","name"),{:include_blank => ''}, :onchange => 'update_resource_fields_div(this.value)' %>
   <%= link_to "Create new type", :controller => "resource_types", :action => "new"%> 
   </div>
+  <div id="fieldsDiv">
+  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit %> 
   </div>
 <% end %>

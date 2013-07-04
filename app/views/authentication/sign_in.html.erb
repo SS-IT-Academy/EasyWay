@@ -1,12 +1,14 @@
 <div class="boxforforms">
 <%= form_for @user, :as => :user, :url => sign_in_path(@user) do |f| %>
   <div class="form_sign_in form-inline ">
-    <%= f.label 'username or email:', :class =>"pull-left" %>
-    <%= f.text_field :username, :class =>"pull-right" %>
+  	<%= f.text_field :username, :class =>"pull-right span3" %>
+    <%= f.label 'username or email:', :class =>"pull-right lll" %>
+    
   </div><br>
   <div class="form-inline marginforforms">
-    <%= f.label 'password:', :class =>"pull-left" %>
-    <%= f.password_field :password, :class =>"pull-right" %>
+  	<%= f.password_field :password, :class =>"pull-right" %>
+    <%= f.label 'password:', :class =>"pull-right lll" %>
+    
   </div><br>
   <div class="text-center marginforforms">
   	Remember me

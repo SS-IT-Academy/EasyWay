@@ -29,6 +29,7 @@ class FieldsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @field }
+      format.js {render 'new.js.erb'}
     end
   end
 

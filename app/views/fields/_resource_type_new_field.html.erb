@@ -1,0 +1,10 @@
+<%= form_for(@field) do |f| %>
+  <div class="field">
+    <%= f.label :field_name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :field_type_id %><br />
+    <%= f.select(:field_type_id, FieldType.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %>
+  </div>
+<% end %>

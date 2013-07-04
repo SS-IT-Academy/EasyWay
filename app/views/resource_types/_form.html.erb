@@ -1,4 +1,4 @@
-<%= form_for(@resource_type) do |f| %>
+<%= form_for(@resource_type) do |f1| %>
   <% if @resource_type.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@resource_type.errors.count, "error") %> prohibited this resource_type from being saved:</h2>
@@ -12,10 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f1.label :name %><br />
+    <%= f1.text_field :name %>
+    
   </div>
+  <%= link_to "Add field", new_field_path(:format => :js),
+              :remote => true, :id => 'new_field_link' %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f1.submit %>
   </div>
 <% end %>

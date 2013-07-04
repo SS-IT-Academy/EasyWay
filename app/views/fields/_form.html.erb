@@ -17,11 +17,11 @@
   </div>
   <div class="field">
     <%= f.label :field_type_id %><br />
-    <%= f.number_field :field_type_id %>
+    <%= f.select(:field_type_id, FieldType.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %>
   </div>
   <div class="field">
-    <%= f.label :resource_type_id %><br />
-    <%= f.number_field :resource_type_id %>
+  <%= f.label :resource_type_id %><br />
+  <%= f.select(:resource_type_id , ResourceType.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %> 
   </div>
   <div class="actions">
     <%= f.submit %>

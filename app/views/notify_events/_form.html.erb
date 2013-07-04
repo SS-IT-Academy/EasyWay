@@ -12,39 +12,83 @@
 	</ul>
 </div>
 <% end %>
-
 <div class="form-inline">
-	<div class="offset span3"><%= f.label :name %></div>
-	
+	<div class="offset span3">
+		<%= f.label :name %>
+	</div>
+
 	<%= f.text_field :name %>
-</div><br>
-<div class="form-inline">
-	
-	<div class="offset span3"><%= f.label :template_id %> </div>
-	<%= select_tag(:template_id, options_from_collection_for_select(NotifyTemplate.all, :id, :template_name)) %>
-</div><br>
-<div class="form-inline">
-	
-	<div class="offset span3"><%= radio_button_tag(:notify_template, "welcome") %></div>
-	<%= label_tag(:notify_template, "Send welcome email") %>
 </div>
-<div class="form-inline">
-	
-	<div class="offset span3"><%= radio_button_tag(:notify_template, "event changed") %></div>
-	<%= label_tag(:notify_template, "Send event time changed email") %>
-</div><br>
-<div class="form-inline">
-	
-	<div class="offset span3"><%= f.label :event_id %></div>
-	<%= f.number_field :event_id %>
-</div><br>
-<div class="form-inline">
-
-    <div class="offset span3"><%= f.label :observer_id %></div>
-    <%= f.number_field :observer_id %>
-</div><br>
+<br>
 
 <div class="form-inline">
-	<div class="offset span3"><%= f.submit %>
+
+	<div class="offset span3">
+		<%= f.label :template_id %>
+	</div>
+	<%= select_tag(:template_id, options_from_collection_for_select(NotifyTemplate.all, :id, :template_name), :include_blank => "All t") %>
+</div>
+<br>
+
+<div class="marginforforms">
+  	<%= field_set_tag 'Recipient', :class => 'format' do %>
+  		<p><%= text_field_tag 'name' %></p>
+	<% end %>
+</div>
+<br />
+<br />
+<p>
+<div class="form-inline">
+
+	<div class="offset span3">
+	<%= label_tag("Enable") %>
+		<%= f.label :event_id %>
+		<%= radio_button_tag("Event", disabled = true) %>
+	</div>
+	
+</div>
+</p>
+
+<br />
+<div class="form-inline">
+
+	<div class="offset span3">
+		<%= radio_button_tag(:event_id, "enable") %>
+	</div>
+	<%= label_tag(:event_id, "Enable") %>
+</div>
+<br />
+<div class="form-inline">
+
+	<div class="offset span3">
+		<%= radio_button_tag(:event_id, "disable") %>
+	</div>
+	<%= label_tag(:event_id, "Disable") %>
+</div>
+<br />
+<div class="form-inline">
+	<div class="offset span3">
+		<%= f.label :observer_id %>
+	</div>
+	<br />
+	<%= f.number_field :observer_id %>
+</div>
+
+<div class="form-inline">
+
+	<br>
+	<div class="offset span3">
+		<%= radio_button_tag(:observer_id, "Enable") %>
+	</div>
+	<%= label_tag(:observer_id, "Enable") %>
+</div>
+
+<div class="offset span3">
+	<%= radio_button_tag(:observer_id, "Disable") %>
+</div>
+<%= label_tag(:observer_id, "Disable") %>
+
+<div class="actions">
+	<%= f.submit %>
 </div>
 <% end %>

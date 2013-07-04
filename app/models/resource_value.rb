@@ -1,5 +1,4 @@
 class ResourceValue < ActiveRecord::Base
-  # :TODO delete descriptions
   attr_accessible :field_id, :resource_id, :resource_reference_id, :value
   belongs_to :Resource,
     :foreign_key => "resource_id"

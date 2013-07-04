@@ -59,4 +59,36 @@ def update_authentication_token(user, remember_me)
   end
 end
 
+ def set_account_info
+    #@user = User.find(params[:id])
+ 
+  old_user = current_user
+
+  # verify the current password by creating a new user record.
+  @user = User.authenticate_by_email(old_user.email, params[:user][:password])
+
+  # verify
+  if @user.nil?
+    @user = current_user
+    @user.errors[:password] = "Password is incorrect."
+    render :action => "account_settings"
+  else
+    # update the user with any new username and email
+    @user.update(params[:user])
+    # Set the old email and username, which is validated only if it has changed.
+    @user.previous_email = old_user.email
+    @user.previous_username = old_user.username
+
+    if @user.valid?
+      # If there is a new_password value, then we need to update the password.
+      @user.password = @user.new_password unless @user.new_password.nil? || @user.new_password.empty?
+      @user.save
+      flash[:notice] = 'Account settings have been changed.'
+      redirect_to :root
+    else
+      render :action => "account_settings"
+    end
+  end
+end
+
 end

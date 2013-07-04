@@ -1,5 +1,5 @@
 class NotifyEvent < ActiveRecord::Base
-  attr_accessible :event_id, :name, :observer_id, :template_id
+  attr_accessible :event_id, :name, :observer_id, :template_id, :recipient
   validates :name, :presence => true
   validates :event_id, :presence => true
   validates :observer_id, :presence => true

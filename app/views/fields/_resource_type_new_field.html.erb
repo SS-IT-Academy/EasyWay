@@ -1,0 +1,15 @@
+<%= form_for @field, :html =>{:class=>"form-horizontal"}  do |f| %>
+  <div class="control-group">
+    <%= f.label :field_name, :class=>"control-label" %>
+    <div class="controls">
+    	<%= f.text_field :name %>
+    	  <%= link_to "Remove Field","#", :class=>"btn"%>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :field_type_id, :class=>"control-label" %>
+    <div class="controls">
+	    <%= f.select(:field_type_id, FieldType.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %>
+	</div>		
+  </div>
+<% end %>

@@ -1,4 +1,5 @@
 EasyW::Application.routes.draw do
+<<<<<<< HEAD
   #START TIMETABLE
   resources :table_headers
   
@@ -18,6 +19,10 @@ EasyW::Application.routes.draw do
   resources :fields
 
   resources :field_types
+=======
+  resources :permission_resources
+
+>>>>>>> 400ea86ff02410d4b8e7942d839ca641049bbed1
 
   resources :notify_event1s
 
@@ -37,6 +42,19 @@ EasyW::Application.routes.draw do
   resources :notify_events
 
   resources :notify_templates
+
+  resources :roles
+
+  
+  
+  resources :resources
+  resources :resource_types
+  resources :resource_values
+  resources :fields
+  resources :field_types
+  match "/update_fields" => "ResourceTypes#update_fields"
+  match "/update_resources" => "Resources#update_resources"
+
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"
   get "password_sent" => "authentication#password_sent"

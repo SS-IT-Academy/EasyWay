@@ -1,0 +1,2 @@
+module PermissionResourcesHelper
+end

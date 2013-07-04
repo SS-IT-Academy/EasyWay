@@ -1,4 +1,7 @@
 EasyW::Application.routes.draw do
+  resources :permission_resources
+
+
   resources :notify_event1s
 
 
@@ -16,6 +19,8 @@ EasyW::Application.routes.draw do
   resources :notify_events
 
   resources :notify_templates
+  resources :resource_types
+  resources :roles
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"
   get "password_sent" => "authentication#password_sent"

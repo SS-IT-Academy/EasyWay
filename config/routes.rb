@@ -1,34 +1,27 @@
 EasyW::Application.routes.draw do
+  #START TIMETABLE
   resources :table_headers
   
   resources :table_filters
   
   resources :table_templates
   
-  resources :table_cell_item
-
-
+  resources :table_cell_items
+  #END TIMETABLE
+  
   resources :resources
-
 
   resources :resource_values
 
-
   resources :resource_types
 
-
   resources :fields
-
 
   resources :field_types
 
   resources :notify_event1s
 
   resources :menus
-
-  
-  
-  
 
   resources :notify_schedulers
   root :to=>"home#index"

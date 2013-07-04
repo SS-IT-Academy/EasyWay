@@ -6,9 +6,5 @@ class TableHeader < ActiveRecord::Base
   belongs_to :resource_type,
     :foreign_key => "resource_type_id"
   
-  validates :orientation, :presence => false
-  validates :parent_id, :presence => true
-  validates :position_num, :presence => true
-  validates :resource_type_id, :presence => true
-  #validates :table_template_id, :presence => true
+  validates :parent_id, :position_num, :resource_type_id, :table_template_id, :presence => true
 end

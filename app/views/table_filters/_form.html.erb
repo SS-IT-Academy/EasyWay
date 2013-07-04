@@ -11,9 +11,8 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :table_template_id %><br />
-    <%= f.number_field :table_template_id %>
+  <div class="field">   
+    <%= f.hidden_field :table_template_id, :value => @table_template.id %>
   </div>
   <div class="field">
     <%= f.label :resource_id %><br />

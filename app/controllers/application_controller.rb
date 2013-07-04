@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 end
 
  def guest_menu
-   @Menu_items=Menu.all
+   @Menu_items=Menu.where("parent_id IS NULL")
  end
 
 end

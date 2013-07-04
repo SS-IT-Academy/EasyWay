@@ -1,6 +1,8 @@
-<h1>Listing resource_types</h1>
-
-<table>
+<h3>Listing resource_types</h3>
+	<div class="control-group">
+		<%= link_to 'New Resource type', new_resource_type_path,:class=>"btn btn-primary controls" %>
+    </div>
+<table class="table table-striped">
   <tr>
     <th>Name</th>
     <th></th>
@@ -11,13 +13,9 @@
 <% @resource_types.each do |resource_type| %>
   <tr>
     <td><%= resource_type.name %></td>
-    <td><%= link_to 'Show', resource_type %></td>
-    <td><%= link_to 'Edit', edit_resource_type_path(resource_type) %></td>
-    <td><%= link_to 'Destroy', resource_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', resource_type, :class=>"btn btn-info"%></td>
+    <td><%= link_to 'Edit', edit_resource_type_path(resource_type),:class=>"btn btn-info" %></td>
+    <td><%= link_to "<i class='icon-white icon-trash'></i> Destroy".html_safe, resource_type, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Resource type', new_resource_type_path %>

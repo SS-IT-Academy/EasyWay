@@ -12,9 +12,15 @@ function update_resources(resource_type_id) {
   }); 
 }
 </script>
-<h1>Listing resources</h1>
- <%= select_tag "resource_type_id",  options_from_collection_for_select(@resource_types, "id","name"),:prompt => "All types", :onchange => 'update_resources(this.value)' %>
-<table id="ResourceTable">
+<h3>Listing resources</h3>
+<div class="form-inline">
+  <div class="control-group">
+  <%= select_tag "resource_type_id",  options_from_collection_for_select(@resource_types, "id","name"),:prompt => "All types", :onchange => 'update_resources(this.value)'%>
+  <%= link_to 'New Resource', new_resource_path,:class=>"btn btn-primary controls" %>
+  </div>
+</div>
+
+<table id="ResourceTable" class="table table-striped">
   <tr>
     <th>Description</th>
     <th>Resource type</th>
@@ -27,13 +33,11 @@ function update_resources(resource_type_id) {
   <tr>
     <td><%= resource.description %></td>
     <td><%= resource.resource_type_id %></td>
-    <td><%= link_to 'Show', resource %></td>
-    <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
-    <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', resource,:class=>"btn btn-info" %></td>
+    <td><%= link_to 'Edit', edit_resource_path(resource),:class=>"btn btn-info" %></td>
+    <td><%= link_to "<i class='icon-white icon-trash'></i> Destroy".html_safe, resource, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger"%>
+    </td>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Resource', new_resource_path %>

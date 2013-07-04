@@ -1,4 +1,7 @@
 EasyW::Application.routes.draw do
+  resources :permission_resources
+
+
   resources :notify_event1s
   resources :menus
 
@@ -17,6 +20,9 @@ EasyW::Application.routes.draw do
   resources :notify_events
 
   resources :notify_templates
+
+  resources :roles
+
   
   
   resources :resources
@@ -26,6 +32,7 @@ EasyW::Application.routes.draw do
   resources :field_types
   match "/update_fields" => "ResourceTypes#update_fields"
   match "/update_resources" => "Resources#update_resources"
+
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"
   get "password_sent" => "authentication#password_sent"

@@ -1,5 +1,5 @@
 EasyW::Application.routes.draw do
-<<<<<<< HEAD
+
   #START TIMETABLE
   resources :table_headers
   
@@ -19,10 +19,9 @@ EasyW::Application.routes.draw do
   resources :fields
 
   resources :field_types
-=======
+
   resources :permission_resources
 
->>>>>>> 400ea86ff02410d4b8e7942d839ca641049bbed1
 
   resources :notify_event1s
 
@@ -45,7 +44,6 @@ EasyW::Application.routes.draw do
 
   resources :roles
 
-  
   
   resources :resources
   resources :resource_types

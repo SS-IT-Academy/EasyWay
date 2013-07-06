@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user
-
+  before_filter :guest_menu
+  
  def current_user
     # Note: we want to use "find_by_id" because it's OK to return a nil.
     # If we were to use User.find, it would throw an exception if the user can't be found.
@@ -10,4 +11,8 @@ class ApplicationController < ActionController::Base
   @current_user
 end
 
+def guest_menu
+   @Menu_items=Menu.order("ancestry asc")
+  end
+  
 end

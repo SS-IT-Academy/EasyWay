@@ -1,6 +1,7 @@
 <script>
+
 function update_resources(resource_type_id) {  
-  console.log(resource_type_id);
+ 	/*$('#ResourceTable tr:odd').css('display','none');*/
   $.ajax({
     url: "/update_resources",
     type: "GET",

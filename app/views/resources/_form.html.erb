@@ -1,17 +1,4 @@
-<script>
-function update_resource_fields_div(resource_type_id) {  
-  $.ajax({
-    url: "/update_fields",
-    type: "GET",
-    data: {"resource_type_id" : resource_type_id},
-    dataType: "html",
-    success: function(data) {
-      $("#fieldsDiv").html(data);
-    }
-  }); 
-}
 
-</script>
 <%= form_for @resource, :html =>{:class=>"form-horizontal"} do |f| %>
   <% if @resource.errors.any? %>
     <div id="error_explanation", class="control-group">

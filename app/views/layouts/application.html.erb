@@ -30,16 +30,31 @@
 				</form>
 				</div>
 				<div class="headerBottom">
-					<div class="navbar ">
+					<div class="navbar">
+<ul class="nav">
+<% Menu.roots.each do |item|%>
+  <% if item.children.empty?%>
+    <li>
+      <%= link_to item.title, item.url %>
+    </li>
+  <% else %>
+  <li clas="dropdown">
+  	<%= link_to item.url, :class=>"dropdown-toggle", :data => {:toggle=>"dropdown"} do%>
+  	   <%= item.title %>
+  	   <b class="caret"></b>
+  	<% end %>
+  <ul class="dropdown-menu">
+  <% item.children.each do |child_item|%>
+    <li><a href="#"><%= child_item.title%></a></li>
+  <%end%>
+  </ul>
+  </li>
+  <% end %>
+<% end %>
+</ul>
+</div>
 					
-							<ul class="nav">
-							<%@Menu_items.each do |menu_item|%>
-							   <%= Menu.has_children? %>
-							   <li><%= link_to menu_item.title, menu_item.url%></li>
-							<%end%>
-							</ul>
 					
-					</div>
 				</div>
 		</div>
 

@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/css/style.css" type="text/css">
 <script src="/jquery-2.0.2.min.js"> </script>
 <script src="/js/bootstrap.js"> </script>
+<script src="/js/resources.js"> </script>
 </head>
 <body class="bodybg">
 	<div>
@@ -33,6 +34,7 @@
 					
 							<ul class="nav">
 							<%@Menu_items.each do |menu_item|%>
+							   <%= Menu.has_children? %>
 							   <li><%= link_to menu_item.title, menu_item.url%></li>
 							<%end%>
 							</ul>

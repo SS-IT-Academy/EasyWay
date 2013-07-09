@@ -44,6 +44,7 @@ class NotifyEventsController < ApplicationController
 
     respond_to do |format|
       if @notify_event.save
+        NotifyEventMailer.notify_event_email.deliver
         format.html { redirect_to @notify_event, :notice => 'Notify event was successfully created.' }
         format.json { render :json => @notify_event, :status => created, :location => @notify_event }
       else

@@ -33,6 +33,7 @@ EasyW::Application.routes.draw do
   match "/update_fields" => "ResourceTypes#update_fields"
   match "/update_resources" => "Resources#update_resources"
   match "/get_field_types" => "FieldTypes#get_all_types"
+  match "/get_recipients" => "Users#get_recipients"
 
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"

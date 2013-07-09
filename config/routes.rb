@@ -35,6 +35,8 @@ EasyW::Application.routes.draw do
   
   match "/update_permroles_fields" => "PermissionRoles#update_permroles_fields"
 
+  match "/get_field_types" => "FieldTypes#get_all_types"
+
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"
   get "password_sent" => "authentication#password_sent"

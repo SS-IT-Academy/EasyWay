@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 end
 
  def guest_menu
-   @Menu_items=Menu.where("parent_id IS NULL")
+   @Menu_items=Menu.order("ancestry desc")
  end
 
 end

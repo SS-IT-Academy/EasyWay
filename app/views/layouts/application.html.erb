@@ -13,7 +13,6 @@
 <script src="/js/resources.js"> </script>
 </head>
 <body class="bodybg">
-	<div>
 		<div class="header">
 			<div class="headerTop">
 			<div class="logo"></div>
@@ -45,8 +44,10 @@
   	<% end %>
   <ul class="dropdown-menu">
   <% item.children.each do |child_item|%>
-    <li><a href="#"><%= child_item.title%></a></li>
-  <%end%>
+    <li><%= link_to child_item.url do%>
+      <%= child_item.title%>
+    <% end %>
+  <% end %>
   </ul>
   </li>
   <% end %>
@@ -59,16 +60,11 @@
 		</div>
 
 			<div class="content ">
+				<div class="hHeader"></div>
 			<%=yield%>
-		   <div class="i"></div></div>	
-				<div class="footer"></div>
-	</div>
-
-  
- 
-
-
-
-
+		       <div class="hFooter"></div>		
+		   </div>
+   	
+	<div class="footer"></div>
 </body>
 </html>

@@ -19,10 +19,6 @@
     <%= f.label :resource_id %><br />
     <%= f.select(:resource_id , Resource.all.collect {|p| [ p.description, p.id ] }, {:include_blank => ''}) %>
   </div>
-  <!--  <div class="field">
-      <%= f.label :resource_reference_id %><br />
-      <%= f.number_field :resource_reference_id %>
-   </div>-->
   <div class="field">
     <%= f.label :value %><br />
     <%= f.text_field :value %>

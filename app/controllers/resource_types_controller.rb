@@ -9,12 +9,17 @@ class ResourceTypesController < ApplicationController
       format.json { render json: @resource_types }
     end
   end
-
+  
+  def all_types
+    @resource_types = ResourceType.all
+    render :json => @resource_types.to_json
+  end
   # GET /resource_types/1
   # GET /resource_types/1.json
   def show
     @resource_type = ResourceType.find(params[:id])
-
+    @resource_fields = Field.where("resource_type_id = ?", params[:id])
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @resource_type }
@@ -25,7 +30,6 @@ class ResourceTypesController < ApplicationController
   # GET /resource_types/new.json
   def new
     @resource_type = ResourceType.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @resource_type }
@@ -45,9 +49,12 @@ class ResourceTypesController < ApplicationController
   # POST /resource_types.json
   def create
     @resource_type = ResourceType.new(params[:resource_type])
-
     respond_to do |format|
       if @resource_type.save
+        params[:fields].each {|param|
+          @fields = Field.new({:name => param[:name], :field_type_id => param[:field_type_id],:resource_type_id => @resource_type.id})
+          @fields.save
+        }
         format.html { redirect_to @resource_type, notice: 'Resource type was successfully created.' }
         format.json { render json: @resource_type, status: :created, location: @resource_type }
       else
@@ -77,11 +84,14 @@ class ResourceTypesController < ApplicationController
   # DELETE /resource_types/1.json
   def destroy
     @resource_type = ResourceType.find(params[:id])
-    @resource_type.destroy
-
-    respond_to do |format|
-      format.html { redirect_to resource_types_url }
-      format.json { head :no_content }
+    if @resource_type.destroy
+      respond_to do |format|
+        format.html { redirect_to resource_types_url }
+        format.json { head :no_content }
+      end
+    else
+        format.html { redirect_to @resource_type, notice: "Resource don't delete." }
     end
+  
   end
 end

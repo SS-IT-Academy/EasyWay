@@ -18,13 +18,6 @@ ActiveRecord::Schema.define(:version => 20130703130722) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "easies", :force => true do |t|
-    t.string   "name"
-    t.string   "password"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "event_properties", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -46,8 +39,9 @@ ActiveRecord::Schema.define(:version => 20130703130722) do
     t.string   "name"
     t.integer  "field_type_id"
     t.integer  "resource_type_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "resource_type_reference_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "menus", :force => true do |t|
@@ -64,15 +58,6 @@ ActiveRecord::Schema.define(:version => 20130703130722) do
   end
 
   add_index "menus", ["ancestry"], :name => "index_menus_on_ancestry"
-
-  create_table "notify_event1s", :force => true do |t|
-    t.integer  "event_id"
-    t.string   "name"
-    t.integer  "observer_id"
-    t.integer  "template_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
 
   create_table "notify_events", :force => true do |t|
     t.integer  "template_id"
@@ -145,10 +130,9 @@ ActiveRecord::Schema.define(:version => 20130703130722) do
   create_table "resource_values", :force => true do |t|
     t.integer  "field_id"
     t.integer  "resource_id"
-    t.integer  "resource_reference_id"
     t.string   "value"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "resources", :force => true do |t|

@@ -14,10 +14,10 @@
   <b>Resource type name:</b>
   <%= @resource_type.name %>
 </p>
-<table>
+<table class="table">
 <tr>
 <% @field_types.each do |field_type| %>
-  <td><%= field_type.name %></td>
+  <td><b><%= field_type.name %></b></td>
 <% end %>
 </tr>
 <tr>

@@ -2,38 +2,51 @@
 	margin-left : 15px;
 	
 }
-
+html,body{
+	height: 100%;
+}
+.hHeader {
+height: 105px;
+}
 .header{
-height:100px;
+height:105px;
 background:url(../images/header.jpg) no-repeat  ;
-background-size:100% 100%;
+background-size:100% 100px;
+background-position:bottom;
 border-radius:0;
-margin: 5px 0 0 0;
+margin: 0px 0 -105px 0;
 }
 .bodybg{
 background-image:url(../images/bg.png);
+height: 100%;
 }
+.hFooter {
+height: 50px;
+}
+
 .footer{
 width:auto;
 height:50px;
 background-image:url(../images/footer.jpg);
 background-size:100% 100%;
+margin-top: -50px;
+z-index: 100;
 /*border-radius:10px 10px 0 0;*/
 }
 .content{
 width:100%;
-min-height:490px;
+min-height: 100%;
 /*outline:1px solid #FAA21A;*/
 }
 .logo{
 background:url(../images/logo3.png) no-repeat;
 width:135px;
-height:100%;
+height:96%;
 float:left;
 /*background-position:100% 10%;*/
 position: relative;
 margin-left: 63px;
-margin-top: 5px;
+margin-top: 10px;
 background-size:80% auto;
 #outline:1px solid #ffffff;
 }

@@ -32,6 +32,8 @@ EasyW::Application.routes.draw do
   resources :field_types
   match "/update_fields" => "ResourceTypes#update_fields"
   match "/update_resources" => "Resources#update_resources"
+  
+  match "/update_permroles_fields" => "PermissionRoles#update_permroles_fields"
 
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"

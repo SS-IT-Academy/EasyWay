@@ -4,9 +4,9 @@ class Ability < ActiveRecord::Base
     # Define abilities for the passed in user here.
     user ||= User.new # guest user (not logged in)
    
-    if user.role_id? :1 #admin
+    if user.role_id? :l #admin
      # an admin can do everything
       can :manage, :all 
     end
-
+    end
 end

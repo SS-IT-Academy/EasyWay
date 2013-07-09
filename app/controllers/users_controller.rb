@@ -9,7 +9,11 @@ class UsersController < ApplicationController
       format.json { render :json => @users }
     end
   end
-
+  
+  def get_recipients
+    @users = User.all
+    render :json => @users.to_json
+  end
   # GET /users/1
   # GET /users/1.json
   def show
@@ -58,8 +62,10 @@ class UsersController < ApplicationController
 
     if verify_recaptcha
       if @user.valid?
-        @user.save
-        #UserMailer.welcome_email(@user).deliver
+         @user.save
+        UserMailer.welcome_email(@user).deliver
+        format.html { redirect_to @user, :notice => 'User was successfully created.' }
+        format.json { render :json => @user, :status => :created, :location => @user }
         session[:user_id] = @user.id
         flash[:notice] = 'Welcome.'
         redirect_to :root

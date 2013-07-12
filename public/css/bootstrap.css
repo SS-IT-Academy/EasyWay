@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v2.3.1
+ * Bootstrap v2.3.2
  *
  * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
@@ -8,7 +8,6 @@
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
 
- 
 .clearfix {
   *zoom: 1;
 }
@@ -685,9 +684,6 @@ a.muted:focus {
   color: #808080;
 }
 
-.textcolorbtn{
-color:#ffffff;	
-}
 .text-warning {
   color: #c09853;
 }
@@ -1095,12 +1091,12 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {
   display: inline-block;
-  height: 15px;
+  height: 20px;
   padding: 4px 6px;
   margin-bottom: 10px;
-  font-size: 12pt;
+  font-size: 14px;
   line-height: 20px;
-  color: #007ACC;
+  color: #555555;
   vertical-align: middle;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
@@ -1134,7 +1130,7 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {
   background-color: #ffffff;
-  border: 1px solid #01A6E2;
+  border: 1px solid #cccccc;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -1190,7 +1186,7 @@ input[type="checkbox"] {
 
 select,
 input[type="file"] {
-  height: 25px;
+  height: 30px;
   /* In IE7, the height of the select element cannot be changed by height, only font-size */
 
   *margin-top: 4px;
@@ -1894,9 +1890,10 @@ input.search-query {
 .form-inline .input-append,
 .form-horizontal .input-append {
   display: inline-block;
+  *display: inline;
   margin-bottom: 0;
   vertical-align: middle;
-  zoom: 1;
+  *zoom: 1;
 }
 
 .form-search .hide,
@@ -2916,7 +2913,7 @@ table th[class*="span"],
   padding: 5px 0;
   margin: 2px 0 0;
   list-style: none;
-  background-color: #3985B6;
+  background-color: #ffffff;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
   *border-right-width: 2px;
@@ -2953,7 +2950,7 @@ table th[class*="span"],
   clear: both;
   font-weight: normal;
   line-height: 20px;
-  color: #0020D6;
+  color: #333333;
   white-space: nowrap;
 }
 
@@ -3010,6 +3007,15 @@ table th[class*="span"],
 
 .open > .dropdown-menu {
   display: block;
+}
+
+.dropdown-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 990;
 }
 
 .pull-right > .dropdown-menu {
@@ -3101,16 +3107,12 @@ table th[class*="span"],
      -moz-border-radius: 4px;
           border-radius: 4px;
 }
-.easywaywell{
-margin:10px 10px 0 0;
-line-height:50px;
-}
 
 .well {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color: #6B9DC0;
+  background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
@@ -4361,11 +4363,10 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar {
-  position: relative;
-  z-index: 2;
-  margin: auto;
-  text-align: center; 
-  overflow: none;
+  *position: relative;
+  *z-index: 2;
+  margin-bottom: 20px;
+  overflow: visible;
 }
 
 .navbar-inner {
@@ -4612,9 +4613,9 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > li > a {
   float: none;
   padding: 10px 15px 10px;
-  color: #0943DD;
+  color: #777777;
   text-decoration: none;
-  font-size:10pt;
+  text-shadow: 0 1px 0 #ffffff;
 }
 
 .navbar .nav .dropdown-toggle .caret {
@@ -4623,7 +4624,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .nav > li > a:focus,
 .navbar .nav > li > a:hover {
-  color: #3C3B37;
+  color: #333333;
   text-decoration: none;
   background-color: transparent;
 }
@@ -4631,7 +4632,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > .active > a,
 .navbar .nav > .active > a:hover,
 .navbar .nav > .active > a:focus {
-  color: #3C3B37;
+  color: #555555;
   text-decoration: none;
   background-color: #e5e5e5;
   -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
@@ -4745,7 +4746,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav li.dropdown.active > .dropdown-toggle,
 .navbar .nav li.dropdown.open.active > .dropdown-toggle {
   color: #555555;
-  background-color: #;
+  background-color: #e5e5e5;
 }
 
 .navbar .nav li.dropdown > .dropdown-toggle .caret {

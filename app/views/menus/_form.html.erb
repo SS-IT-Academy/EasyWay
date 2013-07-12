@@ -13,7 +13,7 @@
   <% end %>
 <div class="boxforcrud">
   <div class="field form-inline ">
-      <%= f.select(:parent_id , Menu.all.collect {|p| [ p.title, p.id ] }, {:include_blank => ''}, :class =>'pull-right span2') %>
+     <%= f.text_field(:parent_id,  :class =>'pull-right span2', :value=>@params[:id]) %>
   	<%= f.label :parent_id, :class =>"pull-right lll" %>
   </div><br>
   <div class="field form-inline marginforforms ">
@@ -46,6 +46,8 @@
       </div><br>
   <div class="actions text-center marginforforms">
     <%= f.submit :class =>"btn btn-primary " %>
+    
   </div>
   </div>
 <% end %>
+	

@@ -45,7 +45,7 @@ function All_resources_of_type(data){
 }
 
 function resource_type_edit_remove_field(obj){
-  console.log($(obj).parent().parent().parent().children(’:first-child’).value);
+  console.log($(obj).parent().parent().parent().parent().parent().parent().children().find(':first-child').first().attr('value'));
   if (confirm("This delete, deletes all values of this field in Resources.Better create new resource type without this field.Realy delete?")){
   	
   	$.ajax({

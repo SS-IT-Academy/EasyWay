@@ -42,28 +42,24 @@
       <%= link_to item.title, item.url, :id => item.id %>
     </li>
   <% else %>
-  <li clas="dropdown">
+  	<li clas="dropdown">
   	<%= link_to item.url, :id => item.id, :class=>"dropdown-toggle", :data => {:toggle=>"dropdown"} do%>
   	   <%= item.title %>
   	   <b class="caret"></b>
   	<% end %>
-  <ul class="dropdown-menu">
-  <% item.children.each do |child_item|%>
-
-    <li><%= link_to item.url, :id => item.id do%>
-    	<%=child_item.title%>
-    <%end%></li>
-  <%end%>
-
-    <li><%= link_to child_item.url do%>
-      <%= child_item.title%>
-    <% end %>
+  	<ul class="dropdown-menu">
+  		<% item.children.each do |child_item|%>
+	    	<li><%= link_to item.url, :id => item.id do%>
+    			<%=child_item.title%>
+    		<%end%></li>
+  		  	<li><%= link_to child_item.url do%>
+     			<%= child_item.title%>
+     		<%end%>
+    	<% end %>
+  	</ul>
   <% end %>
-
-  </ul>
   </li>
-  <% end %>
- <% end %>
+<% end %>
 <li><a href="#" onclick="add_create_buttons_to_menu()">Menu edit </a></li>
 </ul>
 </div>

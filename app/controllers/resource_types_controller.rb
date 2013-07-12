@@ -43,6 +43,8 @@ class ResourceTypesController < ApplicationController
   # GET /resource_types/1/edit
   def edit
     @resource_type = ResourceType.find(params[:id])
+    @resource_fields = Field.where("resource_type_id = ?", params[:id])
+    @field_types = FieldType.all
   end
 
   # POST /resource_types
@@ -68,9 +70,17 @@ class ResourceTypesController < ApplicationController
   # PUT /resource_types/1.json
   def update
     @resource_type = ResourceType.find(params[:id])
-
     respond_to do |format|
       if @resource_type.update_attributes(params[:resource_type])
+        params[:fields].each{|param|
+          if param[:id]
+            @field = Field.find(param[:id])
+            @field.update_attributes({:name => param[:name], :field_type_id => param[:field_type_id],:resource_type_id => params[:id]})
+          else
+            @field = Field.new({:name => param[:name], :field_type_id => param[:field_type_id],:resource_type_id => params[:id]})
+          end
+          @field.save
+          }
         format.html { redirect_to @resource_type, notice: 'Resource type was successfully updated.' }
         format.json { head :no_content }
       else

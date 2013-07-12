@@ -1,6 +1,7 @@
-<%= form_for(@resource) do |f| %>
+
+<%= form_for @resource, :html =>{:class=>"form-horizontal"} do |f| %>
   <% if @resource.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation", class="control-group">
       <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
 
       <ul>
@@ -10,17 +11,23 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+  <div class="control-group">
+    <%= f.label :description, :class=>"control-label"%>
+    <div class="controls">
+       <%= f.text_field :description %>
+    </div>
   </div>
-  <div class="field">
-  <%= f.label :resource_type_id %><br />
-  <%= f.select(:resource_type_id , ResourceType.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %>
-  <%= link_to "Create new type", :controller => "resource_types", :action => "new"%> 
+  <div class="control-group">
+  <%= f.label :resource_type_id, :class=>"control-label" %>
+  <div class="controls">
+  <%= f.select :resource_type_id,  options_from_collection_for_select(@resource_types, "id","name"),{:include_blank => ''}, :onchange => 'update_resource_fields_div(this.value)' %>
+  <%= link_to "Create new type", {:controller => "resource_types", :action => "new"}, :class=>"btn btn-info"%>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  
+  </div>
+  <div id="fieldsDiv" class="control-group">
+  </div>
+  <div class="actions controls">
+    <%= f.submit%> 
   </div>
 <% end %>

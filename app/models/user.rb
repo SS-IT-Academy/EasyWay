@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :roles
+  
  # has_many :Menus
   attr_accessible :email, :username, :password, :password_confirmation, :new_password, :new_password_confirmation, :remember_me
   attr_accessor :password, :new_password, :remember_me
@@ -11,6 +12,18 @@ class User < ActiveRecord::Base
   validates_presence_of :username, :on => :create
   validates_uniqueness_of :email
   validates_uniqueness_of :username
+  
+#  validates_presence_of :email, :if => Proc.new {|user| 
+#  user.previous_email.nil? || user.email != user.previous_email}
+
+#  validates_presence_of :username, :if => Proc.new {|user| 
+#  user.previous_username.nil? || user.username != user.previous_username}
+
+#  validates_uniqueness_of :email, :if => Proc.new {|user| 
+#  user.previous_email.nil? || user.email != user.previous_email}
+
+#  validates_uniqueness_of :username, :if => Proc.new {|user| 
+#  user.previous_username.nil? || user.username != user.previous_username}
 
  def encrypt_password
     if password.present?
@@ -42,16 +55,6 @@ def self.authenticate_by_email(email, password)
       send("#{name}=", value)
     end
   end
-
-#  def self.authenticate(email, password)
-#    user = find_by_email(email)
-#    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
-#      user
-#    else
-#      nil
-#    end
-#  end
-
 
   def encrypt_password
     if password.present?

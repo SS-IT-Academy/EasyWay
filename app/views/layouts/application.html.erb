@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="/css/style.css" type="text/css">
 <script src="/jquery-2.0.2.min.js"> </script>
 <script src="/js/bootstrap.js"> </script>
+<script src="/js/resources.js"> </script>
+<script src="/js/menu.js"> </script>
 </head>
 <body class="bodybg">
 	<div>
@@ -28,14 +30,36 @@
 				</form>
 				</div>
 				<div class="headerBottom">
-					<div class="navbar ">
- 							<ul class="nav">
- 								<%@Menu_items.each do |menu_item|%>
- 								   								
-    							<li><%= link_to menu_item.title, menu_item.url%></li>
-    						
-    						<%end%>
- 								</ul></div>
+
+					<div class="navbar">
+						<div>
+<ul class="nav">
+<% Menu.roots.each do |item|%>
+  <% if item.children.empty?%>
+    <li>
+      <%= link_to item.title, item.url, :id => item.id %>
+    </li>
+  <% else %>
+  <li clas="dropdown">
+  	<%= link_to item.url, :id => item.id, :class=>"dropdown-toggle", :data => {:toggle=>"dropdown"} do%>
+  	   <%= item.title %>
+  	   <b class="caret"></b>
+  	<% end %>
+  <ul class="dropdown-menu">
+  <% item.children.each do |child_item|%>
+    <li><%= link_to item.url, :id => item.id do%>
+    	<%=child_item.title%>
+    <%end%></li>
+  <%end%>
+  </ul>
+  </li>
+  <% end %>
+ <% end %>
+<li><a href="#" onclick="add_create_buttons_to_menu()">Menu edit </a></li>
+</ul>
+</div>
+	</div>				
+
 				</div>
 		</div>
 

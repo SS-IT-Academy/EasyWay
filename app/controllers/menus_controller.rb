@@ -3,7 +3,7 @@ class MenusController < ApplicationController
   # GET /menus.json
   def index
     @menus = Menu.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @menus }
@@ -25,12 +25,16 @@ class MenusController < ApplicationController
   # GET /menus/new.json
   def new
     @menu = Menu.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @menu }
     end
   end
+  def new_popup
+  @menu = Menu.new
+    render "new", :layout => false
+  end
+  
 
   # GET /menus/1/edit
   def edit

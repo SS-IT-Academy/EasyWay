@@ -80,4 +80,8 @@ class FieldTypesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def get_all_types
+    @field_types = FieldType.all
+    render :json => @field_types.to_json
+  end
 end

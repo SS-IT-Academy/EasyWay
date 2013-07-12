@@ -1,0 +1,19 @@
+<tbody>
+ <tr>
+    <th>Description</th>
+    <th>Resource type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @resources.each do |resource| %>
+  <tr>
+    <td><%= resource.description %></td>
+    <td><%= resource.resource_type_id %></td>
+    <td><%= link_to 'Show', resource,:class=>"btn btn-info" %></td>
+    <td><%= link_to 'Edit', edit_resource_path(resource),:class=>"btn btn-info" %></td>
+    <td><%= link_to "<i class='icon-white icon-trash'></i> Destroy".html_safe, resource, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
+  </tr>
+<% end %>
+</tbody>

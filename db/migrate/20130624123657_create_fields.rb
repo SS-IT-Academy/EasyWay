@@ -4,7 +4,8 @@ class CreateFields < ActiveRecord::Migration
       t.string :name
       t.integer :field_type_id
       t.integer :resource_type_id
-
+      t.integer :resource_type_reference_id
+      
       t.timestamps
     end
   end

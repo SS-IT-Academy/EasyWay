@@ -82,3 +82,11 @@ class PermissionResourcesController < ApplicationController
     end
   end
 end
+
+def update_permroles_fields
+  @permissionresource = PermissionResource.where("role_id = ?", params[:role_id])
+  render :json => @permissionresource.to_json
+  end
+
+
+

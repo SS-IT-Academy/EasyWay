@@ -9,6 +9,10 @@ class ResourcesController < ApplicationController
       format.json { render json: @resources }
     end
   end
+  def some_records
+    @resources = Resource.where("resource_type_id = ?", params[:resource_type_id])
+    render :json => @resources.to_json
+  end
   
   def update_resources
     if (params[:resource_type_id] == '') then
@@ -62,8 +66,12 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       if @resource.save
+        params[:fields].each {|param|
+          @fields = ResourceValue.new({:field_id => param[:field_id], :value => param[:value],:resource_id => @resource.id})
+          @fields.save
         format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
         format.json { render json: @resource, status: :created, location: @resource }
+        }
       else
         format.html { render action: "new" }
         format.json { render json: @resource.errors, status: :unprocessable_entity }

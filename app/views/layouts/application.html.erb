@@ -16,6 +16,7 @@
 <script src="js/jquery.ui.widget.js"></script>
 <script src="js/jquery.rf.slideshow.js"></script>
 <script src="/js/resources.js"> </script>
+<script src="/js/menu.js"> </script>
 <script src="/js/notifier.js"> </script>
 
 
@@ -24,7 +25,6 @@
 		<div class="header">
 			<div class="headerTop">
 			<div class="logo"></div>
-
 				<form class="easywaywell span5 pull-right form-inline" >
 				<% if current_user %>
   				Logged in as <%= current_user.username %>.
@@ -37,42 +37,50 @@
 				</form>
 				</div>
 				<div class="headerBottom">
+
 					<div class="navbar">
+						<div>
 <ul class="nav">
 <% Menu.roots.each do |item|%>
   <% if item.children.empty?%>
     <li>
-      <%= link_to item.title, item.url %>
+      <%= link_to item.title, item.url, :id => item.id %>
     </li>
   <% else %>
-  <li clas="dropdown">
-  	<%= link_to item.url, :class=>"dropdown-toggle", :data => {:toggle=>"dropdown"} do%>
+  	<li clas="dropdown">
+  	<%= link_to item.url, :id => item.id, :class=>"dropdown-toggle", :data => {:toggle=>"dropdown"} do%>
   	   <%= item.title %>
   	   <b class="caret"></b>
   	<% end %>
-  <ul class="dropdown-menu">
-  <% item.children.each do |child_item|%>
-    <li><%= link_to child_item.url do%>
-      <%= child_item.title%>
-    <% end %>
+  	<ul class="dropdown-menu">
+  		<% item.children.each do |child_item|%>
+	    	<li><%= link_to item.url, :id => item.id do%>
+    			<%=child_item.title%>
+    		<%end%></li>
+  		  	<li><%= link_to child_item.url do%>
+     			<%= child_item.title%>
+     		<%end%>
+    	<% end %>
+  	</ul>
   <% end %>
-  </ul>
   </li>
-  <% end %>
 <% end %>
+<li><a href="#" onclick="add_create_buttons_to_menu()">Menu edit </a></li>
 </ul>
 </div>
-					
-					
+	</div>				
+
 				</div>
 		</div>
 
 			<div class="content ">
 				<div class="hHeader"></div>
 			<%=yield%>
+
 		       <div class="hFooter"></div>		
 		   </div>
    	
+
 	<div class="footer"><h5>&copy; 087-LAMP Group</h5></div>
 </body>
 </html>

@@ -4,6 +4,7 @@ EasyW::Application.routes.draw do
 
   resources :notify_event1s
   resources :menus
+  resources :resources
 
 
   resources :notify_schedulers
@@ -30,6 +31,7 @@ EasyW::Application.routes.draw do
   resources :resource_values
   resources :fields
   resources :field_types
+  match "/new_popup" => "Menus#new_popup"
   match "/update_fields" => "ResourceTypes#update_fields"
   match "/update_resources" => "Resources#update_resources"
   

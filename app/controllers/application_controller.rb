@@ -11,8 +11,10 @@ class ApplicationController < ActionController::Base
   @current_user
 end
 
+
  def guest_menu
    @Menu_items=Menu.order("ancestry desc")
  end
+
 
 end

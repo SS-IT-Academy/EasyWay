@@ -44,6 +44,22 @@ function All_resources_of_type(data){
   return data_html;
 }
 
+function resource_type_edit_remove_field(obj){
+  console.log($(obj).parent().parent().parent().children(’:first-child’).value);
+  if (confirm("This delete, deletes all values of this field in Resources.Better create new resource type without this field.Realy delete?")){
+  	
+  	$.ajax({
+    	url: "/remove_resource_fields",
+    	type: "POST",
+    	data: {"resource_type_id" : $(obj).parent().parent().parent().first().attr('id')},
+    	dataType: "json",
+    	success: function(data) {
+    	$('#field_complex').html(All_resources_of_type(data));
+    	}
+  	});
+  $(obj).parent().parent().parent().remove();
+  }
+}
 
 function resource_type_remove_field(obj){
   $(obj).parent().parent().parent().remove();

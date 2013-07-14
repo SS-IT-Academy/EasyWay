@@ -9,7 +9,7 @@ class NotifyObserversController < ApplicationController
       format.json { render json: @notify_observers }
     end
   end
-
+  
   # GET /notify_observers/1
   # GET /notify_observers/1.json
   def show

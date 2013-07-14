@@ -1,4 +1,4 @@
-<%= form_for(@notify_observer) do |f| %>
+<%= form_for @notify_observer, :html =>{:class=>"form-horizontal"} do |f| %>
   <% if @notify_observer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@notify_observer.errors.count, "error") %> prohibited this notify_observer from being saved:</h2>
@@ -11,10 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
+  <div class="control-group" >
+    <%= f.label :name, :class=>"control-label" %>
+    <div class="controls">
     <%= f.text_field :name %>
+    </div>
   </div>
+  
+
+  <div class="control-group">
+  	<%= f.label :notify_observer_properties, :class=>"control-label" %>
+  	<div class="controls">
+  	<%= f.text_field :name %>
+  	</div> 
+  </div>		
+ 
+    <div id="notify_observer_fields">
+    </div>  
+    
+  <div class="control-group">
+    <div class="controls">
+    <%= link_to "Add notify_observer_property","#", :onclick => "notify_observer_add_new_field(this)" %>
+	</div>
+  </div>
+  	
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -6,7 +6,7 @@
 	    dataType: "json",
 	    success: function(data) {
   	      console.log(data);
-	  	  add_html="<div class='form-inline'><select><option></option>";
+	  	  add_html="<div class='form-inline'><label class='form-inline' for='recipient'> Group number </label><input id='notify_event_name' type='text' name='notify_event[name]'><label for='user'>Select user</label><select><option></option>";
 	  	  for(var i=0; i<data.length;i++){
 	  		add_html+="<option value='"+data[i].id+"'>"+data[i].username+"</option>"  
 	  	  }

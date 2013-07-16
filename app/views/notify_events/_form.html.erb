@@ -31,15 +31,16 @@
 </div>
 <br>
 
+<%= field_set_tag 'Recipients' do %>
+
 <div id="marginforforms">
 	
-	<div class="control-group">
-		
-		<%= label_tag(:user, "Select user", :class=>"control-label") %>
-		<div class="controls">
-	    <%= select_tag(:user, options_from_collection_for_select(User.all, :id, :username), :include_blank => true) %>
-        </div>
-	</div>
+	<div class="form-inline">
+		<%= label_tag(:recipient, "Group number", :class => "form-inline") %>
+		<%=f.text_field :name%>
+		<%= label_tag(:user, "Select user") %>
+		<%= select_tag(:user, options_from_collection_for_select(User.all, :id, :username), :include_blank => true) %>
+   </div>
 </div>
 
 <div class="control-group">
@@ -47,21 +48,22 @@
  <%= link_to "Add recipient","#", :onclick => "add_recipient()" %>
 	</div>
 </div>
-
+<%end%>
+</fieldset>
 
 	<div class="control-group">
 		
 			<%= label_tag(:observer, "Event", :class=>"control-label") %>
 			<div class="controls">
-			<%= radio_button_tag(:observer, "Event") %>
-			<%= select_tag(:notify_observers_id, options_from_collection_for_select(NotifyObserver.all, :id, :name), :include_blank => true, :disabled => true ) %>
+			<%= radio_button_tag(:event, 'Event', false, {:onclick => "setRadioChecked('observer_Observer', false);setSelectEnabled('event_select', true);setSelectEnabled('observer_select', false)" }) %>
+			<%= select_tag(:event_select, options_from_collection_for_select(NotifyObserver.all, :id, :name), :include_blank => true, :disabled => true ) %>
 			</div>
    </div>
     <div class="control-group">
 		    <%= label_tag(:observer, "Observer", :class=>"control-label") %>
 		    <div class="controls">
-			<%= radio_button_tag(:observer, "Observer") %>
-			<%= select_tag(:notify_observers_id, options_from_collection_for_select(NotifyObserver.all, :id, :name), :include_blank => true, :disabled => true ) %>
+			<%= radio_button_tag(:observer, "Observer", false, {:onclick => "setRadioChecked('event_Event', false);setSelectEnabled('event_select', false);setSelectEnabled('observer_select', true)" }) %>
+			<%= select_tag(:observer_select, options_from_collection_for_select(NotifyObserver.all, :id, :name), :include_blank => true, :disabled => true ) %>
 	        </div>
 	</div>
 	

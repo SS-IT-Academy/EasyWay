@@ -4,6 +4,7 @@ EasyW::Application.routes.draw do
 
   resources :notify_event1s
   resources :menus
+  resources :resources
 
 
   resources :notify_schedulers
@@ -30,15 +31,21 @@ EasyW::Application.routes.draw do
   resources :resource_values
   resources :fields
   resources :field_types
+  match "/new_popup" => "Menus#new_popup"
   match "/update_fields" => "ResourceTypes#update_fields"
   match "/update_resources" => "Resources#update_resources"
   
   match "/update_permroles_fields" => "PermissionRoles#update_permroles_fields"
 
   match "/get_field_types" => "FieldTypes#get_all_types"
+  match "/get_resource_types" => "ResourceTypes#all_types"
+  match "/get_resources" => "Resources#some_records"
   match "/get_recipients" => "Users#get_recipients"
+
   match "/get_notify_template_mappings" => "NotifyObserverProperties#get_notify_template_mappings"
     
+
+
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"
   get "password_sent" => "authentication#password_sent"

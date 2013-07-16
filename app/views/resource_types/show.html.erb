@@ -4,7 +4,12 @@
   <b>Name:</b>
   <%= @resource_type.name %>
 </p>
-
+<div class="form-inline"><b>Fields</b></div>
+<% @resource_fields.each do |field| %>
+   <div class="form-inline">
+   	<%= field.name%>
+   </div>
+<% end %>
 
 <%= link_to 'Edit', edit_resource_type_path(@resource_type) %> |
 <%= link_to 'Back', resource_types_path %>

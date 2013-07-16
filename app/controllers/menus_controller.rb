@@ -25,12 +25,17 @@ class MenusController < ApplicationController
   # GET /menus/new.json
   def new
     @menu = Menu.new
-
+    require 'uri'
+    require 'cgi'
+      @params = request.params
+      
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @menu }
     end
   end
+ 
+  
 
   # GET /menus/1/edit
   def edit

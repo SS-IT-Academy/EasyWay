@@ -20,11 +20,36 @@
     
   </div>
 
+
+
+  <% if !@resource_fields.blank? %>
+     <% @resource_fields.each do |field|%>
+       <div class="control-group">
+       <%= hidden_field_tag "fields[][id]", field.id%>
+       <label class='control-label' for='fields[][name]'>Field Name</label>
+       <div class="controls">
+          <%= text_field_tag "fields[][name]", field.name%>  	  
+       </div>
+       <label class='control-label' for='fields[][field_type_id]'>Field Type</label>
+       <div class="controls">
+          <%= select_tag "fields[][field_type_id]", options_from_collection_for_select(@field_types, "id", "name", field.id), :id=>field.id%>
+          <div class="controls-label">
+       	  	<a href='#' class='btn' onclick='resource_type_edit_remove_field(this)'>Remove Field</a>
+       	  </div> 
+       </div>
+       </div>
+     <%end%>
+  <% end %>
+
   <div class="control-group">
     <div class="controls">
   	   <%= link_to "Add field","#", :onclick => "resource_type_add_new_field()" %>
     </div>
   </div>
+
+  
+  
+  
   <div class="actions controls">
     <%= f1.submit %>
   </div>

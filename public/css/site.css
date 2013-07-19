@@ -1,6 +1,6 @@
 .slideshow {
-  width: 750px;
-  height: 550px;
+  width: 650px;
+  height: 475px;
   float: left;
   border: solid 1px #ccc;
   background: #fff;
@@ -12,6 +12,6 @@
   width: 100%;
 }
 .group {
-  width: 750px;
+  width: 650px;
   margin: 10px auto;
 }

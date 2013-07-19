@@ -1,5 +1,30 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <b>Name:</b>
+  <%= @event.name %>
+</p>
+
+<p>
+  <b>Event type:</b>
+  <%= @event.event_type_id %>
+</p>
+
+<p>
+  <b>Start at:</b>
+  <%= @event.start_at %>
+</p>
+
+<p>
+  <b>End at:</b>
+  <%= @event.end_at %>
+</p>
+
+<p>
+  <b>Recurrence:</b>
+  <%= @event.recurrence_id %>
+</p>
+
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

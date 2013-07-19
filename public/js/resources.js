@@ -45,19 +45,18 @@ function All_resources_of_type(data){
 }
 
 function resource_type_edit_remove_field(obj){
-  console.log($(obj).parent().parent().parent().parent().parent().parent().children().find(':first-child').first().attr('value'));
   if (confirm("This delete, deletes all values of this field in Resources.Better create new resource type without this field.Realy delete?")){
-  	
-  	$.ajax({
+   	$.ajax({
     	url: "/remove_resource_fields",
     	type: "POST",
-    	data: {"resource_type_id" : $(obj).parent().parent().parent().first().attr('id')},
+    	data: {"field_id" : $(obj).parents().find('#fields__id').attr('value')},
     	dataType: "json",
     	success: function(data) {
-    	$('#field_complex').html(All_resources_of_type(data));
+    		alert("Success remove "+data.name+" field");
+    		$(obj).parent().parent().parent().remove(); 
     	}
   	});
-  $(obj).parent().parent().parent().remove();
+    
   }
 }
 
@@ -103,10 +102,23 @@ function what_type_of_field(obj){
   });
 }
 function what_type_of_field_parse(data){
-    data_html="<select><option>Select Type</option>"
+    data_html="<select name=fields[][resource_type_reference_id]><option>Select Type</option>"
     for(var i=0;i<data.length;i++){
         data_html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>" 	
      }
    data_html+="</select>";
    return data_html;
+}
+
+function update_resources(resource_type_id) {  
+ 	/*$('#ResourceTable tr:odd').css('display','none');*/
+  $.ajax({
+    url: "/update_resources",
+    type: "GET",
+    data: {"resource_type_id" : resource_type_id},
+    dataType: "html",
+    success: function(data) {
+      $("#ResourceTable").html(data);
+    }
+  }); 
 }

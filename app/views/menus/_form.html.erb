@@ -13,39 +13,41 @@
   <% end %>
 <div class="boxforcrud">
   <div class="field form-inline ">
-     <div class="pull-right"> <%= f.select(:parent_id , Menu.all.collect {|p| [ p.title, p.id ] }, {:include_blank => ''}) %></div>
+     <%= f.text_field(:parent_id,  :class =>'pull-right span2', :value=>@params[:id]) %>
   	<%= f.label :parent_id, :class =>"pull-right lll" %>
   </div><br>
   <div class="field form-inline marginforforms ">
-  	<%= f.number_field :role_id, :class =>"pull-right " %>
+  	<%= f.number_field :role_id, :class =>"pull-right span2 " %>
   	<%= f.label :role_id, :class =>"pull-right lll" %>
   	
     
   </div><br>
   <div class="field form-inline marginforforms ">
-  	<%= f.text_field :url, :class =>"pull-right" %>
+  	<%= f.text_field :url, :class =>"pull-right span2" %>
     <%= f.label :url, :class =>"pull-right lll" %>
     
   </div><br>
   <div class="field form-inline marginforforms ">
-  	<%= f.number_field :user_id, :class =>"pull-right" %>
+  	<%= f.number_field :user_id, :class =>"pull-right span2" %>
     <%= f.label :user_id, :class =>"pull-right lll" %>
     
   </div><br>
   <div class="field form-inline marginforforms ">
-  	<%= f.text_field :text, :class =>"pull-right" %>
+  	<%= f.text_field :text, :class =>"pull-right span2" %>
     <%= f.label :text, :class =>"pull-right lll" %>
      </div><br>
   <div class="field form-inline marginforforms ">
-  	<%= f.text_field :title, :class =>"pull-right span3" %>
+  	<%= f.text_field :title, :class =>"pull-right span2" %>
   	  <%= f.label :title, :class =>"pull-right lll" %>
       </div><br>
   <div class="field form-inline marginforforms ">
-  	<%= f.text_field :target, :class =>"pull-right" %>
+  	<%= f.text_field :target, :class =>"pull-right span2" %>
     <%= f.label :target, :class =>"pull-right lll" %>
       </div><br>
   <div class="actions text-center marginforforms">
     <%= f.submit :class =>"btn btn-primary " %>
+    
   </div>
   </div>
 <% end %>
+	

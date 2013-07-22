@@ -1,5 +1,5 @@
 class Field < ActiveRecord::Base
-  attr_accessible :field_type_id, :name, :resource_type_id
+  attr_accessible :field_type_id, :name, :resource_type_id, :resource_type_reference_id
   has_one :FieldType,
     :foreign_key => "field_type_id"
   has_many :ResourceValues

@@ -19,6 +19,10 @@
     <%= f.label :field_type_id %><br />
     <%= f.select(:field_type_id, FieldType.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %>
   </div>
+     <div class="field">
+       <%= f.label :resource_type_reference_id %><br />
+       <%= f.select(:resource_type_reference_id , ResourceType.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %> 
+     </div>
   <div class="field">
   <%= f.label :resource_type_id %><br />
   <%= f.select(:resource_type_id , ResourceType.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %> 

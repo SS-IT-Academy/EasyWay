@@ -4,4 +4,5 @@ class Recipient < ActiveRecord::Base
   validates :notifyevent_id, :numericality => true
   validates :user_id, :numericality => true
   belongs_to :notifyevents
+  
 end

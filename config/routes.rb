@@ -1,14 +1,18 @@
 EasyW::Application.routes.draw do
+  root :to=>"home#index"
+  
+  resources :events
+
   resources :permission_resources
 
-
   resources :notify_event1s
+
   resources :menus
+
   resources :resources
 
-
   resources :notify_schedulers
-  root :to=>"home#index"
+
   resources :users
 
   resources :recipients
@@ -18,6 +22,7 @@ EasyW::Application.routes.draw do
   resources :notify_observers
 
   resources :events
+  
   resources :notify_events
 
   resources :notify_templates
@@ -42,7 +47,7 @@ EasyW::Application.routes.draw do
   match "/get_resources" => "Resources#some_records"
   match "/get_recipients" => "Users#get_recipients"
 
-  match "/get_notify_template_mappings" => "NotifyObserverProperties#get_notify_template_mappings"
+  match "/show_property_mapping_content" => "NotifyEvents#show_property_mapping_content"
     
 
 

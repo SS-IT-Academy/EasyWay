@@ -1,0 +1,11 @@
+	<%= label_tag(:observer, "Template Mapping", :class=>"control-label") %>
+	<table class="tab" id="mappings" border="1">
+      <tr>
+        <td align="center"><b>Notify Template property name</b></td>
+        <td align="center"><b>Mapped element</b></td>
+      </tr>
+      <tr>
+       <td><%= hidden_field_tag "notify_event[mapping][][template_parameter]", parameter%><%= parameter%></td>
+       <td><%= select_tag("notify_event[mapping][][properties_id]", options_from_collection_for_select(properties, :id, :name), :include_blank => true ) %></td>
+      </tr>
+    </table>

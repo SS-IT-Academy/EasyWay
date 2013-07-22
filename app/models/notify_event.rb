@@ -1,12 +1,14 @@
 class NotifyEvent < ActiveRecord::Base
-  attr_accessible :event_id, :name, :observer_id, :template_id, :recipients_attributes
+  attr_accessible :name, :event_id, :notify_observer_id, :notify_template_id, :recipients_attributes
   validates :name, :presence => true
-  validates :template_id, :presence => true
-  belongs_to :templates
-  belongs_to :events
-  belongs_to :notifyobserver
+  validates :notify_template_id, :presence => true
+  belongs_to :notify_template
+  belongs_to :event
+  belongs_to :notify_observer
   has_many :recipients
-def choice
-  self.observer_id || self.event_id
-end
+  accepts_nested_attributes_for :recipients
+  
+  def choice
+  self.notify_observer_id || self.event_id
+  end
 end

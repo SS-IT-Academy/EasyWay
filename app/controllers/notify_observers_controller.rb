@@ -14,7 +14,7 @@ class NotifyObserversController < ApplicationController
   # GET /notify_observers/1.json
   def show
     @notify_observer = NotifyObserver.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @notify_observer }
@@ -25,7 +25,6 @@ class NotifyObserversController < ApplicationController
   # GET /notify_observers/new.json
   def new
     @notify_observer = NotifyObserver.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @notify_observer }
@@ -41,14 +40,20 @@ class NotifyObserversController < ApplicationController
   # POST /notify_observers.json
   def create
     @notify_observer = NotifyObserver.new(params[:notify_observer])
+    @notify_observer.save
+    @properties = params[:notify_observer_properties]
+      
+    for property in @properties
+      @notify_observer.notify_observer_properties.create(:name => property)
+    end
     
     respond_to do |format|
       if @notify_observer.save
-        format.html { redirect_to @notify_observer, notice: 'Notify observer was successfully created.' }
-        format.json { render json: @notify_observer, status: :created, location: @notify_observer }
+        format.html { redirect_to @notify_observer, :notice => 'Notify observer was successfully created.' }
+        format.json { render :json => @notify_observer, :status  => created, :location => @notify_observer }
       else
-        format.html { render action: "new" }
-        format.json { render json: @notify_observer.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @notify_observer.errors, :status => :unprocessable_entity }
       end
     end
   end

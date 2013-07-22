@@ -11,20 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130703130722) do
+ActiveRecord::Schema.define(:version => 20130719195655) do
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "event_properties", :force => true do |t|
+  create_table "easies", :force => true do |t|
     t.string   "name"
+    t.string   "password"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "events", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -39,9 +41,8 @@ ActiveRecord::Schema.define(:version => 20130703130722) do
     t.string   "name"
     t.integer  "field_type_id"
     t.integer  "resource_type_id"
-    t.integer  "resource_type_reference_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "menus", :force => true do |t|
@@ -68,6 +69,15 @@ ActiveRecord::Schema.define(:version => 20130703130722) do
     t.datetime "updated_at",  :null => false
     t.string   "recipients"
   end
+
+  create_table "notify_observer_properties", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "notify_observer_id"
+  end
+
+  add_index "notify_observer_properties", ["notify_observer_id"], :name => "index_notify_observer_properties_on_notify_observer_id"
 
   create_table "notify_observers", :force => true do |t|
     t.string   "name"
@@ -130,9 +140,10 @@ ActiveRecord::Schema.define(:version => 20130703130722) do
   create_table "resource_values", :force => true do |t|
     t.integer  "field_id"
     t.integer  "resource_id"
+    t.integer  "resource_reference_id"
     t.string   "value"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "resources", :force => true do |t|
@@ -179,6 +190,13 @@ ActiveRecord::Schema.define(:version => 20130703130722) do
     t.text     "cell_body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "template_mappings", :force => true do |t|
+    t.string   "notifytemplatepropertyname"
+    t.string   "mappedelement"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "users", :force => true do |t|

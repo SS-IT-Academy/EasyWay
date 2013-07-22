@@ -25,7 +25,7 @@ class NotifyEventsController < ApplicationController
   # GET /notify_events/new.json
   def new
     @notify_event = NotifyEvent.new
-
+     
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @notify_event }
@@ -40,8 +40,12 @@ class NotifyEventsController < ApplicationController
   # POST /notify_events
   # POST /notify_events.json
   def create
+    raise params.inspect
     @notify_event = NotifyEvent.new(params[:notify_event])
-
+    params[:notify_event]  
+    @notify_event.recipients.create = params[:notify_event]
+    raise "@notify_event: #{@notify_event.inspect}"
+    # @notify_event.template_mappings = params[:notify_event]
     respond_to do |format|
       if @notify_event.save
         NotifyEventMailer.notify_event_email.deliver
@@ -81,4 +85,16 @@ class NotifyEventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def show_property_mapping_content
+    template = NotifyTemplate.find(params[:template_id].to_i)
+    puts "*"*300
+    parameters = template.body.scan(/\$\$\{([a-zA-Z]+)\}/).flatten
+    puts "template: #{template.inspect}"  
+    puts "parameters: #{parameters.inspect}"
+    properties = NotifyObserverProperty.where("notify_observer_id=?",params[:observer_id].to_i)
+    puts "property: #{properties.inspect}"  
+    render :partial => "notify_event_property_mapping", :collection => parameters, :as => 'parameter', :locals => {:properties => properties}, :layout => false
+  end  
+  
 end

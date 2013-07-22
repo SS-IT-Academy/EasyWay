@@ -5,6 +5,7 @@ EasyW::Application.routes.draw do
   resources :notify_event1s
   resources :menus
 
+  resources :permissions
 
   resources :notify_schedulers
   root :to=>"home#index"
@@ -23,10 +24,10 @@ EasyW::Application.routes.draw do
 
   resources :roles
 
+  resources :permission_roles
   
-  
-  resources :resources
-  resources :resource_types
+  resources :resources, :has_many => :permission_roles
+  resources :resource_types, :has_many => :permission_roles
   resources :resource_values
   resources :fields
   resources :field_types

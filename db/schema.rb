@@ -18,13 +18,6 @@ ActiveRecord::Schema.define(:version => 20130703130722) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "easies", :force => true do |t|
-    t.string   "name"
-    t.string   "password"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "event_properties", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -64,15 +57,6 @@ ActiveRecord::Schema.define(:version => 20130703130722) do
   end
 
   add_index "menus", ["ancestry"], :name => "index_menus_on_ancestry"
-
-  create_table "notify_event1s", :force => true do |t|
-    t.integer  "event_id"
-    t.string   "name"
-    t.integer  "observer_id"
-    t.integer  "template_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
 
   create_table "notify_events", :force => true do |t|
     t.integer  "template_id"
@@ -117,15 +101,17 @@ ActiveRecord::Schema.define(:version => 20130703130722) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "permission_roles", :force => true do |t|
+    t.integer "permissions_id"
+    t.integer "roles_id"
+    t.integer "permissionable_id"
+    t.string  "permissionable_type"
+  end
+
   create_table "permissions", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "permissions_roles", :id => false, :force => true do |t|
-    t.integer "permissions_id"
-    t.integer "roles_id"
   end
 
   create_table "recipients", :force => true do |t|

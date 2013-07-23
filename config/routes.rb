@@ -1,9 +1,13 @@
 EasyW::Application.routes.draw do
+  resources :menus
+  resources :bookmarks
+
+
   resources :permission_resources
 
 
   resources :notify_event1s
-  resources :menus
+  
   resources :resources
 
 
@@ -41,7 +45,8 @@ EasyW::Application.routes.draw do
   match "/get_resource_types" => "ResourceTypes#all_types"
   match "/get_resources" => "Resources#some_records"
   match "/get_recipients" => "Users#get_recipients"
-
+  
+  match "/delete_menu_item" => "Menus#delete_menu_item"
 
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"

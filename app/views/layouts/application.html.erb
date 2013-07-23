@@ -18,67 +18,45 @@
 <script src="/js/resources.js"> </script>
 <script src="/js/menu.js"> </script>
 <script src="/js/notifier.js"> </script>
-
+<script src="/js/jquery-ui-1.10.3.custom.js"> </script>
 
 </head>
 <body class="bodybg">
-		<div class="header">
-			<div class="headerTop">
-			<div class="logo"></div>
+	<div class="header">
+		<div class="headerTop">
+			<div><a href="#myModal" role="button" class="star" data-toggle="modal" ></a></div>
+			<div class="modal hide fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-header">
+					<h3 id="myModalLabel" align="center">Creating new bookmark</h3>
+				</div>
+				<div class="modal-body">
+					<%= render :partial => "bookmarks/form", :locals => {:@bookmark => Bookmark.new} %>
+				</div>
+				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+				</div>
+			</div>
+			<div class="logo"><a href="http://localhost:3000/"><img src="images/logo3.png" width="100"  height="100" border="0" alt="Easy Way"></a></div>			
 				<form class="easywaywell span5 pull-right form-inline" >
-				<% if current_user %>
-  				Logged in as <%= current_user.username %>.
-  					<%= link_to "Sign Out", signed_out_path, :class => "btn btn-primary"%>
-  					<%= link_to "Account Settings", account_settings_path,:class => "btn btn-primary" %>
-  				<%else%>
-					<%= link_to "Sign up", new_user_path, :class => "btn btn-primary buttonfloat"%>
-					<%= link_to "Sign In", sign_in_path, :class => "btn btn-primary buttonfloat"%> 
-				<% end %>		
+					<% if current_user %>
+  						Logged in as <%= current_user.username %>.
+  						<%= link_to "Sign Out", signed_out_path, :class => "btn btn-primary"%>
+  						<%= link_to "Account Settings", account_settings_path,:class => "btn btn-primary" %>
+  					<%else%>
+						<%= link_to "Sign up", new_user_path, :class => "btn btn-primary buttonfloat"%>
+						<%= link_to "Sign In", sign_in_path, :class => "btn btn-primary buttonfloat"%> 
+					<% end %>		
 				</form>
-				</div>
-				<div class="headerBottom">
-
-					<div class="navbar">
-						<div>
-<ul class="nav">
-<% Menu.roots.each do |item|%>
-  <% if item.children.empty?%>
-    <li>
-      <%= link_to item.title, item.url, :id => item.id %>
-    </li>
-  <% else %>
-  	<%= content_tag :li,:class=>"dropdown", :id=>item.id do%>
-  	<%= link_to item.url, :class=>"dropdown-toggle", :data => {:toggle=>"dropdown"} do%>
-  	   <%= item.title %>
-  	   <b class="caret"></b>
-  	<% end %>
-  	  	<ul class="dropdown-menu">
-  		<% item.children.each do |child_item|%>
-	    	<li>
-	    		<%= link_to item.url, :id=>item.id do%>
-    				<%=child_item.title%>
-    			<%end%></li>
-    		 	<% end %>
-    	  	</ul>
-  <% end %>
-  <% end %>
-<% end %>
-<li><a href="#" onclick="add_create_buttons_to_menu()">Menu edit </a></li>
-</ul>
-</div>
-	</div>				
-
-				</div>
+			</div>
+		<div class="headerBottom">
+			<%= render :partial => "menus/menu", :locals => {:@menu => Menu.all} %>								
 		</div>
-
-			<div class="content ">
-				<div class="hHeader"></div>
-			<%=yield%>
-
-		       <div class="hFooter"></div>		
-		   </div>
-   	
-
+		</div>
+		<div class="content ">
+			<div class="hHeader"></div>				
+				<%=yield%>
+			<div class="hFooter"></div>		
+		</div>	
 	<div class="footer"><h5>&copy; 087-LAMP Group</h5></div>
 </body>
 </html>

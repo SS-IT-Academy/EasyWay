@@ -12,5 +12,7 @@ class TableTemplate < ActiveRecord::Base
   
   validates :cell_body, :presence => true
   validates :name, :presence => true
+  
+  has_many :permission_roles, as: :permissionable
 end
   

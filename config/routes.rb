@@ -10,6 +10,7 @@ EasyW::Application.routes.draw do
   
   resources :resources
 
+  resources :permissions
 
   resources :notify_schedulers
   root :to=>"home#index"
@@ -17,7 +18,7 @@ EasyW::Application.routes.draw do
 
   resources :recipients
 
-  resources :event_properties
+  resources :notify_observer_properties
 
   resources :notify_observers
 
@@ -28,10 +29,10 @@ EasyW::Application.routes.draw do
 
   resources :roles
 
+  resources :permission_roles
   
-  
-  resources :resources
-  resources :resource_types
+  resources :resources, :has_many => :permission_roles
+  resources :resource_types, :has_many => :permission_roles
   resources :resource_values
   resources :fields
   resources :field_types
@@ -45,8 +46,15 @@ EasyW::Application.routes.draw do
   match "/get_resource_types" => "ResourceTypes#all_types"
   match "/get_resources" => "Resources#some_records"
   match "/get_recipients" => "Users#get_recipients"
+<<<<<<< HEAD
   
   match "/delete_menu_item" => "Menus#delete_menu_item"
+=======
+
+  match "/get_notify_template_mappings" => "NotifyObserverProperties#get_notify_template_mappings"
+    
+
+>>>>>>> 2731348f14da1a782bd3425e70c571a1b1db3c36
 
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"

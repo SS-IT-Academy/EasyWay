@@ -18,6 +18,9 @@
     </div>
     
   </div>
+
+
+
   <% if !@resource_fields.blank? %>
      <% @resource_fields.each do |field|%>
        <div class="control-group">
@@ -36,9 +39,10 @@
        </div>
      <%end%>
   <% end %>
+
   <div class="control-group">
     <div class="controls">
-  	   <%= link_to "Add field","#", :onclick => "resource_type_add_new_field(this)" %>
+  	   <%= link_to "Add field","#", :onclick => "resource_type_add_new_field()" %>
     </div>
   </div>
 

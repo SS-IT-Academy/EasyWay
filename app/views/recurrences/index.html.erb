@@ -1,0 +1,31 @@
+<h1>Listing recurrences</h1>
+
+<table>
+  <tr>
+    <th>Days of week</th>
+    <th>Days of month</th>
+    <th>Days of year</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @recurrences.each do |recurrence| %>
+  <tr>
+    <td><%= recurrence.days_of_week %></td>
+    <td><%= recurrence.days_of_month %></td>
+    <td><%= recurrence.days_of_year %></td>
+    <td><%= recurrence.start_date %></td>
+    <td><%= recurrence.end_date %></td>
+    <td><%= link_to 'Show', recurrence %></td>
+    <td><%= link_to 'Edit', edit_recurrence_path(recurrence) %></td>
+    <td><%= link_to 'Destroy', recurrence, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Recurrence', new_recurrence_path %>

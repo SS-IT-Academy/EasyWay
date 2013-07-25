@@ -23,7 +23,9 @@ describe EventsController do
   # This should return the minimal set of attributes required to create a valid
   # Event. As you add validations to Event, be sure to
   # adjust the attributes here as well.
+
   let(:valid_attributes) { { "name" => "MyString" } }
+
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -106,6 +108,7 @@ describe EventsController do
         # specifies that the Event created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
+
         Event.any_instance.should_receive(:update_attributes).with({ "name" => "MyString" })
         put :update, {:id => event.to_param, :event => { "name" => "MyString" }}, valid_session
       end

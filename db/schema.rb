@@ -11,24 +11,58 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+
 ActiveRecord::Schema.define(:version => 20130724151410) do
+
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+
   create_table "easies", :force => true do |t|
+
+  create_table "bookmarks", :force => true do |t|
+    t.string   "url"
+    t.string   "title"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
+  end
+
+  create_table "event_properties", :force => true do |t|
+
     t.string   "name"
     t.string   "password"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+
   create_table "events", :force => true do |t|
+  create_table "event_resources", :force => true do |t|
+    t.integer  "resource_id"
+    t.integer  "event_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "event_types", :force => true do |t|
+
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.integer  "event_type_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.integer  "recurrence_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "field_types", :force => true do |t|
@@ -56,14 +90,14 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
   create_table "menus", :force => true do |t|
     t.integer  "parent_id"
     t.integer  "role_id"
-    t.string   "url"
     t.integer  "user_id"
     t.string   "text"
-    t.string   "title"
     t.string   "target"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "ancestry"
+    t.integer  "bookmark_id"
+    t.integer  "position"
   end
 
   add_index "menus", ["ancestry"], :name => "index_menus_on_ancestry"
@@ -139,6 +173,16 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
     t.datetime "updated_at",      :null => false
   end
 
+  create_table "recurrences", :force => true do |t|
+    t.string   "days_of_week"
+    t.string   "days_of_month"
+    t.string   "days_of_year"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "resource_types", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -200,6 +244,13 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "template_mappings", :force => true do |t|
+    t.string   "notifytemplatepropertyname"
+    t.string   "mappedelement"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
@@ -210,5 +261,4 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
     t.datetime "updated_at",           :null => false
     t.string   "authentication_token"
   end
-
 end

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Resource:</b>
+  <%= @event_resource.resource_id %>
+</p>
+
+<p>
+  <b>Event:</b>
+  <%= @event_resource.event_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_resource_path(@event_resource) %> |
+<%= link_to 'Back', event_resources_path %>

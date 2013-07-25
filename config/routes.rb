@@ -1,18 +1,39 @@
 EasyW::Application.routes.draw do
+
+  
   root :to=>"home#index"
   
   resources :events
+
+
+
+  resources :recurrences
+
+
+  resources :events
+
+
+  resources :event_resources
+
+
+  resources :event_types
+  resources :menus
+  resources :bookmarks
+
+
 
   resources :permission_resources
 
   resources :notify_events
 
+
   resources :menus
 
   resources :resources
 
-  resources :permissions
+  resources :menus
 
+  resources :permissions
 
   resources :notify_schedulers
 
@@ -47,12 +68,16 @@ EasyW::Application.routes.draw do
 
   match "/get_field_types" => "FieldTypes#get_all_types"
   match "/get_resource_types" => "ResourceTypes#all_types"
+  match "/remove_resource_fields" => "ResourceValues#remove_values"
   match "/get_resources" => "Resources#some_records"
   match "/get_recipients" => "Users#get_recipients"
+  match "/add_event_resources" => "Resources#add_event_resources"
+  match "/remove_event_resource" => "EventResources#remove_event_resource"
+  match "/event_based_on" => "Events#event_based_on"
+  match "/delete_menu_item" => "Menus#delete_menu_item"
 
   match "/show_property_mapping_content" => "NotifyEvents#show_property_mapping_content"
     
-
 
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"

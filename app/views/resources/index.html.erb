@@ -1,18 +1,3 @@
-<script>
-
-function update_resources(resource_type_id) {  
- 	/*$('#ResourceTable tr:odd').css('display','none');*/
-  $.ajax({
-    url: "/update_resources",
-    type: "GET",
-    data: {"resource_type_id" : resource_type_id},
-    dataType: "html",
-    success: function(data) {
-      $("#ResourceTable").html(data);
-    }
-  }); 
-}
-</script>
 <h3>Listing resources</h3>
 <div class="form-inline">
   <div class="control-group">

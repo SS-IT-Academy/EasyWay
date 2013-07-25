@@ -3188,7 +3188,7 @@ table th[class*="span"],
 }
 
 button.close {
-  padding: 0;
+  padding:0;
   cursor: pointer;
   background: transparent;
   border: 0;

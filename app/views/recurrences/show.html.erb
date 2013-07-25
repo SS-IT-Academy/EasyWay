@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Days of week:</b>
+  <%= @recurrence.days_of_week %>
+</p>
+
+<p>
+  <b>Days of month:</b>
+  <%= @recurrence.days_of_month %>
+</p>
+
+<p>
+  <b>Days of year:</b>
+  <%= @recurrence.days_of_year %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @recurrence.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @recurrence.end_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_recurrence_path(@recurrence) %> |
+<%= link_to 'Back', recurrences_path %>

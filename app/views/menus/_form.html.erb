@@ -1,8 +1,7 @@
-<%= form_for(@menu) do |f| %>
+<%= form_for @menu, :html =>{:class=>"form-horizontal"} do |f| %>
   <% if @menu.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
-
       <ul>
       <% @menu.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,43 +10,47 @@
     </div>
     </form>
   <% end %>
-<div class="boxforcrud">
-  <div class="field form-inline ">
-     <%= f.text_field(:parent_id,  :class =>'pull-right span2', :value=>@params[:id]) %>
-  	<%= f.label :parent_id, :class =>"pull-right lll" %>
-  </div><br>
-  <div class="field form-inline marginforforms ">
-  	<%= f.number_field :role_id, :class =>"pull-right span2 " %>
-  	<%= f.label :role_id, :class =>"pull-right lll" %>
-  	
-    
-  </div><br>
-  <div class="field form-inline marginforforms ">
-  	<%= f.text_field :url, :class =>"pull-right span2" %>
-    <%= f.label :url, :class =>"pull-right lll" %>
-    
-  </div><br>
-  <div class="field form-inline marginforforms ">
-  	<%= f.number_field :user_id, :class =>"pull-right span2" %>
-    <%= f.label :user_id, :class =>"pull-right lll" %>
-    
-  </div><br>
-  <div class="field form-inline marginforforms ">
-  	<%= f.text_field :text, :class =>"pull-right span2" %>
-    <%= f.label :text, :class =>"pull-right lll" %>
-     </div><br>
-  <div class="field form-inline marginforforms ">
-  	<%= f.text_field :title, :class =>"pull-right span2" %>
-  	  <%= f.label :title, :class =>"pull-right lll" %>
-      </div><br>
-  <div class="field form-inline marginforforms ">
-  	<%= f.text_field :target, :class =>"pull-right span2" %>
-    <%= f.label :target, :class =>"pull-right lll" %>
-      </div><br>
-  <div class="actions text-center marginforforms">
+  <div class="boxforforms">
+  <div class="control-group ">
+  	<%=f.label :parent_id, :class=>"control-label" %>
+  	<div class="controls">
+     <%= f.text_field(:parent_id, :value=>@params[:id]) %>
+  	</div>
+  </div>
+  <div class="control-group">
+  	<%= f.label :role_id, :class =>"control-label"  %>
+  	<div class="controls">
+  	<%= f.number_field :role_id %>  	
+  	</div>    
+  </div>
+    <div class="control-group">
+  	 <%= f.label :user_id, :class =>"control-label" %>
+  	 <div class="controls">
+     <%= f.number_field :user_id %>
+   </div>
+  </div>  
+  <div class="control-group">
+  	<%= f.label :target,:class =>"control-label"%>
+  	<div class="controls">
+  	<%= f.text_field :target %>
+     </div>
+      </div>
+      <div class="control-group">
+  	<%= f.label :title,:class =>"control-label"%>
+  	<div class="controls">
+     <%= select_tag('menu[bookmark_id]', options_from_collection_for_select(@bookmark, 'id', 'title')) %>
+     </div>
+      </div>
+      <div class="control-group">
+  	 <%= f.label :position, :class =>"control-label" %>
+  	 <div class="controls">
+     <%= f.number_field :position %>
+   </div>
+  </div>
+  <div class="actions controls">
     <%= f.submit :class =>"btn btn-primary " %>
     
   </div>
-  </div>
+	</div>
 <% end %>
 	

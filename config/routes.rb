@@ -5,11 +5,14 @@ EasyW::Application.routes.draw do
 
   resources :permission_resources
 
-  resources :notify_event1s
+  resources :notify_events
 
   resources :menus
 
   resources :resources
+
+  resources :permissions
+
 
   resources :notify_schedulers
 
@@ -29,10 +32,10 @@ EasyW::Application.routes.draw do
 
   resources :roles
 
+  resources :permission_roles
   
-  
-  resources :resources
-  resources :resource_types
+  resources :resources, :has_many => :permission_roles
+  resources :resource_types, :has_many => :permission_roles
   resources :resource_values
   resources :fields
   resources :field_types

@@ -8,20 +8,15 @@ function setSelectEnabled(select_id, enabled) {
 	$("#" + select_id)[0].disabled=!enabled;
 }
 
-function updateTMapping()  {
-    var value = window.event.target.value;
-    alert("value = " + value);
-}
-
 function updatePropertyMapping(){
-	var observer_element = $("#notify_event_observer_id")[0],
+	var notify_observer_element = $("#notify_event_notify_observer_id")[0],
 	event_element = $("#notify_event_event_id")[0],
-	template_element = $("#notify_event_template_id")[0],
+	notify_template_element = $("#notify_event_notify_template_id")[0],
 	mapping_container = $("#notify_event_property_mapping_container");
-	if(template_element.value && (observer_element.value || event_element.value)){
+	if(notify_template_element.value && (notify_observer_element.value || event_element.value)){
 		params = {};
-		params['template_id'] = template_element.value;
-		params['observer_id'] = observer_element.value;
+		params['notify_template_id'] = notify_template_element.value;
+		params['notify_observer_id'] = notify_observer_element.value;
 		params['event_id'] = event_element.value;
 		$.ajax({
 		    url: "/show_property_mapping_content",
@@ -30,8 +25,7 @@ function updatePropertyMapping(){
 		    dataType: "html",
 		    success: function(html_content) {
 		      console.log(mapping_container);
-		      
-	  	      console.log(html_content);
+		      console.log(html_content);
 	  	      mapping_container[0].innerHTML = html_content;
 	  	      mapping_container.show();
 			}
@@ -40,5 +34,4 @@ function updatePropertyMapping(){
 	      mapping_container.hide();
 	}
 }
-
 //'observer_Observer'         'observer_select'       event_select'           'event_Event'

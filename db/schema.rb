@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719195655) do
+ActiveRecord::Schema.define(:version => 20130724151410) do
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(:version => 20130719195655) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "mappings", :force => true do |t|
+    t.integer  "notify_observer_property_id"
+    t.string   "template_parameter"
+    t.integer  "notify_template_id"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
   create_table "menus", :force => true do |t|
     t.integer  "parent_id"
     t.integer  "role_id"
@@ -61,12 +69,12 @@ ActiveRecord::Schema.define(:version => 20130719195655) do
   add_index "menus", ["ancestry"], :name => "index_menus_on_ancestry"
 
   create_table "notify_events", :force => true do |t|
-    t.integer  "template_id"
+    t.integer  "notify_template_id"
     t.integer  "event_id"
     t.string   "name"
-    t.integer  "observer_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "notify_observer_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "recipients"
   end
 
@@ -94,11 +102,11 @@ ActiveRecord::Schema.define(:version => 20130719195655) do
   end
 
   create_table "notify_templates", :force => true do |t|
-    t.string   "template_name"
+    t.string   "notify_template_name"
     t.text     "body"
     t.text     "desc"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "permission_resources", :force => true do |t|
@@ -124,11 +132,11 @@ ActiveRecord::Schema.define(:version => 20130719195655) do
   end
 
   create_table "recipients", :force => true do |t|
-    t.integer  "notifyevent_id"
+    t.integer  "notify_event_id"
     t.integer  "user_id"
     t.integer  "group_number"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "resource_types", :force => true do |t|
@@ -190,13 +198,6 @@ ActiveRecord::Schema.define(:version => 20130719195655) do
     t.text     "cell_body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "template_mappings", :force => true do |t|
-    t.string   "notifytemplatepropertyname"
-    t.string   "mappedelement"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
   end
 
   create_table "users", :force => true do |t|

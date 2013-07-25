@@ -7,8 +7,8 @@ function add_recipient(){
 	    success: function(data) {
   	      console.log(data);
 	  	  add_html="<div class='form-inline'><label class='form-inline' for='recipient'> Group number </label>" + 
-	  	  "<input id='notify_event_recipients_group_number_' type='text' name='notify_event[recipients][group_number][]'><label for='user'>Select user</label>" + 
-	  	  "<select id='notify_event_recipients_user_id_' name='notify_event[recipients][user_id][]'><option></option>";
+	  	  "<input id='notify_event_recipients_group_number_' type='text' name='notify_event[recipients_attributes][][group_number]'><label for='user'>Select user</label>" + 
+	  	  "<select id='notify_event_recipients_user_id_' name='notify_event[recipients_attributes][][user_id]'><option></option>";
 	  	  for(var i=0; i<data.length;i++){
 	  		add_html+="<option value='"+data[i].id+"'>"+data[i].username+"</option>"  
 	  	  }

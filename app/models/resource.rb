@@ -5,4 +5,5 @@ class Resource < ActiveRecord::Base
   has_many :ResourceValues, :dependent => :destroy
   accepts_nested_attributes_for :ResourceValues, :allow_destroy => true
   validates :resource_type_id, :presence => true
+  has_many :permission_roles, as: :permissionable
 end

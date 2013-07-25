@@ -158,9 +158,10 @@ ActiveRecord::Schema.define(:version => 20130714184652) do
   create_table "resource_values", :force => true do |t|
     t.integer  "field_id"
     t.integer  "resource_id"
+    t.integer  "resource_reference_id"
     t.string   "value"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "resources", :force => true do |t|

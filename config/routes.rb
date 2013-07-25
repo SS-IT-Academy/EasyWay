@@ -55,6 +55,7 @@ EasyW::Application.routes.draw do
   match "/get_recipients" => "Users#get_recipients"
   match "/add_event_resources" => "Resources#add_event_resources"
   match "/remove_event_resource" => "EventResources#remove_event_resource"
+  match "/event_based_on" => "Events#event_based_on"
 
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"

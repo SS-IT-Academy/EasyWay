@@ -11,9 +11,9 @@
     </div>
   <% end %>
 <div class="control-group">
-    <%= f.label :events, :class => "control-label" %>
+    <%= f.label "Events to based on", :class => "control-label" %>
 	<div class="controls">
-    	<%= select_tag :events, options_from_collection_for_select(@events, "id","name"),{ :include_blank => ''} %>
+    	<%= select_tag :events, options_from_collection_for_select(@events, "id","name"),{ :include_blank => '', :onchange => "Create_event_with_pattern(this)" }%>
   	</div>
 </div>
 
@@ -65,7 +65,7 @@
 		<a href="#" onclick="Add_resource_to_event()">Add resource</a>
 	</div>
 </div>
-<div class="control-grnameoup">
+<div class="control-group">
    	<%= f.label :recurrence_id, :class=>"control-label" %>
   	<div class="controls">
   		<%= f.select :recurrence_id, options_from_collection_for_select(@recurrences, "id","days_of_week", @event.recurrence_id),{ :include_blank => ''} %>

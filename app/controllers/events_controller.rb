@@ -37,6 +37,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    @events = Event.all
     @event_types = EventType.all
     @resources = Resource.all
     @recurrences = Recurrence.all
@@ -98,5 +99,15 @@ class EventsController < ApplicationController
       format.html { redirect_to events_url }
       format.json { head :no_content }
     end
+  end
+  
+  def event_based_on
+    @event = Event.find(params[:id])
+    @event_resources = @event.Resources
+    @event_all = {
+      :event => @event,
+      :resources => @event_resources
+    }
+    render :json => @event_all.to_json
   end
 end

@@ -33,7 +33,8 @@
        		<%= hidden_field_tag "values[][field_id]", value.field_id%>
        		<label class='control-label' for='values[][value]'><%=@field_names[i] %></label>
        		<div class="controls">
-        	  <%= text_field_tag "values[][value]", value.value%>  	  
+        	  <% if value.value %><%= text_field_tag "values[][value]", value.value%><% end %>
+        	  <% if value.resource_reference_id %><%= text_field_tag "values[][resource_reference_id]", value.resource_reference_id%><% end %>
        		</div>
        </div>
 	<% end %>

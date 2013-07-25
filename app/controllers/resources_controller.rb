@@ -10,7 +10,7 @@ class ResourcesController < ApplicationController
     end
   end
   def some_records
-    @resources = Resource.where("resource_type_id = ?", params[:resource_type_id])
+    @resources = Resource.by_resource_type(params[:resource_type_id])
     render :json => @resources.to_json
   end
   
@@ -19,7 +19,7 @@ class ResourcesController < ApplicationController
       @resources = Resource.all
       render :partial => "resources_filter", :object => @resource
     else
-      @resources = Resource.where("resource_type_id = ?", params[:resource_type_id])
+      @resources = Resource.by_resource_type(params[:resource_type_id])
       render :partial => "resources_filter", :object => @resource
     end
   end
@@ -28,10 +28,10 @@ class ResourcesController < ApplicationController
   def show
     @resource = Resource.find(params[:id])
     @resource_type = ResourceType.find(@resource.resource_type_id)
-    @values = ResourceValue.where(resource_id: params[:id])
+    @values = ResourceValue.where("resource_id =?", params[:id])
     @field_types=[]
     @values.each do |value|
-      @field_types << value.Field
+      @field_types << Field.find(value.field_id)
     end
      
     
@@ -73,7 +73,7 @@ class ResourcesController < ApplicationController
     respond_to do |format|
       if @resource.save
         params[:fields].each {|param|
-          @fields = ResourceValue.new({:field_id => param[:field_id], :value => param[:value],:resource_id => @resource.id})
+          @fields = ResourceValue.new({:field_id => param[:field_id], :value => param[:value],:resource_reference_id => param[:resource_reference_id],:resource_id => @resource.id})
           @fields.save
         }
         format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
@@ -94,7 +94,7 @@ class ResourcesController < ApplicationController
       if @resource.update_attributes(params[:resource])
         params[:values].each {|param|
           @value = ResourceValue.find(param[:id])
-          @value.update_attributes({:value => param[:value], :field_id => param[:field_id], :resource_id => params[:id]})
+          @value.update_attributes(:value => param[:value], :field_id => param[:field_id],:resource_reference_id => param[:resource_reference_id], :resource_id => params[:id])
         }
         format.html { redirect_to @resource, notice: 'Resource was successfully updated.' }
         format.json { head :no_content }

@@ -49,7 +49,7 @@ class ResourceTypesController < ApplicationController
   end
 
   # POST /resource_types
-  # POST /resource_types.json
+  # POST /resource_types.jsojoins(:field_type)n
   def create
     @resource_type = ResourceType.new(params[:resource_type])
     respond_to do |format|

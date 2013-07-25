@@ -5,6 +5,7 @@ class Resource < ActiveRecord::Base
     :foreign_key => "resource_type_id"
   has_many :resource_values, :dependent => :destroy
   has_many :event_resources
+  has_many :permission_roles, as: :permissionable
   
   validates :resource_type_id, :presence => true
   

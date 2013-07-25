@@ -31,15 +31,16 @@
 </div>
 <br>
 
+<%= field_set_tag 'Recipients' do %>
+
 <div id="marginforforms">
 	
-	<div class="control-group">
-		
-		<%= label_tag(:user, "Select user", :class=>"control-label") %>
-		<div class="controls">
-	    <%= select_tag(:user, options_from_collection_for_select(User.all, :id, :username), :include_blank => true) %>
-        </div>
-	</div>
+	<div class="form-inline">
+		<%= label_tag(:recipient, "Group number", :class => "form-inline") %>
+		<%=f.text_field :name%>
+		<%= label_tag(:user, "Select user") %>
+		<%= select_tag(:user, options_from_collection_for_select(User.all, :id, :username), :include_blank => true) %>
+   </div>
 </div>
 
 <div class="control-group">
@@ -47,17 +48,46 @@
  <%= link_to "Add recipient","#", :onclick => "add_recipient()" %>
 	</div>
 </div>
+<%end%>
+</fieldset>
 
-
-	<div class="form-inline">
-
-			<%= label_tag(:observer, "Event") %>
-			<%= radio_button_tag(:observer, "Event") %></br>
-			</br>
-		    <%= label_tag(:observer, "Observer") %>
-			<%= radio_button_tag(:observer, "Observer") %>
+	<div class="control-group">
+		
+			<%= label_tag(:observer, "Event", :class=>"control-label") %>
+			<div class="controls">
+			<%= radio_button_tag(:event, 'Event', false, {:onclick => "setRadioChecked('observer_Observer', false);setSelectEnabled('event_select', true);setSelectEnabled('observer_select', false)" }) %>
+			<%= select_tag(:event_select, options_from_collection_for_select(NotifyObserver.all, :id, :name), :include_blank => true, :disabled => true ) %>
+			</div>
+   </div>
+    <div class="control-group">
+		    <%= label_tag(:observer, "Observer", :class=>"control-label") %>
+		    <div class="controls">
+			<%= radio_button_tag(:observer, "Observer", false, {:onclick => "setRadioChecked('event_Event', false);setSelectEnabled('event_select', false);setSelectEnabled('observer_select', true)" }) %>
+			<%= select_tag(:observer_select, options_from_collection_for_select(NotifyObserver.all, :id, :name), :include_blank => true, :disabled => true ) %>
+	        </div>
 	</div>
-
+	
+			
+	<div class="control-group">
+	<%= label_tag(:observer, "Template Mapping", :class=>"control-label") %>
+	<table class="tab" id="mappings" border="1">
+  <tr>
+     <td align="center"><b>Notify Template property name</b></td>
+     <td align="center"><b>Mapped element</b></td>
+  </tr>
+  <tr>
+     <td><%= f.text_field :name %></td>
+     <td><%= select_tag(:notify_observer_property_id, options_from_collection_for_select(NotifyObserverProperty.all, :id, :name), :include_blank => true ) %></td>
+  </tr>
+</table>
+    </div>
+    
+  <div class="control-group">
+    <div class="controls">
+  	   <%= link_to "Add notify_template_mapping_fields","#", :onclick => "add_notify_template_mapping()" %>
+    </div>
+  </div>
+  
 <div class="actions">
 	<%= f.submit %>
 </div>

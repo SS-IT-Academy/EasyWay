@@ -1,4 +1,5 @@
 EasyW::Application.routes.draw do
+
   resources :recurrences
 
 
@@ -9,14 +10,21 @@ EasyW::Application.routes.draw do
 
 
   resources :event_types
+  resources :menus
+  resources :bookmarks
 
 
   resources :permission_resources
 
 
   resources :notify_event1s
+
   resources :menus
 
+  
+
+
+  resources :permissions
 
   resources :notify_schedulers
   root :to=>"home#index"
@@ -24,7 +32,7 @@ EasyW::Application.routes.draw do
 
   resources :recipients
 
-  resources :event_properties
+  resources :notify_observer_properties
 
   resources :notify_observers
 
@@ -35,10 +43,10 @@ EasyW::Application.routes.draw do
 
   resources :roles
 
+  resources :permission_roles
   
-  
-  resources :resources
-  resources :resource_types
+  resources :resources, :has_many => :permission_roles
+  resources :resource_types, :has_many => :permission_roles
   resources :resource_values
   resources :fields
   resources :field_types
@@ -56,6 +64,10 @@ EasyW::Application.routes.draw do
   match "/add_event_resources" => "Resources#add_event_resources"
   match "/remove_event_resource" => "EventResources#remove_event_resource"
   match "/event_based_on" => "Events#event_based_on"
+  match "/delete_menu_item" => "Menus#delete_menu_item"
+
+  match "/get_notify_template_mappings" => "NotifyObserverProperties#get_notify_template_mappings"
+    
 
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"

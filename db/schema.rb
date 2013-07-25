@@ -11,11 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130714184652) do
+=======
+ActiveRecord::Schema.define(:version => 20130723112938) do
+>>>>>>> 848e03fa6260e2068f8db07a8e869823d0eabe81
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "bookmarks", :force => true do |t|
+    t.string   "url"
+    t.string   "title"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
   end
 
   create_table "event_properties", :force => true do |t|
@@ -65,14 +77,14 @@ ActiveRecord::Schema.define(:version => 20130714184652) do
   create_table "menus", :force => true do |t|
     t.integer  "parent_id"
     t.integer  "role_id"
-    t.string   "url"
     t.integer  "user_id"
     t.string   "text"
-    t.string   "title"
     t.string   "target"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "ancestry"
+    t.integer  "bookmark_id"
+    t.integer  "position"
   end
 
   add_index "menus", ["ancestry"], :name => "index_menus_on_ancestry"
@@ -120,15 +132,17 @@ ActiveRecord::Schema.define(:version => 20130714184652) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "permission_roles", :force => true do |t|
+    t.integer "permissions_id"
+    t.integer "roles_id"
+    t.integer "permissionable_id"
+    t.string  "permissionable_type"
+  end
+
   create_table "permissions", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "permissions_roles", :id => false, :force => true do |t|
-    t.integer "permissions_id"
-    t.integer "roles_id"
   end
 
   create_table "recipients", :force => true do |t|

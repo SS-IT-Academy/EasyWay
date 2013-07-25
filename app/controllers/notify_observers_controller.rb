@@ -6,10 +6,10 @@ class NotifyObserversController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @notify_observers }
+      format.json { render :json => @notify_observers }
     end
   end
-
+  
   # GET /notify_observers/1
   # GET /notify_observers/1.json
   def show
@@ -17,7 +17,7 @@ class NotifyObserversController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @notify_observer }
+      format.json { render :json => @notify_observer }
     end
   end
 
@@ -28,7 +28,7 @@ class NotifyObserversController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @notify_observer }
+      format.json { render :json => @notify_observer }
     end
   end
 
@@ -41,7 +41,7 @@ class NotifyObserversController < ApplicationController
   # POST /notify_observers.json
   def create
     @notify_observer = NotifyObserver.new(params[:notify_observer])
-
+    
     respond_to do |format|
       if @notify_observer.save
         format.html { redirect_to @notify_observer, notice: 'Notify observer was successfully created.' }

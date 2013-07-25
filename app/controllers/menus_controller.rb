@@ -24,9 +24,9 @@ class MenusController < ApplicationController
   # GET /menus/new
   # GET /menus/new.json
   def new
+    @bookmark= Bookmark.all
     @menu = Menu.new
-    require 'uri'
-    require 'cgi'
+    
       @params = request.params
       
     respond_to do |format|
@@ -85,4 +85,11 @@ class MenusController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def  delete_menu_item
+    @menu = Menu.find(params[:menu_item_id])
+    @menu.destroy
+    render :json => @menu.to_json
+  end
+  
 end
+   

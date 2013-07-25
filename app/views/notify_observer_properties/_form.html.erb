@@ -1,0 +1,33 @@
+<%= form_for @notify_observer_property, :html =>{:class=>"form-horizontal"} do |f| %>
+  <% if @notify_observer_property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@notify_observer_property.errors.count, "error") %> prohibited this notify_observer_property from being saved:</h2>
+
+      <ul>
+      <% @notify_observer_property.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :name, :class=>"control-label" %>
+    <div class="controls">
+    <%= f.text_field :name %>
+    </div>
+  </div>
+  
+   <div id="notify_observer_property_fields">
+   </div>
+ 	
+ <div class="control-group">
+    <div class="controls">
+  	   <%= link_to "Add notify_observer_property","#", :onclick => "notify_observer_property_add_new_field(this)" %>
+    </div>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

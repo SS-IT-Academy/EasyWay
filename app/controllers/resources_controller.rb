@@ -58,11 +58,16 @@ class ResourcesController < ApplicationController
   def edit
     @resource = Resource.find(params[:id])
     @resource_types=ResourceType.all
-    @resource_values = ResourceValue.where("resource_id = ?", params[:id])
-    @field_names=[]
+    @resource_values = @resource.resource_values
+    @field_names = []
+    @reference = []
     @resource_values.each_with_index do |value, i|
-      @field_names[i] = Field.find(value.field_id).name 
-    end  
+      @field_names[i] = Field.find(value.field_id).name
+      if Field.find(value.field_id).resource_type_reference_id
+        @reference[i] = Resource.where("resource_type_id = ?",Field.find(value.field_id).resource_type_reference_id)
+      end 
+    end
+
   end
 
   # POST /resources
@@ -120,5 +125,17 @@ class ResourcesController < ApplicationController
   def add_event_resources
     @resources = Resource.all
     render :json => @resources.to_json
+  end
+  def resource_info
+    @resource = Resource.find(params[:id])
+    @resource_type = ResourceType.find(@resource.resource_type_id).name;
+    @values = @resource.resource_values
+    @field_names=[]
+    @values.each_with_index do |value,i|
+      @field_names[i] = Field.find(value.field_id).name
+    end
+    respond_to do |format|
+      format.json  { render :json => { :resource => @resource,:resource_type =>@resource_type, :values => @values,:field_names => @field_names}}
+    end
   end
 end

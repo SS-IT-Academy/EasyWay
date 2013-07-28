@@ -11,17 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
 ActiveRecord::Schema.define(:version => 20130724151410) do
-
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-
-  create_table "easies", :force => true do |t|
 
   create_table "bookmarks", :force => true do |t|
     t.string   "url"
@@ -32,15 +27,11 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
   end
 
   create_table "event_properties", :force => true do |t|
-
     t.string   "name"
-    t.string   "password"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-
-  create_table "events", :force => true do |t|
   create_table "event_resources", :force => true do |t|
     t.integer  "resource_id"
     t.integer  "event_id"
@@ -49,7 +40,6 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
   end
 
   create_table "event_types", :force => true do |t|
-
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -75,8 +65,9 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
     t.string   "name"
     t.integer  "field_type_id"
     t.integer  "resource_type_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "resource_type_reference_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "mappings", :force => true do |t|
@@ -103,23 +94,14 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
   add_index "menus", ["ancestry"], :name => "index_menus_on_ancestry"
 
   create_table "notify_events", :force => true do |t|
-    t.integer  "notify_template_id"
+    t.integer  "template_id"
     t.integer  "event_id"
     t.string   "name"
-    t.integer  "notify_observer_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.integer  "observer_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "recipients"
   end
-
-  create_table "notify_observer_properties", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.integer  "notify_observer_id"
-  end
-
-  add_index "notify_observer_properties", ["notify_observer_id"], :name => "index_notify_observer_properties_on_notify_observer_id"
 
   create_table "notify_observers", :force => true do |t|
     t.string   "name"
@@ -136,11 +118,11 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
   end
 
   create_table "notify_templates", :force => true do |t|
-    t.string   "notify_template_name"
+    t.string   "template_name"
     t.text     "body"
     t.text     "desc"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "permission_resources", :force => true do |t|
@@ -154,23 +136,25 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "permission_roles", :force => true do |t|
+    t.integer "permissions_id"
+    t.integer "roles_id"
+    t.integer "permissionable_id"
+    t.string  "permissionable_type"
+  end
+
   create_table "permissions", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "permissions_roles", :id => false, :force => true do |t|
-    t.integer "permissions_id"
-    t.integer "roles_id"
-  end
-
   create_table "recipients", :force => true do |t|
-    t.integer  "notify_event_id"
+    t.integer  "notifyevent_id"
     t.integer  "user_id"
     t.integer  "group_number"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "recurrences", :force => true do |t|
@@ -261,4 +245,5 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
     t.datetime "updated_at",           :null => false
     t.string   "authentication_token"
   end
+
 end

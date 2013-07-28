@@ -89,7 +89,10 @@ EasyW::Application.routes.draw do
   match "/event_based_on" => "Events#event_based_on"
   match "/delete_menu_item" => "Menus#delete_menu_item"
 
+  match "/resource_info" => "Resources#resource_info"
+  match "/get_notify_template_mappings" => "NotifyObserverProperties#get_notify_template_mappings"
   match "/show_property_mapping_content" => "NotifyEvents#show_property_mapping_content"
+
     
 
 

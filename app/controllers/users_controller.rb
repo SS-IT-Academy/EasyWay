@@ -54,12 +54,13 @@ class UsersController < ApplicationController
 
  def create
     @user = User.new(params[:user])
-    @user.roleid = "4"
+    @user.roleid = "1"
+
    # @user.update_attributes(:userid == "4")
     if verify_recaptcha
       if @user.valid?
          @user.save
-        UserMailer.welcome_email(@user).deliver
+        
 
         # format.html { redirect_to @user, :notice => 'User was successfully created.' }
         # format.json { render :json => @user, :status => :created, :location => @user }

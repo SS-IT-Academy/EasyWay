@@ -13,10 +13,10 @@
 
 <% @notify_events.each do |notify_event| %>
   <tr>
-    <td><%= notify_event.template_id %></td>
+    <td><%= notify_event.notify_template_id %></td>
     <td><%= notify_event.event_id %></td>
     <td><%= notify_event.name %></td>
-    <td><%= notify_event.observer_id %></td>
+    <td><%= notify_event.notify_observer_id %></td>
     <td><%= link_to 'Show', notify_event %></td>
     <td><%= link_to 'Edit', edit_notify_event_path(notify_event) %></td>
     <td><%= link_to 'Destroy', notify_event, confirm: 'Are you sure?', method: :delete %></td>

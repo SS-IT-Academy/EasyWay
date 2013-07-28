@@ -1,3 +1,11 @@
+<script>
+  function enable_based_on(){
+    if ($(events).attr('disabled'))
+      $(events).removeAttr('disabled');
+	else
+	  $(events).attr('disabled','disabled');
+	}
+</script>
 <%= form_for @event, :html =>{:class=>"form-horizontal"} do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
@@ -13,8 +21,10 @@
 <div class="control-group">
     <%= f.label "Events to based on", :class => "control-label" %>
 	<div class="controls">
-    	<%= select_tag :events, options_from_collection_for_select(@events, "id","name"),{ :include_blank => '', :onchange => "Create_event_with_pattern(this)" }%>
+    	<%= select_tag :events, options_from_collection_for_select(@events, "id","name"),html_options ={:include_blank => '', :onchange => "Create_event_with_pattern(this)", :disabled => true}%>
+    	<input type="checkbox" onchange="enable_based_on()">
   	</div>
+  
 </div>
 
 <div class="control-group">
@@ -27,22 +37,25 @@
 <div class="control-group">
     <%= f.label :event_type_id, :class=>"control-label" %>
 	<div class="controls">
-    	<%= f.select :event_type_id, options_from_collection_for_select(@event_types, "id","name", @event.event_type_id),{ :include_blank => ''} %>
+    	<%= f.select :event_type_id, options_from_collection_for_select(@event_types, "id","name", @event.event_type_id),{ :include_blank => 'Select type'} %>
   	</div>
 </div>
-<div class="control-group">
+
+<div class="control-group datetime">
     <%= f.label :start_at, :class=>"control-label" %>
     <div class="controls">
-    	<%= f.text_field :start_at %>
+    	<%= f.datetime_select :start_at %>
     </div>
 </div>
-<div class="control-group">
+
+<div class="control-group datetime">
     <%= f.label :end_at, :class=>"control-label" %>
     <div class="controls">
-    	<%= f.text_field :end_at %>
+    	<%= f.datetime_select :end_at %>
     </div>
 </div>
-<div id="fieldsDiv" class="control-group">
+
+<div class="control-group">
 <%if !@event_resources.blank?%>
 	<%@event_resources.each do |resource|%>
 		<div class='control-group'>
@@ -59,16 +72,18 @@
 		</div>
 	<% end %>
 <% end %>
+<div id="fieldsDiv" class="control-group">
+
+</div>	
+<div class="controls">
+<a href="#" class="btn btn-inverse" onclick="Add_resource_to_event()">Add resource</a>
+</div>	
 </div>
+
 <div class="control-group">
-	<div class="controls">
-		<a href="#" onclick="Add_resource_to_event()">Add resource</a>
-	</div>
-</div>
-<div class="control-group">
-   	<%= f.label :recurrence_id, :class=>"control-label" %>
+   	<%= f.label "Recurence by days_of_week", :class=>"control-label" %>
   	<div class="controls">
-  		<%= f.select :recurrence_id, options_from_collection_for_select(@recurrences, "id","days_of_week", @event.recurrence_id),{ :include_blank => ''} %>
+  		
   	</div>  
 </div>
 

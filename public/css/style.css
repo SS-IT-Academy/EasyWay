@@ -15,9 +15,7 @@ background-repeat:no-repeat;
 background-position:0 0;
 }
 
-.hFooter {
-height: 50px;
-}
+
 
 .footer{
 width: 100%;
@@ -35,37 +33,11 @@ min-height:721px;
 
 /*outline:1px solid #FAA21A;*/
 }
-<<<<<<< HEAD
 
-=======
-.logo{
-/*background:url(../images/logo3.png) no-repeat;*/
-width:135px;
-height:96%;
-float:left;
-background-position:100% 10%;
-position: relative;
-margin-left: 63px;
-margin-top: 10px;
-/*background-size:80% auto;*/
-#outline:1px solid #ffffff;
-}
->>>>>>> 6fa1fdf564a29f5bc64bc5a75b85ca5955363013
 .buttonfloat{
 float:right;
 margin:15px 5px 15px 5px;
 	
-}
-.headerTop{
-width:100%;
-height:60%;
-display:inline-block;
-}
-.headerBottom{
-       width: 100%;
-      height: 40%;
-	 display: inline-block;
-	 text-align: center;
 }
 
 	
@@ -114,18 +86,6 @@ legend {
 
 
 
-.highlight{
-  display: inline-block !important;
-  border-color: rgba(255, 0, 0, 2) !important;
-  outline: 0 !important;
-  outline: thin dotted \9 !important;
- /* IE6-9 */
-
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 12px rgba(255, 0, 0, 0.6) !important;
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 12px rgba(255, 0, 0, 0.6) !important;
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 12px rgba(255, 0, 0, 0.6) !important;
-	
-}
 .star{
 background:url(../images/star.png)  no-repeat;
 width:20px;
@@ -184,9 +144,7 @@ padding: 0 5px !important;
 	width:40px;
 	height:40px;
 }
-.close{
 
-}
 .nav > li > a{
 display:inline-block !important;
 }

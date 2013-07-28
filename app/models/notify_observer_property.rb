@@ -1,5 +1,7 @@
 class NotifyObserverProperty < ActiveRecord::Base
-  belongs_to :notify_observer
   attr_accessible :name
   validates :name, :presence => true
+  belongs_to :notify_observer
+  has_many :mappings
+  
 end

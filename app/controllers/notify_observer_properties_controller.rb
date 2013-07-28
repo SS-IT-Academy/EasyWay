@@ -49,7 +49,7 @@ class NotifyObserverPropertiesController < ApplicationController
   # POST /notify_observer_properties
   # POST /notify_observer_properties.json
   def create
-    @notify_observer_property = NotifyObserverProperty.new(params[:notify_observer_property])
+    @notify_observer_property = @notify_observer.NotifyObserverProperties.new(params[:notify_observer_property])
 
     respond_to do |format|
       if @notify_observer_property.save

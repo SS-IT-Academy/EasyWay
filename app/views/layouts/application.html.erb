@@ -22,6 +22,7 @@
 		<script src="/js/notifier.js"></script>
 		<script src="/js/jquery-ui-1.10.3.custom.js"></script>
 
+
 	</head>
 	<body class="bodybg">
 		<div class="header">
@@ -29,6 +30,26 @@
 			<div>
 				<a href="#myModal" role="button" class="star" data-toggle="modal" onclick="getUrl()"></a>
 			</div>
+<link rel="stylesheet" href="/css/bootstrap.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+<link rel="stylesheet" href="/css/site.css" type="text/css" charset="utf-8">
+<script src="/js/bootstrap.js"> </script>
+<script src="/js/jquery-2.0.2.min.js"></script>
+<script src="/js/jquery.ui.widget.js"></script>
+<script src="/js/jquery.rf.slideshow.js"></script>
+<script src="/js/resources.js"> </script>
+<script src="/js/menu.js"> </script>
+<script src="/js/notifier.js"> </script>
+<script src="/js/events.js"> </script>
+<script src="/js/jquery-ui-1.10.3.custom.js"> </script>
+
+
+</head>
+<body class="bodybg">
+	<div class="header">
+		<div class="headerTop">
+			<div><a href="#myModal" role="button" class="star" data-toggle="modal" ></a></div>
+
 			<div class="modal hide fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-header">
 					<h3 id="myModalLabel" align="center">Creating new bookmark</h3>
@@ -42,9 +63,22 @@
 					</button>
 				</div>
 			</div>
+
 			<% end %>
 			<div class="logo">
 				<a href="http://localhost:3000/">Easy Way</a>
+
+			<div class="logo"><a href="http://localhost:3000/"><img src="/images/logo3.png" width="100"  height="100" border="0" alt="Easy Way"></a></div>			
+				<form class="easywaywell span5 pull-right form-inline" >
+					<% if current_user %>
+  						Logged in as <%= current_user.username %>.
+  						<%= link_to "Sign Out", signed_out_path, :class => "btn btn-primary"%>
+  						<%= link_to "Account Settings", account_settings_path,:class => "btn btn-primary" %>
+  					<%else%>
+						<%= link_to "Sign up", new_user_path, :class => "btn btn-primary buttonfloat"%>
+						<%= link_to "Sign In", sign_in_path, :class => "btn btn-primary buttonfloat"%> 
+					<% end %>		
+				</form>
 			</div>
 			<form class="easywaywell span5 pull-right form-inline" >
 				<% if current_user %>

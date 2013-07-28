@@ -10,24 +10,14 @@
   <%= @menu.role_id %>
 </p>
 
-
-
 <p>
   <b>User:</b>
   <%= @menu.user_id %>
 </p>
 
 <p>
-  <b>Text:</b>
-  <%= @menu.text %>
+  <b>Position:</b>
+  <%= @menu.position %>
 </p>
-<p>
-
-<p>
-  <b>Target:</b>
-  <%= @menu.target %>
-</p>
-
-
 <%= link_to 'Edit', edit_menu_path(@menu) %> |
 <%= link_to 'Back', menus_path %>

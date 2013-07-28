@@ -11,46 +11,25 @@
     </form>
   <% end %>
   <div class="boxforforms">
-  <div class="control-group ">
-  	<%=f.label :parent_id, :class=>"control-label" %>
-  	<div class="controls">
-     <%= f.text_field(:parent_id, :value=>@params[:id]) %>
-  	</div>
-  </div>
-  <div class="control-group">
-  	<%= f.label :role_id, :class =>"control-label"  %>
-  	<div class="controls">
-  	<%= f.number_field :role_id %>  	
-  	</div>    
-  </div>
+  <% if @menu.user_id %>
+     <%= f.hidden_field(:parent_id, :value=>@params[:id]) %>
+     <%= f.hidden_field(:user_id, :value=>current_user.id) %>
+  <% end %>
     <div class="control-group">
-  	 <%= f.label :user_id, :class =>"control-label" %>
-  	 <div class="controls">
-     <%= f.number_field :user_id %>
-   </div>
-  </div>  
-  <div class="control-group">
-  	<%= f.label :target,:class =>"control-label"%>
-  	<div class="controls">
-  	<%= f.text_field :target %>
-     </div>
-      </div>
-      <div class="control-group">
   	<%= f.label :title,:class =>"control-label"%>
   	<div class="controls">
-     <%= select_tag('menu[bookmark_id]', options_from_collection_for_select(@bookmark, 'id', 'title')) %>
+     <%= select_tag('menu[bookmark_id]', options_from_collection_for_select(@bookmark, 'id', 'title'),:include_blank =>"") %>
      </div>
       </div>
-      <div class="control-group">
+       <div class="control-group">
   	 <%= f.label :position, :class =>"control-label" %>
   	 <div class="controls">
      <%= f.number_field :position %>
    </div>
   </div>
   <div class="actions controls">
-    <%= f.submit :class =>"btn btn-primary " %>
-    
-  </div>
-	</div>
+    <%= f.submit :class =>"btn btn-primary " %>    
+ </div>
+ </div>
 <% end %>
 	

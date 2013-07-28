@@ -1,11 +1,13 @@
 <h3 align="center">Listing menus</h3>
-<div class="border_for_tables">
-<table class="table table-striped"> 
+<div>
+	<div class="border_for_tables">
+<table class="table table-striped "> 
   <tr>
     <th>Parent</th>
     <th>Role</th>
     <th>User</th>     
-    <th>Target</th>
+    <th>Position</th>
+    <th>Title</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,15 +17,18 @@
   <tr>
     <td><%= menu.parent_id %></td>
     <td><%= menu.role_id %></td>    
-    <td><%= menu.user_id %></td>
-    <td><%= menu.target %></td>
+    <td><%= menu.user_id %></td> 
+    <td><%= menu.position %></td> 
+    <td><%= menu.bookmark.title %></td> 
     <td><%= link_to 'Show', menu, :class=>"btn btn-info"%></td>
     <td><%= link_to 'Edit', edit_menu_path(menu),:class=>"btn btn-info" %></td>
     <td><%= link_to 'Destroy', menu, method: :delete, data: { confirm: 'Are you sure?'},:class=>"btn btn-danger" %></td>
   </tr>
 <% end %>
 </table>
+
 </div>
 <br />
 
 <%= link_to 'New Menu', new_menu_path %>
+</div>

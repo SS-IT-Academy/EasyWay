@@ -110,17 +110,15 @@ ActiveRecord::Schema.define(:version => 20130723112938) do
     t.datetime "updated_at",       :null => false
   end
 
-  create_table "permission_roles", :force => true do |t|
-    t.integer "permissions_id"
-    t.integer "roles_id"
-    t.integer "permissionable_id"
-    t.string  "permissionable_type"
-  end
-
   create_table "permissions", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "permissions_roles", :id => false, :force => true do |t|
+    t.integer "permissions_id"
+    t.integer "roles_id"
   end
 
   create_table "recipients", :force => true do |t|
@@ -189,6 +187,13 @@ ActiveRecord::Schema.define(:version => 20130723112938) do
     t.text     "cell_body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "template_mappings", :force => true do |t|
+    t.string   "notifytemplatepropertyname"
+    t.string   "mappedelement"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "users", :force => true do |t|

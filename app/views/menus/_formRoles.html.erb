@@ -1,20 +1,15 @@
 <%= form_for @menu, :html =>{:class=>"form-horizontal"} do |f| %>
-  <% if @menu.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
-      <ul>
-      <% @menu.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-    </form>
-  <% end %>
+
   <div class="boxforforms">
-  <% if @menu.user_id %>
-     <%= f.hidden_field(:parent_id, :value=>@params[:id]) %>
-     <%= f.hidden_field(:user_id, :value=>current_user.id) %>
-  <% end %>
+  <div class="control-group ">
+  	
+     <%= f.text_field :parent_id, :value=>@parent_id%>
+  
+  <div class="control-group">
+  	
+  	<%= f.text_field :role_id, :value=>@role_id%>  
+  	
+    <%= f.hidden_field(:user_id) %>
     <div class="control-group">
   	<%= f.label :title,:class =>"control-label"%>
   	<div class="controls">

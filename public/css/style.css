@@ -5,54 +5,37 @@
 html,body{
 	height: 100%;
 }
-.hHeader {
-height: 105px;
-}
+
+
 .header{
-height:105px;
-background:url(../images/header.jpg) no-repeat  ;
-background-size:100% 100px;
-background-position:bottom;
-border-radius:0;
-margin: 0px 0 -105px 0;
+height:60px;
+background-image:url(../images/bg.jpg);
+background-color:black;
+background-repeat:no-repeat;
+background-position:0 0;
 }
-/*.bodybg{
-background-image:url(../images/bg.png);
-height: 100%;
-}*/
+
 .hFooter {
 height: 50px;
 }
 
 .footer{
 width: 100%;
-height:50px;
-background-image:url(../images/footer.jpg);
+background-color:#D8D8D8;
+border-top: 1px solid #EEEEEE;
+margin-top:40px;
 background-size:100% 100%;
-margin-top: -50px;
-z-index: 100;
-text-align: center;
 padding-top: 5px;
-/*border-radius:10px 10px 0 0;*/
+color:#A0A0A0;
+overflow:auto;
 }
 .content{
 width:100%;
-min-height: 721px;
+min-height:721px;
 
 /*outline:1px solid #FAA21A;*/
 }
-.logo{
-/*background:url(../images/logo3.png) no-repeat;*/
-width:135px;
-height:96%;
-float:left;
-background-position:100% 10%;
-position: relative;
-margin-left: 63px;
-margin-top: 10px;
-background-size:80% auto;
-#outline:1px solid #ffffff;
-}
+
 .buttonfloat{
 float:right;
 margin:15px 5px 15px 5px;
@@ -109,5 +92,55 @@ margin:15px 10px 0 0;
 width:800px;
 height:400px;
 margin:auto;
-	
+border:solid 2px #EEEEEE;
+}
+.box-manage-menu{
+width:1200px;
+height:105px;
+margin:auto;
+}
+.logo{
+height:60px;
+font-family: 'Bilbo Swash Caps', cursive;
+font-size: 22pt;
+float:left;
+line-height:60px;
+vertical-align:middle;
+color:white !important;
+padding-left:20px;
+}
+.logo a{
+color:white;
+text-decoration:none;
+}
+.menu-position{
+height:25px;
+weight:400px;
+border:solid 2px #000000;
+background-color:#242424;
+
+}
+.navbar .nav > li > a {
+padding:0 10px !important;
+text-shadow: none !important;
+color:white !important;
+}
+.navbar .nav > li:first-child > a {
+padding: 0 5px !important;
+}
+.footer .copyright{
+	text-align:center;
+}
+
+.footer .tools{
+	float:right;
+	display:inline-block;
+	width:40px;
+	height:40px;
+}
+.close{
+
+}
+.nav > li > a{
+display:inline-block !important;
 }

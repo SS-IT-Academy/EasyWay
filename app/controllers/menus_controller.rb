@@ -3,7 +3,7 @@ class MenusController < ApplicationController
   # GET /menus.json
   def index
     @menus = Menu.all
-    
+   
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @menus }
@@ -40,6 +40,7 @@ class MenusController < ApplicationController
   # GET /menus/1/edit
   def edit
     @menu = Menu.find(params[:id])
+    @bookmark = Bookmark.all
   end
 
   # POST /menus
@@ -90,6 +91,14 @@ class MenusController < ApplicationController
     @menu.destroy
     render :json => @menu.to_json
   end
-  
+  def render_menu
+   @role_id=params[:role_id]
+   render :partial => 'menus/menu', :locals =>{:menu =>Menu.where('role_id = ?', params[:role_id])}
+  end
+    def render_form_for_menu
+      @role_id=params[:role_id]
+      @parent_id=params[:parent_id]
+      render :partial => 'menus/formRoles', :locals =>{:@menu =>Menu.new, :@bookmark=> Bookmark.all}
+  end
 end
    

@@ -1,7 +1,9 @@
 EasyW::Application.routes.draw do
+  get "manage_menu/index"
+
   resources :menus
   resources :bookmarks
-
+  
 
   resources :permission_resources
 
@@ -46,16 +48,12 @@ EasyW::Application.routes.draw do
   match "/get_resource_types" => "ResourceTypes#all_types"
   match "/get_resources" => "Resources#some_records"
   match "/get_recipients" => "Users#get_recipients"
-<<<<<<< HEAD
   
   match "/delete_menu_item" => "Menus#delete_menu_item"
-=======
-
+  match "/render_menu" => "Menus#render_menu"
+  match "/render_form_for_menu" => "Menus#render_form_for_menu"
   match "/get_notify_template_mappings" => "NotifyObserverProperties#get_notify_template_mappings"
     
-
->>>>>>> 2731348f14da1a782bd3425e70c571a1b1db3c36
-
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"
   get "password_sent" => "authentication#password_sent"

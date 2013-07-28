@@ -97,10 +97,10 @@ function what_type_of_field(obj){
       data: {},
       dataType: "json",
       success: function(data) {
-      	$('#fieldsDiv').html(what_type_of_field_parse(data));
+      	$(obj).parent().parent().append(what_type_of_field_parse(data));
       }
   	});
-  else $('#fieldsDiv').html('');
+  else $(obj).parent().parent().append('');
 }
 
 function what_type_of_field_parse(data){

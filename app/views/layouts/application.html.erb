@@ -24,32 +24,10 @@
 
 
 	</head>
-	<body class="bodybg">
-		<div class="header">
-			<% if current_user%>
-			<div>
-				<a href="#myModal" role="button" class="star" data-toggle="modal" onclick="getUrl()"></a>
-			</div>
-<link rel="stylesheet" href="/css/bootstrap.css" type="text/css">
-<link rel="stylesheet" href="/css/style.css" type="text/css">
-<link rel="stylesheet" href="/css/site.css" type="text/css" charset="utf-8">
-<script src="/js/bootstrap.js"> </script>
-<script src="/js/jquery-2.0.2.min.js"></script>
-<script src="/js/jquery.ui.widget.js"></script>
-<script src="/js/jquery.rf.slideshow.js"></script>
-<script src="/js/resources.js"> </script>
-<script src="/js/menu.js"> </script>
-<script src="/js/notifier.js"> </script>
-<script src="/js/events.js"> </script>
-<script src="/js/jquery-ui-1.10.3.custom.js"> </script>
-
-
-</head>
+	
 <body class="bodybg">
 	<div class="header">
-		<div class="headerTop">
-			<div><a href="#myModal" role="button" class="star" data-toggle="modal" ></a></div>
-
+				<div><a href="#myModal" role="button" class="star" data-toggle="modal"  onclick="getUrl()"></a></div>
 			<div class="modal hide fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-header">
 					<h3 id="myModalLabel" align="center">Creating new bookmark</h3>
@@ -63,8 +41,6 @@
 					</button>
 				</div>
 			</div>
-
-			<% end %>
 			<div class="logo">
 				<a href="http://localhost:3000/">Easy Way</a>					
 						</div>

@@ -67,6 +67,7 @@ function delete_menu_element(obj){
 
 function getUrl(){
 	var currentUrl = window.location;
+	
 	$('#url').val(currentUrl);
 }
 function renderForm(val){

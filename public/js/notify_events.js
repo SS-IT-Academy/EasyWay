@@ -1,6 +1,6 @@
 function setRadioChecked(radio_id, checked) {
 	console.log(radio_id);
-    $("#" + radio_id)[0].checked=checked;
+	$("#" + radio_id)[0].checked=checked;
 }
 
 function setSelectEnabled(select_id, enabled) {
@@ -12,7 +12,7 @@ function updatePropertyMapping(){
 	var notify_observer_element = $("#notify_event_notify_observer_id")[0],
 	event_element = $("#notify_event_event_id")[0],
 	notify_template_element = $("#notify_event_notify_template_id")[0],
-	mapping_container = $("#notify_event_property_mapping_container");
+	tbody = $("#mapping_tbody");
 	if(notify_template_element.value && (notify_observer_element.value || event_element.value)){
 		params = {};
 		params['notify_template_id'] = notify_template_element.value;
@@ -24,14 +24,14 @@ function updatePropertyMapping(){
 		    type: "GET",
 		    dataType: "html",
 		    success: function(html_content) {
-		      console.log(mapping_container);
 		      console.log(html_content);
-	  	      mapping_container[0].innerHTML = html_content;
-	  	      mapping_container.show();
+		      tbody[0].innerHTML = "<tr><td align=\"center\"><b>Notify Template property name</b></td><td align=\"center\"><b>Mapped element</b></td></tr>" 
+		    	  + html_content;
+		      $("#notify_event_property_mapping_container").show();
 			}
 		});
 	} else {
-	      mapping_container.hide();
+		$("#notify_event_property_mapping_container").hide();
 	}
 }
 //'observer_Observer'         'observer_select'       event_select'           'event_Event'

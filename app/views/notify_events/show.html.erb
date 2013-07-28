@@ -1,4 +1,11 @@
+<div class="boxforforms">
 <p id="notice"><%= notice %></p>
+
+
+<p>
+  <b>Name:</b>
+  <%= @notify_event.name %>
+</p>
 
 <p>
   <b>Template:</b>
@@ -11,8 +18,20 @@
 </p>
 
 <p>
-  <b>Name:</b>
-  <%= @notify_event.name %>
+	<b>Recipients:</b>
+  <table  width="300" class="table-striped">
+    <tr>
+      <th >Group number</th>
+      <th >User name</th>
+    </tr>
+    <% for recipient in @notify_event.recipients %>
+    <tr>
+      <td align="center" ><%= recipient.group_number %></td>
+      <td align="center" ><%= recipient.user_id %></td>
+    </tr>
+     <% end %>
+  </table>
+  
 </p>
 
 <p>
@@ -23,3 +42,4 @@
 
 <%= link_to 'Edit', edit_notify_event_path(@notify_event) %> |
 <%= link_to 'Back', notify_events_path %>
+</div>

@@ -14,16 +14,16 @@
 
 <div class="control-group">
 	<%= f.label :name, :class=>"control-label"  %>
-	<div class="controls">
-		<%= f.text_field :name %>
-	</div>
+	 <div class="controls">
+       <%= f.text_field :name %>
+	 </div>
 </div>
 <br>
 
 <div class="control-group">
 	<%= f.label :notify_template_id, :class=>"control-label" %>
 	<div class="controls">
-		<%= select_tag("notify_event[notify_template_id]", options_from_collection_for_select(NotifyTemplate.all, :id, :notify_template_name), :onchange => 'updatePropertyMapping()', :include_blank => true) %>
+		<%= select_tag("notify_event[notify_template_id]", options_from_collection_for_select(NotifyTemplate.all, :id, :notify_template_name), :include_blank => true) %>
 	</div>
 </div>
 <br>
@@ -36,12 +36,13 @@
 		<%= text_field_tag "notify_event[recipients_attributes][][group_number]" %>
 		<%= label_tag(:user, "Select user") %>
 		<%= select_tag("notify_event[recipients_attributes][][user_id]", options_from_collection_for_select(User.all, :id, :username), :include_blank => true) %>
+		<a href="#" class="btn btn-primary" style="display: none">Remove</a>
 	</div>
 </div>
 
 <div class="control-group">
 	<div class="controls">
-		<%= link_to "Add recipient","#", :onclick => "add_recipient()" %>
+		<%= link_to "Add recipient","#", :onclick => "add_recipient()", :class =>"btn btn-primary" %>
 	</div>
 </div>
 <%end%>
@@ -62,9 +63,15 @@
 	</div>
 </div>
 
-<div class="control-group" style='display: none;' id="notify_event_property_mapping_container"></div>
+<div class="control-group" style='display: none;' id="notify_event_property_mapping_container">
+	<%= label_tag(:observer, "Template Mapping", :class=>"control-label") %>
+	<table class="tab" id="mappings" border="1">
+		<tbody id="mapping_tbody">
+		</tbody>
+	</table>	
+</div>
 
 <div class="actions">
-	<%= f.submit %>
+	<%= f.submit :class =>"btn btn-primary" %>
 </div>
 <% end %>

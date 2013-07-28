@@ -2,12 +2,12 @@
 
 <p>
   <b>Name:</b>
-  <%=h @notify_observer.name %>
+  <%= @notify_observer.name %>
 </p>
 
 <ol>
 <% for notify_observer_property in @notify_observer.notify_observer_properties %>
-  <li><%= h notify_observer_property.name %></li>
+  <li><%= notify_observer_property.name %></li>
 <% end %>
 </ol>
 

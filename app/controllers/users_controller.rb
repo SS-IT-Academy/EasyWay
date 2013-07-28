@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
  def create
     @user = User.new(params[:user])
-    @user.roleid = "7"
+    @user.roleid = "4"
    # @user.update_attributes(:userid == "4")
     if verify_recaptcha
       if @user.valid?

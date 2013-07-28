@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20130714184652) do
-=======
 ActiveRecord::Schema.define(:version => 20130723112938) do
->>>>>>> 848e03fa6260e2068f8db07a8e869823d0eabe81
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -222,6 +218,13 @@ ActiveRecord::Schema.define(:version => 20130723112938) do
     t.text     "cell_body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "template_mappings", :force => true do |t|
+    t.string   "notifytemplatepropertyname"
+    t.string   "mappedelement"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "users", :force => true do |t|

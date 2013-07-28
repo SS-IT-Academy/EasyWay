@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;    
+}
+#timetable{
+    border-collapse: collapse;
+    text-align: center;
+    margin: 10px;   
+}
+td{
+   border: 2px solid gray;
+   background-color: white;
+}
+#table-freecell{
+	border-left: none;
+	border-top: none;
+	background-color: rgba(255,255,255,0.0001);
+}
+#table-filter{
+    height: 50px;
+}
+#table-header-hor-resources{
+    width: 100%;
+}
+#table-header-ver-resources{
+    height: 100px;
+}
+	
+/**************************************VERTICAL HEADER**************************************/
+#table-header{
+	width: 220px;
+	height: 220px;
+	position: relative;
+	/*background-image: url(../images/table/line.svg);*/
+	z-index: 100;
+}
+#table-header-cell{
+	
+}
+	.ver-triangle-box{	    
+	    position: absolute;
+	    bottom: 0px;
+	    right: 0px;
+	        
+	}
+	#ver-triangle{
+	    width: 0;
+	    height: 0;
+	    border-bottom: 220px solid #EEEEEE; 
+	    border-right: 220px solid transparent;
+	    vertical-align: bottom;
+	    position: absolute;
+		left: 0px;
+		top: 0px;							 
+	}	
+	#ver-block{
+		position: absolute;
+		bottom: 0px;
+		text-align: center;
+	}	
+/**************************************HORIZONTAL HEADER**************************************/
+	.hor-triangle-box{
+	    position: absolute;
+	    bottom: 0px;
+	    right: 0px;	    	    
+	}		
+	#hor-triangle {
+	    width: 0;
+	    height: 0;
+	    border-top: 220px solid #EEEEEE; 
+	    border-left: 220px solid transparent;	    
+	    position: absolute;
+		left: 0px;
+		top: 0px;		
+	}	
+	#hor-block{
+	    position: absolute;
+	    top: 0px;
+	    right: 0px;
+	    line-height: 107px;
+	    /*margin-left: auto;
+	    margin-right: auto;
+	    width: 100%;*/
+	}
+	.shadow1{
+	  -webkit-box-shadow: -1px 0px 0px 0px gray;
+		box-shadow: -1px 0px 0px 0px gray; 
+	}
+	.shadow2{
+	    -webkit-box-shadow: 0px -1px 0px 0px gray;
+		box-shadow: 0px -1px 0px 0px gray; 
+	}
+/**************************************REFERENCE VERTICAL HEADER**************************************/
+.ver-triangle-box-add{
+	position: absolute;
+	bottom: 30px;
+	right: 30px;	
+}
+#ver-add{
+	width: 0;
+	height: 0;
+	border-bottom: 30px solid #90EE90; 
+	border-right: 30px solid transparent;	    
+	position: absolute;
+	left: 0px;
+	top: 0px;		
+}
+#ref-ver{
+	position: absolute;
+	right: 14px;
+	bottom: 0;
+	z-index: 50;
+}
+/**************************************REFERENCE HORIZONTAL HEADER**************************************/
+.hor-triangle-box-add{
+	position: absolute;
+	right: 0px;
+	bottom: 0px;	
+}
+#hor-add{
+	width: 0;
+	height: 0;
+	border-top: 30px solid #90EE90; 
+	border-left: 30px solid transparent;	    
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	outline: 1px solid gray;			
+}
+#ref-hor{
+	position: absolute;
+	right: 2px;
+	bottom: 10px;
+	z-index: 100;	
+} 

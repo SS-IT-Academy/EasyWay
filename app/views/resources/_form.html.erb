@@ -18,14 +18,14 @@
     </div>
   </div>
   <div class="control-group">
-  <%= f.label :resource_type_id, :class=>"control-label" %>
-  <div class="controls">
-  <%= f.select :resource_type_id,  options_from_collection_for_select(@resource_types, "id","name"),{:include_blank => ''}, :onchange => 'update_resource_fields_div(this.value)' %>
-  <%= link_to "Create new type", {:controller => "resource_types", :action => "new"}, :class=>"btn btn-info"%>
+	  <%= f.label :resource_type_id, :class=>"control-label" %>
+	  <div class="controls">
+	  <%= f.select :resource_type_id,  options_from_collection_for_select(@resource_types, "id","name"),{:include_blank => ''}, :onchange => 'update_resource_fields_div(this.value)' %>
+	  <%= link_to "Create new type", {:controller => "resource_types", :action => "new"}, :class=>"btn btn-info"%>
+	  </div>
   </div>
   
-  </div>
-  <div id="fieldsDiv" class="control-group">
+  <div id="fieldsDiv" >
   </div>
   <div class="actions controls">
     <%= f.submit%> 

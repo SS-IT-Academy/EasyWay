@@ -1,4 +1,5 @@
-<%= form_for(@table_filter) do |f| %>
+
+<%= form_for @table_filter, :html => {:class=>"form-horizontal"} do |f| %>
   <% if @table_filter.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@table_filter.errors.count, "error") %> prohibited this table_filter from being saved:</h2>
@@ -11,26 +12,40 @@
     </div>
   <% end %>
 
+
+    
   <div class="field">   
     <%= f.hidden_field :table_template_id, :value => @table_template.id %>
   </div>
-  <div class="field">
-    <%= f.label :resource_id %><br />
-    <%= f.number_field :resource_id %>
+  <div class="control-group">
+    <%= f.label :resource_id, :class => "control-label" %>
+    <div class="controls">
+      <%= f.number_field :resource_id %>
+    </div> 
   </div>
-  <div class="field">
-    <%= f.label :position_num %><br />
-    <%= f.number_field :position_num %>
+  
+  <div class="control-group">
+    <%= f.label :position_num, :class => "control-label" %>
+    <div class="controls">
+      <%= f.number_field :position_num %>
+    </div>   
   </div>
-  <div class="field">
-    <%= f.label :position_float %><br />
-    <%= f.text_field :position_float %>
+  
+  <div class="control-group">	
+    <%= f.label :position_float, :class => "control-label" %>
+    <div class="controls">
+  	  <%= f.select(:position_float, TableFilter::POSITION_FLOATS, {:include_blank => true}) %>
+  	</div>
   </div>
-  <div class="field">
-    <%= f.label :delimiter %><br />
-    <%= f.text_field :delimiter %>
+  
+  <div class="control-group">	
+    <%= f.label :delimiter, :class => "control-label" %>
+    <div class="controls">
+  	  <%= f.select(:delimiter, TableFilter::DELIMITERS, {:include_blank => true}) %>
+  	</div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  
+  <div class="actions controls">
+    <%= f.submit :class => "btn"%>
   </div>
 <% end %>

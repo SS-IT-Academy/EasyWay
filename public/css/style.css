@@ -37,6 +37,16 @@ margin-top: 5px;
 background-size:80% auto;
 #outline:1px solid #ffffff;
 }
+.notices{
+	float: left;
+	display: inline;
+	color: white;
+}
+.errors{
+	float: left;
+	display: inline;
+	color: red;
+}
 .buttonfloat{
 float:right;
 margin:5px;

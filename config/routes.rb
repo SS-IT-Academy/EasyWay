@@ -8,6 +8,8 @@ EasyW::Application.routes.draw do
   resources :table_templates
   
   resources :table_cell_items
+  
+  match "/get_restype_fields" => "ResourceTypes#update_fields"
   #END TIMETABLE
   
   resources :resources
@@ -50,6 +52,8 @@ EasyW::Application.routes.draw do
   resources :resource_values
   resources :fields
   resources :field_types
+  
+  
   match "/update_fields" => "ResourceTypes#update_fields"
   match "/update_resources" => "Resources#update_resources"
   match "/get_field_types" => "FieldTypes#get_all_types"

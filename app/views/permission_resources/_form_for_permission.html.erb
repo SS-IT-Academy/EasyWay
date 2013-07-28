@@ -1,4 +1,19 @@
-<%= select_tag :role_id, options_from_collection_for_select(Role.all, :id, :name) %>
+<script>
+function update_permroles_fields_div(role_id) {  
+  $.ajax({
+    url: "/update_permroles_fields",
+    type: "GET",
+    data: {"role_id" : role_id},
+    dataType: "html",
+    success: function(data) {
+      alert(data);
+    }
+  }); 
+}
+
+</script>
+
+<%= select_tag :role_id, options_from_collection_for_select(Role.all, :id, :name), :onchange => 'update_permroles_fields_div(this.value)' %>
 <table border="1">
  <tr>
     <th>Resource type</th>

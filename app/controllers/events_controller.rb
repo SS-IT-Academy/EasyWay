@@ -25,7 +25,9 @@ class EventsController < ApplicationController
   # GET /events/new.json
   def new
     @event = Event.new
-
+    @events = Event.all
+    @event_types = EventType.all
+    @recurrences = Recurrence.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @event }
@@ -35,6 +37,11 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    @events = Event.all
+    @event_types = EventType.all
+    @resources = Resource.all
+    @recurrences = Recurrence.all
+    @event_resources = EventResource.where("event_id = ?", @event.id)
   end
 
   # POST /events
@@ -44,8 +51,17 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        if params[:Resources]
+          params[:Resources].each {|param|
+            @resource = EventResource.new({:resource_id => param[:value], :event_id =>@event.id})
+            @resource.save
+          }
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
+        else
+          format.html { redirect_to @event }
+          format.json { render json: @event.errors, status: :unprocessable_entity }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -60,6 +76,15 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
+        params[:Resources].each {|param|
+            if param[:id]
+              @resource = EventResource.find(param[:id])
+              @resource.update_attributes({:resource_id => param[:value], :event_id =>@event.id})
+            else
+              @resource = EventResource.new({:resource_id => param[:value], :event_id =>@event.id})
+              @resource.save
+            end
+          }
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
@@ -79,5 +104,15 @@ class EventsController < ApplicationController
       format.html { redirect_to events_url }
       format.json { head :no_content }
     end
+  end
+  
+  def event_based_on
+    @event = Event.find(params[:id])
+    @event_resources = @event.resources
+    @event_all = {
+      :event => @event,
+      :resources => @event_resources
+    }
+    render :json => @event_all.to_json
   end
 end

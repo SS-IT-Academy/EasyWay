@@ -1,15 +1,19 @@
 require 'spec_helper'
 
 describe NotifyEvent do
-  it "is invalid without a name" do
-  expect(NotifyEvent.new(:name => nil)).to have(1).errors_on(:name)
-  end
   
-  it "is invalid without a event_id" do
-  expect(NotifyEvent.new(:event_id => nil)).to have(1).errors_on(:event_id)
+  it "is invalid without a name" do
+  notify_event = NotifyEvent.new
+  notify_event.should_not be_valid
   end
   
   it "is invalid without a template_id" do
-  expect(NotifyEvent.new(:template_id => nil)).to have(1).errors_on(:template_id)
+  notify_event = NotifyEvent.new
+  notify_event.should_not be_valid
+  end
+  
+  it "is invalid without a observer_id || event_id" do
+  notify_event = NotifyEvent.new
+  notify_event.should_not be_valid
   end
 end

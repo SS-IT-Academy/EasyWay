@@ -1,8 +1,7 @@
-<%= form_for(@notify_event) do |f| %>
+<%= form_for @notify_event, :html =>{:class=>"form-horizontal"}  do |f| %>
 <% if @notify_event.errors.any? %>
 <div id="error_explanation">
 	<h2><%= pluralize(@notify_event.errors.count, "error") %> prohibited this notify_event from being saved:</h2>
-
 	<ul>
 		<% @notify_event.errors.full_messages.each do |msg| %>
 		<li>
@@ -12,81 +11,58 @@
 	</ul>
 </div>
 <% end %>
-<div class="form-inline">
-	<div class="offset span3">
-		<%= f.label :name %>
-	</div>
 
-	<%= f.text_field :name %>
+<div class="control-group">
+	<%= f.label :name, :class=>"control-label"  %>
+	<div class="controls">
+		<%= f.text_field :name %>
+	</div>
 </div>
 <br>
 
-<div class="form-inline">
-
-	<div class="offset span3">
-		<%= f.label :template_id %>
+<div class="control-group">
+	<%= f.label :notify_template_id, :class=>"control-label" %>
+	<div class="controls">
+		<%= select_tag("notify_event[notify_template_id]", options_from_collection_for_select(NotifyTemplate.all, :id, :notify_template_name), :onchange => 'updatePropertyMapping()', :include_blank => true) %>
 	</div>
-	<%= select_tag(:template_id, options_from_collection_for_select(NotifyTemplate.all, :id, :template_name), :include_blank => "All t") %>
 </div>
 <br>
 
-<div class="marginforforms">
-  	<%= field_set_tag 'Recipient', :class => 'format' do %>
-  		<p><%= text_field_tag 'name' %></p>
-	<% end %>
-</div>
-<br />
-<br />
-<p>
-<div class="form-inline">
+<%= field_set_tag 'Recipients' do %>
 
-	<div class="offset span3">
-	<%= label_tag("Enable") %>
-		<%= f.label :event_id %>
-		<%= radio_button_tag("Event", disabled = true) %>
+<div id="marginforforms">
+	<div class="form-inline">
+		<%= label_tag(:name, "Group number", :class => "form-inline") %>
+		<%= text_field_tag "notify_event[recipients_attributes][][group_number]" %>
+		<%= label_tag(:user, "Select user") %>
+		<%= select_tag("notify_event[recipients_attributes][][user_id]", options_from_collection_for_select(User.all, :id, :username), :include_blank => true) %>
 	</div>
-	
 </div>
-</p>
 
-<br />
-<div class="form-inline">
-
-	<div class="offset span3">
-		<%= radio_button_tag(:event_id, "enable") %>
+<div class="control-group">
+	<div class="controls">
+		<%= link_to "Add recipient","#", :onclick => "add_recipient()" %>
 	</div>
-	<%= label_tag(:event_id, "Enable") %>
 </div>
-<br />
-<div class="form-inline">
+<%end%>
 
-	<div class="offset span3">
-		<%= radio_button_tag(:event_id, "disable") %>
+<div class="control-group">
+
+	<%= label_tag(:event, "Event", :class=>"control-label") %>
+	<div class="controls">
+		<%= radio_button_tag(:event, 'Event', false, {:onclick => "setRadioChecked('observer_Observer', false);setSelectEnabled('notify_event_event_id', true);setSelectEnabled('notify_event_notify_observer_id', false)" }) %>
+		<%= select_tag("notify_event[event_id]", options_from_collection_for_select(Event.all, :id, :name), :include_blank => true, :onchange => 'updatePropertyMapping()', :disabled => true ) %>
 	</div>
-	<%= label_tag(:event_id, "Disable") %>
 </div>
-<br />
-<div class="form-inline">
-	<div class="offset span3">
-		<%= f.label :observer_id %>
+<div class="control-group">
+	<%= label_tag(:observer, "Observer", :class=>"control-label") %>
+	<div class="controls">
+		<%= radio_button_tag(:observer, "Observer", false, {:onclick => "setRadioChecked('event_Event', false);setSelectEnabled('notify_event_event_id', false);setSelectEnabled('notify_event_notify_observer_id', true)" }) %>
+		<%= select_tag("notify_event[notify_observer_id]", options_from_collection_for_select(NotifyObserver.all, :id, :name), :include_blank => true, :onchange => 'updatePropertyMapping()', :disabled => true ) %>
 	</div>
-	<br />
-	<%= f.number_field :observer_id %>
 </div>
 
-<div class="form-inline">
-
-	<br>
-	<div class="offset span3">
-		<%= radio_button_tag(:observer_id, "Enable") %>
-	</div>
-	<%= label_tag(:observer_id, "Enable") %>
-</div>
-
-<div class="offset span3">
-	<%= radio_button_tag(:observer_id, "Disable") %>
-</div>
-<%= label_tag(:observer_id, "Disable") %>
+<div class="control-group" style='display: none;' id="notify_event_property_mapping_container"></div>
 
 <div class="actions">
 	<%= f.submit %>

@@ -1,9 +1,10 @@
 class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default :from => "easyway087@gmail.com"
+  
   def welcome_email(user)
-  @user = user
-  @url = "<a href='http://localhost:3000/sign_in'>http://localhost:3000/sign_in</a>"
-  @site_name = "localhost"
-  mail(:to => user.email, :subject => "Welcome to as.")
-end
+    @user = user
+    @url = 'http://localhost:3000/sign_in'
+    attachments.inline['logo1.png'] = File.read('app/assets/images/logo1.png')
+    mail :subject => "Welcome to Easyway!", :to => @user.email
+  end
 end

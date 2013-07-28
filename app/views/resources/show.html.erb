@@ -14,17 +14,13 @@
   <b>Resource type name:</b>
   <%= @resource_type.name %>
 </p>
-<table>
-<tr>
-<% @field_types.each do |field_type| %>
-  <td><%= field_type.name %></td>
+<% @field_types.each_with_index do |field_type, i| %>
+  <p><b><%= field_type.name %></b>
+
+   <% if @values[i].value %><%= @values[i].value %><% end %>
+   <% if @values[i].resource_reference_id %><%= @values[i].resource_reference_id %><% end %>
+  </p>
 <% end %>
-</tr>
-<tr>
-<% @values.each do |value| %>
-   <td><%= value.value %></td>
-<% end %>
-</tr>
-</table>
+
 <%= link_to 'Edit', edit_resource_path(@resource) %> |
 <%= link_to 'Back', resources_path %>

@@ -1,18 +1,4 @@
-<script>
-
-function update_resources(resource_type_id) {  
- 	/*$('#ResourceTable tr:odd').css('display','none');*/
-  $.ajax({
-    url: "/update_resources",
-    type: "GET",
-    data: {"resource_type_id" : resource_type_id},
-    dataType: "html",
-    success: function(data) {
-      $("#ResourceTable").html(data);
-    }
-  }); 
-}
-</script>
+<div class="boxforforms">
 <h3>Listing resources</h3>
 <div class="form-inline">
   <div class="control-group">
@@ -23,6 +9,7 @@ function update_resources(resource_type_id) {
 
 <table id="ResourceTable" class="table table-striped">
   <tr>
+  	<th>Id</th>
     <th>Description</th>
     <th>Resource type</th>
     <th></th>
@@ -32,13 +19,21 @@ function update_resources(resource_type_id) {
 
 <% @resources.each do |resource| %>
   <tr>
+  	<td><%= resource.id %></td>
     <td><%= resource.description %></td>
     <td><%= resource.resource_type_id %></td>
     <td><%= link_to 'Show', resource,:class=>"btn btn-info" %></td>
     <td><%= link_to 'Edit', edit_resource_path(resource),:class=>"btn btn-info" %></td>
-    <td><%= link_to "<i class='icon-white icon-trash'></i> Destroy".html_safe, resource, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger"%>
+    <td><%= link_to "Destroy".html_safe, resource, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger"%>
     </td>
   </tr>
 <% end %>
 </table>
-
+<div id="popup">
+  <div id="popup-header">
+  </div>
+  <div id="popup-main">
+  </div>
+</div>
+</div>
+<script src="/js/resource_info.js"></script>

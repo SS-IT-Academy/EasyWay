@@ -1,0 +1,11 @@
+r = RegExp([$${a-zA-Z]+\}) 
+r.match(template)
+
+
+string = 'Welcome $${username} to our site, you email is the next: $${mail}'. 
+
+
+
+m = \$\$\{[a-zA-Z]+\}.match("Welcome $${username} to our site, you email is the next: $${mail}")
+m.to_a               #=> [ "$${username}", "$${mail}"]
+m.values_at(0, 2, -2)   #=> ["$${username}", "$${mail}"]

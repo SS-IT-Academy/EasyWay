@@ -17,17 +17,35 @@
        <%= f.text_field :description %>
     </div>
   </div>
-  <div class="control-group">
-	  <%= f.label :resource_type_id, :class=>"control-label" %>
-	  <div class="controls">
-	  <%= f.select :resource_type_id,  options_from_collection_for_select(@resource_types, "id","name"),{:include_blank => ''}, :onchange => 'update_resource_fields_div(this.value)' %>
-	  <%= link_to "Create new type", {:controller => "resource_types", :action => "new"}, :class=>"btn btn-info"%>
+
+  <% if @resource_values.blank? %>
+	  <div class="control-group">
+		  <%= f.label :resource_type_id, :class=>"control-label" %>
+		  <div class="controls">
+		  <%= f.select :resource_type_id,  options_from_collection_for_select(@resource_types, "id","name",@resource.resource_type_id),{:include_blank => 'Select type'}, :onchange => 'update_resource_fields_div(this.value)' %>	
+		  </div>
 	  </div>
-  </div>
+  <% end %>
+  <% if !@resource_values.blank? %>
+  	<% @resource_values.each_with_index do |value, i|%>
+	   <div class="control-group">
+       		<%= hidden_field_tag "values[][id]", value.id%>
+       		<%= hidden_field_tag "values[][field_id]", value.field_id%>
+       		<label class='control-label' for='values[][value]'><%=@field_names[i] %></label>
+       		<div class="controls">
+        	  <% if value.value %><%= text_field_tag "values[][value]", value.value%><% end %>
+        	  <% if value.resource_reference_id %>
+        	   <%= select_tag "values[][resource_reference_id]",  options_from_collection_for_select(@reference[0], "id","description",value.resource_reference_id),{:include_blank => 'Select'} %>
+        	  <% end %>
+       		</div>
+       </div>
+	<% end %>
+  <% end %>
   
-  <div id="fieldsDiv" >
+  <div id="fieldsDiv" class="control-group">
   </div>
   <div class="actions controls">
     <%= f.submit%> 
   </div>
 <% end %>
+

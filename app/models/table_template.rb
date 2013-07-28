@@ -9,7 +9,9 @@ class TableTemplate < ActiveRecord::Base
   
   has_one :table_cell_item, dependent: :destroy
   has_many :resource_types, :through => :table_cell_item
-  
+
   validates :cell_body, :name, :presence => true
+  has_many :permission_roles, as: :permissionable
+
 end
   

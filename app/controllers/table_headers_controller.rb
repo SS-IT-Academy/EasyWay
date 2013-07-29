@@ -27,10 +27,22 @@ class TableHeadersController < ApplicationController
     @table_header = TableHeader.new
     
     @table_header.orientation =  params[:orientation] if TableHeader::ORIENTATIONS.include?(params[:orientation])
-    #puts "0"*300
-    #puts "@table_header: #{@table_header.inspect}"
     @table_template = TableTemplate.find(params[:table_template_id])
-    @resource_types =ResourceType.all
+    @cur_headers = TableHeader.where("table_template_id = ? AND orientation = ?", params[:table_template_id],params[:orientation]).order(:position_num)
+        
+    if (@cur_headers.blank?)
+      @resource_types = ResourceType.all
+      @table_header.position_num = 1
+    else
+      @table_header.position_num = @cur_headers.last.position_num+1
+      @fields = Field.where("resource_type_reference_id = ?", @cur_headers.last.resource_type_id)
+      @resource_types = []
+      @fields.each do |f|
+        @resource_types << f.resource_type
+      end
+    end 
+        
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @table_header }

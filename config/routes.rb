@@ -23,10 +23,7 @@ EasyW::Application.routes.draw do
   resources :field_types
 
   get "manage_menu/index"
-
-
-
-  
+ 
   root :to=>"home#index"
   
   resources :events

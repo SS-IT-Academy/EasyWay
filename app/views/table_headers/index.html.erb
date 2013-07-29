@@ -1,9 +1,10 @@
-<h1>Listing table_headers</h1>
+<h1>Listing of table headers</h1>
 
 <table>
   <tr>
-    <th>Table template</th>
     <th>Resource type</th>
+    <th>Table template</th>
+    <th>Orientation</th>
     <th>Position num</th>
     <th>Parent</th>
     <th></th>
@@ -13,8 +14,9 @@
 
 <% @table_headers.each do |table_header| %>
   <tr>
-    <td><%= table_header.table_template_id %></td>
     <td><%= table_header.resource_type_id %></td>
+    <td><%= table_header.table_template_id %></td>
+    <td><%= table_header.orientation %></td>
     <td><%= table_header.position_num %></td>
     <td><%= table_header.parent_id %></td>
     <td><%= link_to 'Show', table_header %></td>

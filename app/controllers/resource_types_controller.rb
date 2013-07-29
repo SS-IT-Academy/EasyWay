@@ -40,6 +40,12 @@ class ResourceTypesController < ApplicationController
     @fields = Field.where("resource_type_id = ?", params[:resource_type_id])
     render :json => @fields.to_json
   end
+  
+  def get_restype_fields
+    @restype_fields = Field.where("resource_type_id = ?", params[:resource_type_id])
+    render :json => @restype_fields.to_json
+  end
+  
   # GET /resource_types/1/edit
   def edit
     @resource_type = ResourceType.find(params[:id])

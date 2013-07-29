@@ -1,6 +1,6 @@
-$(".form-horizontal").submit(function(){
+$(".content  .form-horizontal").submit(function(){
   var isFormValid = true;
-  $(".form-horizontal input:text,.form-horizontal select").each(function(){ 
+  $(".content .form-horizontal input:text,.content .form-horizontal select[disabled!='disabled']").each(function(){ 
     if ($.trim($(this).val()).length == 0){
       $(this).addClass("highlight");
       isFormValid = false;
@@ -9,7 +9,7 @@ $(".form-horizontal").submit(function(){
       $(this).removeClass("highlight");
     }
   });
-  if (!isFormValid) alert("Please fill in all the required fields (highlighted in red)");
+
   return isFormValid;
 });
 	

@@ -42,6 +42,7 @@ function Create_event_with_pattern(obj){
     data: {"id" : obj.value},
     dataType: "json",
     success: function(data) {
+      console.log(data);
       $('#event_name').attr('value', data.event.name);
       $('#event_event_type_id').val(data.event.event_type_id);
       $('#event_start_at').attr('value', data.event.start_at);

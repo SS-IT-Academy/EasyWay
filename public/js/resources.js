@@ -79,13 +79,13 @@ function update_field_type_parse_data(data){
   data_html="<div class='control-group'><div class='control-group'>"+
   "<label class='control-label' for='fields[][field_name]'>Field Name</label><div class='controls'>"+
   "<input name='fields[][name]' size='30' type='text'>"+
-  "<a href='#' class='btn' onclick='resource_type_remove_field(this)'>Remove Field</a></div></div>"+
-  "<label class='control-label' for='fields[][field_type]'>Field Type</label>"+
+  "</div><div class='control-group'><label class='control-label' for='fields[][field_type]'>Field Type</label>"+
   "<div class='controls'><select onChange='what_type_of_field(this)' name='fields[][field_type_id]'><option value=''>Select Type</option>";
   for(var i=0;i<data.length;i++){
     data_html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>" 	
   }
-  data_html+="</select></div></div></div>";
+  data_html+="</select></div><div id='fieldsDiv' class='controls'></div></div>"+
+  "<div class='controls'><a href='#' class='btn' onclick='resource_type_remove_field(this)'>Remove Field</a></div></div></div></div></div>";
   return data_html;
 }
 
@@ -97,10 +97,10 @@ function what_type_of_field(obj){
       data: {},
       dataType: "json",
       success: function(data) {
-      	$('#fieldsDiv').html(what_type_of_field_parse(data));
+      	$(obj).parent().parent().append(what_type_of_field_parse(data));
       }
   	});
-  else $('#fieldsDiv').html('');
+  else $(obj).parent().parent().append('');
 }
 
 function what_type_of_field_parse(data){
@@ -123,3 +123,4 @@ function update_resources(resource_type_id) {
     }
   }); 
 }
+

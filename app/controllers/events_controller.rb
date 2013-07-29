@@ -51,12 +51,17 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        if params[:Resources]
           params[:Resources].each {|param|
             @resource = EventResource.new({:resource_id => param[:value], :event_id =>@event.id})
             @resource.save
           }
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
+        else
+          format.html { redirect_to @event }
+          format.json { render json: @event.errors, status: :unprocessable_entity }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -103,7 +108,7 @@ class EventsController < ApplicationController
   
   def event_based_on
     @event = Event.find(params[:id])
-    @event_resources = @event.Resources
+    @event_resources = @event.resources
     @event_all = {
       :event => @event,
       :resources => @event_resources

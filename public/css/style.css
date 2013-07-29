@@ -1,82 +1,50 @@
 .nested_menu_item{
 	margin-left : 15px;
-	
+
 }
 html,body{
 	height: 100%;
 }
-.hHeader {
-height: 105px;
-}
+
+
 .header{
-height:105px;
-background:url(../images/header.jpg) no-repeat  ;
-background-size:100% 100px;
-background-position:bottom;
-border-radius:0;
-margin: 0px 0 -105px 0;
+height:60px;
+background-image:url(../images/bg.jpg);
+background-color:black;
+background-repeat:no-repeat;
+background-position:0 0;
 }
-/*.bodybg{
-background-image:url(../images/bg.png);
-height: 100%;
-}*/
-.hFooter {
-height: 50px;
-}
+
+
 
 .footer{
 width: 100%;
-height:50px;
-background-image:url(../images/footer.jpg);
+background-color:#D8D8D8;
+border-top: 1px solid #EEEEEE;
+margin-top:40px;
 background-size:100% 100%;
-margin-top: -50px;
-z-index: 100;
-text-align: center;
 padding-top: 5px;
-/*border-radius:10px 10px 0 0;*/
+color:#A0A0A0;
+overflow:auto;
 }
 .content{
 width:100%;
 min-height: 721px;
-
+text-align: center
 /*outline:1px solid #FAA21A;*/
-}
-.logo{
-/*background:url(../images/logo3.png) no-repeat;*/
-width:135px;
-height:96%;
-float:left;
-background-position:100% 10%;
-position: relative;
-margin-left: 63px;
-margin-top: 10px;
-/*background-size:80% auto;*/
-#outline:1px solid #ffffff;
 }
 .buttonfloat{
 float:right;
 margin:15px 5px 15px 5px;
-	
-}
-.headerTop{
-width:100%;
-height:60%;
-display:inline-block;
-}
-.headerBottom{
-       width: 100%;
-      height: 40%;
-	 display: inline-block;
-	 text-align: center;
 }
 
-	
-	
 .boxforforms{
-width:400px;
-height:300px;
-margin:auto;
-padding:10px 100px 10px 0;
+display: inline-block;
+position: relative;
+min-width:400px;
+min-height:300px;
+margin:0 auto;
+padding:0px 80px 0px 0;
 /*border: 1px red solid;*/
 }
 
@@ -96,7 +64,6 @@ font-size:11pt;
 .lll{
 padding: 0 18px 0 0;
 font-size:14pt;
-<<<<<<< HEAD
 }
 
 fieldset {
@@ -113,21 +80,9 @@ legend {
     width: auto;
     padding: 3px;
 }
-=======
-margin:auto;
-}
-.highlight{
-  display: inline-block !important;
-  border-color: rgba(255, 0, 0, 2) !important;
-  outline: 0 !important;
-  outline: thin dotted \9 !important;
- /* IE6-9 */
 
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 12px rgba(255, 0, 0, 0.6) !important;
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 12px rgba(255, 0, 0, 0.6) !important;
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 12px rgba(255, 0, 0, 0.6) !important;
-	
-}
+
+
 .star{
 background:url(../images/star.png)  no-repeat;
 width:20px;
@@ -140,5 +95,103 @@ margin:15px 10px 0 0;
 width:800px;
 height:400px;
 margin:auto;
+border:solid 2px #EEEEEE;
 }
->>>>>>> 7cb4dbc69f3fc67434e71aca2cda5c9a30a4237f
+
+#popup {
+	background-color: #333;
+    border-radius: 0 5px 5px 0;
+	bottom: 50px;
+    box-shadow: 0 0 3px #333;
+	color: #cfcfcf;
+	display: none;
+	left: -50px;
+	opacity: 0;
+    position: fixed;
+    width: 300px;
+}
+#popup-header {
+	background-color: #000;
+	border-radius: 0 5px 0 0;
+	padding: 5px;
+}
+#popup-main {
+	font-size: 14px;
+	padding: 5px;
+}
+
+label.valid {
+	  width: 24px;
+	  height: 24px;
+	  background: url(/images/valid.png) center center no-repeat;
+	  display: inline-block;
+	  text-indent: -9999px;
+		}
+label.error {
+	font-weight: bold;
+	color: red;
+	padding: 2px 8px;
+	margin-top: 2px;
+}
+select:focus{
+	border-color: rgba(82, 168, 236, 0.8);
+outline: 0;
+outline: thin dotted \9;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+.datetime select{
+	width:80px !important;
+
+}
+
+.box-manage-menu{
+width:1200px;
+height:105px;
+margin:auto;
+}
+.logo{
+height:60px;
+font-family: 'Bilbo Swash Caps', cursive;
+font-size: 22pt;
+float:left;
+line-height:60px;
+vertical-align:middle;
+color:white !important;
+padding-left:20px;
+}
+.logo a{
+color:white;
+text-decoration:none;
+}
+.menu-position{
+height:25px;
+weight:400px;
+border:solid 2px #000000;
+background-color:#242424;
+
+}
+.navbar .nav > li > a {
+padding:0 10px !important;
+text-shadow: none !important;
+color:white !important;
+}
+.navbar .nav > li:first-child > a {
+padding: 0 5px !important;
+}
+.footer .copyright{
+	text-align:center;
+}
+
+.footer .tools{
+	float:right;
+	display:inline-block;
+	width:40px;
+	height:40px;
+}
+
+.nav > li > a{
+display:inline-block !important;
+}
+

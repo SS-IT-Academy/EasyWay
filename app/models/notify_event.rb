@@ -13,11 +13,4 @@ class NotifyEvent < ActiveRecord::Base
   def choice
     self.notify_observer_id || self.event_id
   end
-  
-  def validates_mapping
-    if :notify_event_mappings_attributes__notify_observer_property_id == 0
-      errors.add(:notify_event_mappings_attributes__notify_observer_property_id,'choose some property')
-      raise "Unable to create NE"
-    end
-  end
 end

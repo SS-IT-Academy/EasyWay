@@ -39,7 +39,7 @@ function notify_observer_add_new_field(){
 	field_html='<div class="form-inline">'+
     '<label class="form-inline" for="notify_observer_notify_observer_property">Notify observer property</label>'+
     '<input id="notify_observer_name" name="notify_observer_properties[]" type="text" size="30" >'+
-    '<a href="#" onClick="notify_observer_remove_field(this)">Remove</a></div>';
+    '<a href="#" class=\"btn btn-danger\" onClick="notify_observer_remove_field(this)">Remove</a></div>';
 	$('#notify_observer_fields').append(field_html);
 }
 

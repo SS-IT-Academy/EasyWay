@@ -1,6 +1,7 @@
-<h1>Listing notify_templates</h1>
+<div class="boxforforms">
+<h3>Listing notify templates</h3>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>Notify Template name</th>
     <th>Body</th>
@@ -15,13 +16,14 @@
     <td><%= notify_template.notify_template_name %></td>
     <td><%= notify_template.body %></td>
     <td><%= notify_template.desc %></td>
-    <td><%= link_to 'Show', notify_template %></td>
-    <td><%= link_to 'Edit', edit_notify_template_path(notify_template) %></td>
-    <td><%= link_to 'Destroy', notify_template, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', notify_template, :class => "btn btn-info" %></td>
+    <td><%= link_to 'Edit', edit_notify_template_path(notify_template), :class => "btn btn-info" %></td>
+    <td><%= link_to 'Destroy', notify_template, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Notify template', new_notify_template_path %>
+<%= link_to 'New Notify template', new_notify_template_path, :class => "btn btn-primary" %>
+</div>

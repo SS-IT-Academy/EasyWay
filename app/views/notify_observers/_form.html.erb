@@ -26,11 +26,11 @@
     
   <div class="control-group">
     <div class="controls">
-    <%= link_to "Add notify_observer_property","#", :onclick => "notify_observer_add_new_field(this)" %>
+    <%= link_to "Add notify_observer_property","#", :onclick => "notify_observer_add_new_field(this)", :class =>"btn btn-primary" %>
 	</div>
   </div>
   	
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class =>"btn btn-primary"%>
   </div>
 <% end %>

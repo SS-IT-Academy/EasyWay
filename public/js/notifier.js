@@ -49,7 +49,7 @@ jQuery(function ($) {
 	    }
 
 	  };*/
-
+});
 
 
 function notify_observer_add_new_field(){

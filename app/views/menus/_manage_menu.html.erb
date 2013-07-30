@@ -1,8 +1,8 @@
 <div class="navbar">
   <div>		 
     <ul class="nav draggables">
-      <% Menu.roots.where('role_id = ? OR user_id = ?',@role_id ,@user_id).each do |item|%>
-		<% if item.children.where('role_id = ? OR user_id = ?',@role_id ,@user_id).empty?%>
+      <% Menu.roots.where('role_id = ?',@role_id).each do |item|%>
+		<% if item.children.where('role_id = ?',@role_id).empty?%>
           <%= content_tag :li, :id => item.id do%>
             <%= link_to item.bookmark.title, item.bookmark.url %>
             <ul class="dropdown-menu ">
@@ -15,7 +15,7 @@
   	 	      <b class="caret"></b>
   	        <% end %>
     	    <ul class="dropdown-menu">
-  	  		  <% item.children.where('role_id = ? OR user_id = ?',@role_id ,@user_id).each do |child_item|%>
+  	  		  <% item.children.where('role_id = ?',@role_id).each do |child_item|%>
 	    	    <%= content_tag :li, :id=>child_item.id do%>
 	   	    	  <%= link_to child_item.bookmark.url do%>
     			    <%=child_item.bookmark.title%>

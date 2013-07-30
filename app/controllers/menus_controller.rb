@@ -86,17 +86,20 @@ class MenusController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
   def  delete_menu_item
     @menu = Menu.find(params[:menu_item_id])
     @menu.destroy
     render :json => @menu.to_json
   end
+  
   def render_menu
    @role_id=params[:role_id]
-   render :partial => 'menus/menu', :locals =>{:menu =>Menu.where('role_id = ?', params[:role_id])}
+   render :partial => 'menus/manage_menu', :locals =>{:menu =>Menu.where('role_id = ?', params[:role_id])}
   end
-    def render_form_for_menu
-      @role_id=params[:role_id]
+  
+  def render_form_for_menu
+      @role=params[:role_id]
       @parent_id=params[:parent_id]
       render :partial => 'menus/formRoles', :locals =>{:@menu =>Menu.new, :@bookmark=> Bookmark.all}
   end

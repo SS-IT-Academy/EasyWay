@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  belongs_to :roles
+  has_one :role
   
  # has_many :Menus
   attr_accessible :email, :username, :password, :password_confirmation, :new_password, :new_password_confirmation, :remember_me

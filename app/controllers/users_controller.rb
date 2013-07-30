@@ -39,11 +39,14 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @role = Role.find(params[:id])
     @roles = Role.all
+    @roleid = params[:roles_id]
     @user = User.find(params[:id])
-      if (:params["#{role.id}"] == 'selected') 
-      @user.roleid = ["#{role.id}"]  
-    end  
+  #    if (:params["#{role.id}"] == 'selected') 
+  #    @user.roleid = ["#{role.id}"]  
+  #  end  
+    @user.roleid = @roleid
     @user.save  
     redirect_to :root
   end
@@ -54,7 +57,7 @@ class UsersController < ApplicationController
 
  def create
     @user = User.new(params[:user])
-    @user.roleid = "7"
+    @user.roleid = "4"
    # @user.update_attributes(:userid == "4")
     if verify_recaptcha
       if @user.valid?

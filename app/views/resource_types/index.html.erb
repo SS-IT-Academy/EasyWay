@@ -1,8 +1,7 @@
+<div class="boxforforms">
 <h3>Listing resource_types</h3>
 	<div class="control-group">
-		 <% if can? :Create, @resourcetype %>
 		<%= link_to 'New Resource type', new_resource_type_path,:class=>"btn btn-primary controls" %>
-		<% end %>
     </div>
 <table class="table table-striped">
   <tr>
@@ -15,15 +14,10 @@
 <% @resource_types.each do |resource_type| %>
   <tr>
     <td><%= resource_type.name %></td>
-    <% if can? :Read, @resourcetype %>
     <td><%= link_to 'Show', resource_type, :class=>"btn btn-info"%></td>
-    <% end %>
-    <% if can? :Edit, @resourcetype %>
     <td><%= link_to 'Edit', edit_resource_type_path(resource_type),:class=>"btn btn-info" %></td>
-    <% end %>
-     <% if can? :Delete, @resourcetype %>
     <td><%= link_to "<i class='icon-white icon-trash'></i> Destroy".html_safe, resource_type, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
-    <% end %>
   </tr>
 <% end %>
 </table>
+</div>

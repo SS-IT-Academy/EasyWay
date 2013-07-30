@@ -80,4 +80,13 @@ class ResourceValuesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def remove_values
+    if @value = ResourceValue.where("field_id = ?",params[:field_id])
+    @value.destroy_all
+    end
+    @field = Field.find(params[:field_id])
+    @field.destroy
+    render :json => @field.to_json
+  end
 end

@@ -11,8 +11,7 @@ class Ability
     else
       user.role.permission_roles.each do |permission_role| 
         can permission_role.permission.name, permission_role.permissionable_type.constantize do |permissionable_thing|
-           !permissionable_thing.nil? && !permission_role.permissionable_id.nil? && 
-            permissionable_thing.id == permission_role.permissionable_id
+           !permissionable_thing.nil? && !permission_role.permissionable_id.nil? && permissionable_thing.id == permission_role.permissionable_id
         end # do
       end # each do 
     end # if

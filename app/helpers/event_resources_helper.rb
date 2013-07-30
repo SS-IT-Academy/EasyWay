@@ -1,0 +1,2 @@
+module EventResourcesHelper
+end

@@ -11,7 +11,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="control-group">
     <%= f1.label :name, :class=>"control-label" %>
     <div class="controls">
@@ -32,7 +31,10 @@
        </div>
        <label class='control-label' for='fields[][field_type_id]'>Field Type</label>
        <div class="controls">
-          <%= select_tag "fields[][field_type_id]", options_from_collection_for_select(@field_types, "id", "name", field.id), :id=>field.id%>
+          <%= select_tag "fields[][field_type_id]", options_from_collection_for_select(@field_types, "id", "name", field.field_type_id), :id=>field.id%>
+          <% if field.resource_type_reference_id%>
+              <%= select_tag "fields[][reference_type_id]", options_from_collection_for_select(@resource_types, "id", "name", field.resource_type_reference_id), :id=>field.id%>
+          <% end %>
           <div class="controls-label">
        	  	<a href='#' class='btn' onclick='resource_type_edit_remove_field(this)'>Remove Field</a>
        	  </div> 
@@ -42,8 +44,9 @@
   <% end %>
 
   <div class="control-group">
+    <div id="fieldsDiv" class="controls"></div>
     <div class="controls">
-  	   <%= link_to "Add field","#", :onclick => "resource_type_add_new_field()" %>
+  	   <%= link_to "Add field","#", :onclick => "resource_type_add_new_field(this)" %>
     </div>
   </div>
 
@@ -53,4 +56,5 @@
   <div class="actions controls">
     <%= f1.submit %>
   </div>
+    
 <% end %>

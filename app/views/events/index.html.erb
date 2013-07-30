@@ -1,7 +1,16 @@
-<h1>Listing events</h1>
+<div class="boxforforms">
+<h3 align="center">Listing events</h3>
 
-<table>
+<table class="table table-striped">
   <tr>
+    <th>Name</th>
+<<<<<<< HEAD
+=======
+    <th>Event type</th>
+    <th>Start at</th>
+    <th>End at</th>
+    <th>Recurrence</th>
+>>>>>>> 7cb4dbc69f3fc67434e71aca2cda5c9a30a4237f
     <th></th>
     <th></th>
     <th></th>
@@ -9,9 +18,17 @@
 
 <% @events.each do |event| %>
   <tr>
+    <td><%= event.name %></td>
+<<<<<<< HEAD
+=======
+    <td><%= event.event_type_id %></td>
+    <td><%= event.start_at %></td>
+    <td><%= event.end_at %></td>
+    <td><%= event.recurrence_id %></td>
+>>>>>>> 7cb4dbc69f3fc67434e71aca2cda5c9a30a4237f
     <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

@@ -3,10 +3,10 @@ class TableFilter < ActiveRecord::Base
   
   POSITION_FLOATS = ["next", "left", "right"]
   DELIMITERS = [", ", "; "," ", "<br />"]
-  belongs_to :table_template
-    #:foreign_key => "table_template_id"
-  belongs_to :resource
-    #:foreign_key => "resource_id"
+  belongs_to :table_template,
+    :foreign_key=>"table_template_id"
+  belongs_to :resource,
+    :foreign_key=>"resource_id"
   validates :delimiter, :presence => false
   validates :position_float, :presence => false
   validates :position_num, :presence => true,  :numericality => true

@@ -14,7 +14,7 @@ class TableHeadersController < ApplicationController
   # GET /table_headers/1.json
   def show
     @table_header = TableHeader.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @table_header }
@@ -25,7 +25,12 @@ class TableHeadersController < ApplicationController
   # GET /table_headers/new.json
   def new
     @table_header = TableHeader.new
-
+    
+    @table_header.orientation =  params[:orientation] if TableHeader::ORIENTATIONS.include?(params[:orientation])
+    #puts "0"*300
+    #puts "@table_header: #{@table_header.inspect}"
+    @table_template = TableTemplate.find(params[:table_template_id])
+    @resource_types =ResourceType.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @table_header }
@@ -35,19 +40,22 @@ class TableHeadersController < ApplicationController
   # GET /table_headers/1/edit
   def edit
     @table_header = TableHeader.find(params[:id])
+    @resource_types = ResourceType.all
   end
 
   # POST /table_headers
   # POST /table_headers.json
   def create
     @table_header = TableHeader.new(params[:table_header])
-
+    #@table_template = TableTemplate.find(params[:id])
     respond_to do |format|
       if @table_header.save
-        format.html { redirect_to @table_header, notice: 'Table header was successfully created.' }
+        flash[:notice] = 'Table header was successfully created.'
+        format.html { redirect_to( :controller => "table_templates", :action => "edit", :id => params[:table_header][:table_template_id])}
         format.json { render json: @table_header, status: :created, location: @table_header }
       else
-        format.html { render action: "new" }
+        flash[:error] = "Table header was not created. #{@table_header.errors.messages}"
+        format.html { redirect_to( action: "new", table_template_id: params[:table_header][:table_template_id] ) }
         format.json { render json: @table_header.errors, status: :unprocessable_entity }
       end
     end

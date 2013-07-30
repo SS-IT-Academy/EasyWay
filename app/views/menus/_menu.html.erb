@@ -1,11 +1,16 @@
 <div class="navbar">
   <div>		 
-    <ul class="nav  draggables">
+    <ul class="nav draggables">
       <% Menu.roots.where('role_id = ? OR user_id = ?',@role_id ,@user_id).each do |item|%>
 		<% if item.children.where('role_id = ? OR user_id = ?',@role_id ,@user_id).empty?%>
           <%= content_tag :li, :id => item.id do%>
+<<<<<<< HEAD
            <%= link_to item.bookmark.title, item.bookmark.url %>
             <ul class="dropdown-menu draggables">
+=======
+            <%= link_to item.bookmark.title, item.bookmark.url %>
+            <ul class="dropdown-menu ">
+>>>>>>> 2ffd6214b67cb14d5634ad6a1e5db9cddd7c7aad
             </ul>
           <%end%>
         <%else %>
@@ -14,7 +19,7 @@
   	       	  <%= item.bookmark.title %>  	   
   	 	      <b class="caret"></b>
   	        <% end %>
-    	    <ul class="dropdown-menu draggables">
+    	    <ul class="dropdown-menu">
   	  		  <% item.children.where('role_id = ? OR user_id = ?',@role_id ,@user_id).each do |child_item|%>
 	    	    <%= content_tag :li, :id=>child_item.id do%>
 	   	    	  <%= link_to child_item.bookmark.url do%>
@@ -26,9 +31,9 @@
           <% end %>
         <% end %>
       <% end %>
-      <% if current_user%>
+      
       <li id="edit_menu" ><a  href="#" onclick="add_create_buttons_to_menu(this)">Edit menu</a></li>
-      <% end %>
+      
     </ul>
   </div>
 </div>

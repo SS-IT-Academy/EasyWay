@@ -4,7 +4,7 @@ class AuthenticationController < ApplicationController
   end
 
   def signed_out
-  # clear the authentication toke when the user manually signs out
+  # clear the authentication token when the user manually signs out
   user = User.find_by_id(session[:user_id])
 
   if user

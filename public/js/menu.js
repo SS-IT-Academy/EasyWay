@@ -2,13 +2,14 @@ function add_create_buttons_to_menu(obj){
 		parent = $(obj).parents(".navbar");
 
 		if ($(parent).find(".Create").length != 0){ 
-			/*location.reload();*/
-			$(parent).find(".Create").remove();
+			location.reload();
+			/*$(parent).find(".Create").remove();
 			$(parent).find(".close").remove();
 			$(parent).find('.nav li').attr('class', '').children('a').attr('class', '').attr('data-toggle', '');
-			$(obj).html("Edit menu");
+			$(obj).html("Edit menu");*/
 		}
 		else {	
+		
 			$(parent).find('.nav li').each(function(){
 				if ($(this).attr('class')!='Create')
 					if ($(this).attr('id')!='edit_menu')
@@ -22,8 +23,9 @@ function add_create_buttons_to_menu(obj){
 			});
 			
 			if ($(obj).parents(".content").length>0){
-				$(parent).find(".Create a").attr("href","#").attr("onclick","create_new_menu_element(this)");
+				$(parent).find(".Create a").attr("href",'#').attr("onClick","create_new_menu_element(this)");
 			}
+	
 			$(obj).html("Finish Edit");
 		}	
 }
@@ -50,8 +52,8 @@ function create_new_menu_element(obj){
 
 
 $(function (){
-	$('.draggables').sortable();	
-});	
+$('.draggables').sortable();
+});
 function delete_menu_element(obj){
   	$(obj).parent().attr('id')
   	$.ajax({
@@ -67,7 +69,6 @@ function delete_menu_element(obj){
 
 function getUrl(){
 	var currentUrl = window.location;
-	
 	$('#url').val(currentUrl);
 }
 function renderForm(val){

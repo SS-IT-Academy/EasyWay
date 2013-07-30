@@ -1,0 +1,78 @@
+<html class="form-horizontal">
+<%= stylesheet_link_tag "/css/style-table-template" %>
+<link href="/css/style-table-template" type="text/css" >
+
+<h1>Editing table template</h1>
+
+<table id="timetable">
+	<tr>
+    	<td id="table-freecell" class="td"></td>
+        <td id="table-filter" class="td">
+        	<%= link_to '*Add table filter', new_table_filter_path(:table_template => @table_template.id)%>	
+        </td>
+    </tr>
+    <tr>
+        <td class="td">            	
+        	<div id="table-header">
+        		  						            	               
+                    <div id="table-header-hor" class="table-header-orientation">
+                    	<% if !@horizontal_table_headers.blank? %>							            	                  
+                    		<span id="res-type-name-hor"><%= @horizontal_table_headers.collect{|header| header.resource_type.name}.join(" ") %></span>                   	
+                		<% end %>		
+                   		<%= link_to '+', new_table_header_path(:table_template_id => @table_template.id, :orientation => TableHeader::ORIENTATIONS[0]), :id => 'refver'%>
+                   	</div>
+                                	                    
+            		<div id="table-header-ver" class="table-header-orientation">
+            			<% if !@vertical_table_headers.blank? %>	                   
+							<span id="res-type-name-ver"><%= @vertical_table_headers.collect{|header| header.resource_type.name}  %></span>
+                 		<% end %>
+            			<%= link_to '+', new_table_header_path(:table_template_id => @table_template.id, :orientation => TableHeader::ORIENTATIONS[1])%>
+            		</div> 
+       		</div>
+        </td>
+            <td id="table-header-hor-resources" class="td">dsfadsfg</td>
+	</tr>
+    <tr>
+    	<td id="table-header-ver-resources" class="td"></td>
+        <td id="table-event" class="td"></td>
+    </tr>
+</table>
+
+<%= render 'form' %>
+	<div class="control-group">
+		  <%= link_to '*Add table header', new_table_header_path(:table_template_id => @table_template.id)%>
+	</div>	
+	<div class="control-group">
+		  <%= link_to '*Add table filter', new_table_filter_path(:table_template_id => @table_template.id)%>
+	</div>
+	<div class="control-group">
+		<%= link_to '*Add table cell item', new_table_cell_item_path(:table_template_id => @table_template.id)%>
+	</div>
+	<div class="control-group">  
+	<%= link_to 'Show', @table_template %> |
+	<%= link_to 'Back', table_templates_path %>
+	</div>		
+</html>
+********************************************************************
+<% if @vertical_table_headers.size == 0 && @horizontal_table_headers.size == 1 %>
+		    	<div class="header-triangle"  id="table-header-v0h1"> 
+		        	<div class="table-header-orientation-v0h1">		            					
+		            	<span id="res-type-name-hor-v0h1"><%= @horizontal_table_headers.collect{|header| header.resource_type.name}.join(" ") %></span>
+		            		<div id="table-header-links-v0h1">
+			            		<%= link_to '+', new_table_header_path(:table_template_id => @table_template.id, :orientation => TableHeader::ORIENTATIONS[0]), :id => 'ref-hor-v0h1'%>
+			            		<%= link_to '+', new_table_header_path(:table_template_id => @table_template.id, :orientation => TableHeader::ORIENTATIONS[1]), :id => 'ref-ver-v0h1'%>
+		            		</div>			            							            						            								
+		            </div>
+		        </div>
+		        <% end %>
+		        	        <% if @vertical_table_headers.size == 2 && @horizontal_table_headers.size == 0 %>
+	        	<div id="table-header-v2h0"> 
+		        	<div class="table-header-orientation-v2h0">		            					
+		            	<span id="res-type-name-ver"><%= @vertical_table_headers.collect{|header| header.resource_type.name}.join(" ") %></span>
+		            		<div id="table-header-links-v2h0">
+			            		<%= link_to '+', new_table_header_path(:table_template_id => @table_template.id, :orientation => TableHeader::ORIENTATIONS[0]), :id => 'ref-hor-v2h0'%>
+			            		<%= link_to '+', new_table_header_path(:table_template_id => @table_template.id, :orientation => TableHeader::ORIENTATIONS[1]), :id => 'ref-ver-v2h0'%>
+		            		</div>	            								
+		            </div>
+	            </div>	
+	        <% end %>           			

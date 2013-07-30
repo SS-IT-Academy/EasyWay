@@ -41,8 +41,12 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "event_type_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.integer  "recurrence_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "field_types", :force => true do |t|
@@ -84,13 +88,13 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
   add_index "menus", ["ancestry"], :name => "index_menus_on_ancestry"
 
   create_table "notify_events", :force => true do |t|
+    t.string   "name"
     t.integer  "notify_template_id"
     t.integer  "event_id"
-    t.string   "name"
     t.integer  "notify_observer_id"
+    t.string   "recipients"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
-    t.string   "recipients"
   end
 
   create_table "notify_observer_properties", :force => true do |t|
@@ -210,8 +214,9 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
   end
 
   create_table "table_headers", :force => true do |t|
-    t.integer  "table_template_id"
     t.integer  "resource_type_id"
+    t.integer  "table_template_id"
+    t.string   "orientation"
     t.integer  "position_num"
     t.integer  "parent_id"
     t.datetime "created_at",        :null => false
@@ -223,13 +228,6 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
     t.text     "cell_body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "template_mappings", :force => true do |t|
-    t.string   "notifytemplatepropertyname"
-    t.string   "mappedelement"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
   end
 
   create_table "users", :force => true do |t|

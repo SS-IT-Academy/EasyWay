@@ -6,13 +6,13 @@ function add_recipient(){
 	    dataType: "json",
 	    success: function(data) {
   	      console.log(data);
-	  	  add_html="<div class='form-inline'><label class='form-inline' for='recipient'> Group number&nbsp;</label>" + 
+	  	  var add_html="<div class='form-inline'><label class='form-inline' for='recipient'> Group number&nbsp;</label>" +
 	  	  "<input id='notify_event_recipients_group_number_' type='text' name='notify_event[recipients_attributes][][group_number]'><label for='user'>&nbsp;Select user&nbsp;</label>" + 
 	  	  "<select id='notify_event_recipients_user_id_' name='notify_event[recipients_attributes][][user_id]'><option></option>";
 	  	  for(var i=0; i<data.length;i++){
 	  		add_html+="<option value='"+data[i].id+"'>"+data[i].username+"</option>"  
 	  	  }
-		  add_html+="</select><a href='#' class=\"btn btn-danger\" onClick='remove_field_recipient(this)'>Remove</a></div>";
+		  add_html+="</select>&nbsp;<a href='#' class=\"btn btn-danger\" onClick='remove_field_recipient(this)'>Remove</a></div>";
 		  $("#marginforforms").append(add_html);	    
 		}
 	  }); 
@@ -50,14 +50,15 @@ jQuery(function ($) {
 	  */
 });
 function notify_observer_add_new_field(){
-	field_html='<div class="form-inline">'+
-    '<label class="form-inline" for="notify_observer_notify_observer_property">Notify observer property</label>'+
+	field_html='<div class="control-group">'+
+    '<label class="control-label" for="notify_observer_notify_observer_property">Notify observer property</label>'+
+    '<div class="controls controls-no">' +
     '<input id="notify_observer_name" name="notify_observer_properties[]" type="text" size="30" >'+
-    '<a href="#" class=\"btn btn-danger\" onClick="notify_observer_remove_field(this)">Remove</a></div>';
+    '<a href="#" class=\"btn btn-danger\" onClick="notify_observer_remove_field(this)">Remove</a></div></div>';
 	$('#notify_observer_fields').append(field_html);
 }
 
 function notify_observer_remove_field(obj){
-	$(obj).parent().remove();
+	$(obj).parent().parent().remove();
 }
 

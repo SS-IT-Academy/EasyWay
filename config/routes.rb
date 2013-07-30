@@ -53,10 +53,6 @@ EasyW::Application.routes.draw do
 
   resources :notify_events
 
-
-
-  resources :notify_event1s
-
   resources :menus
 
   resources :menus

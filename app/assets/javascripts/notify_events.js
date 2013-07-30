@@ -11,8 +11,7 @@ function setSelectEnabled(select_id, enabled) {
 function updatePropertyMapping(){
 	var notify_observer_element = $("#notify_event_notify_observer_id")[0],
 	event_element = $("#notify_event_event_id")[0],
-	notify_template_element = $("#notify_event_notify_template_id")[0],
-	tbody = $("#mapping_tbody");
+	notify_template_element = $("#notify_event_notify_template_id")[0];
 	if(notify_template_element.value && (notify_observer_element.value || event_element.value)){
 		params = {};
 		params['notify_template_id'] = notify_template_element.value;
@@ -25,8 +24,8 @@ function updatePropertyMapping(){
 		    dataType: "html",
 		    success: function(html_content) {
 		      console.log(html_content);
-		      tbody[0].innerHTML = "<tr><td align=\"center\"><b>Notify Template property name</b></td><td align=\"center\"><b>Mapped element</b></td></tr>" 
-		    	  + html_content;
+               $("#mapping_tbody").html("<tr><td align=\"center\"><b>Notify Template property name</b></td><td align=\"center\"><b>Mapped element</b></td></tr>"
+		    	  + html_content);
 		      $("#notify_event_property_mapping_container").show();
 			}
 		});

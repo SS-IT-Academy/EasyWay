@@ -1,3 +1,4 @@
+<div class="boxforforms">
 <%= form_for @notify_observer, :html =>{:class=>"form-horizontal"} do |f| %>
   <% if @notify_observer.errors.any? %>
     <div id="error_explanation">
@@ -11,18 +12,16 @@
     </div>
   <% end %>
 
-  <div class="control-group" >
-    <%= f.label :name, :class=>"control-label" %>
-    <div class="controls">
-    <%= f.text_field :name %>
+  <div id="notify_observer_fields">
+    <div class="control-group" >
+        <%= f.label :name, :class=>"control-label" %>
+        <div class="controls controls-no">
+          <%= f.text_field :name %>
+        </div>
     </div>
   </div>
-  
 
-    <div class="control-group" id="notify_observer_fields">
-      
-    </div>
-    
+
     
   <div class="control-group">
     <div class="controls">
@@ -34,3 +33,4 @@
     <%= f.submit :class =>"btn btn-primary"%>
   </div>
 <% end %>
+</div>

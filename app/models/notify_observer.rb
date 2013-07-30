@@ -4,5 +4,4 @@ class NotifyObserver < ActiveRecord::Base
   has_many :notify_observer_properties, :dependent => :destroy
   
   validates :name, :presence => true
-  
 end

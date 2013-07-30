@@ -1,6 +1,6 @@
 <h1>Listing bookmarks</h1>
-
-<table>
+<div class="border_for_tables">
+<table class="table table-striped">
   <tr>
     <th>Url</th>
     <th>Title</th>
@@ -13,13 +13,13 @@
   <tr>
     <td><%= bookmark.url %></td>
     <td><%= bookmark.title %></td>
-    <td><%= link_to 'Show', bookmark %></td>
-    <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
-    <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', bookmark, :class=>"btn btn-info" %></td>
+    <td><%= link_to 'Edit', edit_bookmark_path(bookmark), :class=>"btn btn-info" %></td>
+    <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger" %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+</div>
 
-<%= link_to 'New Bookmark', new_bookmark_path %>
+<%= link_to 'New Bookmark', new_bookmark_path, :class=>"btn btn-primary" %>

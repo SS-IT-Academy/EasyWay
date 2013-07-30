@@ -6,13 +6,15 @@
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
 		<link href='http://fonts.googleapis.com/css?family=Bilbo+Swash+Caps' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Condiment' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css">
 		<link rel="stylesheet" href="/css/style.css" type="text/css">
 		<link rel="stylesheet" href="/css/site.css" type="text/css" charset="utf-8">
 		<script src="/js/bootstrap.js"></script>
 		<script src="/js/jquery-2.0.2.min.js"></script>
+<<<<<<< HEAD
+=======
+		<script src="/js/jquery-2.0.2.min.js"></script>
+>>>>>>> 2ffd6214b67cb14d5634ad6a1e5db9cddd7c7aad
 		<script src="/js/jquery.ui.widget.js"></script>
 		<script src="/js/jquery.rf.slideshow.js"></script>
 		<script src="/js/resources.js"></script>
@@ -25,6 +27,7 @@
 	
 <body class="bodybg">
 	<div class="header">
+	<%if current_user%>
 				<div><a href="#myModal" role="button" class="star" data-toggle="modal"  onclick="getUrl()"></a></div>
 			<div class="modal hide fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-header">
@@ -39,6 +42,7 @@
 					</button>
 				</div>
 			</div>
+			<% end %>
 			<div class="logo">
 				<a href="http://localhost:3000/">Easy Way</a>					
 						</div>
@@ -49,8 +53,8 @@
 				<%= link_to "Sign Out", signed_out_path, :class => "btn btn-primary"%>	
 				</div>	
 				<% else %>
-				<%= link_to "Sign up", new_user_path, :class => "btn btn-primary buttonfloat"%>
-				<%= link_to "Sign In", sign_in_path, :class => "btn btn-primary buttonfloat"%>
+				<%= link_to "Sign up", new_user_path, :class => "btn btn-primary buttonfloat font"%>
+				<%= link_to "Sign In", sign_in_path, :class => "btn btn-primary buttonfloat font"%>
 				<% end %>
 			</form>
 		</div>
@@ -68,8 +72,9 @@
 			<%= yield%>
 		</div>
 		<div class="footer">
-			<div class="tools"><img src="/images/bootstrap.png"><img src="/images/RoR.png">
+			<div class="tool1"><img src="/images/bootstrap.png">
 			</div>
+			<div class="tool2"><img src="/images/RoR.png"></div>
 			<div class="copyright">
 				<h5>Designed and built with all the love in the world by group 087-LAMP</h5>
 				<h5>&copy;087-LAMP GROUP</h5>

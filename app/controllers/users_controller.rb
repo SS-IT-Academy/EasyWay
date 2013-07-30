@@ -43,9 +43,6 @@ class UsersController < ApplicationController
     @roles = Role.all
     @roleid = params[:roles_id]
     @user = User.find(params[:id])
-  #    if (:params["#{role.id}"] == 'selected') 
-  #    @user.roleid = ["#{role.id}"]  
-  #  end  
     @user.roleid = @roleid
     @user.save  
     redirect_to :root
@@ -55,22 +52,17 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
 
- def create
+  def create
     @user = User.new(params[:user])
     @user.roleid = "4"
+    begin
 
-   # @user.update_attributes(:userid == "4")
     if verify_recaptcha
       if @user.valid?
          @user.save
-        
-
-        # format.html { redirect_to @user, :notice => 'User was successfully created.' }
-        # format.json { render :json => @user, :status => :created, :location => @user }
-
-        session[:user_id] = @user.id
-        flash[:notice] = 'Welcome.'
-        redirect_to :root
+         session[:user_id] = @user.id
+         flash[:notice] = 'Welcome.'
+         redirect_to :root
       else
         render :action => "new_user"
       end
@@ -79,12 +71,16 @@ class UsersController < ApplicationController
       flash.now[:error] = 'reCAPTCHA is incorrect. Please try again.'
       render :action => "new_user"
     end
+    rescue 
+      respond_to do |format|
+        format.html {redirect_to "/users/new", notice: "reCAPTHA is incorrect"}
+      end
+    end
   end
   # PUT /users/1
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-  #  @roleid = :roles_id
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, :notice => 'User was successfully updated.' }

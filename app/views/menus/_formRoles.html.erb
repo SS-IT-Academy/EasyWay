@@ -11,12 +11,9 @@
      <% end %>
   <div class="boxforforms">
   	
-     <%= f1.hidden_field :parent_id, :value=>@parent_id%>
-  
-  	
-  	    <%= f1.hidden_field :role_id, :value=>@role%>  
-  	
-        <div class="control-group">
+  	 <%= f1.hidden_field :parent_id, :value=>@parent_id%>
+  	 <%= f1.hidden_field :role_id, :value=>@role%>  
+  	      <div class="control-group">
   	      <%= f1.label :title,:class =>"control-label"%>
   	     <div class="controls">
             <%= select_tag('menu[bookmark_id]', options_from_collection_for_select(@bookmark, 'id', 'title'),:include_blank =>"") %>

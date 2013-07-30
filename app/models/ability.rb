@@ -4,8 +4,9 @@ class Ability
 
   def initialize(user)
     puts "Before create Ability "*20
+    puts "user: #{user.inspect}, role: #{user.role}"
     user ||= User.new # guest user (not logged in)
-    if role.admin?
+    if user.role.admin?
       can :manage, :all
     else
       user.role.permission_roles.each do |permission_role| 

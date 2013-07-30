@@ -8,6 +8,12 @@ class PermissionRolesController < ApplicationController
    # affected_tmodels.each |model| do
     #  rows[model] = model.classify.constantize.find_all
    # end
+    @data = {}
+    PermissionRole.with_role(params[:role_id]).each do |perm_role|
+      @data[perm_role.permissionable_type] ||= {}
+      @data[perm_role.permissionable_type][perm_role.permissionable_id] ||= []
+      @data[perm_role.permissionable_type][perm_role.permissionable_id] << perm_role.permissions_id
+    end
     @permissions = Permission.all  
     @resources = Resource.all
     @resource_types = ResourceType.all
@@ -29,6 +35,7 @@ class PermissionRolesController < ApplicationController
   # GET /permission_resources/new.json
   def new
     @permission_role = PermissionRole.new
+    
 
     respond_to do |format|
       format.html # new.html.erb

@@ -1,5 +1,27 @@
 EasyW::Application.routes.draw do
 
+  #START TIMETABLE
+  resources :table_headers
+  
+  resources :table_filters
+  
+  resources :table_templates
+  
+  resources :table_cell_items
+  
+  match "/get_restype_fields" => "ResourceTypes#update_fields"
+  #END TIMETABLE
+  
+  resources :resources
+
+  resources :resource_values
+
+  resources :resource_types
+
+  resources :fields
+
+  resources :field_types
+
   get "manage_menu/index"
 
 
@@ -27,10 +49,16 @@ EasyW::Application.routes.draw do
   
 
 
+
   resources :permission_resources
 
   resources :notify_events
 
+
+
+  resources :notify_event1s
+
+  resources :menus
 
   resources :menus
 
@@ -60,12 +88,14 @@ EasyW::Application.routes.draw do
 
   resources :permission_roles
   
+
   resources :resources, :has_many => :permission_roles
   resources :resource_types, :has_many => :permission_roles
   resources :resource_values
   resources :fields
   resources :field_types
   match "/new_popup" => "Menus#new_popup"
+
   match "/update_fields" => "ResourceTypes#update_fields"
   match "/update_resources" => "Resources#update_resources"
   

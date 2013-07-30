@@ -4,4 +4,11 @@ class Role < ActiveRecord::Base
   has_many :users
   has_many :permission_resources
   has_many :Menus
+  
+  def admin?
+    name == 'admin'
+  end
+
+  has_many :Menus
+
 end

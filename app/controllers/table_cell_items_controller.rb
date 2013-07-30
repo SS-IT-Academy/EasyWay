@@ -25,7 +25,7 @@ class TableCellItemsController < ApplicationController
   # GET /table_cell_items/new.json
   def new
     @table_cell_item = TableCellItem.new
-
+    @table_template = TableTemplate.find(params[:table_template])
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @table_cell_item }

@@ -41,9 +41,10 @@
       </div>
       <form class="span5 pull-right form-inline" >
         <% if current_user %>
-          Logged in as <%= current_user.username %>.
-          <%= link_to "Sign Out", signed_out_path, :class => "btn btn-primary buttonfloat font" %>
-          <%= link_to "Account Settings", account_settings_path,:class => "btn btn-primary buttonfloat font" %>
+          <div class="buttonfloat">
+          <a>Logged as <%= current_user.username %></a>
+          <%= link_to "Sign Out", signed_out_path, :class => "btn btn-primary" %>
+          </div>
         <% else %>
           <%= link_to "Sign up", new_user_path, :class => "btn btn-primary buttonfloat font"%>
           <%= link_to "Sign In", sign_in_path, :class => "btn btn-primary buttonfloat font"%>

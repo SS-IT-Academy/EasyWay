@@ -1,9 +1,12 @@
 EasyW::Application.routes.draw do
 
   get "manage_menu/index"
-
-
-
+  
+  resources :table_templates
+  resources :table_headers
+  resources :table_cell_items
+  resources :table_filters
+  
   
   root :to=>"home#index"
   

@@ -4,7 +4,7 @@
       <% Menu.roots.where('role_id = ? OR user_id = ?',@role_id ,@user_id).each do |item|%>
 		<% if item.children.where('role_id = ? OR user_id = ?',@role_id ,@user_id).empty?%>
           <%= content_tag :li, :id => item.id do%>
-            <%= link_to item.bookmark.title, item.bookmark.url %>
+           <%= link_to item.bookmark.title, item.bookmark.url %>
             <ul class="dropdown-menu draggables">
             </ul>
           <%end%>

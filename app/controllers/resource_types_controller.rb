@@ -101,7 +101,7 @@ class ResourceTypesController < ApplicationController
         format.json { head :no_content }
       end
     else
-        format.html { redirect_to @resource_type, notice: "Resource don't delete." }
+        format.html { redirect_to @resource_type, notice: "Resource_type cann't delete." }
     end
   
   end

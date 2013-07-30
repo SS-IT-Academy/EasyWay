@@ -56,12 +56,10 @@ class UsersController < ApplicationController
   # POST /users.json
 
  def create
-    @user = User.new(params[:user])
-<<<<<<< HEAD
-    @user.roleid = "2"
-=======
-    @user.roleid = "4"
->>>>>>> 3af391723acfaded122824c00b8f9f2e6c280c58
+    @user = User.new(params[:user])   
+    
+     @user.roleid = "2"
+
    # @user.update_attributes(:userid == "4")
     if verify_recaptcha
       if @user.valid?

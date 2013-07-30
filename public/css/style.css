@@ -197,3 +197,9 @@ select:focus{
 	font-weight: bold;
 }
 
+.close{
+	color: #ffffff !important;
+	opacity: 0.8 !important;
+	font-weight: normal !important;
+
+}

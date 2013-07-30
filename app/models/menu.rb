@@ -6,5 +6,5 @@ class Menu < ActiveRecord::Base
   belongs_to :role
   has_ancestry 
   
-  scope :with_role, lambda {|roles_id| where("roles_id = ?", roles_id)}
+  
 end

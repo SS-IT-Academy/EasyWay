@@ -1,6 +1,8 @@
 <div class="boxforforms">
-<h3 align="center">Listing events</h3>
-
+	<h3>Listing events</h3>
+	<div class="control-group">
+		<%= link_to 'New Event', new_event_path, :class=>"btn btn-primary controls"%>
+	</div>
 <table class="table table-striped">
   <tr>
     <th>Name</th>
@@ -8,7 +10,6 @@
     <th>Start at</th>
     <th>End at</th>
     <th>Recurrence</th>
-
     <th></th>
     <th></th>
     <th></th>
@@ -22,13 +23,10 @@
     <td><%= event.end_at %></td>
     <td><%= event.recurrence_id %></td>
 
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', event, :class=>"btn btn-info"%></td>
+    <td><%= link_to 'Edit', edit_event_path(event),:class=>"btn btn-info" %></td>
+    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Event', new_event_path %>
+</div>

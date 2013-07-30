@@ -38,7 +38,7 @@ function notify_observer_property_remove_field(obj){
 
 jQuery(function ($) {
 
-/*	  window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
+	  window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
 
 	    if($(link).hasClass('insert_in_table')){
 	      return $(content).insertBefore($(link).parent().parent());
@@ -46,9 +46,15 @@ jQuery(function ($) {
 	    else{
 	      return $(content).insertBefore(link);
 	    }
-	   
-	  */
+
+
+	  };
 });
+
+
+
+	   
+
 function notify_observer_add_new_field(){
 	field_html='<div class="control-group">'+
     '<label class="control-label" for="notify_observer_notify_observer_property">Notify observer property</label>'+

@@ -85,7 +85,7 @@ function update_field_type_parse_data(data){
     data_html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>" 	
   }
   data_html+="</select></div><div id='fieldsDiv' class='controls'></div></div>"+
-  "<div class='controls'><a href='#' class='btn' onclick='resource_type_remove_field(this)'>Remove Field</a></div></div></div></div></div>";
+  "<div class='controls'><a href='#' class='btn btn-danger' onclick='resource_type_remove_field(this)'>Remove Field</a></div></div></div></div></div>";
   return data_html;
 }
 
@@ -104,7 +104,7 @@ function what_type_of_field(obj){
 }
 
 function what_type_of_field_parse(data){
-  data_html="<select name=fields[][resource_type_reference_id]><option>Select Type</option>"
+  data_html="<select class='controls' name=fields[][resource_type_reference_id]><option>Select Type</option>"
   for(var i=0;i<data.length;i++){
     data_html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>" 	
   }

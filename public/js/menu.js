@@ -4,22 +4,22 @@ function add_create_buttons_to_menu(obj){
     location.reload();			
   }
   else {	
-   $(parent).find('.nav li').each(function(){
-   if ($(this).attr('class')!='Create')
-     if ($(this).attr('id')!='edit_menu')
-       $(this).append('<button type="button" class="close" onclick="delete_menu_element(this)">&times;</button>');	
-   });
-  $(parent).find('.nav li').attr('class', 'dropdown').children('a').attr('class', 'dropdown-toggle').attr('data-toggle', 'dropdown');	
-  $(parent).find('.nav').first().append('<li class="Create"><a class="Create" href="/menus/new?id=">Create+</a></li>');
-  $(parent).find('.dropdown-menu').each(function(){
-    $(this).append('<li class="Create"><a  class="Create" href="/menus/new?id='+$(this).parent().attr('id')+'">Create+</a></li>');		
-  });			
-  if ($(obj).parents(".content").length>0){
-    $(parent).find(".Create a").attr("href",'/menus/new?id='+$(this).parent().attr('id')+"&role_id="+$('#menu_role_id').val());
-  }	
-  $(obj).html("Finish Edit");	
-}
-	
+    $(parent).find('.nav li').each(function(){
+    if ($(this).attr('class')!='Create')
+      if ($(this).attr('id')!='edit_menu')
+        $(this).append('<button type="button" class="close" onclick="delete_menu_element(this)">&times;</button>');	
+    });
+    $(parent).find('.nav li').attr('class', 'dropdown').children('a').attr('class', 'dropdown-toggle').attr('data-toggle', 'dropdown');	
+    $(parent).find('.nav').first().append('<li class="Create"><a class="Create" href="/menus/new?id=">Create+</a></li>');
+    $(parent).find('.dropdown-menu').each(function(){
+      $(this).append('<li class="Create"><a  class="Create" href="/menus/new?id='+$(this).parent().attr('id')+'">Create+</a></li>');		
+    });			
+    if ($(obj).parents(".content").length>0){
+      $(parent).find(".Create a").attr("href",'/menus/new?id='+$(this).parent().attr('id')+"&role_id="+$('#menu_role_id').val());
+    }	
+    $(obj).html("Finish Edit");	
+  }
+}	
 function create_new_menu_element(obj){
   if ($(obj).parents(".dropdown").attr('id'))
     parent=$(obj).parents(".dropdown").attr('id');
@@ -66,5 +66,5 @@ function renderForm(val){
     success: function(data) {
       $('#menuManage').html(data);
     }
-  }); 	
+  });
 }

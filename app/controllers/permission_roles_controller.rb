@@ -3,11 +3,6 @@ class PermissionRolesController < ApplicationController
   # GET /permission_resources.json
   def index
     @permissionable = find_permissionable
- #   affected_tmodels = %w{Resource, ResourceType, TableTemplates}
-  #  @rows = {}
-   # affected_tmodels.each |model| do
-    #  rows[model] = model.classify.constantize.find_all
-   # end
     @data = {}
     PermissionRole.with_role(params[:role_id]).each do |perm_role|
       @data[perm_role.permissionable_type] ||= {}
@@ -17,7 +12,6 @@ class PermissionRolesController < ApplicationController
     @permissions = Permission.all  
     @resources = Resource.all
     @resource_types = ResourceType.all
- #   @permissionable = @permissionable.permission_role
   end
   
 
@@ -35,8 +29,6 @@ class PermissionRolesController < ApplicationController
   # GET /permission_resources/new.json
   def new
     @permission_role = PermissionRole.new
-    
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @permission_role }
@@ -90,19 +82,6 @@ class PermissionRolesController < ApplicationController
         raise ActiveRecord::Rollback unless obj.save
       }
     end  
-
-=begin    
-    @permissionable = find_permissionable
-    if (:params["permission_role[ResourceType][#{resource_type.id}]"] == 'selected') 
-    @permissionrole = @permissionable.permissionrole.build(params[:permission_role])
-    end
-    if @permissionrole.save
-      flash[:notice] = "Successfully created."
-      redirect_to :id => nil
-    else
-      render :action => 'new'
-    end
-=end
   end
 
   # PUT /permission_resources/1
@@ -145,12 +124,12 @@ end
 
 private
 
-def find_permissionable
-  params.each do |name, value|
-    if name =~ /(.+)_id$/
+  def find_permissionable
+    params.each do |name, value|
+     if name =~ /(.+)_id$/
       return $1.classify.constantize.find(value)
+     end
     end
+    nil
   end
-  nil
-end
   

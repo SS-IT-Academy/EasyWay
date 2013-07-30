@@ -1,8 +1,9 @@
+<h3 class="text-center">Login</h3>
 <div class="boxforforms">
 <%= form_for @user, :as => :user, :url => sign_in_path(@user) do |f| %>
   <div class="form_sign_in form-inline ">
   	<%= f.text_field :username, :class =>"pull-right span3" %>
-    <%= f.label 'username or email:', :class =>"pull-right lll" %>
+    <%= f.label 'Email:', :class =>"pull-right lll" %>
     
   </div><br>
   <div class="form-inline marginforforms">

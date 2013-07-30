@@ -15,19 +15,19 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
   
 
- def encrypt_password
+  def encrypt_password
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
   end
 
-def self.authenticate_by_email(email, password)
-  user = find_by_email(email)
-  if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+  def self.authenticate_by_email(email, password)
+    user = find_by_email(email)
+    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
     user
     else
-    nil
+      nil
     end
   end
 
@@ -54,5 +54,8 @@ def self.authenticate_by_email(email, password)
   end
 end
   
+  def name
+    guest ? "Guest" : username
+  end
   
 end

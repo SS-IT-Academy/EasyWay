@@ -54,8 +54,8 @@ function delete_menu_element(obj){
 }
 
 function getUrl(){
-  var currentUrl = window.location;
-  $('#url').val(currentUrl);
+  var currentUrl = window.location.href.replace (/^[a-z]{4}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1');
+  $('#url').val("/"+currentUrl);
 }
 function renderForm(val){
   $.ajax({

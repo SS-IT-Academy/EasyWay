@@ -13,8 +13,4 @@ class FieldType < ActiveRecord::Base
     end
   end
   
-  def is_complex?
-    self.name.lowercase == COMPLEX_FIELD_NAME.lowercase
-  end
-  
 end

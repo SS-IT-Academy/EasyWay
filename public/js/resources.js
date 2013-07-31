@@ -90,25 +90,25 @@ function update_field_type_parse_data(data){
 }
 
 function what_type_of_field(obj){
-  if (obj.value == 7)
+  if ($(obj).children(":selected").text() == "Complex")
     $.ajax({
       url: "/get_resource_types",
       type: "GET",
       data: {},
       dataType: "json",
       success: function(data) {
-      	$(obj).parent().parent().append(what_type_of_field_parse(data));
+      	$(obj).after(what_type_of_field_parse(data));
       }
   	});
-  else $(obj).parent().parent().append('');
+  else $(obj).next("#Create").remove();
 }
 
 function what_type_of_field_parse(data){
-  data_html="<select class='controls' name=fields[][resource_type_reference_id]><option>Select Type</option>"
+  data_html="<div id='Create'><select name=fields[][resource_type_reference_id]><option>Select Type</option>"
   for(var i=0;i<data.length;i++){
     data_html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>" 	
   }
-  data_html+="</select>";
+  data_html+="</select></div>";
   return data_html;
 }
 

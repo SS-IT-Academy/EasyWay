@@ -58,16 +58,6 @@ class ResourcesController < ApplicationController
   def edit
     @resource = Resource.find(params[:id])
     @resource_types=ResourceType.all
-    @resource_values = @resource.resource_values
-    @field_names = []
-    @reference = []
-    @resource_values.each_with_index do |value, i|
-      @field_names[i] = Field.find(value.field_id).name
-      if Field.find(value.field_id).resource_type_reference_id
-        @reference[i] = Resource.where("resource_type_id = ?",Field.find(value.field_id).resource_type_reference_id)
-      end 
-    end
-
   end
 
   # POST /resources
@@ -77,10 +67,12 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       if @resource.save
-        params[:fields].each {|param|
-          @fields = ResourceValue.new({:field_id => param[:field_id], :value => param[:value],:resource_reference_id => param[:resource_reference_id],:resource_id => @resource.id})
-          @fields.save
-        }
+        if params[:fields]
+          params[:fields].each {|param|
+            @fields = ResourceValue.new({:field_id => param[:field_id], :value => param[:value],:resource_reference_id => param[:resource_reference_id],:resource_id => @resource.id})
+            @fields.save
+          }
+        end
         format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
         format.json { render json: @resource, status: :created, location: @resource }
       else
@@ -98,8 +90,14 @@ class ResourcesController < ApplicationController
     respond_to do |format|
       if @resource.update_attributes(params[:resource])
         params[:values].each {|param|
-          @value = ResourceValue.find(param[:id])
-          @value.update_attributes(:value => param[:value], :field_id => param[:field_id],:resource_reference_id => param[:resource_reference_id], :resource_id => params[:id])
+          if param[:id]
+            @value = ResourceValue.find(param[:id])
+            @value.update_attributes(:value => param[:value], :field_id => param[:field_id],:resource_reference_id => param[:resource_reference_id], :resource_id => params[:id])
+          else
+            @value = ResourceValue.new(:value => param[:value], :field_id => param[:field_id],:resource_reference_id => param[:resource_reference_id], :resource_id => params[:id])
+            @value.save
+          end
+            
         }
         format.html { redirect_to @resource, notice: 'Resource was successfully updated.' }
         format.json { head :no_content }

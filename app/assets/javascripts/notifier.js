@@ -37,7 +37,7 @@ function notify_observer_property_remove_field(obj){
 
 
 jQuery(function ($) {
-
+/*
 	  window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
 
 	    if($(link).hasClass('insert_in_table')){
@@ -48,7 +48,7 @@ jQuery(function ($) {
 	    }
 
 
-	  };
+	  };*/
 });
 
 

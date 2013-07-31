@@ -17,15 +17,6 @@
        <%= f.text_field :description %>
     </div>
   </div>
-
-  <% if @resource.resource_values.blank? %>
-	  <div class="control-group">
-		  <%= f.label :resource_type_id, :class=>"control-label" %>
-		  <div class="controls">
-		  <%= f.select :resource_type_id,  options_from_collection_for_select(@resource_types, "id","name",@resource.resource_type_id),{:include_blank => 'Select type'}, :onchange => 'update_resource_fields_div(this.value)' %>	
-		  </div>
-	  </div>
-  <% end %>
   <% if !@resource.resource_values.blank? %>
   	<% @resource.resource_type.fields.each_with_index do |field,i|%>
   	  <div class="control-group">
@@ -49,10 +40,10 @@
       </div>
   	<% end %>
   <% end %>
+  
   <div id="fieldsDiv" class="control-group">
   </div>
   <div class="actions">
-    <%= f.submit :class=>"btn btn-primary"%> 
+    <%= f.submit%> 
   </div>
 <% end %>
-

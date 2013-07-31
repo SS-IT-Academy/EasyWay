@@ -44,7 +44,7 @@ html,body{
 	min-width: 400px;
 	min-height: 300px;
 	margin: 0 auto;
-	padding: 0px 80px 0px 0;
+	padding: 0px 0px 0px 0;
 }
 
 .form_sign_in{
@@ -82,7 +82,7 @@ legend {
 	height: 20px;
 	float: right;
 	background-size: 100% 100%;
-	margin: 15px 10px 0 0;
+	margin: -18px 0px 0 0;
 }
 
 .border_for_tables{
@@ -95,7 +95,7 @@ legend {
 #popup {
 	background-color: #333;
     border-radius: 0 5px 5px 0;
-	bottom: 50px;
+	top: 230px;
     box-shadow: 0 0 3px #333;
 	color: #cfcfcf;
 	display: none;
@@ -208,8 +208,19 @@ select:focus{
 }
 
 .close{
-	color: #ffffff !important;
+	color: #A9302A !important;
 	opacity: 0.8 !important;
 	font-weight: normal !important;
+    float: none !important;
+}
 
+.open > .dropdown-menu{
+	opacity: 1 !important;
+}
+.dropdown-menu > li > a{
+	display: inline !important;
+
+}
+.dropdown-menu{
+	min-width: 100px !important;	
 }

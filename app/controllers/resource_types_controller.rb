@@ -60,10 +60,12 @@ class ResourceTypesController < ApplicationController
     @resource_type = ResourceType.new(params[:resource_type])
     respond_to do |format|
       if @resource_type.save
-        params[:fields].each {|param|
-          @fields = Field.new({:name => param[:name], :field_type_id => param[:field_type_id],:resource_type_id => @resource_type.id, :resource_type_reference_id =>param[:resource_type_reference_id]})
-          @fields.save
-        }
+        if params[:fields]
+          params[:fields].each {|param|
+            @fields = Field.new({:name => param[:name], :field_type_id => param[:field_type_id],:resource_type_id => @resource_type.id, :resource_type_reference_id =>param[:resource_type_reference_id]})
+            @fields.save
+          }
+        end
         format.html { redirect_to @resource_type, notice: 'Resource type was successfully created.' }
         format.json { render json: @resource_type, status: :created, location: @resource_type }
       else
@@ -79,15 +81,17 @@ class ResourceTypesController < ApplicationController
     @resource_type = ResourceType.find(params[:id])
     respond_to do |format|
       if @resource_type.update_attributes(params[:resource_type])
-        params[:fields].each{|param|
-          if param[:id]
-            @field = Field.find(param[:id])
-            @field.update_attributes({:name => param[:name], :field_type_id => param[:field_type_id],:resource_type_id => params[:id], :resource_type_reference_id => param[:reference_type_id]})
-          else
-            @field = Field.new({:name => param[:name], :field_type_id => param[:field_type_id],:resource_type_id => params[:id]})
-          end
-          @field.save
+        if params[:fields]
+          params[:fields].each{|param|
+            if param[:id]
+              @field = Field.find(param[:id])
+              @field.update_attributes({:name => param[:name], :field_type_id => param[:field_type_id],:resource_type_id => params[:id], :resource_type_reference_id => param[:resource_type_reference_id]})
+            else
+              @field = Field.new({:name => param[:name], :field_type_id => param[:field_type_id],:resource_type_id => params[:id]})
+            end
+            @field.save
           }
+        end  
         format.html { redirect_to @resource_type, notice: 'Resource type was successfully updated.' }
         format.json { head :no_content }
       else

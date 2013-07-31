@@ -33,7 +33,9 @@
        <div class="controls">
           <%= select_tag "fields[][field_type_id]", options_from_collection_for_select(@field_types, "id", "name", field.field_type_id), :id=>field.id, :onchange=>"what_type_of_field(this)"%>
           <% if field.resource_type_reference_id%>
-              <%= select_tag "fields[][reference_type_id]", options_from_collection_for_select(@resource_types, "id", "name", field.resource_type_reference_id), :id=>field.id%>
+              <div id="Create">
+              	<%= select_tag "fields[][reference_type_id]", options_from_collection_for_select(@resource_types, "id", "name", field.resource_type_reference_id), :id=>field.id%>
+              </div>
           <% end %>
           <div class="controls-label">
        	  	<a href='#' class='btn btn-danger' onclick='resource_type_edit_remove_field(this)'>Remove Field</a>
@@ -53,8 +55,8 @@
   
   
   
-  <div class="actions controls">
-    <%= f1.submit "Submit", :class=>"btn btn-primary" %>
+  <div class="actions">
+    <%= f1.submit :class=>"btn btn-primary" %>
   </div>
     
 <% end %>

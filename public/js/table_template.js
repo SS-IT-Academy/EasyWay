@@ -3,7 +3,7 @@ function resourceTypeHeaders(resType, data){
 	var h = data.hor_headers.length > 0? data.hor_headers.length : 0;
 	
 	if((v == 1 && h == 1) && (v == 1 || h == 1)){
-		v = 110; 	
+		v = 120; 	
 	}
 	else if(v > h){
 		v = v * 110;

@@ -2,6 +2,9 @@ function Add_resource_to_event(){
   $.ajax({
     url: "/add_event_resources",
     type: "GET",
+    beforeSend: function ( xhr ) {
+      xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+    },
     data: {},
     dataType: "json",
     success: function(data) {
@@ -24,6 +27,9 @@ function event_remove_resource(obj){
   if (confirm("This delete, deletes event Resource.Realy delete?")){
     $.ajax({
       url: "/remove_event_resource",
+      beforeSend: function ( xhr ) {
+        xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+      },
       type: "POST",
       data: {"id" : $(obj).attr('id')},
       dataType: "json",
@@ -39,6 +45,9 @@ function Create_event_with_pattern(obj){
   $.ajax({
     url: "/event_based_on",
     type: "GET",
+    beforeSend: function ( xhr ) {
+      xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+    },
     data: {"id" : obj.value},
     dataType: "json",
     success: function(data) {

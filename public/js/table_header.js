@@ -3,6 +3,9 @@ function addResTypeField(resTypeId) {
 	$.ajax({
     url: "/get_restype_fields",
     type: "GET",
+    beforeSend: function ( xhr ) {
+      xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+    },
     data: {"resource_type_id" : resTypeId},
     dataType: "json",
 	success: function(data) {
@@ -22,22 +25,3 @@ function addResTypeParseData(data){
 	}
 	return dataHtml;
 }
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	

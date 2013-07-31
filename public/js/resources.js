@@ -2,6 +2,9 @@ function update_resource_fields_div(resource_type_id) {
   $.ajax({
     url: "/update_fields",
     type: "GET",
+    beforeSend: function ( xhr ) {
+      xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+    },
     data: {"resource_type_id" : resource_type_id},
     dataType: "json",
     success: function(data) {
@@ -49,6 +52,9 @@ function resource_type_edit_remove_field(obj){
    	$.ajax({
       url: "/fields/" + $(obj).parents().find('#fields__id').attr('value'),
       type: "DELETE",
+      beforeSend: function ( xhr ) {
+        xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+      },
       data: {},
       dataType: "json",
       success: function(data) {
@@ -67,6 +73,9 @@ function resource_type_add_new_field(obj){
   $.ajax({
     url: "/get_field_types",
     type: "GET",
+    beforeSend: function ( xhr ) {
+      xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+    },
     data: {},
     dataType: "json",
     success: function(data) {
@@ -94,6 +103,9 @@ function what_type_of_field(obj){
     $.ajax({
       url: "/get_resource_types",
       type: "GET",
+      beforeSend: function ( xhr ) {
+        xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+      },
       data: {},
       dataType: "json",
       success: function(data) {
@@ -116,6 +128,9 @@ function update_resources(resource_type_id) {
   $.ajax({
     url: "/update_resources",
     type: "GET",
+    beforeSend: function ( xhr ) {
+      xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+    },
     data: {"resource_type_id" : resource_type_id},
     dataType: "html",
     success: function(data) {

@@ -27,6 +27,9 @@ function create_new_menu_element(obj){
   $.ajax({
     url: "/render_form_for_menu",
     type: "POST",
+    beforeSend: function ( xhr ) {
+      xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+    },
     data: {
       "parent_id": parent,
       "role_id": $('#menu_role_id option:selected').val(),
@@ -45,6 +48,9 @@ function delete_menu_element(obj){
   $.ajax({
     url: "/delete_menu_item",
     type: "GET",
+    beforeSend: function ( xhr ) {
+      xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+    },
     data: {"menu_item_id" : $(obj).parent().attr('id')},
     dataType: "json",
     success: function(data) {
@@ -61,6 +67,9 @@ function renderForm(val){
   $.ajax({
     url: "/render_menu",
     type: "GET",
+    beforeSend: function ( xhr ) {
+      xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+    },
     data: {"role_id": val},
     dataType: "html",
     success: function(data) {

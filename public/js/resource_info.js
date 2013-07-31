@@ -1,7 +1,7 @@
 $(function () {
 ﻿  cache = {};
   $('#ResourceTable tr').hover( 
-    function () { 
+    function () {
       $(this).data('focused','true'); 
       var link = $(this);
       var id = $(this).children(":first").html();
@@ -15,6 +15,9 @@ $(function () {
 		$.ajax({ 
           url:'/resource_info',
 		  type:'POST',
+		  beforeSend: function ( xhr ) {
+                    xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+          },
 		  dataType:'json',
 		  data:({'id': id}),
 		  success: function(response){ 

@@ -1,3 +1,4 @@
+<div class="boxforforms">
 <%= form_for(@recipient) do |f| %>
   <% if @recipient.errors.any? %>
     <div id="error_explanation">
@@ -24,6 +25,7 @@
     <%= f.number_field :group_number %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class =>"btn btn-primary" %>
   </div>
 <% end %>
+</div>

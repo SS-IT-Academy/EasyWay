@@ -65,14 +65,14 @@ class NotifyEventsController < ApplicationController
       end
 
     end
-    #raise params.inspect    
+      #raise params.inspect    
     respond_to do |format|
       if success
-       #NotifyEventMailer.notify_event_email.deliver
+        #NotifyEventMailer.notify_event_email.deliver
         format.html { redirect_to @notify_event, :notice => 'Notify event was successfully created.' }
         format.json { render :json => @notify_event, :status => created, :location => @notify_event }
       else
-        raise @notify_event.errors.inspect
+        #raise @notify_event.errors.inspect
         format.html { render :action => "new" }
         format.json { render :json => @notify_event.errors, :status => unprocessable_entity }
       end

@@ -4746,8 +4746,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav li.dropdown.active > .dropdown-toggle,
 .navbar .nav li.dropdown.open.active > .dropdown-toggle {
   color: #555555;
-  background-color: #e5e5e5;
-}
+  }
 
 .navbar .nav li.dropdown > .dropdown-toggle .caret {
   border-top-color: #777777;

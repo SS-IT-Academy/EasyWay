@@ -19,7 +19,7 @@
     <td><%= menu.role_id %></td>    
     <td><%= menu.user_id %></td> 
     <td><%= menu.position %></td> 
-    <td><%= menu.bookmark.title %></td> 
+    <td><%= menu.bookmark.title %></td>
     <td><%= link_to 'Show', menu, :class=>"btn btn-info"%></td>
     <td><%= link_to 'Edit', edit_menu_path(menu),:class=>"btn btn-info" %></td>
     <td><%= link_to 'Destroy', menu, method: :delete, data: { confirm: 'Are you sure?'},:class=>"btn btn-danger" %></td>
@@ -30,5 +30,5 @@
 </div>
 <br />
 
-<%= link_to 'New Menu', new_menu_path %>
+<%= link_to 'New Menu', new_menu_path, :class => "btn btn-primary" %>
 </div>

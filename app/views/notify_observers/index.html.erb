@@ -1,6 +1,7 @@
-<h1>Listing notify_observers</h1>
+<div class="boxforforms">
+<h3>Listing notify observers</h3>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>Name</th>
     <th></th>
@@ -11,13 +12,14 @@
 <% @notify_observers.each do |notify_observer| %>
   <tr>
     <td><%= notify_observer.name %></td>
-    <td><%= link_to 'Show', notify_observer %></td>
-    <td><%= link_to 'Edit', edit_notify_observer_path(notify_observer) %></td>
-    <td><%= link_to 'Destroy', notify_observer, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', notify_observer, :class => "btn btn-info" %></td>
+    <td><%= link_to 'Edit', edit_notify_observer_path(notify_observer), :class => "btn btn-info" %></td>
+    <td><%= link_to 'Destroy', notify_observer, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger"%></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Notify observer', new_notify_observer_path %>
+<%= link_to 'New Notify observer', new_notify_observer_path, :class => "btn btn-primary" %>
+</div>

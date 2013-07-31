@@ -23,11 +23,13 @@ EasyW::Application.routes.draw do
   resources :field_types
 
   get "manage_menu/index"
+
  
-  root :to=>"home#index"
+  root :to=>"home#index"  
+  
+  root :to  => "home#index"
   
   resources :events
-
 
 
   resources :recurrences
@@ -50,10 +52,6 @@ EasyW::Application.routes.draw do
   resources :permission_resources
 
   resources :notify_events
-
-
-
-  resources :notify_event1s
 
   resources :menus
 

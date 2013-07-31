@@ -31,12 +31,12 @@
        </div>
        <label class='control-label' for='fields[][field_type_id]'>Field Type</label>
        <div class="controls">
-          <%= select_tag "fields[][field_type_id]", options_from_collection_for_select(@field_types, "id", "name", field.field_type_id), :id=>field.id%>
+          <%= select_tag "fields[][field_type_id]", options_from_collection_for_select(@field_types, "id", "name", field.field_type_id), :id=>field.id, :onchange=>"what_type_of_field(this)"%>
           <% if field.resource_type_reference_id%>
               <%= select_tag "fields[][reference_type_id]", options_from_collection_for_select(@resource_types, "id", "name", field.resource_type_reference_id), :id=>field.id%>
           <% end %>
           <div class="controls-label">
-       	  	<a href='#' class='btn' onclick='resource_type_edit_remove_field(this)'>Remove Field</a>
+       	  	<a href='#' class='btn btn-danger' onclick='resource_type_edit_remove_field(this)'>Remove Field</a>
        	  </div> 
        </div>
        </div>
@@ -46,7 +46,7 @@
   <div class="control-group">
     <div id="fieldsDiv" class="controls"></div>
     <div class="controls">
-  	   <%= link_to "Add field","#", :onclick => "resource_type_add_new_field(this)" %>
+  	   <%= link_to "Add field","#", :onclick => "resource_type_add_new_field(this)", :class=>"btn btn-inverse" %>
     </div>
   </div>
 
@@ -54,7 +54,7 @@
   
   
   <div class="actions controls">
-    <%= f1.submit %>
+    <%= f1.submit "Submit", :class=>"btn btn-primary" %>
   </div>
     
 <% end %>

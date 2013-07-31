@@ -1,4 +1,4 @@
-class CreateEventProperties < ActiveRecord::Migration
+class CreateNotifyObserverProperties < ActiveRecord::Migration
   def change
     create_table :notify_observer_properties do |t|
       t.string :name

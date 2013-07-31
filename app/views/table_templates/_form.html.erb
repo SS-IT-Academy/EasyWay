@@ -11,7 +11,7 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="boxforforms">
    <div class="control-group">
     <%= f.label :name, :class => "control-label" %>
     <div class="controls">
@@ -19,14 +19,12 @@
     </div>   
   </div>
   
-  
-  <div class="control-group">
-    <%= f.label :cell_body, :class => "control-label" %>
+    <!--<%= f.label :cell_body, :class => "control-label" %>-->
     <div class="controls">
-      <%= f.text_field :cell_body %>
+      <%= f.hidden_field :cell_body %>
     </div>
+  <div class="actions">
+    <%= f.submit :class => "btn btn-primary"%>
   </div>
-  <div class="actions controls">
-    <%= f.submit :class => "btn"%>
   </div>
 <% end %>

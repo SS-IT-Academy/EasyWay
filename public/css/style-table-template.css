@@ -21,6 +21,7 @@ td{
 }
 #table-header-hor-resources{
     width: 100%;
+    height: 100%;
 }
 #table-header-ver-resources{
     height: 100px;
@@ -28,11 +29,11 @@ td{
 	
 /**************************************VERTICAL HEADER**************************************/
 #table-header{
-	width: 220px;
-	height: 220px;
+	width: 110px;
+	height: 110px;
 	position: relative;
 	/*background-image: url(../images/table/line.svg);*/
-	z-index: 100;
+	z-index: 110;
 }
 #table-header-cell{
 	
@@ -78,6 +79,7 @@ td{
 	    top: 0px;
 	    right: 0px;
 	    line-height: 107px;
+	    margin-right: 1px;
 	    /*margin-left: auto;
 	    margin-right: auto;
 	    width: 100%;*/
@@ -90,7 +92,7 @@ td{
 	    -webkit-box-shadow: 0px -1px 0px 0px gray;
 		box-shadow: 0px -1px 0px 0px gray; 
 	}
-/**************************************REFERENCE VERTICAL HEADER**************************************/
+/**************************************ADD VERTICAL HEADER**************************************/
 .ver-triangle-box-add{
 	position: absolute;
 	bottom: 30px;
@@ -111,7 +113,7 @@ td{
 	bottom: 0;
 	z-index: 50;
 }
-/**************************************REFERENCE HORIZONTAL HEADER**************************************/
+/************************************** ADD HORIZONTAL HEADER **************************************/
 .hor-triangle-box-add{
 	position: absolute;
 	right: 0px;
@@ -132,4 +134,34 @@ td{
 	right: 2px;
 	bottom: 10px;
 	z-index: 100;	
-} 
+}
+/************************************** RESOURCES **************************************/
+#table-resources{
+	table-layout: fixed;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+.table-resource-parent{
+	border-top: 0;
+	border-bottom: 0;
+	border-left: 0;
+	border-right: 2px solid gray;
+}
+.table-resource-child{
+	border-top: 2px solid gray;
+	border-left: 0;
+	border-right: 2px solid gray;
+	border-bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+
+

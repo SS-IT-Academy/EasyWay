@@ -1,4 +1,3 @@
-<html class="form-horizontal">
 <%= stylesheet_link_tag "/css/style-table-template" %>
 <link href="/css/style-table-template" type="text/css" >
 
@@ -15,63 +14,37 @@
 	<% ver_headers = no_header %>	
 <% end %>
 
+<h3>Table template</h3>
+<table id="timetable">
+  <tr>
+    <td id="table-freecell" class="td"></td>
+      <td id="table-filter" class="td">
+        <%= link_to '*Add table filter', new_table_filter_path(:table_template => @table_template.id)%>	
+      </td>
+  </tr>
+  <tr>
+    <td id="table-header-cell">            		  			        			            		            								
+      <div id="table-header" class="header-triangle">
+	    <%= link_to '✚', new_table_header_path(:table_template_id => @table_template.id, :orientation => TableHeader::ORIENTATIONS[0]), :id => 'ref-hor'%>
+	    <%= link_to '✚', new_table_header_path(:table_template_id => @table_template.id, :orientation => TableHeader::ORIENTATIONS[1]), :id => 'ref-ver'%>
+      </div>							          
+    </td>
+    <td id="table-header-hor-resources" class="td"><%= render :partial=>"table_templates/values" %></td>
+  </tr>
+  <tr>
+    <td id="table-header-ver-resources" class="td"></td>
+    <td id="table-event" class="td"></td>
+  </tr>
+</table>
+<div class="boxforforms">
+  <%= render 'form' %>
+  <div class="actions">
+  <%= link_to 'Show', @table_template %> |
+  <%= link_to 'Back', table_templates_path %>
+  </div>	
+</div>
 <script>
 $(document).ready(function(){
 	resourceTypeHeaders($('#table-header'),{hor_headers:<%= hor_headers.to_s.html_safe %>, ver_headers:<%= ver_headers.to_s.html_safe %>});
 });	
 </script>
-
-<h1>Editing table template</h1>
-
-<table id="timetable">
-	<tr>
-    	<td id="table-freecell" class="td"></td>
-        <td id="table-filter" class="td">
-        	<%= link_to '*Add table filter', new_table_filter_path(:table_template => @table_template.id)%>	
-        </td>
-    </tr>
-    <tr>
-        <td id="table-header-cell">            		  			        			            		            								
-			<div id="table-header" class="header-triangle">
-				<%= link_to '✚', new_table_header_path(:table_template_id => @table_template.id, :orientation => TableHeader::ORIENTATIONS[0]), :id => 'ref-hor'%>
-				<%= link_to '✚', new_table_header_path(:table_template_id => @table_template.id, :orientation => TableHeader::ORIENTATIONS[1]), :id => 'ref-ver'%>
-			</div>							          
-        </td>
-        <td id="table-header-hor-resources" class="td"></td>
-	</tr>
-    <tr>
-    	<td id="table-header-ver-resources" class="td"></td>
-        <td id="table-event" class="td"></td>
-    </tr>
-</table>
-
-<%= render 'form' %>
-	<div class="control-group">  
-	<%= link_to 'Show', @table_template %> |
-	<%= link_to 'Back', table_templates_path %>
-	</div>		
-</html>
-
-<!--<%= stylesheet_link_tag "/css/style-table-template" %>
-<link href="/css/style-table-template" type="text/css" >
-    <div id="timetable">
-    	<div id="filter">
-    		
-    	</div>
-        <div id="resource_type">
-            <div id="resource_type-horizontal" class="resource_type-orientation">
-					
-            </div>
-            <div id="resource_type-vertical" class="resource_type-orientation">
-				
-            </div>
-        </div>
-
-        <div id="resource">
-
-        </div>
-        <div id="event">
-			
-        </div>
-    </div>-->
-

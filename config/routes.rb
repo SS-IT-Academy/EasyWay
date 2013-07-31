@@ -23,12 +23,9 @@ EasyW::Application.routes.draw do
   resources :field_types
 
   get "manage_menu/index"
-  
-  resources :table_templates
-  resources :table_headers
-  resources :table_cell_items
-  resources :table_filters
-  
+
+ 
+  root :to=>"home#index"  
   
   root :to  => "home#index"
   

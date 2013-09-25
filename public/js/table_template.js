@@ -2,8 +2,8 @@ function resourceTypeHeaders(resType, data){
 	var v = data.ver_headers.length > 0? data.ver_headers.length : 0;
 	var h = data.hor_headers.length > 0? data.hor_headers.length : 0;
 	
-	if((v == 1 && h == 1) && (v == 1 || h == 1)){
-		v = 120; 	
+	if((v == 1) || (h == 1)){
+		v = h = 120; 	
 	}
 	else if(v > h){
 		v = v * 110;

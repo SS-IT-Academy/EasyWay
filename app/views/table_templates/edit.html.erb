@@ -2,13 +2,13 @@
 <link href="/css/style-table-template" type="text/css" >
 
 <% no_header = [''] %>
-<% if !@horizontal_table_headers.blank? %>
+<% unless @horizontal_table_headers.blank? %>
 	<% hor_headers = @horizontal_table_headers.collect{|header| header.resource_type.name}	%>
 <% else %>
 	<% hor_headers = no_header %>	
 <% end %>
 
-<% if !@vertical_table_headers.blank? %>
+<% unless @vertical_table_headers.blank? %>
 	<% ver_headers = @vertical_table_headers.collect{|header| header.resource_type.name}%>
 <% else %>
 	<% ver_headers = no_header %>	
@@ -25,8 +25,8 @@
   <tr>
     <td id="table-header-cell">            		  			        			            		            								
       <div id="table-header" class="header-triangle">
-	    <%= link_to '✚', new_table_header_path(:table_template_id => @table_template.id, :orientation => TableHeader::ORIENTATIONS[0]), :id => 'ref-hor'%>
-	    <%= link_to '✚', new_table_header_path(:table_template_id => @table_template.id, :orientation => TableHeader::ORIENTATIONS[1]), :id => 'ref-ver'%>
+	    <%= link_to '✚', new_table_header_path(table_template_id: @table_template.id, orientation: TableHeader::ORIENTATIONS[0]), :id => 'ref-hor'%>
+	    <%= link_to '✚', new_table_header_path(table_template_id: @table_template.id, orientation: TableHeader::ORIENTATIONS[1]), :id => 'ref-ver'%>
       </div>							          
     </td>
     <td id="table-header-hor-resources" class="td"><%= render :partial=>"table_templates/values" %></td>
@@ -37,11 +37,10 @@
   </tr>
 </table>
 <div class="boxforforms">
-  
   <div class="actions">
-  <%= render 'form' %>
-  <%= link_to 'Show', @table_template %> |
-  <%= link_to 'Back', table_templates_path %>
+    <%= render 'form' %>
+    <%= link_to 'Show', @table_template %> |
+    <%= link_to 'Back', table_templates_path %>
   </div>	
 </div>
 <script>

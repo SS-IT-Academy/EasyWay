@@ -51,8 +51,8 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        if params[:Resources]
-          params[:Resources].each {|param|
+        if params[:resources]
+          params[:resources].each {|param|
             @resource = EventResource.new({:resource_id => param[:value], :event_id =>@event.id})
             @resource.save
           }
@@ -76,7 +76,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        params[:Resources].each {|param|
+        params[:resources].each {|param|
             if param[:id]
               @resource = EventResource.find(param[:id])
               @resource.update_attributes({:resource_id => param[:value], :event_id =>@event.id})

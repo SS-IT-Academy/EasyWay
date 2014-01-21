@@ -38,6 +38,7 @@ group :development, :test do
   gem "guard-rspec"
   gem 'rspec-rails'
   gem 'watchr'
+  gem 'shoulda-matchers'
   
 end
 

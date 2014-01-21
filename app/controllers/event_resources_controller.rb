@@ -59,7 +59,7 @@ class EventResourcesController < ApplicationController
     @event_resource = EventResource.find(params[:id])
 
     respond_to do |format|
-      if @event_resource.updremove_event_resourceate_attributes(params[:event_resource])
+      if @event_resource.update_attributes(params[:event_resource])
         format.html { redirect_to @event_resource, notice: 'Event resource was successfully updated.' }
         format.json { head :no_content }
       else

@@ -44,6 +44,7 @@ end
 gem 'thin' 
 gem 'nested_form'
 gem "railties"
+gem 'simplecov'
 
 
 # To use ActiveModel has_secure_password

@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe RolesControllerController do
+describe RolesController do
 
 end

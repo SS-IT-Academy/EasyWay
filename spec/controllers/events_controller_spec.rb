@@ -87,11 +87,32 @@ describe EventsController do
   end
 
   context "POST create" do
+
+    let(:valid_attributes) do 
+      { 
+        :name => "Event", 
+        :start_at => Time.now - 1.day, 
+        :end_at => Time.now + 1.day, 
+        :recurrence_id => 1,
+        :event_type_id => 1 
+      }
+    end
     
     it 'created new Event' do
-      expect{
-        post :create, event: attributes_for(:event)
-      }.to change(Event, :count).by(1)
+      event = create(:event)
+      resource_type = create(:resource_type)
+      resource1 = create(:resource)
+      resource2 = create(:resource)
+      res_list = Resource.all
+      event_resource_attr = {event_id: event.id, resource_id: res_list.first.id}
+      event_resource = EventResource.create(event_resource_attr)
+      resources_params = {resources: [{id: event_resource.id, value: res_list.first.id}, {value: res_list[1].id}]}
+      end_at = Time.now + 2.day
+      EventResource.count.should eq(1)
+      put :update, {id: event.id, event: valid_attributes.merge(end_at: end_at)}.merge(resources_params)
+      event.end_at = end_at
+      assigns(:event).should eq(event)  
+      EventResource.count.should eq(2) 
     end
 
     it "redirects to the new event" do
@@ -110,36 +131,6 @@ describe EventsController do
       response.should render_template :new
     end
 
-    # let(:valid_attributes) do 
-    #   { 
-    #     :name => "Event", 
-    #     :start_at => Time.now - 1.day, 
-    #     :end_at => Time.now + 1.day, 
-    #     :recurrence_id => 1,
-    #     :event_type_id => 1 
-    #   }
-
-    #   it "assigns the requested event as event" do
-      
-    #   event = create(:event)
-    #   resource_type = create(:resource_type)
-    #   resource1 = create(:resource)
-    #   resource2 = create(:resource)
-    #   res_list = Resource.all
-    #   #puts "res.all: #{Resource.all}"
-    #   event_resource_attr = {event_id: event.id, resource_id: res_list.first.id}
-    #   event_resource = EventResource.create(event_resource_attr)
-    #   resources_params = {resources: [{id: event_resource.id, value: res_list.first.id}, {value: res_list[1].id}]}
-    #   end_at = Time.now + 2.day
-    #   EventResource.count.should eq(1)
-    #   put :update, {id: event.id, event: valid_attributes.merge(end_at: end_at)}.merge(resources_params)
-    #   event.end_at = end_at
-    #   assigns(:event).should eq(event)  
-    #   EventResource.count.should eq(2)      
-
-    # end
-
-
   end
 
   describe "PUT update" do
@@ -157,7 +148,6 @@ describe EventsController do
     it "assigns the requested event as @event" do
       
       event = create(:event)
-      resource_type = create(:resource_type)
       resource1 = create(:resource)
       resource2 = create(:resource)
       res_list = Resource.all
@@ -169,8 +159,13 @@ describe EventsController do
       put :update, {id: event.id, event: valid_attributes.merge(end_at: end_at)}.merge(resources_params)
       event.end_at = end_at
       assigns(:event).should eq(event)  
-      EventResource.count.should eq(2)      
+      EventResource.count.should eq(2)  
 
+    end
+
+    it 'render events_edit_path when invalid_event' do
+      put :update, id: create(:event), event: attributes_for(:invalid_event)
+      response.should render_template :edit
     end
 
   end

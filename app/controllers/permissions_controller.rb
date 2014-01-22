@@ -1,6 +1,6 @@
 class PermissionsController < ApplicationController
-  # GET /menus
-  # GET /menus.json
+  # GET /permissions
+  # GET /permissions.json
   def index
     @permissions = Permission.all
     
@@ -10,8 +10,8 @@ class PermissionsController < ApplicationController
     end
   end
 
-  # GET /menus/1
-  # GET /menus/1.json
+  # GET /permissions/1
+  # GET /permissions/1.json
   def show
     @permission = Permission.find(params[:id])
 
@@ -21,30 +21,30 @@ class PermissionsController < ApplicationController
     end
   end
 
-  # GET /menus/new
-  # GET /menus/new.json
+  # GET /permissions/new
+  # GET /permissions/new.json
   def new
     @permission = Permission.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @menu }
+      format.json { render json: @permission }
     end
   end
 
-  # GET /menus/1/edit
+  # GET /permissions/1/edit
   def edit
     @permission = Permission.find(params[:id])
   end
 
-  # POST /menus
-  # POST /menus.json
+  # POST /permissions
+  # POST /permissions.json
   def create
     @permission = Permission.new(params[:permission])
 
     respond_to do |format|
       if @permission.save
-        format.html { redirect_to @permission, notice: 'Menu was successfully created.' }
+        format.html { redirect_to @permission, notice: 'Permission was successfully created.' }
         format.json { render json: @permission, status: :created, location: @permission }
       else
         format.html { render action: "new" }
@@ -53,14 +53,14 @@ class PermissionsController < ApplicationController
     end
   end
 
-  # PUT /menus/1
-  # PUT /menus/1.json
+  # PUT /permissions/1
+  # PUT /permissions/1.json
   def update
     @permission = Permission.find(params[:id])
 
     respond_to do |format|
       if @permission.update_attributes(params[:permission])
-        format.html { redirect_to @permission, notice: 'Menu was successfully updated.' }
+        format.html { redirect_to @permission, notice: 'Permission was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -69,8 +69,8 @@ class PermissionsController < ApplicationController
     end
   end
 
-  # DELETE /menus/1
-  # DELETE /menus/1.json
+  # DELETE /permissions/1
+  # DELETE /permissions/1.json
   def destroy
     @permission = Permission.find(params[:id])
     @permission.destroy

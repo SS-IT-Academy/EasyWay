@@ -5,7 +5,7 @@ FactoryGirl.define do
   end
 
   factory :invalid_role, parent: :role do
-    name ""
+    name nil
   end
 end
 

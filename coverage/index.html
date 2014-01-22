@@ -14,14 +14,14 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-01-22T19:04:33+02:00">2014-01-22T19:04:33+02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-01-22T19:42:53+02:00">2014-01-22T19:42:53+02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">71.72%</span></span>
+    (<span class="covered_percent"><span class="red">71.75%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -32,8 +32,8 @@
   <a name="AllFiles"></a>
   <div>
     <b>210</b> files in total.
-    <b>3536</b> relevant lines. 
-    <span class="green"><b>2536</b> lines covered</span> and
+    <b>3540</b> relevant lines. 
+    <span class="green"><b>2540</b> lines covered</span> and
     <span class="red"><b>1000</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -57,7 +57,7 @@
         <td>10</td>
         <td>10</td>
         <td>0</td>
-        <td>37.3</td>
+        <td>37.4</td>
       </tr>
       
       <tr>
@@ -1113,9 +1113,9 @@
       <tr>
         <td class="strong"><a href="#0ed4670e29180f94251fcdf15a871b1e3d05ab10" class="src_link" title="spec/controllers/permissions_controller_spec.rb">spec/controllers/permissions_controller_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>118</td>
-        <td>53</td>
-        <td>53</td>
+        <td>137</td>
+        <td>57</td>
+        <td>57</td>
         <td>0</td>
         <td>1.1</td>
       </tr>
@@ -2258,8 +2258,8 @@
           <code class="ruby">  def guest_menu</code>
         </li>
       
-        <li class="covered" data-hits="187" data-linenumber="14">
-          <span class="hits">187</span>
+        <li class="covered" data-hits="188" data-linenumber="14">
+          <span class="hits">188</span>
           
           <code class="ruby">    @Menu_items=Menu.order(&quot;ancestry desc&quot;)</code>
         </li>
@@ -11558,8 +11558,8 @@
           <code class="ruby">  def edit</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="37">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="37">
+          <span class="hits">3</span>
           
           <code class="ruby">    @permission = Permission.find(params[:id])</code>
         </li>
@@ -32507,8 +32507,8 @@
     <h3>spec/controllers/permissions_controller_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>53</b> relevant lines. 
-      <span class="green"><b>53</b> lines covered</span> and
+      <b>57</b> relevant lines. 
+      <span class="green"><b>57</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -32642,8 +32642,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="22">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="7" data-linenumber="22">
+          <span class="hits">7</span>
           
           <code class="ruby">	let(:permission) {create(:permission)}</code>
         </li>
@@ -32954,262 +32954,262 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="74">
+        <li class="covered" data-hits="1" data-linenumber="74">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">	end</code>
+          <code class="ruby">		it &#39;render edit page&#39; do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="75">
+        <li class="covered" data-hits="1" data-linenumber="75">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">      get :edit, id: permission</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="76">
           <span class="hits">1</span>
           
-          <code class="ruby">	context &#39;POST create&#39; do</code>
+          <code class="ruby">      expect(response).to render_template(:edit)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="77">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="78">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="78">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="79">
           
-          <code class="ruby">		it &#39;create new Permission&#39; do</code>
+          
+          <code class="ruby">	end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="79">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="80">
           
-          <code class="ruby">			expect{</code>
+          
+          <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="80">
+        <li class="covered" data-hits="1" data-linenumber="81">
           <span class="hits">1</span>
           
-          <code class="ruby">				post :create, permission: attributes_for(:permission)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="81">
-          
-          
-          <code class="ruby">			}.to change(Permission, :count).by(1)</code>
+          <code class="ruby">	context &#39;POST create&#39; do</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="82">
           
           
-          <code class="ruby">		end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="83">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="84">
+        <li class="covered" data-hits="1" data-linenumber="83">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">		# it &#39;does not create new Permission&#39; do</code>
+          <code class="ruby">		it &#39;create new Permission&#39; do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="85">
+        <li class="covered" data-hits="1" data-linenumber="84">
+          <span class="hits">1</span>
           
+          <code class="ruby">			expect{</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="85">
+          <span class="hits">1</span>
           
-          <code class="ruby">		# 	expect{</code>
+          <code class="ruby">				post :create, permission: attributes_for(:permission)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="86">
           
           
-          <code class="ruby">		# 		post :create, permission: attributes_for(:invalid_permission)</code>
+          <code class="ruby">			}.to change(Permission, :count).by(1)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="87">
           
           
-          <code class="ruby">		# 	}.to_not change(Permission, :count)</code>
+          <code class="ruby">		end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="88">
           
           
-          <code class="ruby">		# end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="89">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="90">
+        <li class="covered" data-hits="1" data-linenumber="89">
           <span class="hits">1</span>
           
           <code class="ruby">		it &quot;redirect to the new Permission&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="91">
+        <li class="covered" data-hits="1" data-linenumber="90">
           <span class="hits">1</span>
           
           <code class="ruby">      post :create, permission: attributes_for(:permission)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="92">
+        <li class="covered" data-hits="1" data-linenumber="91">
           <span class="hits">1</span>
           
           <code class="ruby">      response.should redirect_to Permission.last</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="93">
+        <li class="never" data-hits="" data-linenumber="92">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="94">
+        <li class="never" data-hits="" data-linenumber="93">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="95">
+        <li class="never" data-hits="" data-linenumber="94">
           
           
           <code class="ruby">    # it &quot;render new action page&quot; do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="96">
+        <li class="never" data-hits="" data-linenumber="95">
           
           
-          <code class="ruby">    #   post :create, permission: attributes_for(:invalid_permission)</code>
+          <code class="ruby">    #   post :create, permission: attributes_for(:permission, name: nil)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="97">
+        <li class="never" data-hits="" data-linenumber="96">
           
           
           <code class="ruby">    #   response.should render_template(:new)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="98">
+        <li class="never" data-hits="" data-linenumber="97">
           
           
           <code class="ruby">    # end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="99">
+        <li class="never" data-hits="" data-linenumber="98">
           
           
           <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="99">
+          
+          
+          <code class="ruby">	end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="100">
           
           
-          <code class="ruby">	end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="101">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="102">
+        <li class="covered" data-hits="1" data-linenumber="101">
           <span class="hits">1</span>
           
           <code class="ruby">	context &#39;PUT update&#39; do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="103">
+        <li class="never" data-hits="" data-linenumber="102">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="104">
+        <li class="covered" data-hits="1" data-linenumber="103">
           <span class="hits">1</span>
           
           <code class="ruby">		it &#39;permission equal permission&#39; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="105">
+        <li class="covered" data-hits="1" data-linenumber="104">
           <span class="hits">1</span>
           
           <code class="ruby">			put :update, id: permission, permission: attributes_for(:permission, name: 8)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="106">
+        <li class="covered" data-hits="1" data-linenumber="105">
           <span class="hits">1</span>
           
           <code class="ruby">			expect(assigns(:permission)).to eq(permission)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="107">
+        <li class="never" data-hits="" data-linenumber="106">
           
           
           <code class="ruby">		end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="108">
+        <li class="never" data-hits="" data-linenumber="107">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="109">
+        <li class="covered" data-hits="1" data-linenumber="108">
           <span class="hits">1</span>
           
           <code class="ruby">		it &quot;redirects to the updated permission&quot; do</code>
         </li>
       
+        <li class="covered" data-hits="1" data-linenumber="109">
+          <span class="hits">1</span>
+          
+          <code class="ruby">       put :update, id: create(:permission), permission: attributes_for(:permission, name: 7)</code>
+        </li>
+      
         <li class="covered" data-hits="1" data-linenumber="110">
           <span class="hits">1</span>
           
-          <code class="ruby">        put :update, id: create(:permission), permission: attributes_for(:permission, name: 7)</code>
+          <code class="ruby">       response.should redirect_to :permission</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="111">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="111">
           
-          <code class="ruby">        response.should redirect_to :permission</code>
+          
+          <code class="ruby">     end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="112">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="113">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">     # it &#39;render permissions_path when invalid permission&#39; do</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="114">
           
           
-          <code class="ruby">	end</code>
+          <code class="ruby">     #    put :update, id: permission, event_type: attributes_for(:permission, name: nil)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="115">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">     #    response.should render_template :edit</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="116">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">     #  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="117">
@@ -33219,6 +33219,120 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="118">
+          
+          
+          <code class="ruby">	end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="119">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="120">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	context &#39;DELETE destroy&#39; do</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="121">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="122">
+          
+          
+          <code class="ruby">		# it &#39;deletes permission&#39; do</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="123">
+          
+          
+          <code class="ruby">		# 	expect{</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="124">
+          
+          
+          <code class="ruby">		# 		delete :destroy, id: permission</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="125">
+          
+          
+          <code class="ruby">		# 	}.to change(Permission, :count).by(-1)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="126">
+          
+          
+          <code class="ruby">		# end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="127">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="128">
+          
+          
+          <code class="ruby">		# it &#39;redirects to permissions url&#39; do</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="129">
+          
+          
+          <code class="ruby">		# 	delete :destroy, id: permission</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="130">
+          
+          
+          <code class="ruby">		# 	response.should redirect_to permissions_url</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="131">
+          
+          
+          <code class="ruby">		# end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="132">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="133">
+          
+          
+          <code class="ruby">	end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="134">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="135">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="136">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="137">
           
           
           <code class="ruby">end</code>

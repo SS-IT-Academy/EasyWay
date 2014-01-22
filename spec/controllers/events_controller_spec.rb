@@ -160,19 +160,23 @@ describe EventsController do
 
   context "DELETE destroy" do
 
-      it "deletes event" do 
-        event = create(:event)
-        expect{
-          delete :destroy, id: event
-        }.to change(Event,:count).by(-1)
-      end
-
-      it "redirects to events_url" do
-        delete :destroy, id: create(:event)
-        response.should redirect_to events_url
-      end
-
+    it "deletes event" do 
+      event = create(:event)
+      expect{
+        delete :destroy, id: event
+      }.to change(Event,:count).by(-1)
     end
+
+    it "redirects to events_url" do
+      delete :destroy, id: create(:event)
+      response.should redirect_to events_url
+    end
+
+  end
+
+  context 'event based on' do
+   
+  end
 
 
 end

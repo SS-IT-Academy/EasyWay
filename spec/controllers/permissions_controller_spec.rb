@@ -71,6 +71,11 @@ describe PermissionsController do
 			expect(response).to render_template(:edit)
 		end
 
+		it 'render edit page' do
+      get :edit, id: permission
+      expect(response).to render_template(:edit)
+    end
+
 	end
 
 	context 'POST create' do
@@ -81,19 +86,13 @@ describe PermissionsController do
 			}.to change(Permission, :count).by(1)
 		end
 
-		# it 'does not create new Permission' do
-		# 	expect{
-		# 		post :create, permission: attributes_for(:invalid_permission)
-		# 	}.to_not change(Permission, :count)
-		# end
-
 		it "redirect to the new Permission" do
       post :create, permission: attributes_for(:permission)
       response.should redirect_to Permission.last
     end
 
     # it "render new action page" do
-    #   post :create, permission: attributes_for(:invalid_permission)
+    #   post :create, permission: attributes_for(:permission, name: nil)
     #   response.should render_template(:new)
     # end
 
@@ -107,9 +106,29 @@ describe PermissionsController do
 		end
 
 		it "redirects to the updated permission" do
-        put :update, id: create(:permission), permission: attributes_for(:permission, name: 7)
-        response.should redirect_to :permission
-      end
+       put :update, id: create(:permission), permission: attributes_for(:permission, name: 7)
+       response.should redirect_to :permission
+     end
+
+     # it 'render permissions_path when invalid permission' do
+     #    put :update, id: permission, event_type: attributes_for(:permission, name: nil)
+     #    response.should render_template :edit
+     #  end
+
+	end
+
+	context 'DELETE destroy' do
+
+		# it 'deletes permission' do
+		# 	expect{
+		# 		delete :destroy, id: permission
+		# 	}.to change(Permission, :count).by(-1)
+		# end
+
+		# it 'redirects to permissions url' do
+		# 	delete :destroy, id: permission
+		# 	response.should redirect_to permissions_url
+		# end
 
 	end
 

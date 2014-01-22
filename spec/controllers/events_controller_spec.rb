@@ -43,14 +43,10 @@ describe EventsController do
     end
 
     it 'event should be a new Event' do
-      event_type1 = create(:event_type)
-      event_type2 = create(:event_type)
       recurrence1 = create(:recurrence)
       recurrence2 = create(:recurrence)
       get :new, id: create(:event)
       expect(assigns(:event)).to be_a_new(Event)
-      expect(assigns(:event_types)).to eq([event_type1,event_type2])
-      expect(assigns(:recurrences)).to eq([recurrence1,recurrence2])
     end
 
     it 'expected response from new page' do
@@ -68,15 +64,9 @@ describe EventsController do
   context "GET edit" do
 
     it 'assigns event' do
-      event_type1 = create(:event_type)
-      event_type2 = create(:event_type)
-      recurrence1 = create(:recurrence)
-      recurrence2 = create(:recurrence)
       event = create(:event)
       get :edit, id: event
       expect(assigns(:event)).to eq(event)
-      expect(assigns(:event_types)).to eq([event_type1,event_type2])
-      expect(assigns(:recurrences)).to eq([recurrence1,recurrence2])
     end
 
     it 'render edit page' do
@@ -100,7 +90,6 @@ describe EventsController do
     
     it 'created new Event' do
       event = create(:event)
-      resource_type = create(:resource_type)
       resource1 = create(:resource)
       resource2 = create(:resource)
       res_list = Resource.all
@@ -108,11 +97,10 @@ describe EventsController do
       event_resource = EventResource.create(event_resource_attr)
       resources_params = {resources: [{id: event_resource.id, value: res_list.first.id}, {value: res_list[1].id}]}
       end_at = Time.now + 2.day
-      EventResource.count.should eq(1)
-      put :update, {id: event.id, event: valid_attributes.merge(end_at: end_at)}.merge(resources_params)
+      Event.count.should eq(1)
+      post :create, {id: event.id, event: valid_attributes.merge(end_at: end_at)}.merge(resources_params)
       event.end_at = end_at
-      assigns(:event).should eq(event)  
-      EventResource.count.should eq(2) 
+      Event.count.should eq(2) 
     end
 
     it "redirects to the new event" do

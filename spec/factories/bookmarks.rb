@@ -5,4 +5,9 @@ FactoryGirl.define do
     url "MyString"
     title "MyString"
   end
+
+  factory :invalid_bookmark, parent: :bookmark do
+    url ''
+    title ''
+  end
 end

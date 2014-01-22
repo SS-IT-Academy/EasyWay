@@ -53,7 +53,7 @@ class EventsController < ApplicationController
       if @event.save
         if params[:resources]
           params[:resources].each {|param|
-            @resource = EventResource.new({:resource_id => param[:value], :event_id =>@event.id})
+            @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
             @resource.save
           }
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -79,9 +79,9 @@ class EventsController < ApplicationController
         params[:resources].each {|param|
             if param[:id]
               @resource = EventResource.find(param[:id])
-              @resource.update_attributes({:resource_id => param[:value], :event_id =>@event.id})
+              @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})
             else
-              @resource = EventResource.new({:resource_id => param[:value], :event_id =>@event.id})
+              @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
               @resource.save
             end
           }

@@ -152,4 +152,20 @@ describe EventResourcesController do
 
   end
 
+  context 'remove_event_resource' do
+
+    # it 'delete event_resource' do
+    #   event_resource = create(:event_resource)
+    #   expect{
+    #     delete :remove_event_resource, id: event_resource
+    #   }.to change(Event,:count).by(-1)
+    # end
+
+    # it 'redirects to json' do
+    #   delete :remove_event_resource, id: create(:event_resource)
+    #   response.should render_template.to_json
+    # end
+
+  end
+
 end

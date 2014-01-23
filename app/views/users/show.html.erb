@@ -22,15 +22,14 @@
 
 <p>
   <b>Roleid:</b>
-      <td>
-  		<% @roles.each do |role| %>
-      <li>
-        <%= check_box_tag 'role_ids[]', role.id -%>
-        <%= h role.name -%>
-      </li>
-  		<% end %>
-	</td>
-
+    <td>
+      <% @roles.each do |role| %>
+        <li>
+          <%= check_box_tag 'role_ids[]', role.id -%>
+          <%= h role.name -%>
+        </li>
+      <% end %>
+    </td>
   <%= @user.roleid %>
 </p>
 

@@ -40,11 +40,14 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @role = Role.find(params[:id])
+    puts "@role #{@role.inspect}"
     @roles = Role.all
+    puts "@roles: #{@roles.inspect}"
     @roleid = params[:roles_id]
+    puts "@roleid = #{@roleid}"
     @user = User.find(params[:id])
     @user.roleid = @roleid
-    @user.save  
+    @user.save
     redirect_to :root
   end
 

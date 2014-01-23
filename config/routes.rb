@@ -100,8 +100,8 @@ EasyW::Application.routes.draw do
   match "/get_resource_types" => "ResourceTypes#all_types"
   match "/remove_resource_fields" => "ResourceValues#remove_values"
   match "/get_resources" => "Resources#some_records"
-  match "/get_recipients" => "Users#get_recipients"
-
+  #match "/get_recipients" => "Users#get_recipients"
+  get "get_recipients" => "users#get_recipients"
   
   match "/delete_menu_item" => "Menus#delete_menu_item"
   match "/render_menu" => "Menus#render_menu"

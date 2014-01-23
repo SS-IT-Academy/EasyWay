@@ -27,7 +27,7 @@ class MenusController < ApplicationController
     @bookmark= Bookmark.all
     @menu = Menu.new
     
-      @params = request.params
+    @params = request.params
       
     respond_to do |format|
       format.html # new.html.erb

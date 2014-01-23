@@ -5,8 +5,8 @@ describe Bookmark do
   context "checks attr_accessible" do
 
     it { should allow_mass_assignment_of(:title) }
-	it { should allow_mass_assignment_of(:url) }
-	it { should allow_mass_assignment_of(:description) }
+	  it { should allow_mass_assignment_of(:url) }
+	  it { should allow_mass_assignment_of(:description) }
 	
   end
 

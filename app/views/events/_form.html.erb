@@ -36,6 +36,12 @@
       <%= f.select :event_type_id, options_from_collection_for_select(@event_types, "id","name", @event.event_type_id),{ :include_blank => 'Select type'} %>
   	</div>
   </div>
+  <div class="control-group">
+    <%= f.label "Recurence by days_of_week", :class=>"control-label" %>
+    <div class="controls">
+      <%= f.select :recurrence_id, options_from_collection_for_select(@recurrences, "id","start_date", @event.recurrence_id),{ :include_blank => 'Select type'} %>
+    </div>  
+  </div>
   <div class="control-group datetime">
     <%= f.label :start_at, :class=>"control-label" %>
     <div class="controls">
@@ -69,12 +75,6 @@
     <div class="controls">
       <a href="#" class="btn btn-inverse" onclick="Add_resource_to_event()">Add resource</a>
     </div>	
-  </div>
-  <div class="control-group">
-   	<%= f.label "Recurence by days_of_week", :class=>"control-label" %>
-  	<div class="controls">
-      
-  	</div>  
   </div>
   <div class="actions controls">
     <%= f.submit %>

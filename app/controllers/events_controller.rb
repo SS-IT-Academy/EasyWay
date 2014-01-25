@@ -76,17 +76,17 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        params[:resources].each {|param|
-            if param[:id]
-              @resource = EventResource.find(param[:id])
-              @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})
-            else
-              @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
-              @resource.save
-            end
+        if params[:resources]
+          params[:resources].each {|param|
+            @resource = EventResource.find(param[:id])
+            @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})
           }
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
+          else
+            format.html { redirect_to @event }
+            format.json { render json: @event.errors, status: :unprocessable_entity }
+          end
       else
         format.html { render action: "edit" }
         format.json { render json: @event.errors, status: :unprocessable_entity }

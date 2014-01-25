@@ -141,13 +141,11 @@ describe EventsController do
       res_list = Resource.all
       event_resource_attr = {event_id: event.id, resource_id: res_list.first.id}
       event_resource = EventResource.create(event_resource_attr)
-      resources_params = {resources: [{id: event_resource.id, value: res_list.first.id}, {value: res_list[1].id}]}
+      resources_params = {resources: [{id: event_resource.id, value: res_list.first.id}, {id: event_resource.id, value: res_list[1].id}]}
       end_at = Time.now + 2.day
-      EventResource.count.should eq(1)
+      Event.count.should eq(1)
       put :update, {id: event.id, event: valid_attributes.merge(end_at: end_at)}.merge(resources_params)
-      event.end_at = end_at
-      assigns(:event).should eq(event)  
-      EventResource.count.should eq(2)  
+      expect(assigns(:event)).to eq(event)
 
     end
 

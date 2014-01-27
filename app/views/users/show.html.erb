@@ -22,15 +22,19 @@
 
 <p>
   <b>Roleid:</b>
-    <td>
-      <% @roles.each do |role| %>
-        <li>
-          <%= check_box_tag 'role_ids[]', role.id -%>
-          <%= h role.name -%>
-        </li>
-      <% end %>
-    </td>
   <%= @user.roleid %>
+
+  <% @roles.each do |role| %>
+    <li>
+      <% if role.id == @user.roleid %> 
+        <%= check_box_tag 'role_ids', role.id, checked = true -%>
+        <%= role.name -%>
+      <% else %>
+        <%= check_box_tag 'role_ids', role.id, checked = false, :disabled => true -%>
+        <%= role.name -%>
+      <% end %>
+    </li>
+  <% end %>
 </p>
 
 

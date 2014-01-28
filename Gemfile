@@ -45,6 +45,10 @@ gem 'simplecov'
 
 gem 'safe_attributes'
 
+gem 'recurring_select',   '~> 1.1.0'
+
+gem 'ice_cube'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

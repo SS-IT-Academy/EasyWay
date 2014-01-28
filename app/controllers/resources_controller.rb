@@ -3,19 +3,20 @@ class ResourcesController < ApplicationController
   # GET /resources.json
   def index
     @resources = Resource.all
-    @resource_types=ResourceType.all
+    @resource_types = ResourceType.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @resources }
     end
   end
+
   def some_records
     @resources = Resource.by_resource_type(params[:resource_type_id])
     render :json => @resources.to_json
   end
   
   def update_resources
-    if (params[:resource_type_id] == '') then
+    if params[:resource_type_id] == ''
       @resources = Resource.all
       render :partial => "resources_filter", :object => @resource
     else
@@ -29,11 +30,10 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
     @resource_type = ResourceType.find(@resource.resource_type_id)
     @values = ResourceValue.where("resource_id =?", params[:id])
-    @field_types=[]
+    @field_types = []
     @values.each do |value|
       @field_types << Field.find(value.field_id)
-    end
-     
+    end     
     
     respond_to do |format|
       format.html # show.html.erb
@@ -45,7 +45,7 @@ class ResourcesController < ApplicationController
   # GET /resources/new.json
   def new
     @resource = Resource.new
-    @resource_types=ResourceType.all
+    @resource_types = ResourceType.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -57,7 +57,7 @@ class ResourcesController < ApplicationController
   # GET /resources/1/edit
   def edit
     @resource = Resource.find(params[:id])
-    @resource_types=ResourceType.all
+    @resource_types = ResourceType.all
   end
 
   # POST /resources
@@ -68,10 +68,10 @@ class ResourcesController < ApplicationController
     respond_to do |format|
       if @resource.save
         if params[:fields]
-          params[:fields].each {|param|
+          params[:fields].each do |param|
             @fields = ResourceValue.new({:field_id => param[:field_id], :value => param[:value],:resource_reference_id => param[:resource_reference_id],:resource_id => @resource.id})
             @fields.save
-          }
+          end
         end
         format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
         format.json { render json: @resource, status: :created, location: @resource }
@@ -89,7 +89,7 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       if @resource.update_attributes(params[:resource])
-        params[:values].each {|param|
+        params[:values].each do |param|
           if param[:id]
             @value = ResourceValue.find(param[:id])
             @value.update_attributes(:value => param[:value], :field_id => param[:field_id],:resource_reference_id => param[:resource_reference_id], :resource_id => params[:id])
@@ -97,8 +97,7 @@ class ResourcesController < ApplicationController
             @value = ResourceValue.new(:value => param[:value], :field_id => param[:field_id],:resource_reference_id => param[:resource_reference_id], :resource_id => params[:id])
             @value.save
           end
-            
-        }
+        end
         format.html { redirect_to @resource, notice: 'Resource was successfully updated.' }
         format.json { head :no_content }
       else
@@ -128,12 +127,12 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
     @resource_type = ResourceType.find(@resource.resource_type_id).name;
     @values = @resource.resource_values
-    @field_names=[]
+    @field_names = []
     @values.each_with_index do |value,i|
       @field_names[i] = Field.find(value.field_id).name
     end
     respond_to do |format|
-      format.json  { render :json => { :resource => @resource,:resource_type =>@resource_type, :values => @values,:field_names => @field_names}}
+      format.json  { render :json => { :resource => @resource,:resource_type => @resource_type, :values => @values,:field_names => @field_names}}
     end
   end
 end

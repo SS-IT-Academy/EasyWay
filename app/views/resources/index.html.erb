@@ -21,7 +21,7 @@
   <tr>
   	<td><%= resource.id %></td>
     <td><%= resource.description %></td>
-    <td><%= resource.resource_type_id %></td>
+    <td><%= ResourceType.find(resource.resource_type_id).name %></td>
     <td><%= link_to 'Show', resource,:class=>"btn btn-info" %></td>
     <td><%= link_to 'Edit', edit_resource_path(resource),:class=>"btn btn-success" %></td>
     <td><%= link_to "Destroy", resource, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger"%>

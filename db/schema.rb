@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140128145337) do
+ActiveRecord::Schema.define(:version => 20140128195948) do
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -155,13 +155,11 @@ ActiveRecord::Schema.define(:version => 20140128145337) do
   end
 
   create_table "recurrences", :force => true do |t|
-    t.string   "days_of_week"
-    t.string   "days_of_month"
-    t.string   "days_of_year"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "repetition"
   end
 
   create_table "resource_types", :force => true do |t|

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 class NotifyObserverPropertiesController < ApplicationController
   # GET /notify_observer_properties
   # GET /notify_observer_properties.json

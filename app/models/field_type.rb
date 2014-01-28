@@ -1,7 +1,7 @@
 class FieldType < ActiveRecord::Base
   attr_accessible :name
   
-  belongs_to :fields
+  has_many :fields
   before_destroy :check_for_fields
   
   validates :name, :presence => true

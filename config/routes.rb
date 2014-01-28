@@ -25,41 +25,23 @@ EasyW::Application.routes.draw do
   get "manage_menu/index"
 
  
-  root :to=>"home#index"  
-  
-  root :to  => "home#index"
+  root :to => "home#index"
   
   resources :events
-
 
   resources :recurrences
 
-
-  resources :events
-
-
   resources :event_resources
-
 
   resources :event_types
 
   resources :menus
+
   resources :bookmarks
-  
-
-
 
   resources :permission_resources
 
   resources :notify_events
-
-  resources :menus
-
-  resources :menus
-
-  resources :resources
-
-  resources :menus
 
   resources :permissions
 
@@ -73,10 +55,6 @@ EasyW::Application.routes.draw do
 
   resources :notify_observers
 
-  resources :events
-  
-  resources :notify_events
-
   resources :notify_templates
 
   resources :roles
@@ -86,9 +64,6 @@ EasyW::Application.routes.draw do
 
   resources :resources, :has_many => :permission_roles
   resources :resource_types, :has_many => :permission_roles
-  resources :resource_values
-  resources :fields
-  resources :field_types
   match "/new_popup" => "Menus#new_popup"
 
   match "/update_fields" => "ResourceTypes#update_fields"

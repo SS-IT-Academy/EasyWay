@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @roles = Role.all
 
     respond_to do |format|
       format.html # show.html.erb
@@ -39,16 +40,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @role = Role.find(params[:id])
-    puts "@role #{@role.inspect}"
     @roles = Role.all
-    puts "@roles: #{@roles.inspect}"
-    @roleid = params[:roles_id]
-    puts "@roleid = #{@roleid}"
     @user = User.find(params[:id])
-    @user.roleid = @roleid
-    @user.save
-    redirect_to :root
   end
 
 
@@ -90,6 +83,9 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
+    @roleid = params[:roles_id]
+    @user.roleid = @roleid
+    @user.save
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, :notice => 'User was successfully updated.' }

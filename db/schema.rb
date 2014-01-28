@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130724151410) do
+ActiveRecord::Schema.define(:version => 20140128081852) do
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -53,6 +53,13 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "field_validations", :force => true do |t|
+    t.integer  "validator_id"
+    t.integer  "field_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "fields", :force => true do |t|
@@ -239,6 +246,14 @@ ActiveRecord::Schema.define(:version => 20130724151410) do
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.string   "authentication_token"
+  end
+
+  create_table "validators", :force => true do |t|
+    t.string   "name"
+    t.string   "body"
+    t.integer  "field_type_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end

@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
 
 
   def guest_menu
-    @Menu_items=Menu.order("ancestry desc")
+    @Menu_items = Menu.order("ancestry desc")
   end
 end

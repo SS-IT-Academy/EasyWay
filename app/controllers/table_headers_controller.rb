@@ -1,4 +1,5 @@
 class TableHeadersController < ApplicationController
+  
   def index
     @table_headers = TableHeader.all
 
@@ -7,6 +8,7 @@ class TableHeadersController < ApplicationController
       format.json { render json: @table_headers }
     end
   end
+  
   def show
     @table_header = TableHeader.find(params[:id])
     
@@ -15,6 +17,7 @@ class TableHeadersController < ApplicationController
       format.json { render json: @table_header }
     end
   end
+  
   def new
     @table_header = TableHeader.new    
     @table_header.orientation =  params[:orientation] if TableHeader::ORIENTATIONS.include?(params[:orientation])
@@ -33,16 +36,17 @@ class TableHeadersController < ApplicationController
       end
     end 
         
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @table_header }
     end
   end
+  
   def edit
     @table_header = TableHeader.find(params[:id])
     @resource_types = ResourceType.all
   end
+  
   def create
     @table_header = TableHeader.new(params[:table_header])
     respond_to do |format|
@@ -57,6 +61,7 @@ class TableHeadersController < ApplicationController
       end
     end
   end
+  
   def update
     @table_header = TableHeader.find(params[:id])
 
@@ -70,6 +75,7 @@ class TableHeadersController < ApplicationController
       end
     end
   end
+  
   def destroy
     @table_header = TableHeader.find(params[:id])
     @table_header.destroy
@@ -78,4 +84,5 @@ class TableHeadersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 end

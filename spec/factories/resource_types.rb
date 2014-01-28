@@ -1,7 +1,7 @@
-FactoryGirl.define do
+# FactoryGirl.define do
 
-  factory :resource_type do
-    name "Some name"
-  end
+#   factory :resource_type do
+#     name "Some name"
+#   end
 
-end
+# end

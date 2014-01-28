@@ -8,4 +8,3 @@ class TableCellItem < ActiveRecord::Base
   validates :resource_type_id, :presence => true
   validates :table_template_id, :presence => true
 end
-

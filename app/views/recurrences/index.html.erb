@@ -2,9 +2,7 @@
 
 <table>
   <tr>
-    <th>Days of week</th>
-    <th>Days of month</th>
-    <th>Days of year</th>
+    <th>Repetition</th>
     <th>Start date</th>
     <th>End date</th>
     <th></th>
@@ -14,9 +12,7 @@
 
 <% @recurrences.each do |recurrence| %>
   <tr>
-    <td><%= recurrence.days_of_week %></td>
-    <td><%= recurrence.days_of_month %></td>
-    <td><%= recurrence.days_of_year %></td>
+    <td><%= recurrence.repetition %></td>
     <td><%= recurrence.start_date %></td>
     <td><%= recurrence.end_date %></td>
     <td><%= link_to 'Show', recurrence %></td>

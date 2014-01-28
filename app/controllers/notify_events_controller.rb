@@ -45,8 +45,10 @@ class NotifyEventsController < ApplicationController
  
     mappings = params[:notify_event].delete(:mappings_attributes) || []
     success = false
+
 #raise mappings.inspect
     #raise recipients.inspect
+    # TODO: move to model and separeate to form layer
     ActiveRecord::Base.transaction do
       @notify_event = NotifyEvent.new(params[:notify_event])
       success = @notify_event.save
@@ -106,15 +108,19 @@ class NotifyEventsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+  #TODO: move to model
   def show_property_mapping_content
+      puts "*"*300
     template = NotifyTemplate.find(params[:notify_template_id].to_i)
-    puts "*"*300
-    parameters = template.body.scan(/\$\$\{([a-zA-Z]+)\}/).flatten
-    puts "template: #{template.inspect}"  
-    puts "parameters: #{parameters.inspect}"
+    parameters = template.body.scan(/\$\$\{([0-9a-zA-Z_-]+)\}/).flatten
+      puts "template: #{template.inspect}" 
+      puts "parameters: #{parameters.inspect}"
+    # observer_propertie = NotifyObserverProperty.find(params[:notify_observer_id].to_i)
     properties = NotifyObserverProperty.where("notify_observer_id=?",params[:notify_observer_id].to_i)
-    puts "property: #{properties.inspect}"  
+    # properties = NotifyObserverProperty.where("notify_observer_id=?",params[:notify_observer_id].to_i)
+      #puts "observer_propertie: #{observer_propertie.inspect}" 
+      puts "property: #{properties.inspect}"
     render :partial => "notify_event_property_mapping", :collection => parameters, :as => 'parameter', :locals => {:properties => properties}, :layout => false
+      puts "*"*300
   end 
 end

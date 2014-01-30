@@ -37,7 +37,7 @@
   	</div>
   </div>
   <div class="control-group">
-    <%= f.label "Recurence by days_of_week", :class=>"control-label" %>
+    <%= f.label "Recurence", :class=>"control-label" %>
     <div class="controls">
       <%= f.select :recurrence_id, options_from_collection_for_select(@recurrences, "id","start_date", @event.recurrence_id),{ :include_blank => 'Select type'} %>
     </div>  

@@ -117,10 +117,12 @@ class NotifyEventsController < ApplicationController
       puts "parameters: #{parameters.inspect}"
     # observer_propertie = NotifyObserverProperty.find(params[:notify_observer_id].to_i)
     properties = NotifyObserverProperty.where("notify_observer_id=?",params[:notify_observer_id].to_i)
+    properties_event = EventResource.where("event_id=?",params[:event_id].to_i)
     # properties = NotifyObserverProperty.where("notify_observer_id=?",params[:notify_observer_id].to_i)
       #puts "observer_propertie: #{observer_propertie.inspect}" 
       puts "property: #{properties.inspect}"
+      puts "properties_event: #{properties_event.inspect}"
     render :partial => "notify_event_property_mapping", :collection => parameters, :as => 'parameter', :locals => {:properties => properties}, :layout => false
       puts "*"*300
-  end 
+  end
 end

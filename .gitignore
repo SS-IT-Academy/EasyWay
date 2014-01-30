@@ -15,9 +15,9 @@ doc/
 .DS_Store
 .idea
 
-coverage
+/coverage
 
-*.sqlite3
+db/*.sqlite3
 
 
 

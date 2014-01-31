@@ -1,5 +1,5 @@
 class ResourceType < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :description
   
   has_many :fields, :dependent => :destroy
   has_many :resources, :dependent => :restrict 

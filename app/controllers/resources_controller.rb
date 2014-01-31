@@ -29,10 +29,14 @@ class ResourcesController < ApplicationController
   def show
     @resource = Resource.find(params[:id])
     @resource_type = ResourceType.find(@resource.resource_type_id)
-    @values = ResourceValue.where("resource_id =?", params[:id])
+    @values = ResourceValue.where("resource_id = ?", params[:id])
     @field_types = []
     @values.each do |value|
-      @field_types << Field.find(value.field_id)
+      if Field.find(value.field_id).field_type_id == 7
+        @field_types << ResourceType.find(Resource.find(value.resource_reference_id).resource_type_id)
+      else
+        @field_types << FieldType.find(Field.find(value.field_id).field_type_id)
+      end
     end     
     
     respond_to do |format|

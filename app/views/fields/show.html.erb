@@ -7,12 +7,12 @@
 
 <p>
   <b>Field type:</b>
-  <%= @field.field_type_id %>
+  <%= FieldType.find(@field.field_type_id).name %>
 </p>
 
 <p>
   <b>Resource type:</b>
-  <%= @field.resource_type_id %>
+  <%= ResourceType.find(@field.resource_type_id).name %>
 </p>
 
 

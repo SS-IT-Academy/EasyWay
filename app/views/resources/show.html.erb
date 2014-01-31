@@ -14,13 +14,53 @@
   <b>Resource type name:</b>
   <%= @resource_type.name %>
 </p>
-<% @field_types.each_with_index do |field_type, i| %>
-  <p><b><%= field_type.name %></b>
+<table cellspacing="2" border="1" cellpadding="5" align="center">
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Value</th>
+  </tr>  
 
-   <% if @values[i].value %><%= @values[i].value %><% end %>
-   <% if @values[i].resource_reference_id %><%= @values[i].resource_reference_id %><% end %>
-  </p>
+<% @field_types.each_with_index do |field_type, i| %>
+  <!-- <p><b><%= field_type %></b>
+  <%= @values[i].value if @values[i].value %>
+  <% if @values[i].resource_reference_id %>
+    <%= Resource.find(@values[i].resource_reference_id).description %>
+  <% end %> 
+  </p> -->
+  <tr>
+    <td><%= Field.find(@values[i].field_id).name %></td>
+    <td>
+      <% if field_type.is_a? ResourceType %>
+        <%= link_to field_type.name, Resource.find(@values[i].resource_reference_id) %>
+      <% else %>
+        <%= field_type.name %>
+      <% end %>
+    </td>
+    <td>      
+      <% if @values[i].resource_reference_id %>
+        <%= Resource.find(@values[i].resource_reference_id).description %>
+      <% else %>
+        <%= @values[i].value if @values[i].value %>
+      <% end %> 
+    </td>
+  </tr>
 <% end %>
+</table>
+<!-- <table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Value</th>
+  </tr>
+  <% @values.each do |value| %>
+  <tr>
+    <td><%= Resource.find(value.resource_id).description %></td>
+    <td><%= Field.find(value.field_id).name %></td>
+    <td><%= value.value %></td>
+  </tr>
+<% end %>
+</table> -->
 
 <%= link_to 'Edit', edit_resource_path(@resource) %> |
 <%= link_to 'Back', resources_path %>

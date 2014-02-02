@@ -34,9 +34,7 @@ describe Recurrence do
 
     it "should allow access to attr_accessible" do
       expect{
-        Recurrence.new(days_of_week: true)
-        Recurrence.new(days_of_month: true)
-        Recurrence.new(days_of_year: true)
+        Recurrence.new(repetition: true)
         Recurrence.new(end_date: true)
         Recurrence.new(start_date: true)
       }.to_not raise_error(ActiveModel::MassAssignmentSecurity::Error)

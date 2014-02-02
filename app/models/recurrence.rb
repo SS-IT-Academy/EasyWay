@@ -18,10 +18,10 @@ class Recurrence < ActiveRecord::Base
 	end
 
   def get_repetition
-    repetition = Schedule.new(self.start_date)
-    schedule = RecurringSelect.dirty_hash_to_rule(self.repetition)
-    repetition.add_recurrence_rule schedule.until(self.end_date)
-    repetition
+    schedule = Schedule.new(self.start_date)
+    rule = RecurringSelect.dirty_hash_to_rule(self.repetition)
+    schedule.add_recurrence_rule rule.until(self.end_date)
+    schedule
   end
 
 end

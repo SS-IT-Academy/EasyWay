@@ -28,6 +28,7 @@ class EventsController < ApplicationController
     @events = Event.all
     @event_types = EventType.all
     @recurrences = Recurrence.all
+    @event.recurrence = Recurrence.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @event }

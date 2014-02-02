@@ -17,7 +17,7 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= event.name %></td>
-        <td><%= event.event_type_id %></td>
+        <td><%= event.event_type.name %></td>
         <td><%= event.start_at %></td>
         <td><%= event.end_at %></td>
         <td><%= event.recurrence_id %></td>

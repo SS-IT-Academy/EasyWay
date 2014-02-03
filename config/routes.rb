@@ -1,5 +1,8 @@
 EasyW::Application.routes.draw do
 
+  
+
+
   #START TIMETABLE
   resources :table_headers
   
@@ -21,6 +24,8 @@ EasyW::Application.routes.draw do
   resources :fields
 
   resources :field_types
+
+  resources :validators
 
   get "manage_menu/index"
 

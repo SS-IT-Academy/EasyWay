@@ -1,7 +1,9 @@
 EasyW::Application.routes.draw do
 
   
-
+  devise_for :users
+  
+  resources :users
 
   #START TIMETABLE
   resources :table_headers
@@ -55,8 +57,6 @@ EasyW::Application.routes.draw do
   resources :permissions
 
   resources :notify_schedulers
-
-  resources :users
 
   resources :recipients
 

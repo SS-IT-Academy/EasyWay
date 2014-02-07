@@ -1,16 +1,47 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <strong>Name: </strong>
   <%= @resource_type.name %>
 </p>
 <div class="form-inline"><b>Fields</b></div>
-<% @resource_fields.each do |field| %>
+<% @resource_type.fields.each do |field| %>
    <div class="form-inline">
-   	<%= field.name%>
+    <%= field.name%>
    </div>
 <% end %>
 
+<h6>All available field names for making description:</h6>
+<p>
+  <%= @resource_type.all_field_names.inspect %>
+</p>
 
+<div class="boxforforms">
+<%= form_for @resource_type, :html => { :class => "form-horizontal" },
+    :url => { :action => :description }, :method => :post do |f| %>
+  <% if @resource_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@resource_type.errors.count, "error") %> prohibited this resource_type from being saved:</h2>
+
+      <ul>
+      <% @resource_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :description, :class=>"control-label" %>
+    <div class="controls">
+      <%= f.text_field :description %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit "Update description", :class => "btn btn-primary" %>
+  </div> 
+<% end %>
+</div>
+<br>
 <%= link_to 'Edit', edit_resource_type_path(@resource_type) %> |
 <%= link_to 'Back', resource_types_path %>

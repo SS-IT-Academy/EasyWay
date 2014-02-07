@@ -11,7 +11,7 @@ class Resource < ActiveRecord::Base
   scope :by_resource_type, lambda { |resource_type_id| where("resource_type_id = ?", resource_type_id) }
 
   def all_value_ids(value_ids=[])
-   value_ids.pop if value_ids.any?
+    value_ids.pop if value_ids.any?
     self.resource_values.each do |value|
       value_ids << value.id
       if value.resource_reference_id

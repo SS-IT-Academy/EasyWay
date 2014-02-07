@@ -77,6 +77,7 @@ class ResourcesController < ApplicationController
             @fields.save
           end
         end
+        @resource.eval_description
         format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
         format.json { render json: @resource, status: :created, location: @resource }
       else
@@ -102,6 +103,7 @@ class ResourcesController < ApplicationController
             @value.save
           end
         end
+        @resource.eval_description
         format.html { redirect_to @resource, notice: 'Resource was successfully updated.' }
         format.json { head :no_content }
       else

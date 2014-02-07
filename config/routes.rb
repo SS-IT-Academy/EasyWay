@@ -19,7 +19,11 @@ EasyW::Application.routes.draw do
 
   resources :resource_values
 
-  resources :resource_types
+  resources :resource_types do
+    member do
+      post 'description'
+    end
+  end
 
   resources :fields
 

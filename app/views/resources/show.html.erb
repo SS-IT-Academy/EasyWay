@@ -32,7 +32,8 @@
     <td><%= Field.find(@values[i].field_id).name %></td>
     <td>
       <% if field_type.is_a? ResourceType %>
-        <%= link_to field_type.name, Resource.find(@values[i].resource_reference_id) %>
+        <% resource = Resource.find(@values[i].resource_reference_id) %>
+        <%= link_to field_type.name, ResourceType.find(resource.resource_type_id) %>
       <% else %>
         <%= field_type.name %>
       <% end %>

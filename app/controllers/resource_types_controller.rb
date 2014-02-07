@@ -61,10 +61,14 @@ class ResourceTypesController < ApplicationController
     respond_to do |format|
       if @resource_type.save
         if params[:fields]
-          params[:fields].each {|param|
-            @fields = Field.new({:name => param[:name], :field_type_id => param[:field_type_id],:resource_type_id => @resource_type.id, :resource_type_reference_id =>param[:resource_type_reference_id]})
-            @fields.save
-          }
+          params[:fields].each do |param|
+            @fields = Field.create(
+              :name                       => param[:name], 
+              :field_type_id              => param[:field_type_id],
+              :resource_type_id           => @resource_type.id, 
+              :resource_type_reference_id => param[:resource_type_reference_id]
+            )
+          end
         end
         format.html { redirect_to @resource_type, notice: 'Resource type was successfully created.' }
         format.json { render json: @resource_type, status: :created, location: @resource_type }
@@ -75,6 +79,15 @@ class ResourceTypesController < ApplicationController
     end
   end
 
+  def description
+    @resource_type = ResourceType.find(params[:id])
+    if @resource_type.update_attributes(params[:resource_type])
+      redirect_to resource_types_url, notice: 'Description was successfully updated.'   
+    else
+      render 'show'
+    end 
+  end
+
   # PUT /resouresource_type_reference_idrce_types/1
   # PUT /resource_types/1.json
   def update
@@ -82,7 +95,7 @@ class ResourceTypesController < ApplicationController
     respond_to do |format|
       if @resource_type.update_attributes(params[:resource_type])
         if params[:fields]
-          params[:fields].each{|param|
+          params[:fields].each do |param|
             if param[:id]
               @field = Field.find(param[:id])
               @field.update_attributes({:name => param[:name], :field_type_id => param[:field_type_id],:resource_type_id => params[:id], :resource_type_reference_id => param[:resource_type_reference_id]})
@@ -90,7 +103,7 @@ class ResourceTypesController < ApplicationController
               @field = Field.new({:name => param[:name], :field_type_id => param[:field_type_id],:resource_type_id => params[:id]})
             end
             @field.save
-          }
+          end
         end  
         format.html { redirect_to @resource_type, notice: 'Resource type was successfully updated.' }
         format.json { head :no_content }

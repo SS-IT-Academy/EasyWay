@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.paginate(:page => params[:page], :per_page => 5)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,6 +28,7 @@ class EventsController < ApplicationController
     @events = Event.all
     @event_types = EventType.all
     @recurrences = Recurrence.all
+    @event.recurrence = Recurrence.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @event }

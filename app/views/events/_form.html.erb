@@ -2,9 +2,16 @@
   function enable_based_on(){
     if ($(events).attr('disabled'))
       $(events).removeAttr('disabled');
-	else
-	  $(events).attr('disabled','disabled');
-	}
+  else
+    $(events).attr('disabled','disabled');
+  }
+
+  function recurrences_func(){
+    if ($(recurrence_id).attr('disabled'))
+      $(recurrence_id).removeAttr('disabled');
+    else
+      $(recurrence_id).attr('disabled','disabled');
+    }
 </script>
 <%= form_for @event, :html =>{:class=>"form-horizontal"} do |f| %>
   <% if @event.errors.any? %>
@@ -19,12 +26,12 @@
   <% end %>
   <div class="control-group">
     <%= f.label "Events to based on", :class => "control-label" %>
-	<div class="controls">
-    	<input type="checkbox" onchange="enable_based_on()">
-    	<%= select_tag :events, options_from_collection_for_select(@events, "id","name"),html_options ={:include_blank => '', :onchange => "Create_event_with_pattern(this)", :disabled => true}%>
-  	</div>
+  <div class="controls">
+      <input type="checkbox" onchange="enable_based_on()">
+      <%= select_tag :events, options_from_collection_for_select(Event.all, "id","name"),html_options ={:include_blank => '', :onchange => "Create_event_with_pattern(this)", :disabled => true}%>
+    </div>
   </div>
-  <div class="control-group">	
+  <div class="control-group"> 
     <%= f.label :name, :class=>"control-label" %>
     <div class="controls">
       <%= f.text_field :name %>
@@ -32,14 +39,33 @@
   </div>
   <div class="control-group">
     <%= f.label :event_type_id, :class=>"control-label" %>
-	<div class="controls">
-      <%= f.select :event_type_id, options_from_collection_for_select(@event_types, "id","name", @event.event_type_id),{ :include_blank => 'Select type'} %>
-  	</div>
+  <div class="controls">
+      <%= f.select :event_type_id, options_from_collection_for_select(EventType.all, "id","name", @event.event_type_id),{ :include_blank => 'Select type'} %>
+    </div>
   </div>
-  <div class="control-group">
-    <%= f.label "Recurence by days_of_week", :class=>"control-label" %>
+  <div class="control-group" style="border: 1px solid #ccc">
+    <%= f.label "Recurence", :class=>"control-label" %>
     <div class="controls">
-      <%= f.select :recurrence_id, options_from_collection_for_select(@recurrences, "id","start_date", @event.recurrence_id),{ :include_blank => 'Select type'} %>
+      <%= f.fields_for :recurrence, @event.recurrence, html_options = :disabled => true do |recurrence_form| %>
+      <div class="control-group">
+        <%= recurrence_form.label :repetition, :class=>"control-label" %>
+        <div class="controls">
+          <%= recurrence_form.select_recurring :repetition %><br>
+        </div>
+      </div>
+      <div class="control-group datetime">
+        <%= recurrence_form.label :start_date, :class=>"control-label" %>
+        <div class="controls">
+          <%= recurrence_form.datetime_select :start_date %><br>
+        </div>
+      </div>
+      <div class="control-group datetime">
+        <%= recurrence_form.label :end_date, :class=>"control-label" %>
+        <div class="controls">
+          <%= recurrence_form.datetime_select :end_date %><br>
+        </div>
+      </div>
+    <% end %>
     </div>  
   </div>
   <div class="control-group datetime">
@@ -56,25 +82,25 @@
   </div>
   <div class="control-group">
     <%if !@event_resources.blank?%>
-	  <%@event_resources.each do |resource|%>
-		<div class='control-group'>
-		  <%= hidden_field_tag "Resources[][id]", resource.id%>
-		  <label class='control-label' name=Resources[][value]>Event Resource</label>
-		  <div class='controls'>
-			<%= select_tag "Resources[][value]", options_from_collection_for_select(@resources, "id", "description", resource.resource_id)%>
-		    <div>
-			  <%= link_to '#', :class => 'btn', :onclick => 'event_remove_resource(this)', :id => resource.id do%>
-			    Remove Field
-			  <% end%>
-		    </div>
-		  </div>
-		</div>
-	  <% end %>
+    <%@event_resources.each do |resource|%>
+    <div class='control-group'>
+      <%= hidden_field_tag "Resources[][id]", resource.id%>
+      <label class='control-label' name=Resources[][value]>Event Resource</label>
+      <div class='controls'>
+      <%= select_tag "Resources[][value]", options_from_collection_for_select(@resources.all, "id", "description", resource.resource_id)%>
+        <div>
+        <%= link_to '#', :class => 'btn', :onclick => 'event_remove_resource(this)', :id => resource.id do%>
+          Remove Field
+        <% end%>
+        </div>
+      </div>
+    </div>
     <% end %>
-    <div id="fieldsDiv" class="control-group"></div>	
+    <% end %>
+    <div id="fieldsDiv" class="control-group"></div>  
     <div class="controls">
       <a href="#" class="btn btn-inverse" onclick="Add_resource_to_event()">Add resource</a>
-    </div>	
+    </div>  
   </div>
   <div class="actions controls">
     <%= f.submit %>

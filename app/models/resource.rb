@@ -4,6 +4,7 @@ class Resource < ActiveRecord::Base
   belongs_to :resource_type
   has_many :resource_values, :dependent => :destroy
   has_many :event_resources
+  has_many :events, :through => :event_resources
   has_many :permission_roles, as: :permissionable
 
   act_as_permissionable_child ResourceType

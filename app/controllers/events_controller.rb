@@ -52,9 +52,10 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+   #     raise params[:resources].inspect
         if params[:resources]
-          params[:resources].each {|param|
-            @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
+          params[:resources].each {|id_|
+            @resource = EventResource.new({:resource_id => id_, :event_id => @event.id})
             @resource.save
           }
         format.html { redirect_to @event, notice: 'Event was successfully created.' }

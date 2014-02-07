@@ -18,6 +18,10 @@ doc/
 coverage
 
 
+db/*.sqlite3
+db/schema.rb
+config/routes.rb
+Gemfile
 
 
  

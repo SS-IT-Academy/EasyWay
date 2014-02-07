@@ -4,8 +4,7 @@
   <tr>
     <th>Username</th>
     <th>Email</th>
-    <th>Password hash</th>
-    <th>Password salt</th>
+    <th>Password</th>
     <th>Roleid</th>
     <th></th>
     <th></th>
@@ -16,8 +15,7 @@
   <tr>
     <td><%= user.username %></td>
     <td><%= user.email %></td>
-    <td><%= user.password_hash %></td>
-    <td><%= user.password_salt %></td>
+    <td><%= user.encrypted_password %></td>
     <td><%= user.roleid %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
@@ -28,4 +26,4 @@
 
 <br />
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New User', new_user_invitation_path %>

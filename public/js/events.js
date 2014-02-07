@@ -14,11 +14,11 @@ function Add_resource_to_event(){
 }
 
 function check_selected_resource(){
-  $('select[name="my_resources"] option').attr('disabled',false);
+  $('select[name="resources[]"] option').attr('disabled',false);
     
-    $('select[name="my_resources"]').each(function(){
+    $('select[name="resources[]"]').each(function(){
         var $this = $(this);
-        $('select[name="my_resources"]').not($this).find('option').each(function(){
+        $('select[name="resources[]"]').not($this).find('option').each(function(){
            if($(this).attr('value') == $this.val())
                $(this).attr('disabled',true);
         });
@@ -27,7 +27,7 @@ function check_selected_resource(){
 
 function parse_event_resources(data){
   data_html="<div class='control-group'><label class='control-label' name='Resources[][value]'>Event Resource</label>"+
-  "<div class='controls'><select name='my_resources' onchange='check_selected_resource()'>";
+  "<div class='controls'><select name='resources[]' onchange='check_selected_resource()'>";
   for(var i=0;i<data.length;i++){
     data_html+="<option value="+data[i].id+">"+data[i].description+"</option>";
   }

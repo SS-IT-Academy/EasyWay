@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>Username:</b>
   <%= @user.username %>
@@ -10,14 +8,10 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <b>Password hash:</b>
-  <%= @user.password_hash %>
-</p>
 
 <p>
-  <b>Password salt:</b>
-  <%= @user.password_salt %>
+  <b>Password:</b>
+  <%= @user.encrypted_password %>
 </p>
 
 <p>

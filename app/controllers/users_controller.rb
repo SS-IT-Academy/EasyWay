@@ -49,35 +49,35 @@ class UsersController < ApplicationController
   # POST /users.json
 
   def create
-    @user = User.new(params[:user])
-    @user.roleid = "4"
-    begin
+    # @user = User.new(params[:user])
+    # @user.roleid = "5"
+    # begin
 
-    if verify_recaptcha
-      if @user.valid?
-         @user.save
+    # if verify_recaptcha
+    #   if @user.valid?
+    #      @user.save
 
-        # UserMailer.welcome_email(@user).deliver
+    #     # UserMailer.welcome_email(@user).deliver
 
-        # format.html { redirect_to @user, :notice => 'User was successfully created.' }
-        # format.json { render :json => @user, :status => :created, :location => @user }
+    #     # format.html { redirect_to @user, :notice => 'User was successfully created.' }
+    #     # format.json { render :json => @user, :status => :created, :location => @user }
 
-         session[:user_id] = @user.id
-         flash[:notice] = 'Welcome.'
-         redirect_to :root
-      else
-        render :action => "new_user"
-      end
-    else
-      flash.delete(:recaptcha_error) # get rid of the recaptcha error being flashed by the gem.
-      flash.now[:error] = 'reCAPTCHA is incorrect. Please try again.'
-      render :action => "new_user"
-    end
-    rescue 
-      respond_to do |format|
-        format.html {redirect_to "/users/new", :notice => "reCAPTHA is incorrect"}
-      end
-    end
+    #      session[:user_id] = @user.id
+    #      flash[:notice] = 'Welcome.'
+    #      redirect_to :root
+    #   else
+    #     render :action => "new_user"
+    #   end
+    # else
+    #   flash.delete(:recaptcha_error) # get rid of the recaptcha error being flashed by the gem.
+    #   flash.now[:error] = 'reCAPTCHA is incorrect. Please try again.'
+    #   render :action => "new_user"
+    # end
+    # rescue 
+    #   respond_to do |format|
+    #     format.html {redirect_to "/users/new", :notice => "reCAPTHA is incorrect"}
+    #   end
+    # end
   end
   # PUT /users/1
   # PUT /users/1.json

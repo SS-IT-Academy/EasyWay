@@ -49,6 +49,10 @@ gem 'recurring_select',   '~> 1.1.0'
 
 gem 'ice_cube'
 
+gem 'devise'
+gem 'devise_invitable'
+gem 'strong_parameters'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

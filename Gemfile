@@ -49,6 +49,8 @@ gem 'recurring_select',   '~> 1.1.0'
 
 gem 'ice_cube'
 
+gem 'will_paginate', '~> 3.0.5'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

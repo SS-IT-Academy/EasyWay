@@ -46,23 +46,23 @@
   <div class="control-group" style="border: 1px solid #ccc">
     <%= f.label "Recurence", :class=>"control-label" %>
     <div class="controls">
-      <%= f.fields_for :recurrence, @event.recurrence, html_options = :disabled => true do |ff| %>
+      <%= f.fields_for :recurrence, @event.recurrence, html_options = :disabled => true do |recurrence_form| %>
       <div class="control-group">
-        <%= ff.label :repetition, :class=>"control-label" %>
+        <%= recurrence_form.label :repetition, :class=>"control-label" %>
         <div class="controls">
-          <%= ff.select_recurring :repetition %><br>
+          <%= recurrence_form.select_recurring :repetition %><br>
         </div>
       </div>
-      <div class="control-group">
-        <%= ff.label :start_date, :class=>"control-label" %>
+      <div class="control-group datetime">
+        <%= recurrence_form.label :start_date, :class=>"control-label" %>
         <div class="controls">
-          <%= ff.datetime_select :start_date %><br>
+          <%= recurrence_form.datetime_select :start_date %><br>
         </div>
       </div>
-      <div class="control-group">
-        <%= ff.label :end_date, :class=>"control-label" %>
+      <div class="control-group datetime">
+        <%= recurrence_form.label :end_date, :class=>"control-label" %>
         <div class="controls">
-          <%= ff.datetime_select :end_date %><br>
+          <%= recurrence_form.datetime_select :end_date %><br>
         </div>
       </div>
     <% end %>

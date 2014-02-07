@@ -14,7 +14,7 @@
   <div class="control-group">
     <%= f.label :description, :class=>"control-label"%>
     <div class="controls">
-       <%= f.text_field :description %>
+       <%= f.text_field :description, :disabled => true %>
     </div>
   </div>
   <% if !@resource.resource_values.blank? %>

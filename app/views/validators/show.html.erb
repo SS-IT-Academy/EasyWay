@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @validator.name %>
+</p>
+
+<p>
+  <b>Field type:</b>
+  <%= @validator.field_type_id %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @validator.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_validator_path(@validator) %> |
+<%= link_to 'Back', validators_path %>

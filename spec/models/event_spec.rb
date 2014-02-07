@@ -23,7 +23,8 @@ describe Event do
 		end
 
 		context "checks attr_accessible" do
-
+			
+			it { should allow_mass_assignment_of(:recurrence_attributes) }
 			it { should allow_mass_assignment_of(:name) }
 			it { should allow_mass_assignment_of(:end_at) }
 			it { should allow_mass_assignment_of(:start_at) }

@@ -15,11 +15,15 @@ doc/
 .DS_Store
 .idea
 
-/coverage
+/coverage/
 
-
+<<<<<<< HEAD
+=======
 db/*.sqlite3
 db/schema.rb
+>>>>>>> b752d7f7f817314ae6608391d6bfb658d1d0f51f
+
+
 config/routes.rb
 Gemfile
 

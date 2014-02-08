@@ -53,6 +53,14 @@ class EventsController < ApplicationController
     current_duration = params[:event][:duration].to_f
     @event.duration = @event.start_at + current_duration.hour
 
+    all_repetition = @event.recurrence.get_repetition
+    0.upto(all_repetition.length-1) { |i| @event.children.build(
+        name: @event.name,
+        event_type_id: @event.event_type_id,
+        start_at: all_repetition[i], 
+        duration: all_repetition[i] + current_duration.hour
+      )}
+
     respond_to do |format|
       if @event.save
    #     raise params[:resources].inspect

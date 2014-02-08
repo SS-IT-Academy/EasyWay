@@ -1,6 +1,9 @@
 class Event < ActiveRecord::Base
   attr_accessible :recurrence_attributes, :name, :event_type_id, :recurrence_id, :start_at, :duration
   
+  belongs_to :parent,	:class_name => "Event"
+  has_many 	 :children, :class_name => "Event", :foreign_key=> "parent_id"
+  
   has_many :event_resources, :dependent => :destroy
   has_many :resources, :through => :event_resources
   belongs_to :event_type

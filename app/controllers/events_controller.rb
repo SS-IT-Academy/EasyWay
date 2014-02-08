@@ -50,6 +50,9 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
 
+    current_duration = params[:event][:duration].to_f
+    @event.duration = @event.start_at + current_duration.hour
+
     respond_to do |format|
       if @event.save
    #     raise params[:resources].inspect

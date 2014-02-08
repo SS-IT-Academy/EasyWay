@@ -75,9 +75,17 @@
     </div>
   </div>
   <div class="control-group datetime">
-    <%= f.label :end_at, :class=>"control-label" %>
+    <%= f.label :duration, :class=>"control-label" %>
     <div class="controls">
-      <%= f.datetime_select :end_at %>
+      <%= f.select :duration, options_for_select([
+        ['15 minutes', '0.25'],
+        ['30 minutes', '0.5'],
+        ['45 minutes', '0.75'],
+        ['1 hour', '1'],
+        ['90 minutes', '1.5'],
+        ['2 hours', '2'],
+        ['3 hours', '3']
+      ]) %>
     </div>
   </div>
   <div class="control-group">

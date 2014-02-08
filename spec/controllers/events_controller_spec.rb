@@ -82,7 +82,7 @@ describe EventsController do
       { 
         :name => "Event", 
         :start_at => Time.now - 1.day, 
-        :end_at => Time.now + 1.day, 
+        :duration => Time.now + 1.day, 
         :recurrence_id => 1,
         :event_type_id => 1 
       }
@@ -96,10 +96,10 @@ describe EventsController do
       event_resource_attr = {event_id: event.id, resource_id: res_list.first.id}
       event_resource = EventResource.create(event_resource_attr)
       resources_params = {resources: [{id: event_resource.id, value: res_list.first.id}, {value: res_list[1].id}]}
-      end_at = Time.now + 2.day
+      duration = Time.now + 2.day
       Event.count.should eq(1)
-      post :create, {id: event.id, event: valid_attributes.merge(end_at: end_at)}.merge(resources_params)
-      event.end_at = end_at
+      post :create, {id: event.id, event: valid_attributes.merge(duration: duration)}.merge(resources_params)
+      event.duration = duration
       Event.count.should eq(2) 
     end
 
@@ -127,7 +127,7 @@ describe EventsController do
       { 
         :name => "Event", 
         :start_at => Time.now - 1.day, 
-        :end_at => Time.now + 1.day, 
+        :duration => Time.now + 1.day, 
         :recurrence_id => 1,
         :event_type_id => 1 
       }
@@ -142,9 +142,9 @@ describe EventsController do
       event_resource_attr = {event_id: event.id, resource_id: res_list.first.id}
       event_resource = EventResource.create(event_resource_attr)
       resources_params = {resources: [{id: event_resource.id, value: res_list.first.id}, {id: event_resource.id, value: res_list[1].id}]}
-      end_at = Time.now + 2.day
+      duration = Time.now + 2.day
       Event.count.should eq(1)
-      put :update, {id: event.id, event: valid_attributes.merge(end_at: end_at)}.merge(resources_params)
+      put :update, {id: event.id, event: valid_attributes.merge(duration: duration)}.merge(resources_params)
       expect(assigns(:event)).to eq(event)
 
     end

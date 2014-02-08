@@ -21,7 +21,7 @@ class Recurrence < ActiveRecord::Base
     schedule = Schedule.new(self.start_date)
     rule = RecurringSelect.dirty_hash_to_rule(self.repetition)
     schedule.add_recurrence_rule rule.until(self.end_date)
-    schedule
+    schedule.all_occurrences
   end
 
 end

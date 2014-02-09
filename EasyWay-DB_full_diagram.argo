@@ -1,0 +1,59 @@
+<argo version="6">
+  <documentation>
+    <authorname></authorname>
+    <authoremail></authoremail>
+    <version>0.34</version>
+    <description>
+      
+    </description>
+  </documentation>
+  <settings>
+    <notationlanguage>UML 1.4</notationlanguage>
+    <showboldnames>false</showboldnames>
+    <useguillemots>false</useguillemots>
+    <showassociationnames>true</showassociationnames>
+    <showvisibility>false</showvisibility>
+    <showmultiplicity>false</showmultiplicity>
+    <showinitialvalue>false</showinitialvalue>
+    <showproperties>false</showproperties>
+    <showtypes>true</showtypes>
+    <showstereotypes>false</showstereotypes>
+    <showsingularmultiplicities>true</showsingularmultiplicities>
+    <defaultshadowwidth>1</defaultshadowwidth>
+    <hidebidirectionalarrows>true</hidebidirectionalarrows>    
+    <fontname>Dialog</fontname>
+    <fontsize>12</fontsize>
+    <defaultstereotypeview>0</defaultstereotypeview>
+    <activediagram>DB Resourses</activediagram>
+  </settings>
+  <searchpath href="PROJECT_DIR" />
+  <members>
+    <member type="profile"
+            name="EasyWay-DB_full_diagram_profile.profile" />
+    <member type="xmi"
+            name="EasyWay-DB_full_diagram.xmi" />
+    <member type="pgml"
+            name="EasyWay-DB_full_diagram_ResourcesModel.pgml"
+            diagramclass="org.argouml.uml.diagram.static_structure.ui.UMLClassDiagram"
+            diagramname="Resources Model" />
+    <member type="pgml"
+            name="EasyWay-DB_full_diagram_UseCaseDiagram.pgml"
+            diagramclass="org.argouml.uml.diagram.use_case.ui.UMLUseCaseDiagram"
+            diagramname="Use Case Diagram" />
+    <member type="pgml"
+            name="EasyWay-DB_full_diagram_untitledModelactivity1.pgml"
+            diagramclass="org.argouml.uml.diagram.activity.ui.UMLActivityDiagram"
+            diagramname="untitledModel activity 1" />
+    <member type="pgml"
+            name="EasyWay-DB_full_diagram_DBResourses.pgml"
+            diagramclass="org.argouml.uml.diagram.static_structure.ui.UMLClassDiagram"
+            diagramname="DB Resourses" />
+    <member type="pgml"
+            name="EasyWay-DB_full_diagram_untitledModel_classes.pgml"
+            diagramclass="org.argouml.uml.diagram.static_structure.ui.UMLClassDiagram"
+            diagramname="untitledModel_classes" />
+    <member type="todo"
+            name="EasyWay-DB_full_diagram.todo" />
+  </members>
+  <historyfile name="" />
+</argo>

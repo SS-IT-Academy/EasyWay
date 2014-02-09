@@ -21,7 +21,7 @@
 
 
 
-  <% if !@resource_fields.blank? %>
+  <% unless @resource_fields.blank? %>
      <% @resource_fields.each do |field|%>
        <div class="control-group">
        <%= hidden_field_tag "fields[][id]", field.id%>
@@ -51,7 +51,12 @@
   	   <%= link_to "Add field","#", :onclick => "resource_type_add_new_field(this)", :class=>"btn btn-inverse" %>
     </div>
   </div>
-
+  <!-- <div class="control-group">
+    <%= f1.label :description, :class=>"control-label" %>
+    <div class="controls">
+      <%= f1.text_field :description %>
+    </div>
+  </div> -->
   
   
   

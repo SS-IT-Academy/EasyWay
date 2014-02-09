@@ -13,13 +13,28 @@ function Add_resource_to_event(){
   }); 	
 }
 
+function check_selected_resource(){
+  $('select[name="resources[]"] option').attr('disabled',false);
+    
+    $('select[name="resources[]"]').each(function(){
+        var $this = $(this);
+        $('select[name="resources[]"]').not($this).find('option').each(function(){
+           if($(this).attr('value') == $this.val())
+               $(this).attr('disabled',true);
+        });
+    });
+}
+
 function parse_event_resources(data){
-  data_html="<div class='control-group'><label class='control-label' name=Resources[][value]>Event Resource</label>"+
-  "<div class='controls'><select name='Resources[][value]'><option></option>";
+  data_html="<div class='control-group'><label class='control-label' name='Resources[][value]'>Event Resource</label>"+
+  "<div class='controls'><select name='resources[]' onchange='check_selected_resource()'> <option></option>";
   for(var i=0;i<data.length;i++){
     data_html+="<option value="+data[i].id+">"+data[i].description+"</option>";
   }
   data_html+="</select><div><a href='#' class='btn' onclick='resource_type_remove_field(this)'>Remove Field</a></div></div></div>";
+
+  
+
   return data_html
 }
 
@@ -55,7 +70,7 @@ function Create_event_with_pattern(obj){
       $('#event_name').attr('value', data.event.name);
       $('#event_event_type_id').val(data.event.event_type_id);
       $('#event_start_at').attr('value', data.event.start_at);
-      $('#event_end_at').attr('value', data.event.end_at);
+      $('#event_duration').attr('value', data.event.duration);
       $('#event_recurrence_id').val(data.event.recurrence_id);
       if (data.resources.length>0)
     	$.each(data.resources, function(){

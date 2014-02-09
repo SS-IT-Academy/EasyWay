@@ -7,7 +7,7 @@
 
 <p>
   <b>Event type:</b>
-  <%= @event.event_type_id %>
+  <%= @event.event_type.name %>
 </p>
 
 <p>
@@ -17,7 +17,7 @@
 
 <p>
   <b>End at:</b>
-  <%= @event.end_at %>
+  <%= @event.duration %>
 </p>
 
 <p>
@@ -25,6 +25,36 @@
   <%= @event.recurrence_id %>
 </p>
 
-
+<br>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+<br>
+
+<h3>All repetitions</h3>
+
+<div class="boxforforms" >
+
+  <table class="table table-striped">
+    <tr>
+      <td>Start at</td>
+      <td>End at</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>    
+    <% @events.each do |event| %>
+      <% if event.parent_id == @event.id %>
+        <tr>
+          <td><%= event.start_at %></td>
+          <td><%= event.duration %></td>
+          <td><%= link_to 'Show', event, :class=>"btn btn-info"%></td>
+          <td><%= link_to 'Edit', edit_event_path(event),:class=>"btn btn-success" %></td>
+          <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+
+</div>
+
+

@@ -1,3 +1,15 @@
 // Place all the styles related to the roles_controller controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.table_role_show  td, .table_role_show  th, .table_role_show  tr{
+	border: 1px solid #000000;
+	padding: 5px;
+}
+table {
+	margin-left:auto; 
+    margin-right:auto;
+}
+
+td, th, tr{
+	padding: 0 5px 0 5px;
+}

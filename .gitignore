@@ -27,6 +27,8 @@ db/schema.rb
 config/routes.rb
 Gemfile
 
+db/development.sqlite3
+
 
 
  

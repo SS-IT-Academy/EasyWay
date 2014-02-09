@@ -53,13 +53,15 @@ class EventsController < ApplicationController
     current_duration = params[:event][:duration].to_f
     @event.duration = @event.start_at + current_duration.hour
 
-    all_repetition = @event.recurrence.get_repetition
-    0.upto(all_repetition.length-1) { |i| @event.children.build(
-        name: @event.name,
-        event_type_id: @event.event_type_id,
-        start_at: all_repetition[i], 
-        duration: all_repetition[i] + current_duration.hour
-      )}
+    unless @event.recurrence.repetition.nil?
+      all_repetition = @event.recurrence.get_repetition
+      0.upto(all_repetition.length-1) { |i| @event.children.build(
+          name: @event.name,
+          event_type_id: @event.event_type_id,
+          start_at: all_repetition[i], 
+          duration: all_repetition[i] + current_duration.hour
+        )}
+    end
 
     respond_to do |format|
       if @event.save
@@ -86,6 +88,19 @@ class EventsController < ApplicationController
   # PUT /events/1.json
   def update
     @event = Event.find(params[:id])
+    current_duration = params[:event][:duration].to_f
+    #raise params[:event][:duration]
+    #raise params[:event][:duration].to_f.inspect
+    @event.duration = @event.duration + current_duration.hour
+    #raise @event.duration.inspect
+
+    # all_repetition = @event.recurrence.get_repetition
+    # 0.upto(all_repetition.length-1) { |i| @event.children.build(
+    #     name: @event.name,
+    #     event_type_id: @event.event_type_id,
+    #     start_at: all_repetition[i], 
+    #     duration: all_repetition[i] + current_duration.hour
+    #   )}
 
     respond_to do |format|
       if @event.update_attributes(params[:event])

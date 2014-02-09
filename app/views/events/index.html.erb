@@ -15,7 +15,7 @@
       <th></th>
     </tr>
     <%  @events.each do |event| %>
-    <% if event.parent_id == nil %>
+    <% if event.parent_id.nil? %>
       <tr>
         <td><%= event.name %></td>
         <td><%= event.event_type.name %></td>

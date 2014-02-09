@@ -57,4 +57,18 @@
 
 </div>
 
+<br>
+<h3>List of resources</h3>
 
+<div class="boxforforms">
+  <table border="1">
+    <tr>
+      <td>Description</td>
+    </tr>
+    <% @event.resources.each do |resource| %>
+      <tr>
+        <td><%= resource.description %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

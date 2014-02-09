@@ -24,7 +24,7 @@
 <div class="control-group">
 	<%= f.label :notify_template_id, :class=>"control-label" %>
 	<div class="controls">
-		<%= select_tag("notify_event[notify_template_id]", options_from_collection_for_select(NotifyTemplate.all, :id, :notify_template_name), :include_blank => true) %>
+		<%= select_tag("notify_event[notify_template_id]", options_from_collection_for_select(NotifyTemplate.all, :id, :notify_template_name), :include_blank => true, :onchange => 'updatePropertyMapping()') %>
 	</div>
 </div>
 <br>
@@ -52,14 +52,14 @@
 
 	<%= label_tag(:event, "Event", :class=>"control-label") %>
 	<div class="controls">
-		<%= radio_button_tag(:event, 'Event', false, {:onclick => "setRadioChecked('observer_Observer', false);setSelectEnabled('notify_event_event_id', true);setSelectEnabled('notify_event_notify_observer_id', false)" }) %>
+		<%= radio_button_tag(:event, 'Event', false, {:onclick => "setRadioChecked('observer_Observer', false);setSelectEnabled('notify_event_event_id', true);setSelectEnabled('notify_event_notify_observer_id', false);setReset('notify_event_notify_observer_id');updatePropertyMapping()" }) %>
 		<%= select_tag("notify_event[event_id]", options_from_collection_for_select(Event.all, :id, :name), :include_blank => true, :onchange => 'updatePropertyMapping()', :disabled => true ) %>
 	</div>
 </div>
 <div class="control-group">
 	<%= label_tag(:observer, "Observer", :class=>"control-label") %>
 	<div class="controls">
-		<%= radio_button_tag(:observer, "Observer", false, {:onclick => "setRadioChecked('event_Event', false);setSelectEnabled('notify_event_event_id', false);setSelectEnabled('notify_event_notify_observer_id', true)" }) %>
+		<%= radio_button_tag(:observer, "Observer", false, {:onclick => "setRadioChecked('event_Event', false);setSelectEnabled('notify_event_event_id', false);setSelectEnabled('notify_event_notify_observer_id', true);setReset('notify_event_event_id', false);updatePropertyMapping()" }) %>
 		<%= select_tag("notify_event[notify_observer_id]", options_from_collection_for_select(NotifyObserver.all, :id, :name), :include_blank => true, :onchange => 'updatePropertyMapping()', :disabled => true ) %>
 	</div>
 </div>

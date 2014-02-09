@@ -34,7 +34,12 @@ class NotifyEventsController < ApplicationController
 
   # GET /notify_events/1/edit
   def edit
+    puts "*******************************"
     @notify_event = NotifyEvent.find(params[:id])
+    @mapping = Mapping.where("notify_template_id=?", params[:notify_template_id])
+    puts @notify_event.inspect
+    puts @mapping.inspect
+    puts "*******************************"
   end
 
   # POST /notify_events
@@ -42,8 +47,14 @@ class NotifyEventsController < ApplicationController
   def create
     #raise params.inspect
     recipients = params[:notify_event].delete(:recipients_attributes) || []
- 
+    puts "*-"*30
     mappings = params[:notify_event].delete(:mappings_attributes) || []
+    puts params.inspect
+    puts "*-"*3
+    puts recipients.inspect
+    puts "*-"*3
+    puts mappings.inspect
+    puts "*-"*30
     success = false
 
 #raise mappings.inspect
@@ -108,21 +119,55 @@ class NotifyEventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
   #TODO: move to model
   def show_property_mapping_content
-      puts "*"*300
     template = NotifyTemplate.find(params[:notify_template_id].to_i)
     parameters = template.body.scan(/\$\$\{([0-9a-zA-Z_-]+)\}/).flatten
-      puts "template: #{template.inspect}" 
-      puts "parameters: #{parameters.inspect}"
-    # observer_propertie = NotifyObserverProperty.find(params[:notify_observer_id].to_i)
-    properties = NotifyObserverProperty.where("notify_observer_id=?",params[:notify_observer_id].to_i)
-    properties_event = EventResource.where("event_id=?",params[:event_id].to_i)
-    # properties = NotifyObserverProperty.where("notify_observer_id=?",params[:notify_observer_id].to_i)
-      #puts "observer_propertie: #{observer_propertie.inspect}" 
-      puts "property: #{properties.inspect}"
-      puts "properties_event: #{properties_event.inspect}"
-    render :partial => "notify_event_property_mapping", :collection => parameters, :as => 'parameter', :locals => {:properties => properties}, :layout => false
-      puts "*"*300
+    if params[:notify_observer_id] != ""
+      properties = NotifyObserverProperty.where("notify_observer_id=?",params[:notify_observer_id].to_i)
+      options = properties.collect{ |el| [el.name, el.id, {complex: false}] }
+    else
+      properties = Resource.select("resource_types.name")
+        .select("resources.id")
+        .select("resources.description")
+        .joins(:resource_type, :event_resources)
+        .where("event_id=?", params[:event_id].to_i)
+      options = properties.collect{ |el| [el.name, el.id, {complex: true}] }
+    end
+    # puts "*******************************show_property_mapping_content"
+    # puts params
+    # puts "*******************************show_property_mapping_content"
+    # options = properties.collect{ |el| [el.name, el.id, {complex: true}] } 
+    render :partial => "notify_event_property_mapping", :collection => parameters, :as => 'parameter', :locals => {:options => options}, :layout => false
   end
+
+  def show_property_by_resource_value
+    puts "******************************* show_property_by_resource_value"
+    # puts params[:id]
+    # blabla = Resource.find(1).id
+    params[:id] = ResourceValue.find(params[:id].to_i).resource_reference_id
+    # p blabla.inspect
+    # p bla.inspect
+    # params[:id] = Resource.find(1).id
+    show_property_by_resource
+    puts "******************************* show_property_by_resource_value"
+  end
+
+  def show_property_by_resource
+    # puts "******************************* show_property"
+    # puts params
+    properties = Resource.find(params[:id].to_i).resource_type
+      .fields_resource_values
+      .select("resource_values.id")      
+      .select("fields.name")
+      .select("resource_values.resource_reference_id")
+      .where("resource_id=?", params[:id].to_i)
+    options = properties.collect{ |el| [el.name, el.id, {complex: !el.resource_reference_id.nil?}] } 
+
+    render :partial => "property_by_resource_value", :locals => {:options => options}, :layout => false
+    # puts "******************************* show_property"
+  end
+
 end

@@ -15,7 +15,8 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
-    @events = Event.all
+    @child_events = Event.where(parent_id: @event.id)
+    @child_events = @child_events.paginate(:page => params[:page], :per_page => 5)
 
     respond_to do |format|
       format.html # show.html.erb

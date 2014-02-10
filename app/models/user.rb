@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :username, :password, :password_confirmation, :remember_me
   before_save :default_values
   
-  belongs_to :role
+  belongs_to :role, foreign_key: "roleid"
   has_many :Menus
 
 #   attr_accessible :email, :username, :password, :password_confirmation, :new_password, :new_password_confirmation, :remember_me
@@ -49,12 +49,12 @@ class User < ActiveRecord::Base
 #     nil
 #   end
 
-#   def initialize(attributes = {})
-#     super # must allow the active record to initialize!
-#     attributes.each do |name, value|
-#       send("#{name}=", value)
-#     end
-#   end
+  def initialize(attributes = {})
+    super # must allow the active record to initialize!
+    attributes.each do |name, value|
+      send("#{name}=", value)
+    end
+  end
 
 #   def encrypt_password
 #     if password.present?

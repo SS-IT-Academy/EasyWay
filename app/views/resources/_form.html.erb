@@ -1,5 +1,5 @@
 
-<%= form_for @resource, :html =>{:class=>"form-horizontal"} do |f| %>
+<%= form_for @resource, :html => { :class => "form-horizontal" } do |f| %>
   <% if @resource.errors.any? %>
     <div id="error_explanation", class="control-group">
       <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
@@ -11,6 +11,18 @@
       </ul>
     </div>
   <% end %>
+  <% if @fields.errors.any? %>
+    <div id="error_explanation", class="control-group">
+      <h2><%= pluralize(@fields.errors.count, "error") %> prohibited this resource from being saved:</h2>
+
+      <ul>
+      <% @fields.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 <!--   <div class="control-group">
     <%= f.label :description, :class=>"control-label"%>
     <div class="controls">
@@ -26,7 +38,7 @@
 	  </div>
   <% end %>
   <% if !@resource.resource_values.blank? %>
-  	<% @resource.resource_type.fields.each_with_index do |field,i|%>
+  	<% @resource.resource_type.fields.each_with_index do |field, i|%>
   	  <div class="control-group">
   	    <%= hidden_field_tag "values[][field_id]", field.id%>
   	    <%= label_tag "values[][value]",field.name, :class=>"control-label"%>

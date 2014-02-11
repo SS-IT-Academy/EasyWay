@@ -32,10 +32,10 @@ class ResourcesController < ApplicationController
     @values = ResourceValue.where("resource_id = ?", params[:id])
     @field_types = []
     @values.each do |value|
-      if Field.find(value.field_id).field_type_id == 7
-        @field_types << ResourceType.find(Resource.find(value.resource_reference_id).resource_type_id)
+      if value.field.resource_type_reference_id
+        @field_types << Resource.find(value.resource_reference_id).resource_type
       else
-        @field_types << FieldType.find(Field.find(value.field_id).field_type_id)
+        @field_types << value.field.field_type
       end
     end     
     
@@ -50,6 +50,7 @@ class ResourcesController < ApplicationController
   def new
     @resource = Resource.new
     @resource_types = ResourceType.all
+    @fields = ResourceValue.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -73,8 +74,15 @@ class ResourcesController < ApplicationController
       if @resource.save
         if params[:fields]
           params[:fields].each do |param|
-            @fields = ResourceValue.new({:field_id => param[:field_id], :value => param[:value],:resource_reference_id => param[:resource_reference_id],:resource_id => @resource.id})
-            @fields.save
+            @fields = ResourceValue.new(
+              :field_id              => param[:field_id], 
+              :value                 => param[:value],
+              :resource_reference_id => param[:resource_reference_id],
+              :resource_id           => @resource.id
+            )
+            unless @fields.save
+              format.html { render action: "new" }
+            end
           end
         end
         @resource.eval_description
@@ -97,10 +105,19 @@ class ResourcesController < ApplicationController
         params[:values].each do |param|
           if param[:id]
             @value = ResourceValue.find(param[:id])
-            @value.update_attributes(:value => param[:value], :field_id => param[:field_id],:resource_reference_id => param[:resource_reference_id], :resource_id => params[:id])
+            @value.update_attributes(
+              :value                 => param[:value], 
+              :field_id              => param[:field_id],
+              :resource_reference_id => param[:resource_reference_id], 
+              :resource_id           => params[:id]
+            )
           else
-            @value = ResourceValue.new(:value => param[:value], :field_id => param[:field_id],:resource_reference_id => param[:resource_reference_id], :resource_id => params[:id])
-            @value.save
+            @value = ResourceValue.create(
+              :value                 => param[:value], 
+              :field_id              => param[:field_id],
+              :resource_reference_id => param[:resource_reference_id], 
+              :resource_id           => params[:id]
+            )
           end
         end
         @resource.eval_description
@@ -129,16 +146,26 @@ class ResourcesController < ApplicationController
     @resources = Resource.all
     render :json => @resources.to_json
   end
+
   def resource_info
     @resource = Resource.find(params[:id])
     @resource_type = ResourceType.find(@resource.resource_type_id).name;
     @values = @resource.resource_values
     @field_names = []
+
     @values.each_with_index do |value,i|
       @field_names[i] = Field.find(value.field_id).name
     end
+
     respond_to do |format|
-      format.json  { render :json => { :resource => @resource,:resource_type => @resource_type, :values => @values,:field_names => @field_names}}
+      format.json {
+        render :json => {
+          :resource      => @resource,
+          :resource_type => @resource_type, 
+          :values        => @values,
+          :field_names   => @field_names
+        }
+      }
     end
   end
 end

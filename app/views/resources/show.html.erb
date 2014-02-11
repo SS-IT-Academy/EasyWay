@@ -22,12 +22,6 @@
   </tr>  
 
 <% @field_types.each_with_index do |field_type, i| %>
-  <!-- <p><b><%= field_type %></b>
-  <%= @values[i].value if @values[i].value %>
-  <% if @values[i].resource_reference_id %>
-    <%= Resource.find(@values[i].resource_reference_id).description %>
-  <% end %> 
-  </p> -->
   <tr>
     <td><%= Field.find(@values[i].field_id).name %></td>
     <td>
@@ -48,20 +42,6 @@
   </tr>
 <% end %>
 </table>
-<!-- <table>
-  <tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Value</th>
-  </tr>
-  <% @values.each do |value| %>
-  <tr>
-    <td><%= Resource.find(value.resource_id).description %></td>
-    <td><%= Field.find(value.field_id).name %></td>
-    <td><%= value.value %></td>
-  </tr>
-<% end %>
-</table> -->
 
 <%= link_to 'Edit', edit_resource_path(@resource) %> |
 <%= link_to 'Back', resources_path %>

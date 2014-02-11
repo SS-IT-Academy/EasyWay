@@ -4,4 +4,5 @@ class Validator < ActiveRecord::Base
   belongs_to :field_type
   has_many :field_validations
   has_many :fields, through: :field_validations
+  validates :name, :body, :message, :presence => true
 end

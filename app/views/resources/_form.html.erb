@@ -11,17 +11,6 @@
       </ul>
     </div>
   <% end %>
-  <% if @fields.errors.any? %>
-    <div id="error_explanation", class="control-group">
-      <h2><%= pluralize(@fields.errors.count, "error") %> prohibited this resource from being saved:</h2>
-
-      <ul>
-      <% @fields.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
 <!--   <div class="control-group">
     <%= f.label :description, :class=>"control-label"%>

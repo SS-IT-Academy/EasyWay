@@ -50,7 +50,7 @@ class ResourcesController < ApplicationController
   def new
     @resource = Resource.new
     @resource_types = ResourceType.all
-    @fields = ResourceValue.new
+    
 
     respond_to do |format|
       format.html # new.html.erb

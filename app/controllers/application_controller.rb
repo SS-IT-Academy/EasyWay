@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   before_filter :guest_menu
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
 
   # def current_user
   #   @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]

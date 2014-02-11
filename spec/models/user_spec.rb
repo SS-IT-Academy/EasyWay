@@ -23,5 +23,14 @@ describe User do
     expect(u).to have(1).errors_on(:password)
   end
 
+
+
+  context "checks association" do
+
+    it { should belong_to(:role) }
+    it { should have_many(:Menus) }
+
+  end  
+
 end
 

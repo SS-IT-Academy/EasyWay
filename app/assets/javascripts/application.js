@@ -18,3 +18,24 @@
 	function addRecipient() {
 		alert("Add Clicked")
 	}
+
+$(function(){
+	$("#permission_roles_content").on("change", "#roles_id", function(e){
+	  $.ajax({
+	    url: "/permission_roles",
+	    type: "GET",
+	    data: {"role_id" : $(this).val()},
+	    success: function(data) {
+	      $("#permission_roles_content").html(data);
+	    }
+	  }); 
+	});
+
+	$("#permission_roles_content").on("change", ".resource-type-row input", function(e){
+		var td = $(this).closest("td");
+		var tr = td.closest("tr");
+		var index = tr.indexOf(td);
+
+		tr.closest("tbody").find("td:eq("+index+")").find("input").prop("checked", true);
+	});
+});

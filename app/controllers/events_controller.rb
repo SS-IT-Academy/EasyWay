@@ -65,15 +65,20 @@ class EventsController < ApplicationController
           duration: all_repetition[i] + current_duration.hour
         )}
     end
-
+    
     respond_to do |format|
       if @event.save
-        #raise params[:resources][0][:value].inspect
+        #raise params[:resources].inspect
         if params[:resources]
           params[:resources].each {|param|
             #raise value[:value].inspect
             @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
             @resource.save
+            
+            @event.children.each do |child|
+              @resources = EventResource.new({:resource_id => param[:value], :event_id => child.id})
+              @resources.save
+            end
           }
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
@@ -103,16 +108,28 @@ class EventsController < ApplicationController
     #     start_at: all_repetition[i], 
     #     duration: all_repetition[i] + current_duration.hour
     #   )}
-
+    #raise params[:resources].inspect
     respond_to do |format|
       if @event.update_attributes(params[:event])
         params[:resources].each {|param|
           if param[:id]
             @resource = EventResource.find(param[:id])
             @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})
+
+            count = 1
+            @event.children.each do |child|
+              @resource = EventResource.find(param[:id].to_i + count)
+              @resource.update_attributes({:resource_id => param[:value], :event_id => child.id})
+              count += count
+            end
           else
             @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
             @resource.save
+
+            @event.children.each do |child|
+              @resources = EventResource.new({:resource_id => param[:value], :event_id => child.id})
+              @resources.save
+            end
           end
         }
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }

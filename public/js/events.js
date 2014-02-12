@@ -14,11 +14,11 @@ function Add_resource_to_event(){
 }
 
 function check_selected_resource(){
-  $('select[name="resources[]"] option').attr('disabled',false);
+  $('select[name="resources[][value]"] option').attr('disabled',false);
     
-    $('select[name="resources[]"]').each(function(){
+    $('select[name="resources[][value]"]').each(function(){
         var $this = $(this);
-        $('select[name="resources[]"]').not($this).find('option').each(function(){
+        $('select[name="resources[][value]"]').not($this).find('option').each(function(){
            if($(this).attr('value') == $this.val())
                $(this).attr('disabled',true);
         });
@@ -26,8 +26,8 @@ function check_selected_resource(){
 }
 
 function parse_event_resources(data){
-  data_html="<div class='control-group'><label class='control-label' name='Resources[][value]'>Event Resource</label>"+
-  "<div class='controls'><select name='resources[]' onchange='check_selected_resource()'> <option></option>";
+  data_html="<div class='control-group'><label class='control-label' name='resources[][value]'>Resource</label>"+
+  "<div class='controls'><select name='resources[][value]' onchange='check_selected_resource()'> <option></option>";
   for(var i=0;i<data.length;i++){
     data_html+="<option value="+data[i].id+">"+data[i].description+"</option>";
   }
@@ -39,7 +39,7 @@ function parse_event_resources(data){
 }
 
 function event_remove_resource(obj){
-  if (confirm("This delete, deletes event Resource.Realy delete?")){
+  if (confirm("Are you sure")){
     $.ajax({
       url: "/remove_event_resource",
       beforeSend: function ( xhr ) {
@@ -49,8 +49,8 @@ function event_remove_resource(obj){
       data: {"id" : $(obj).attr('id')},
       dataType: "json",
       success: function(data) {
-        alert("Success remove "+data.id+" resource");
-    	$(obj).parent().parent().parent().remove(); 
+        //alert("Success remove "+data.id+" resource");
+        $(obj).parent().parent().parent().remove(); 
       }
   	});
   }
@@ -75,9 +75,9 @@ function Create_event_with_pattern(obj){
       if (data.resources.length>0)
     	$.each(data.resources, function(){
     	  $('#fieldsDiv').html('<div class="control-group">'+
-    	  '<label class="control-label" name="Resources[][value]">Event Resource</label>'+
+    	  '<label class="control-label" name="resources[][value]">Event Resource</label>'+
     	  '<div class="controls">'+
-    	  '<select id="Resources_value" name="Resources[][value]"><option>'+this.description+'</option></select>'+
+    	  '<select id="resources_value" name="resources[][value]"><option>'+this.description+'</option></select>'+
     	  '<div><a href="#" class="btn" onclick="resource_type_remove_field(this)">Remove Field</a></div></div></div>');
     	});
       else $('#fieldsDiv').html('');

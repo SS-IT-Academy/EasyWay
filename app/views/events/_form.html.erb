@@ -92,10 +92,10 @@
     <%if !@event_resources.blank?%>
     <%@event_resources.each do |resource|%>
     <div class='control-group'>
-      <%= hidden_field_tag "Resources[][id]", resource.id%>
-      <label class='control-label' name=Resources[][value]>Event Resource</label>
+      <%= hidden_field_tag "resources[][id]", resource.id %>
+      <label class='control-label' name='resources[][value]'>Resource</label>
       <div class='controls'>
-      <%= select_tag "Resources[][value]", options_from_collection_for_select(@resources, "id", "description", resource.resource_id)%>
+      <%= select_tag "resources[][value]", options_from_collection_for_select(@resources, "id", "description", resource.resource_id), html_options = { :onchange => 'check_selected_resource()' }%>
         <div>
         <%= link_to '#', :class => 'btn', :onclick => 'event_remove_resource(this)', :id => resource.id do%>
           Remove Field

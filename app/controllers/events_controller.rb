@@ -68,9 +68,11 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        #raise params[:resources][0][:value].inspect
         if params[:resources]
-          params[:resources].each {|id|
-            @resource = EventResource.new({:resource_id => id, :event_id => @event.id})
+          params[:resources].each {|param|
+            #raise value[:value].inspect
+            @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
             @resource.save
           }
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -91,8 +93,8 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     
-    current_duration = params[:event][:duration].to_f
-    @event.duration = current_start_at + current_duration.hour
+    #current_duration = params[:event][:duration].to_f
+    #@event.duration = current_start_at + current_duration.hour
 
     # all_repetition = @event.recurrence.get_repetition
     # 0.upto(all_repetition.length-1) { |i| @event.children.build(
@@ -102,21 +104,20 @@ class EventsController < ApplicationController
     #     duration: all_repetition[i] + current_duration.hour
     #   )}
 
-
     respond_to do |format|
-       if @event.update_attributes(params[:event])
+      if @event.update_attributes(params[:event])
         params[:resources].each {|param|
-            if param[:id]
-              @resource = EventResource.find(param[:id])
-              @resource.update_attributes({:resource_id => param[:value], :event_id =>@event.id})
-            else
-              @resource = EventResource.new({:resource_id => param[:value], :event_id =>@event.id})
-              @resource.save
-            end
-          }
-         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-         format.json { head :no_content }
-       else
+          if param[:id]
+            @resource = EventResource.find(param[:id])
+            @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})
+          else
+            @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
+            @resource.save
+          end
+        }
+        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.json { head :no_content }
+      else
         format.html { render action: "edit" }
         format.json { render json: @resource.errors, status: :unprocessable_entity }
       end

@@ -101,11 +101,11 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     
-    current_duration = params[:event][:duration].to_f
-    #raise current_duration.inspect
-    @event.duration = @event.start_at + current_duration.hour
-    #raise @event.start_at.inspect
-    #raise @event.duration.inspect
+    days_duration = params[:days_duration].to_f
+    hours_duration = params[:hours_duration].to_f
+    minutes_duration = params[:minutes_duration].to_f
+    current_duration = days_duration.day + hours_duration.hour + minutes_duration.minutes
+    @event.duration = @event.start_at + current_duration
 
     # all_repetition = @event.recurrence.get_repetition
     # 0.upto(all_repetition.length-1) { |i| @event.children.build(

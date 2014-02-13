@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140208103116) do
+ActiveRecord::Schema.define(:version => 20140210184206) do
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20140208103116) do
     t.integer  "notify_template_id"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.string   "resource_id"
   end
 
   create_table "menus", :force => true do |t|

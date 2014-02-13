@@ -2,7 +2,8 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.paginate(:page => params[:page], :per_page => 5)
+    @parent_events = Event.where(parent_id: nil)
+    @parent_events = @parent_events.paginate(:page => params[:page], :per_page => 5)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +15,8 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
-    @events = Event.all
+    @child_events = Event.where(parent_id: @event.id)
+    @child_events = @child_events.paginate(:page => params[:page], :per_page => 5)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -51,8 +53,11 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
 
-    current_duration = params[:event][:duration].to_f
-    @event.duration = @event.start_at + current_duration.hour
+    days_duration = params[:days_duration].to_f
+    hours_duration = params[:hours_duration].to_f
+    minutes_duration = params[:minutes_duration].to_f
+    current_duration = days_duration.day + hours_duration.hour + minutes_duration.minutes
+    @event.duration = @event.start_at + current_duration
 
     unless @event.recurrence.repetition.nil?
       all_repetition = @event.recurrence.get_repetition
@@ -60,17 +65,23 @@ class EventsController < ApplicationController
           name: @event.name,
           event_type_id: @event.event_type_id,
           start_at: all_repetition[i], 
-          duration: all_repetition[i] + current_duration.hour
+          duration: all_repetition[i] + current_duration
         )}
     end
-
+    
     respond_to do |format|
       if @event.save
-   #     raise params[:resources].inspect
+        #raise params[:resources].inspect
         if params[:resources]
-          params[:resources].each {|id_|
-            @resource = EventResource.new({:resource_id => id_, :event_id => @event.id})
+          params[:resources].each {|param|
+            #raise value[:value].inspect
+            @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
             @resource.save
+
+            @event.children.each do |child|
+              @resources = EventResource.new({:resource_id => param[:value], :event_id => child.id})
+              @resources.save
+            end
           }
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
@@ -89,11 +100,12 @@ class EventsController < ApplicationController
   # PUT /events/1.json
   def update
     @event = Event.find(params[:id])
-    current_duration = params[:event][:duration].to_f
-    #raise params[:event][:duration]
-    #raise params[:event][:duration].to_f.inspect
-    @event.duration = @event.duration + current_duration.hour
-    #raise @event.duration.inspect
+    
+    days_duration = params[:days_duration].to_f
+    hours_duration = params[:hours_duration].to_f
+    minutes_duration = params[:minutes_duration].to_f
+    current_duration = days_duration.day + hours_duration.hour + minutes_duration.minutes
+    @event.duration = @event.start_at + current_duration
 
     # all_repetition = @event.recurrence.get_repetition
     # 0.upto(all_repetition.length-1) { |i| @event.children.build(
@@ -102,25 +114,39 @@ class EventsController < ApplicationController
     #     start_at: all_repetition[i], 
     #     duration: all_repetition[i] + current_duration.hour
     #   )}
-
+    #raise params[:resources].inspect
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        if params[:resources]
-          params[:resources].each {|param|
+        params[:resources].each {|param|
+          if param[:id]
             @resource = EventResource.find(param[:id])
             @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})
-          }
+
+            count = 1
+            @event.children.each do |child|
+              @resource = EventResource.find(param[:id].to_i + count)
+              @resource.update_attributes({:resource_id => param[:value], :event_id => child.id})
+              count += count
+            end
+          else
+            @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
+            @resource.save
+
+            @event.children.each do |child|
+              @resources = EventResource.new({:resource_id => param[:value], :event_id => child.id})
+              @resources.save
+            end
+          end
+        }
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
-          else
-            format.html { redirect_to @event }
-            format.json { render json: @event.errors, status: :unprocessable_entity }
-          end
       else
         format.html { render action: "edit" }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.json { render json: @resource.errors, status: :unprocessable_entity }
       end
     end
+
+
   end
 
   # DELETE /events/1

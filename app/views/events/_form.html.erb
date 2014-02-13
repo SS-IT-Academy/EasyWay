@@ -77,25 +77,57 @@
   <div class="control-group datetime">
     <%= f.label :duration, :class=>"control-label" %>
     <div class="controls">
-      <%= f.select :duration, options_for_select([
-        ['15 minutes', '0.25'],
-        ['30 minutes', '0.5'],
-        ['45 minutes', '0.75'],
-        ['1 hour', '1'],
-        ['90 minutes', '1.5'],
-        ['2 hours', '2'],
-        ['3 hours', '3']
+
+      <%= select_tag :days_duration, options_for_select([
+        ['', '0'],
+        ['1 day', '1'],
+        ['2 days', '2'],
+        ['3 days', '3'],
+        ['4 days', '4'],
+        ['5 days', '5'],
+        ['6 days', '6'],
+        ['7 days', '7']
       ]) %>
+
+      <%= select_tag :hours_duration, options_for_select([
+        ['', '0.0'],
+        ['1 hour', '1'],
+        ['2 hours', '2'],
+        ['3 hours', '3'],
+        ['4 hours', '4'],
+        ['5 hours', '5'],
+        ['6 hours', '6'],
+        ['7 hours', '7'],
+        ['8 hours', '8'],
+        ['9 hours', '9'],
+        ['10 hours', '10']
+      ]) %>
+
+      <%= select_tag :minutes_duration, options_for_select([
+        ['', '0.0'],
+        ['5 minutes', '5'],
+        ['10 minutes', '10'],
+        ['15 minutes', '15'],
+        ['20 minutes', '20'],
+        ['25 minutes', '25'],
+        ['30 minutes', '3'],
+        ['35 minutes', '35'],
+        ['40 minutes', '40'],
+        ['45 minutes', '45'],
+        ['50 minutes', '50'],
+        ['55 minutes', '55']
+      ]) %>
+
     </div>
   </div>
   <div class="control-group">
     <%if !@event_resources.blank?%>
     <%@event_resources.each do |resource|%>
     <div class='control-group'>
-      <%= hidden_field_tag "Resources[][id]", resource.id%>
-      <label class='control-label' name=Resources[][value]>Event Resource</label>
+      <%= hidden_field_tag "resources[][id]", resource.id %>
+      <label class='control-label' name='resources[][value]'>Resource</label>
       <div class='controls'>
-      <%= select_tag "Resources[][value]", options_from_collection_for_select(@resources, "id", "description", resource.resource_id)%>
+      <%= select_tag "resources[][value]", options_from_collection_for_select(@resources, "id", "description", resource.resource_id), html_options = { :onchange => 'check_selected_resource()' }%>
         <div>
         <%= link_to '#', :class => 'btn', :onclick => 'event_remove_resource(this)', :id => resource.id do%>
           Remove Field

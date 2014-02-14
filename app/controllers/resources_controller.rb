@@ -51,7 +51,6 @@ class ResourcesController < ApplicationController
     @resource = Resource.new
     @resource_types = ResourceType.all
     
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @resource }
@@ -69,9 +68,10 @@ class ResourcesController < ApplicationController
   # POST /resources.json
   def create
     @resource = Resource.new(params[:resource])
-
+    transaction_flag = true
     respond_to do |format|
-      if @resource.save
+      Resource.transaction do
+        @resource.save
         if params[:fields]
           params[:fields].each do |param|
             @fields = ResourceValue.new(
@@ -81,14 +81,19 @@ class ResourcesController < ApplicationController
               :resource_id           => @resource.id
             )
             unless @fields.save
-              format.html { render action: "new" }
+              transaction_flag = false
+              @resource.errors[:base] << @fields.errors[:base]
+              raise ActiveRecord::Rollback, "Value was not saved!"
             end
           end
         end
+      end  
+      if transaction_flag
         @resource.eval_description
         format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
         format.json { render json: @resource, status: :created, location: @resource }
       else
+        @resource_types = ResourceType.all
         format.html { render action: "new" }
         format.json { render json: @resource.errors, status: :unprocessable_entity }
       end
@@ -149,12 +154,12 @@ class ResourcesController < ApplicationController
 
   def resource_info
     @resource = Resource.find(params[:id])
-    @resource_type = ResourceType.find(@resource.resource_type_id).name;
+    @resource_type = @resource.resource_type.name;
     @values = @resource.resource_values
     @field_names = []
 
     @values.each_with_index do |value,i|
-      @field_names[i] = Field.find(value.field_id).name
+      @field_names[i] = value.field.name
     end
 
     respond_to do |format|

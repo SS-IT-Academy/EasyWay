@@ -106,14 +106,21 @@ class EventsController < ApplicationController
     minutes_duration = params[:minutes_duration].to_f
     current_duration = days_duration.day + hours_duration.hour + minutes_duration.minutes
     @event.duration = @event.start_at + current_duration
+    
+    @event.children.each do |child|
+      #EventResource.destroy_all(:event_id => child.id)
+      child.event_resources.destroy_all
+      child.destroy
+    end
 
-    # all_repetition = @event.recurrence.get_repetition
-    # 0.upto(all_repetition.length-1) { |i| @event.children.build(
-    #     name: @event.name,
-    #     event_type_id: @event.event_type_id,
-    #     start_at: all_repetition[i], 
-    #     duration: all_repetition[i] + current_duration.hour
-    #   )}
+    all_repetition = @event.recurrence.get_repetition
+    0.upto(all_repetition.length-1) { |i| @event.children.build(
+        name: @event.name,
+        event_type_id: @event.event_type_id,
+        start_at: all_repetition[i], 
+        duration: all_repetition[i] + current_duration.hour
+    )}
+    #raise @event.children.inspect
     #raise params[:resources].inspect
     respond_to do |format|
       if @event.update_attributes(params[:event])
@@ -121,13 +128,17 @@ class EventsController < ApplicationController
           if param[:id]
             @resource = EventResource.find(param[:id])
             @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})
-            
+
             @event.children.each do |child|
-              @resource = EventResource.where(param[:id].to_i)
-              @resource.each { |i|
-                i.update_attributes(:resource_id => param[:value])
-              }
-            end
+              @resources = EventResource.new({:resource_id => param[:value], :event_id => child.id})
+              @resources.save
+            end            
+            # @event.children.each do |child|
+            #   @resource = EventResource.where(param[:id].to_i)
+            #   @resource.each { |i|
+            #     i.update_attributes(:resource_id => param[:value])
+            #   }
+            # end
           else
             @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
             @resource.save
@@ -153,6 +164,9 @@ class EventsController < ApplicationController
   # DELETE /events/1.json
   def destroy
     @event = Event.find(params[:id])
+    @event.children.each do |child|
+      child.event_resources.destroy_all
+    end
     @event.destroy
 
     respond_to do |format|

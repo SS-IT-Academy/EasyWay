@@ -121,12 +121,12 @@ class EventsController < ApplicationController
           if param[:id]
             @resource = EventResource.find(param[:id])
             @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})
-
-            count = 1
+            
             @event.children.each do |child|
-              @resource = EventResource.find(param[:id].to_i + count)
-              @resource.update_attributes({:resource_id => param[:value], :event_id => child.id})
-              count += count
+              @resource = EventResource.where(param[:id].to_i)
+              @resource.each { |i|
+                i.update_attributes(:resource_id => param[:value])
+              }
             end
           else
             @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})

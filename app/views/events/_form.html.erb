@@ -103,23 +103,25 @@
     <input type="checkbox" name="repetition_checkbox">
     <br>
     <br>
-    <div class="controls recurrence_subform" style="display:none">
+    <div class=" recurrence_subform" style="display:none">
       <%= f.fields_for :recurrence, @event.recurrence do |recurrence_form| %>
-      <div class="control-group">
+      <div>
         <%= recurrence_form.label :repetition, :class=>"control-label" %>
-        <div class="controls">
+        <div>
           <%= recurrence_form.select_recurring :repetition %><br>
         </div>
       </div>
-      <div class="control-group datetime">
+      <br>
+      <div class="datetime">
         <%= recurrence_form.label :start_date, :class=>"control-label" %>
-        <div class="controls">
+        <div>
           <%= recurrence_form.datetime_select :start_date %><br>
         </div>
       </div>
-      <div class="control-group datetime">
+      <br>
+      <div class="datetime">
         <%= recurrence_form.label :end_date, :class=>"control-label" %>
-        <div class="controls">
+        <div>
           <%= recurrence_form.datetime_select :end_date %><br>
         </div>
       </div>

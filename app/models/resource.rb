@@ -41,4 +41,21 @@ class Resource < ActiveRecord::Base
     puts description
     self.update_attribute :description, description
   end
+
+  def self.resource_fields_with_values_by_resource(resource_id)
+    find(resource_id).resource_type
+      .fields_resource_values
+      .select("resource_values.id")      
+      .select("fields.name")
+      .select("resource_values.resource_reference_id")
+      .where("resource_id=?", resource_id)
+  end
+
+  def self.resources_by_event(event_id)
+    select("resource_types.name")
+        .select("resources.id")
+        .select("resources.description")
+        .joins(:resource_type, :event_resources)
+        .where("event_id=?", event_id)
+  end  
 end

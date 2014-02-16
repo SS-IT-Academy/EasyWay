@@ -1,4 +1,7 @@
 class Event < ActiveRecord::Base
+
+  before_update :destroy_children_event_and_children_event_resources
+
   attr_accessible :recurrence_attributes, :name, :event_type_id, :recurrence_id, :start_at, :duration
   
   belongs_to :parent,	:class_name => "Event"
@@ -12,5 +15,13 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :recurrence
   
   validates :name, :start_at, :duration, :event_type_id, :presence => true
+
+  private
+  	def destroy_children_event_and_children_event_resources
+  	  self.children.each do |child|
+  	  	child.event_resources.delete
+      	child.delete
+  	  end
+  	end
 
 end

@@ -29,8 +29,8 @@ class Recurrence < ActiveRecord::Base
 
   private
     def date_validation
-      if start_date  > end_date
-        errors.add(:start_date, "Start date can't be greater than end date")
+      if start_date  > end_date || start_date < Time.now
+        errors.add(:start_date, "can't be greater than end date or less than time is now")
       end
     end
 

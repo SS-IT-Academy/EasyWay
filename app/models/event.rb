@@ -15,6 +15,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :recurrence
   
   validates :name, :start_at, :duration, :event_type_id, :presence => true
+  validate :start_at_validation
 
   private
   	def destroy_children_event_and_children_event_resources
@@ -23,5 +24,11 @@ class Event < ActiveRecord::Base
       	child.delete
   	  end
   	end
+
+    def start_at_validation
+      if start_at < Time.now
+        errors.add(:start_at, "can't be less than time is now" )
+      end
+    end
 
 end

@@ -20,7 +20,7 @@
               <%= hidden_field_tag "permission_roles[#{num}][permissions_id]", @create_permission.id  %>
               <%= hidden_field_tag "permission_roles[#{num}][roles_id]", @current_role.id %>
               <%= check_box_tag "permission_roles[#{num}][permissionable_type]", resource_type.name, checked = @permission_roles.select{|pr| pr.permissionable_type == resource_type.name && pr.permissions_id == @create_permission.id && pr.roles_id == @current_role.id }.any? %>
-              Can create <%= resource_type.name %>
+              Can create? <%= resource_type.name %>
             <% end %>
           </td>
         </tr>

@@ -26,6 +26,7 @@ describe Role do
 
     it { should have_many(:users) }
     it { should have_many(:Menus) }
+    it { should have_many(:permission_roles) }
 
   end
 

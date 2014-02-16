@@ -10,6 +10,10 @@ class Role < ActiveRecord::Base
     name == 'admin'
   end
 
+  def beginer?
+    name == 'beginer'
+  end
+
   has_many :Menus
 
 end

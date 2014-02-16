@@ -53,28 +53,32 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
 
-    days_duration = params[:days_duration].to_f
-    hours_duration = params[:hours_duration].to_f
-    minutes_duration = params[:minutes_duration].to_f
+    days_duration = params[:days_duration].to_i
+    hours_duration = params[:hours_duration].to_i
+    minutes_duration = params[:minutes_duration].to_i
     current_duration = days_duration.day + hours_duration.hour + minutes_duration.minutes
     @event.duration = @event.start_at + current_duration
 
     unless @event.recurrence.repetition.nil?
       all_repetition = @event.recurrence.get_repetition
-      0.upto(all_repetition.length-1) { |i| @event.children.build(
+      0.upto(all_repetition.length-1) do |i| @event.children.build(
           name: @event.name,
           event_type_id: @event.event_type_id,
           start_at: all_repetition[i], 
           duration: all_repetition[i] + current_duration
-        )}
+        )
+        if i > 0
+          if @event.children[i-1].duration > @event.children[i].start_at
+            break
+          end
+        end  
+      end
     end
-    
+
     respond_to do |format|
       if @event.save
-        #raise params[:resources].inspect
         if params[:resources]
           params[:resources].each {|param|
-            #raise value[:value].inspect
             @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
             @resource.save
 
@@ -107,14 +111,30 @@ class EventsController < ApplicationController
     current_duration = days_duration.day + hours_duration.hour + minutes_duration.minutes
     @event.duration = @event.start_at + current_duration
 
-    # all_repetition = @event.recurrence.get_repetition
-    # 0.upto(all_repetition.length-1) { |i| @event.children.build(
-    #     name: @event.name,
-    #     event_type_id: @event.event_type_id,
-    #     start_at: all_repetition[i], 
-    #     duration: all_repetition[i] + current_duration.hour
-    #   )}
-    #raise params[:resources].inspect
+    @event.children.each do |child|
+      #EventResource.destroy_all(:event_id => child.id)
+      child.event_resources.destroy_all
+      child.destroy
+    end
+    
+    unless @event.recurrence_id.nil?
+      unless @event.recurrence.repetition.nil?
+        all_repetition = @event.recurrence.get_repetition
+        0.upto(all_repetition.length-1) do |i| @event.children.build(
+            name: @event.name,
+            event_type_id: @event.event_type_id,
+            start_at: all_repetition[i], 
+            duration: all_repetition[i] + current_duration.hour
+          )
+          if i > 0
+            if @event.children[i-1].duration > @event.children[i].start_at
+              break
+            end
+          end
+        end
+      end
+    end
+
     respond_to do |format|
       if @event.update_attributes(params[:event])
         params[:resources].each {|param|
@@ -122,11 +142,9 @@ class EventsController < ApplicationController
             @resource = EventResource.find(param[:id])
             @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})
 
-            count = 1
             @event.children.each do |child|
-              @resource = EventResource.find(param[:id].to_i + count)
-              @resource.update_attributes({:resource_id => param[:value], :event_id => child.id})
-              count += count
+              @resources = EventResource.new({:resource_id => param[:value], :event_id => child.id})
+              @resources.save
             end
           else
             @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
@@ -153,6 +171,9 @@ class EventsController < ApplicationController
   # DELETE /events/1.json
   def destroy
     @event = Event.find(params[:id])
+    @event.children.each do |child|
+      child.event_resources.destroy_all
+    end
     @event.destroy
 
     respond_to do |format|

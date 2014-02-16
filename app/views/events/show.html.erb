@@ -21,8 +21,8 @@
 </p>
 
 <p>
-  <b>Recurrence:</b>
-  <%= @event.recurrence_id %>
+  <b>Repetition:</b>
+  <%= @event.children.count %>
 </p>
 
 <br>
@@ -56,6 +56,8 @@
     <%= will_paginate @child_events %>
   </div>
 
+<% end %>
+
   <br>
   <h3>List of resources</h3>
 
@@ -71,4 +73,3 @@
       <% end %>
     </table>
   </div>
-<% end %>

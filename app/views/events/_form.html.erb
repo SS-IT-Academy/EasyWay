@@ -6,12 +6,15 @@
     $(events).attr('disabled','disabled');
   }
 
-  function recurrences_func(){
-    if ($(recurrence_id).attr('disabled'))
-      $(recurrence_id).removeAttr('disabled');
-    else
-      $(recurrence_id).attr('disabled','disabled');
-    }
+  $(document).ready(function(){
+    $("input[name='repetition_checkbox']").change(function(){
+      if(this.checked)
+        $('.recurrence_subform').fadeIn('slow');
+      else
+        $('.recurrence_subform').fadeOut('slow');
+      });
+  });
+    
 </script>
 <%= form_for @event, :html =>{:class=>"form-horizontal"} do |f| %>
   <% if @event.errors.any? %>
@@ -23,14 +26,14 @@
         <% end %>
       </ul>
     </div>
-  <% end %>
+  <% end %><!-- 
   <div class="control-group">
     <%= f.label "Events to based on", :class => "control-label" %>
-  <div class="controls">
+    <div class="controls">
       <input type="checkbox" onchange="enable_based_on()">
       <%= select_tag :events, options_from_collection_for_select(Event.all, "id","name"),html_options ={:include_blank => '', :onchange => "Create_event_with_pattern(this)", :disabled => true}%>
     </div>
-  </div>
+  </div> -->
   <div class="control-group"> 
     <%= f.label :name, :class=>"control-label" %>
     <div class="controls">
@@ -39,35 +42,10 @@
   </div>
   <div class="control-group">
     <%= f.label :event_type_id, :class=>"control-label" %>
-  <div class="controls">
+    <div class="controls">
       <%= f.select :event_type_id, options_from_collection_for_select(EventType.all, "id","name", @event.event_type_id),{ :include_blank => 'Select type'} %>
     </div>
-  </div>
-  <div class="control-group" style="border: 1px solid #ccc">
-    <%= f.label "Recurence", :class=>"control-label" %>
-    <div class="controls">
-      <%= f.fields_for :recurrence, @event.recurrence, html_options = :disabled => true do |recurrence_form| %>
-      <div class="control-group">
-        <%= recurrence_form.label :repetition, :class=>"control-label" %>
-        <div class="controls">
-          <%= recurrence_form.select_recurring :repetition %><br>
-        </div>
-      </div>
-      <div class="control-group datetime">
-        <%= recurrence_form.label :start_date, :class=>"control-label" %>
-        <div class="controls">
-          <%= recurrence_form.datetime_select :start_date %><br>
-        </div>
-      </div>
-      <div class="control-group datetime">
-        <%= recurrence_form.label :end_date, :class=>"control-label" %>
-        <div class="controls">
-          <%= recurrence_form.datetime_select :end_date %><br>
-        </div>
-      </div>
-    <% end %>
-    </div>  
-  </div>
+  </div>  
   <div class="control-group datetime">
     <%= f.label :start_at, :class=>"control-label" %>
     <div class="controls">
@@ -119,6 +97,36 @@
       ]) %>
 
     </div>
+  </div>
+  <div class="control-group" >
+    <%= f.label "Recurence", :class=>"control-label" %>
+    <input type="checkbox" name="repetition_checkbox">
+    <br>
+    <br>
+    <div class=" recurrence_subform" style="display:none">
+      <%= f.fields_for :recurrence, @event.recurrence do |recurrence_form| %>
+      <div>
+        <%= recurrence_form.label :repetition, :class=>"control-label" %>
+        <div>
+          <%= recurrence_form.select_recurring :repetition %><br>
+        </div>
+      </div>
+      <br>
+      <div class="datetime">
+        <%= recurrence_form.label :start_date, :class=>"control-label" %>
+        <div>
+          <%= recurrence_form.datetime_select :start_date %><br>
+        </div>
+      </div>
+      <br>
+      <div class="datetime">
+        <%= recurrence_form.label :end_date, :class=>"control-label" %>
+        <div>
+          <%= recurrence_form.datetime_select :end_date %><br>
+        </div>
+      </div>
+    <% end %>
+    </div>  
   </div>
   <div class="control-group">
     <%if !@event_resources.blank?%>

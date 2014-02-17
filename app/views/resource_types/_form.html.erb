@@ -36,12 +36,20 @@
               <div id="Create">         
               <!-- reference_type_id -->
               	<%= select_tag "fields[][resource_type_reference_id]", options_from_collection_for_select(@resource_types, "id", "name", field.resource_type_reference_id), :id => field.id %>
+                <%= options_from_collection_for_select(@resource_types, "id", "name", field.resource_type_reference_id).inspect %>
               </div>
           <% end %>
           <div class="controls-label">
        	  	<a href='#' class='btn btn-danger' onclick='resource_type_edit_remove_field(this)'>Remove Field</a>
        	  </div> 
        </div>
+          <%= hidden_field_tag "fields[][validator_ids][]", nil %>
+          <% Validator.all.each do |validator| %>
+            <div>
+            <%= check_box_tag :validator_ids, validator.id, field.validators.include?(validator), :name => 'fields[][validator_ids][]' %>
+            <%= validator.name %>
+          </div>
+          <% end %>
        </div>
      <%end%>
   <% end %>
@@ -52,17 +60,11 @@
   	   <%= link_to "Add field","#", :onclick => "resource_type_add_new_field(this)", :class=>"btn btn-inverse" %>
     </div>
   </div>
-  <!-- <div class="control-group">
-    <%= f1.label :description, :class=>"control-label" %>
-    <div class="controls">
-      <%= f1.text_field :description %>
-    </div>
-  </div> -->
-  
+    
   
   
   <div class="actions">
-    <%= f1.submit :class=>"btn btn-primary" %>
+    <%= submit_tag %>
   </div>
     
 <% end %>

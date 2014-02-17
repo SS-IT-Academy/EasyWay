@@ -68,6 +68,7 @@ class ResourcesController < ApplicationController
   # POST /resources.json
   def create
     @resource = Resource.new(params[:resource])
+    puts "\n\n#{params[:fields].inspect}\n\n"
     transaction_flag = true
     respond_to do |format|
       Resource.transaction do

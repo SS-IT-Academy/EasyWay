@@ -1,4 +1,4 @@
-<%= form_for(@validator) do |f| %>
+<%= form_for @validator, :html => { :class => "form-horizontal" } do |f| %>
   <% if @validator.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@validator.errors.count, "error") %> prohibited this validator from being saved:</h2>

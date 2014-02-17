@@ -92,6 +92,7 @@ class ResourceTypesController < ApplicationController
   # PUT /resource_types/1.json
   def update
     @resource_type = ResourceType.find(params[:id])
+      
     respond_to do |format|
       if @resource_type.update_attributes(params[:resource_type])
         if params[:fields]

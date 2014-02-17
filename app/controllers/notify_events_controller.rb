@@ -180,7 +180,7 @@ class NotifyEventsController < ApplicationController
       properties = NotifyObserverProperty.where("notify_observer_id=?",params[:notify_observer_id].to_i)
       options = properties.collect{ |el| [el.name, el.id, {complex: false}] }
       # ap properties.inspect
-      # ap options.inspect
+      ap options.inspect
     else
       properties = Resource.resources_by_event(params[:event_id].to_i)
       options = options_for_parameters_mapping(properties){true}

@@ -64,6 +64,7 @@ class EventsController < ApplicationController
     current_duration = days_duration.day + hours_duration.hour + minutes_duration.minutes
     @event.duration = @event.start_at + current_duration
 
+    validator = 0
     unless @event.recurrence.repetition.nil?
       all_repetition = @event.recurrence.get_repetition
       0.upto(all_repetition.length-1) do |i| @event.children.build(
@@ -73,11 +74,12 @@ class EventsController < ApplicationController
           duration: all_repetition[i] + current_duration
         )
         if i > 0
-          if @event.children[i-1].duration > @event.children[i].start_at
+          if validator > all_repetition[i]
             @event.children.destroy_all
             break
           end
-        end  
+        end
+        validator = all_repetition[i] + current_duration  
       end
     end
 
@@ -125,6 +127,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.update_attributes(params[:event])
 
+        validator = 0
         unless @event.recurrence_id.nil?
           unless @event.recurrence.repetition.nil?
             all_repetition = @event.recurrence.get_repetition
@@ -134,12 +137,13 @@ class EventsController < ApplicationController
                 start_at: all_repetition[i], 
                 duration: all_repetition[i] + @current_duration
               )
-              # if i > 0
-              #   if @event.children[i-1].duration > @event.children[i].start_at
-              #     @event.children.destroy_all
-              #     break
-              #   end
-              # end           
+              if i > 0
+                if validator > all_repetition[i]
+                  @event.children.destroy_all
+                  break
+                end
+              end
+              validator = all_repetition[i] + @current_duration           
             end
           end
         end

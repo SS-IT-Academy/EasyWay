@@ -14,6 +14,10 @@
         $('.recurrence_subform').fadeOut('slow');
       });
   });
+
+  $(function () {
+    $('.datepicker').datepicker({ dateFormat: "yy-mm-dd" });
+  });
     
 </script>
 <%= form_for @event, :html =>{:class=>"form-horizontal"} do |f| %>
@@ -49,7 +53,9 @@
   <div class="control-group datetime">
     <%= f.label :start_at, :class=>"control-label" %>
     <div class="controls">
-      <%= f.datetime_select :start_at %>
+      <%= text_field :date_start_at, nil, :class =>'datepicker' %>
+      <%= select_hour(Time.now.utc) %> <span>:</span>
+      <%= select_minute(Time.now.utc) %>
     </div>
   </div>
   <div class="control-group datetime">

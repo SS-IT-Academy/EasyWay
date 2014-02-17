@@ -53,12 +53,18 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
 
+    date_start_at = params[:date_start_at][0].to_time
+    hour_start_at = params[:date][:hour].to_i
+    minute_start_at = params[:date][:minute].to_i
+    @event.start_at = date_start_at + hour_start_at.hour + minute_start_at.minutes
+    
     days_duration = params[:days_duration].to_i
     hours_duration = params[:hours_duration].to_i
     minutes_duration = params[:minutes_duration].to_i
     current_duration = days_duration.day + hours_duration.hour + minutes_duration.minutes
     @event.duration = @event.start_at + current_duration
 
+    validator = 0
     unless @event.recurrence.repetition.nil?
       all_repetition = @event.recurrence.get_repetition
       0.upto(all_repetition.length-1) do |i| @event.children.build(
@@ -68,10 +74,12 @@ class EventsController < ApplicationController
           duration: all_repetition[i] + current_duration
         )
         if i > 0
-          if @event.children[i-1].duration > @event.children[i].start_at
+          if validator > all_repetition[i]
+            @event.children.destroy_all
             break
           end
-        end  
+        end
+        validator = all_repetition[i] + current_duration  
       end
     end
 
@@ -104,39 +112,42 @@ class EventsController < ApplicationController
   # PUT /events/1.json
   def update
     @event = Event.find(params[:id])
-    
-    days_duration = params[:days_duration].to_f
-    hours_duration = params[:hours_duration].to_f
-    minutes_duration = params[:minutes_duration].to_f
-    current_duration = days_duration.day + hours_duration.hour + minutes_duration.minutes
-    @event.duration = @event.start_at + current_duration
 
-    @event.children.each do |child|
-      #EventResource.destroy_all(:event_id => child.id)
-      child.event_resources.destroy_all
-      child.destroy
-    end
+    date_start_at = params[:date_start_at][0].to_time
+    hour_start_at = params[:date][:hour].to_i
+    minute_start_at = params[:date][:minute].to_i
+    @event.start_at = date_start_at + hour_start_at.hour + minute_start_at.minutes
     
-    unless @event.recurrence_id.nil?
-      unless @event.recurrence.repetition.nil?
-        all_repetition = @event.recurrence.get_repetition
-        0.upto(all_repetition.length-1) do |i| @event.children.build(
-            name: @event.name,
-            event_type_id: @event.event_type_id,
-            start_at: all_repetition[i], 
-            duration: all_repetition[i] + current_duration.hour
-          )
-          if i > 0
-            if @event.children[i-1].duration > @event.children[i].start_at
-              break
+    days_duration = params[:days_duration].to_i
+    hours_duration = params[:hours_duration].to_i
+    minutes_duration = params[:minutes_duration].to_i
+    @current_duration = days_duration.day + hours_duration.hour + minutes_duration.minutes
+    @event.duration = @event.start_at + @current_duration
+    
+    respond_to do |format|
+      if @event.update_attributes(params[:event])
+
+        validator = 0
+        unless @event.recurrence_id.nil?
+          unless @event.recurrence.repetition.nil?
+            all_repetition = @event.recurrence.get_repetition
+            0.upto(all_repetition.length-1) do |i| @event.children.create(
+                name: @event.name,
+                event_type_id: @event.event_type_id,
+                start_at: all_repetition[i], 
+                duration: all_repetition[i] + @current_duration
+              )
+              if i > 0
+                if validator > all_repetition[i]
+                  @event.children.destroy_all
+                  break
+                end
+              end
+              validator = all_repetition[i] + @current_duration           
             end
           end
         end
-      end
-    end
 
-    respond_to do |format|
-      if @event.update_attributes(params[:event])
         params[:resources].each {|param|
           if param[:id]
             @resource = EventResource.find(param[:id])

@@ -1,14 +1,15 @@
 <div class="boxforforms">
 
   <%= form_for @notify_event, :html =>{:class=>"form-horizontal"}  do |f| %>
+    
     <% if @notify_event.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@notify_event.errors.count, "error") %> prohibited this notify_event from being saved:</h2>
         <ul>
           <% @notify_event.errors.full_messages.each do |msg| %>
-          <li>
-            <%= msg %>
-          </li>
+            <li>
+              <%= msg %>
+            </li>
           <% end %>
         </ul>
       </div>
@@ -23,48 +24,36 @@
 
     <br>
 
+    <!-- for new -->
     <%if @notify_event.notify_template_id.blank?%>
+      
       <div class="control-group">
-      <%= f.label :notify_template_id, :class=>"control-label" %>
+        <%= f.label :notify_template_id, :class=>"control-label" %>
         <div class="controls">
           <%= select_tag("notify_event[notify_template_id]", options_from_collection_for_select(NotifyTemplate.all, :id, :notify_template_name), :include_blank => true, :onchange => 'updatePropertyMapping()') %>
         </div>
       </div>
-    <% end %>
 
-    <%if !@notify_event.notify_template_id.blank?%>
-      <div class="control-group">
-      <%= f.label :notify_template_id, :class=>"control-label" %>
-        <div class="controls">
-          <%= select_tag("notify_event[notify_template_id]", options_from_collection_for_select(NotifyTemplate.all, :id, :notify_template_name, @notify_event.notify_template_id), :include_blank => true, :onchange => 'updatePropertyMapping()') %>
+      <%= field_set_tag 'Recipients' do %>
+
+        <div id="marginforforms">
+          <div class="form-inline">
+            <%= label_tag(:name, "Group number", :class => "form-inline") %>
+            <%= text_field_tag "notify_event[recipients_attributes][][group_number]" %>
+            <%= label_tag(:user, "Select user") %>
+            <%= select_tag("notify_event[recipients_attributes][][user_id]", options_from_collection_for_select(User.all, :id, :username), :include_blank => true) %>
+            <a href="#" class="btn btn-primary" style="display: none">Remove</a>
+          </div>
         </div>
-      </div>
-    <% end %>
 
-    <br>
+        <div class="control-group">
+          <div class="controls">
+            <%= link_to "Add recipient","#", :onclick => "add_recipient()", :class =>"btn btn-primary" %>
+          </div>
+        </div>
 
-    <%= field_set_tag 'Recipients' do %>
-
-      <div id="marginforforms">
-	    <div class="form-inline">
-		  <%= label_tag(:name, "Group number", :class => "form-inline") %>
-		  <%= text_field_tag "notify_event[recipients_attributes][][group_number]" %>
-		  <%= label_tag(:user, "Select user") %>
-		  <%= select_tag("notify_event[recipients_attributes][][user_id]", options_from_collection_for_select(User.all, :id, :username), :include_blank => true) %>
-		  <a href="#" class="btn btn-primary" style="display: none">Remove</a>
-	    </div>
-      </div>
-
-      <div class="control-group">
-	    <div class="controls">
-		  <%= link_to "Add recipient","#", :onclick => "add_recipient()", :class =>"btn btn-primary" %>
-	    </div>
-      </div>
-
-    <%end%>
-
-    <%if @notify_event.notify_template_id.blank?%>
-
+      <%end%>
+    
       <div class="control-group">
         <%= label_tag(:event, "Event", :class=>"control-label") %>
         <div class="controls">
@@ -81,11 +70,50 @@
         </div>
       </div>
 
-    <%end%>
+      <div class="control-group" style='display: none;' id="notify_event_property_mapping_container">
+        <%= label_tag(:observer, "Template Mapping", :class=>"control-label") %>
+          <table class="tab" id="mappings" border="1">
+            <tbody id="mapping_tbody">
+            </tbody>
+        </table>  
+      </div>
 
-    <!-- for update checkbox and select is down-->
+    <% end %>
+    
+    <!-- for update -->
     <%if !@notify_event.notify_template_id.blank?%>
 
+      <div class="control-group">
+      <%= f.label :notify_template_id, :class=>"control-label" %>
+        <div class="controls">
+          <%= select_tag("notify_event[notify_template_id]", options_from_collection_for_select(NotifyTemplate.all, :id, :notify_template_name, @notify_event.notify_template_id), :include_blank => true, :onchange => 'updatePropertyMapping()') %>
+        </div>
+      </div>
+
+      <br>
+
+      <%= field_set_tag 'Recipients' do %>
+
+        <div id="marginforforms">
+          <div class="form-inline">
+            <%= label_tag(:name, "Group number", :class => "form-inline") %>
+            <%= text_field_tag "notify_event[recipients_attributes][][group_number]" %>
+            <%= label_tag(:user, "Select user") %>
+            <%= select_tag("notify_event[recipients_attributes][][user_id]", options_from_collection_for_select(User.all, :id, :username), :include_blank => true) %>
+            <a href="#" class="btn btn-primary" style="display: none">Remove</a>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <%= link_to "Add recipient","#", :onclick => "add_recipient()", :class =>"btn btn-primary" %>
+          </div>
+        </div>
+
+      <%end%>
+
+
+      <!-- for update checkbox and select is down-->
       <%if @notify_event.event_id!=nil%>
 
         <div class="control-group">
@@ -121,23 +149,11 @@
             <%= select_tag("notify_event[notify_observer_id]", options_from_collection_for_select(NotifyObserver.all, :id, :name, @notify_event.notify_observer_id), :include_blank => true, :onchange => 'updatePropertyMapping()', :disabled => false ) %>
           </div>
         </div>
-      
-      <% end %>
 
-    <% end %>
-    <!-- for update checkbox and select is upper-->
+      <%end%>
+      <!-- for update checkbox and select is upper-->
 
-    <%if @notify_event.notify_template_id.blank?%>
-      <div class="control-group" style='display: none;' id="notify_event_property_mapping_container">
-    	  <%= label_tag(:observer, "Template Mapping", :class=>"control-label") %>
-      	  <table class="tab" id="mappings" border="1">
-      	    <tbody id="mapping_tbody">
-      		  </tbody>
-    	  </table>	
-      </div>
-    <% end %>
-
-    <%if !@notify_event.notify_template_id.blank?%>
+      <!-- for update mapping-->
       <div class="control-group" style='' id="notify_event_property_mapping_container">
         <%= label_tag(:observer, "Template Mapping", :class=>"control-label") %>
           <table class="tab" id="mappings" border="1">
@@ -146,14 +162,13 @@
                 <td align="center"><b>Notify Template property name</b></td>
                 <td align="center"><b>Mapped element</b></td>
               </tr>
-              <% puts "*"*30 %>
-              <% puts "@parameters"+@parameters.inspect %>
-              <% puts "*"*30 %>
-              <%= render :partial => "notify_event_property_mapping", :collection => @parameters, :as => 'parameter', :locals => {:options => @options}, :layout => false %>
+              <%= render :partial => "notify_event_property_mapping_for_update", :collection => @parameters, :as => 'parameter', :locals => {:options => @options}, :layout => false %>
             </tbody>
-        </table>  
+          </table>  
       </div>
+      
     <% end %>
+
 
     <div class="actions">
 	  <%= f.submit :class =>"btn btn-primary" %>

@@ -3,6 +3,7 @@ class EventResource < ActiveRecord::Base
   
   belongs_to :event
   belongs_to :resource
+  belongs_to :resource_type
   has_many :table_cell_items
   
   validates :event_id, :resource_id, :presence => true

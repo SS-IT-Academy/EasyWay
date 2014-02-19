@@ -15,8 +15,18 @@ doc/
 .DS_Store
 .idea
 
-coverage
+/coverage/
 
+
+db/*.sqlite3
+db/schema.rb
+
+
+
+config/routes.rb
+Gemfile
+
+db/development.sqlite3
 
 
 

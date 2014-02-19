@@ -12,6 +12,8 @@ class RolesController < ApplicationController
   # GET /table_filters/1.json
   def show
     @role = Role.find(params[:id])
+    @roles = Role.all
+    @users = User.all
 
     respond_to do |format|
       format.html # show.html.erb

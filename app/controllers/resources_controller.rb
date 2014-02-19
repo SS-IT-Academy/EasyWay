@@ -67,38 +67,50 @@ class ResourcesController < ApplicationController
   # POST /resources
   # POST /resources.json
   def create
+    errors = []
     @resource = Resource.new(params[:resource])
-    puts "\n\n#{params[:fields].inspect}\n\n"
-    transaction_flag = true
-    respond_to do |format|
-      Resource.transaction do
-        @resource.save
-        if params[:fields]
-          params[:fields].each do |param|
-            @fields = ResourceValue.new(
-              :field_id              => param[:field_id], 
-              :value                 => param[:value],
-              :resource_reference_id => param[:resource_reference_id],
-              :resource_id           => @resource.id
-            )
-            unless @fields.save
-              transaction_flag = false
-              @resource.errors[:base] << @fields.errors[:base]
-              raise ActiveRecord::Rollback, "Value was not saved!"
-            end
-          end
-        end
-      end  
-      if transaction_flag
+    if params[:fields]
+      params[:fields].each do |param|
+        @rv = ResourceValue.new(
+          :field_id              => param[:field_id], 
+          :value                 => param[:value],
+          :resource_reference_id => param[:resource_reference_id]
+        )
+        @rv.resource = @resource
+        @resource.resource_values << @rv
+      end
+    end        
+    # puts "\n\n#{params[:fields].inspect}\n\n"
+    # transaction_flag = true
+    # respond_to do |format|
+    #   Resource.transaction do
+    #     @resource.save
+    #     if params[:fields]
+    #       params[:fields].each do |param|
+    #         @rv = ResourceValue.new(
+    #           :field_id              => param[:field_id], 
+    #           :value                 => param[:value],
+    #           :resource_reference_id => param[:resource_reference_id],
+    #           :resource_id           => @resource.id
+    #         )
+    #         unless @rv.save
+    #           transaction_flag = false
+    #           @resource.errors[:base] << @rv.errors[:base]
+    #           raise ActiveRecord::Rollback, "Value was not saved!"
+    #         end
+    #       end
+    #     end
+    #   end  
+      if @resource.save #transaction_flag
         @resource.eval_description
         format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
         format.json { render json: @resource, status: :created, location: @resource }
       else
-        @resource_types = ResourceType.all
-        format.html { render action: "new" }
+        #@resource_types = ResourceType.all
+        format.html { render action: :new }
         format.json { render json: @resource.errors, status: :unprocessable_entity }
       end
-    end
+    #end
   end
 
   # PUT /resources/1

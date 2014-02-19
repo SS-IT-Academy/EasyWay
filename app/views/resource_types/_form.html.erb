@@ -36,7 +36,6 @@
               <div id="Create">         
               <!-- reference_type_id -->
               	<%= select_tag "fields[][resource_type_reference_id]", options_from_collection_for_select(@resource_types, "id", "name", field.resource_type_reference_id), :id => field.id %>
-                <%= options_from_collection_for_select(@resource_types, "id", "name", field.resource_type_reference_id).inspect %>
               </div>
           <% end %>
           <div class="controls-label">

@@ -1,4 +1,4 @@
-
+<%=@resource.inspect%>
 <%= form_for @resource, :html => { :class => "form-horizontal" } do |f| %>
   <!-- , :method => @resource.id.nil? ? "PUT" : "POST" -->
   <% if @resource.errors.any? %>

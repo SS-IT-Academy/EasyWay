@@ -4,5 +4,5 @@ class Mapping < ActiveRecord::Base
   belongs_to :notify_observer_property, :foreign_key => :notify_observer_property_id
   belongs_to :notify_template
   
-  validates :notify_observer_property_id, :presence => true
+  # validates :notify_observer_property_id, :presence => true
 end

@@ -1,0 +1,16 @@
+  <tr>
+    <td><%= hidden_field_tag "notify_event[mappings_attributes][][template_parameter]", parameter %><%= parameter %></td>
+    <td>
+
+    <% if @notify_event.with_observer? %>
+      <%= select_tag("notify_event[mappings_attributes][][notify_observer_property_id][][properties]", options_for_select(options, @selec[parameter_counter]), :onchange => 'updatePropertyOfSelect(this, true)', :include_blank => true) %>
+    <%else%>
+    <%option_values = @selec[parameter_counter].split(',')%>
+      <%= select_tag("notify_event[mappings_attributes][][notify_observer_property_id][][properties]", options_for_select(options.shift, option_values.shift), :onchange => 'updatePropertyOfSelect(this, true)', :include_blank => true) %>
+      <%option_values.each do |option_value|%>
+        <%= select_tag("notify_event[mappings_attributes][][notify_observer_property_id][][properties]", options_for_select(options.shift, option_value), :onchange => 'updatePropertyOfSelect(this)', :include_blank => true) %>
+      <%end%>
+      
+    <%end%>
+    </td>
+  </tr>

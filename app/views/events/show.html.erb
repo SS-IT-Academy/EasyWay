@@ -17,14 +17,59 @@
 
 <p>
   <b>End at:</b>
-  <%= @event.end_at %>
+  <%= @event.duration %>
 </p>
 
 <p>
-  <b>Recurrence:</b>
-  <%= @event.recurrence_id %>
+  <b>Repetition:</b>
+  <%= @event.children.count %>
 </p>
 
-
+<br>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+<br>
+
+<% if @event.parent_id.nil? %>
+  <h3>All repetitions</h3>
+
+  <div class="boxforforms" >
+
+    <table class="table table-striped">
+      <tr>
+        <td>Start at</td>
+        <td>End at</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>    
+      <% @child_events.each do |event| %>
+          <tr>
+            <td><%= event.start_at %></td>
+            <td><%= event.duration %></td>
+            <td><%= link_to 'Show', event, :class=>"btn btn-info"%></td>
+            <td><%= link_to 'Edit', edit_event_path(event),:class=>"btn btn-success" %></td>
+            <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
+          </tr>
+        <% end %>
+    </table>
+    <%= will_paginate @child_events %>
+  </div>
+
+<% end %>
+
+  <br>
+  <h3>List of resources</h3>
+
+  <div class="boxforforms">
+    <table border="1">
+      <tr>
+        <td>Description</td>
+      </tr>
+      <% @event.resources.each do |resource| %>
+        <tr>
+          <td><%= resource.description %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>

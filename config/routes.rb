@@ -1,7 +1,9 @@
 EasyW::Application.routes.draw do
 
   
-
+  devise_for :users
+  
+  resources :users
 
   
 
@@ -61,8 +63,6 @@ EasyW::Application.routes.draw do
 
   resources :notify_schedulers
 
-  resources :users
-
   resources :recipients
 
   resources :notify_observer_properties
@@ -105,11 +105,14 @@ EasyW::Application.routes.draw do
   match "/remove_event_resource" => "EventResources#remove_event_resource"
   match "/resource_info" => "Resources#resource_info"
   match "/get_notify_template_mappings" => "NotifyObserverProperties#get_notify_template_mappings"
-  match "/show_property_mapping_content" => "NotifyEvents#show_property_mapping_content"
+  match "/show_property_mapping_content" => "NotifyEvents#show_property_mapping_content" 
+  match "/show_property" => "NotifyEvents#show_property" 
+  match "/show_property_c" => "NotifyEvents#show_property_c" 
+  match "/show_property_by_resource" => "NotifyEvents#show_property_by_resource"
+  match "/show_property_by_resource_value" => "NotifyEvents#show_property_by_resource_value" 
+  # match ':controller(/:action(/:id))', :via => [:get, :post]
 
-    
-
-
+  
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"
   get "password_sent" => "authentication#password_sent"

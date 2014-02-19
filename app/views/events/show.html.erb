@@ -31,6 +31,7 @@
 <br>
 
 <% if @event.parent_id.nil? %>
+<% if @event.children.count != 0 %>
   <h3>All repetitions</h3>
 
   <div class="boxforforms" >
@@ -56,6 +57,7 @@
     <%= will_paginate @child_events %>
   </div>
 
+<% end %>
 <% end %>
 
   <br>

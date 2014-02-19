@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+
+  before_filter :find_event, only:[:show, :edit, :update, :destroy]
+
   # GET /events
   # GET /events.json
   def index
@@ -14,7 +17,6 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
     @child_events = Event.where(parent_id: @event.id)
     @child_events = @child_events.paginate(:page => params[:page], :per_page => 5)
 
@@ -40,7 +42,6 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
     @events = Event.all
     @event_types = EventType.all
     @resources = Resource.all
@@ -111,7 +112,6 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
-    @event = Event.find(params[:id])
 
     date_start_at = params[:date_start_at][0].to_time
     hour_start_at = params[:date][:hour].to_i
@@ -151,7 +151,7 @@ class EventsController < ApplicationController
         params[:resources].each {|param|
           if param[:id]
             @resource = EventResource.find(param[:id])
-            @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})
+            @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})        
 
             @event.children.each do |child|
               @resources = EventResource.new({:resource_id => param[:value], :event_id => child.id})
@@ -181,7 +181,6 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event = Event.find(params[:id])
     @event.children.each do |child|
       child.event_resources.destroy_all
     end
@@ -202,4 +201,9 @@ class EventsController < ApplicationController
     }
     render :json => @event_all.to_json
   end
+
+  private
+    def find_event
+      @event = Event.find(params[:id])
+    end
 end

@@ -5,5 +5,6 @@ FactoryGirl.define do
     name "MyString"
     body "MyString"
     field_type_id 1
+    message "Error message"
   end
 end

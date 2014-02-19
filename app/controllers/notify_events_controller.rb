@@ -40,14 +40,14 @@ class NotifyEventsController < ApplicationController
   def edit
     @notify_event = NotifyEvent.find(params[:id])
     @mapping = Mapping.where("notify_template_id=?", @notify_event.notify_template_id)
+    @recipients = Recipient.where("notify_event_id=?", @notify_event.id)
+    ap @recipients
 
     @parameters = @mapping.collect{ |el| el.template_parameter}
     if @notify_event.with_observer?
       properties = NotifyObserverProperty.where("notify_observer_id=?", @notify_event.notify_observer_id.to_i)
       @options = properties.collect{ |el| [el.name, el.id, {complex: false}] }
       @selec = @mapping.collect{ |el| el.notify_observer_property_id}
-      # ap properties
-      # ap @options
       print @selec.inspect
     else
       properties = Resource.resources_by_event(@notify_event.event_id.to_i)
@@ -72,7 +72,6 @@ class NotifyEventsController < ApplicationController
       end
       @options = @alloptions
       # ap @options, options = {:index => false, :multiline  => false}
-
       # print @selec.inspect
       # @all_options = [@options]
       # ResourceValue.find(params[:id].to_i).resource_reference_id
@@ -88,11 +87,8 @@ class NotifyEventsController < ApplicationController
   def create
     #raise params.inspect
     recipients = params[:notify_event].delete(:recipients_attributes) || []
-    puts "*"*300
     puts recipients.inspect
-    puts "*"*300
     mappings = params[:notify_event].delete(:mappings_attributes) || []
-
     success = false
 
 #raise mappings.inspect
@@ -131,7 +127,7 @@ class NotifyEventsController < ApplicationController
       #raise params.inspect    
     respond_to do |format|
       if success
-        NotifyEventMailer.notify_event_email(@notify_event).deliver
+        # NotifyEventMailer.notify_event_email(@notify_event).deliver
         format.html { redirect_to @notify_event, :notice => 'Notify event was successfully created.' }
         format.json { render :json => @notify_event, :status => created, :location => @notify_event }
       else
@@ -145,7 +141,49 @@ class NotifyEventsController < ApplicationController
   # PUT /notify_events/1
   # PUT /notify_events/1.json
   def update
-    @notify_event = NotifyEvent.find(params[:id])
+    
+    # ap @notify_event, options = {:index => false, :multiline => true}
+    #raise params.inspect
+    recipients = params["notify_event"].delete("recipients_attributes")
+    puts recipients.inspect
+    mappings = params["notify_event"].delete("mappings_attributes")
+
+    @notify_event = NotifyEvent.find(params["id"])
+    @notify_event.event_id = nil
+    @notify_event.notify_observer_id = nil
+    @notify_event.update_attributes(params["notify_event"])
+    
+    Recipient.where("notify_event_id=?",params["id"]).each do |el|
+      el.destroy
+    end
+
+    Mapping.where("notify_template_id=?", params["notify_event"]["notify_template_id"]).each do |el|
+      el.destroy
+    end
+
+    recipients.each do |recipient|
+      r = Recipient.new(recipient)
+      r.group_number = recipient["group_number"]
+      r.notify_event = @notify_event
+      r.save
+    end
+
+    template_ = NotifyTemplate.find(params["notify_event"]["notify_template_id"])
+    mappings.each do |mapping|
+      m = Mapping.new()
+      str=""
+      mapping["notify_observer_property_id"].each do |map|
+        str << map["properties"]+","
+      end
+      if params["event"]=="Event"
+        m.resource_id =  str[0..-2]
+      else
+        m.notify_observer_property_id = str[0..-2]
+      end
+      m.template_parameter = mapping["template_parameter"]
+      m.notify_template = template_
+      m.save
+    end 
 
     respond_to do |format|
       if @notify_event.update_attributes(params[:notify_event])
@@ -179,13 +217,9 @@ class NotifyEventsController < ApplicationController
     if params[:notify_observer_id] != ""
       properties = NotifyObserverProperty.where("notify_observer_id=?",params[:notify_observer_id].to_i)
       options = properties.collect{ |el| [el.name, el.id, {complex: false}] }
-      # ap properties.inspect
-      # ap options.inspect
     else
       properties = Resource.resources_by_event(params[:event_id].to_i)
       options = options_for_parameters_mapping(properties){true}
-      # ap properties.inspect
-      # ap options.inspect
     end
     render :partial => "notify_event_property_mapping", :collection => parameters, :as => 'parameter', :locals => {:options => options}, :layout => false
   end
@@ -199,8 +233,6 @@ class NotifyEventsController < ApplicationController
     properties = Resource.resource_fields_with_values_by_resource(params[:id].to_i)
     options = properties.collect{ |el| [el.name, el.id, {complex: !el.resource_reference_id.nil?}] }
     # options = options_for_parameters_mapping(properties){!el.resource_reference_id.nil?}
-    # ap properties.inspect
-    # ap options.inspect
     render :partial => "property_by_resource_value", :locals => {:options => options}, :layout => false
   end
 

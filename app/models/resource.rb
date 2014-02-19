@@ -27,7 +27,7 @@ class Resource < ActiveRecord::Base
   def eval_description
     rt = ResourceType.find(self.resource_type_id)
     field_names = rt.all_field_names
-    description = rt.description
+    description = rt.description ? rt.description : ""
     field_ids   = rt.all_field_ids
     
     field_ids.each_index do |i|

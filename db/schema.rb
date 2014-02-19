@@ -267,6 +267,7 @@ ActiveRecord::Schema.define(:version => 20140210184206) do
     t.integer  "field_type_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.string   "message"
   end
 
 end

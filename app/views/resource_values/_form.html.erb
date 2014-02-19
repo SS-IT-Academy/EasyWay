@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :field_id %><br />
-    <%= f.select(:field_id , Field.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %>
+    <%= f.select(:field_id , Field.all.collect { |p| [ p.name, p.id ] }, {:include_blank => ''}) %>
   </div>
   <div class="field">
     <%= f.label :resource_id %><br />
-    <%= f.select(:resource_id , Resource.all.collect {|p| [ p.description, p.id ] }, {:include_blank => ''}) %>
+    <%= f.select(:resource_id , Resource.all.collect { |p| [ p.description, p.id ] }, {:include_blank => ''}) %>
   </div>
   <div class="field">
     <%= f.label :value %><br />

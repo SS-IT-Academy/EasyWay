@@ -92,15 +92,25 @@ class ResourceTypesController < ApplicationController
   # PUT /resource_types/1.json
   def update
     @resource_type = ResourceType.find(params[:id])
+      
     respond_to do |format|
       if @resource_type.update_attributes(params[:resource_type])
         if params[:fields]
           params[:fields].each do |param|
             if param[:id]
               @field = Field.find(param[:id])
-              @field.update_attributes({:name => param[:name], :field_type_id => param[:field_type_id],:resource_type_id => params[:id], :resource_type_reference_id => param[:resource_type_reference_id]})
+              @field.update_attributes(
+                :name                       => param[:name], 
+                :field_type_id              => param[:field_type_id],
+                :resource_type_id           => params[:id],
+                :resource_type_reference_id => param[:resource_type_reference_id]
+              )
             else
-              @field = Field.new({:name => param[:name], :field_type_id => param[:field_type_id],:resource_type_id => params[:id]})
+              @field = Field.new(
+                :name             => param[:name],
+                :field_type_id    => param[:field_type_id],
+                :resource_type_id => params[:id]
+              )
             end
             @field.save
           end

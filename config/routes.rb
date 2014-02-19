@@ -5,6 +5,9 @@ EasyW::Application.routes.draw do
   
   resources :users
 
+  
+
+
   #START TIMETABLE
   resources :table_headers
   
@@ -30,6 +33,8 @@ EasyW::Application.routes.draw do
   resources :fields
 
   resources :field_types
+
+  resources :field_validations
 
   resources :validators
 

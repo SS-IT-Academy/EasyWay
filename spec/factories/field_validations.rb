@@ -2,7 +2,9 @@
 
 FactoryGirl.define do
   factory :field_validation do
-    validator_id 1
-    field_id 1
+    # validator_id 1
+    # field_id 1
+    validator
+    field
   end
 end

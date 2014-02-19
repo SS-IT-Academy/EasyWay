@@ -15,6 +15,7 @@ class NotifyEvent < ActiveRecord::Base
   end
 
   def with_observer?
-    self.notify_observer_id != nil
-  end  
+    notify_observer_id != nil
+  end
+    
 end

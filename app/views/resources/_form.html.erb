@@ -1,5 +1,6 @@
-
-<%= form_for @resource, :html =>{:class=>"form-horizontal"} do |f| %>
+<%=@resource.inspect%>
+<%= form_for @resource, :html => { :class => "form-horizontal" } do |f| %>
+  <!-- , :method => @resource.id.nil? ? "PUT" : "POST" -->
   <% if @resource.errors.any? %>
     <div id="error_explanation", class="control-group">
       <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
@@ -11,6 +12,7 @@
       </ul>
     </div>
   <% end %>
+
 <!--   <div class="control-group">
     <%= f.label :description, :class=>"control-label"%>
     <div class="controls">
@@ -22,16 +24,16 @@
 		  <%= f.label :resource_type_id, :class=>"control-label" %>
 		  <div class="controls">
 		  <%= f.select :resource_type_id,  options_from_collection_for_select(@resource_types, "id","name",@resource.resource_type_id),{:include_blank => 'Select type'}, :onchange => 'update_resource_fields_div(this.value)' %>	
-		  </div>
+		  </div> 
 	  </div>
   <% end %>
   <% if !@resource.resource_values.blank? %>
-  	<% @resource.resource_type.fields.each_with_index do |field,i|%>
+  	<% @resource.resource_type.fields.each_with_index do |field, i|%>
   	  <div class="control-group">
   	    <%= hidden_field_tag "values[][field_id]", field.id%>
   	    <%= label_tag "values[][value]",field.name, :class=>"control-label"%>
           <div class="controls">
-	 	    <% if @resource.resource_values[i]%>
+	 	      <% if @resource.resource_values[i]%>
 	  	      <%= hidden_field_tag "values[][id]", @resource.resource_values[i].id%>
 	  	      <% @value = @resource.resource_values[i].value %>
 	  	      <% @reference = @resource.resource_values[i].resource_reference_id %>
@@ -45,6 +47,7 @@
               <%= text_field_tag "values[][value]", @value%>
             <% end %>
           </div>
+
       </div>
   	<% end %>
   <% end %>

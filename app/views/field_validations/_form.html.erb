@@ -1,0 +1,25 @@
+<%= form_for(@field_validation) do |f| %>
+  <% if @field_validation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@field_validation.errors.count, "error") %> prohibited this field_validation from being saved:</h2>
+
+      <ul>
+      <% @field_validation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :field_id %><br />
+    <%= f.select(:field_id , Field.all.collect { |p| [p.name, p.id] }, { :include_blank => ''}) %>
+  </div>
+  <div class="field">
+    <%= f.label :validator_id %><br />
+    <%= f.select(:validator_id , Validator.all.collect { |p| [p.name, p.id] }, { :include_blank => '' }) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -3,13 +3,17 @@
 FactoryGirl.define do
 
   factory :recurrence do
-    repetition "2"
+    days_of_week "2"
+    days_of_month "8"
+    days_of_year "80"
     start_date DateTime.now.utc
     end_date DateTime.now.utc + 1.day
   end
 
   factory :invalid_recurrence, parent: :recurrence do
-    repetition ""
+    days_of_week ""
+    days_of_month ""
+    days_of_year ""
     start_date ""
     end_date ""
   end

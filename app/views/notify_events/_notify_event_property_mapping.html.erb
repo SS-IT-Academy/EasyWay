@@ -1,4 +1,4 @@
 	<tr>
 		<td><%= hidden_field_tag "notify_event[mappings_attributes][][template_parameter]", parameter %><%= parameter %></td>
-		<td><%= select_tag("notify_event[mappings_attributes][][notify_observer_property_id][][properties]", options_for_select(options), :onchange => 'updatePropertyOfSelect(this, true)', :include_blank => true) %></td>
+		<td><%= select_tag("notify_event[mappings_attributes][][notify_observer_property_id]", options_from_collection_for_select(properties, :id, :name), :include_blank => true ) %></td>
 	</tr>

@@ -7,7 +7,7 @@
 
 <p>
   <b>Event type:</b>
-  <%= @event.event_type.name %>
+  <%= @event.event_type_id %>
 </p>
 
 <p>
@@ -17,61 +17,14 @@
 
 <p>
   <b>End at:</b>
-  <%= @event.duration %>
+  <%= @event.end_at %>
 </p>
 
 <p>
-  <b>Repetition:</b>
-  <%= @event.children.count %>
+  <b>Recurrence:</b>
+  <%= @event.recurrence_id %>
 </p>
 
-<br>
+
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
-<br>
-
-<% if @event.parent_id.nil? %>
-<% if @event.children.count != 0 %>
-  <h3>All repetitions</h3>
-
-  <div class="boxforforms" >
-
-    <table class="table table-striped">
-      <tr>
-        <td>Start at</td>
-        <td>End at</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>    
-      <% @child_events.each do |event| %>
-          <tr>
-            <td><%= event.start_at %></td>
-            <td><%= event.duration %></td>
-            <td><%= link_to 'Show', event, :class=>"btn btn-info"%></td>
-            <td><%= link_to 'Edit', edit_event_path(event),:class=>"btn btn-success" %></td>
-            <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
-          </tr>
-        <% end %>
-    </table>
-    <%= will_paginate @child_events %>
-  </div>
-
-<% end %>
-<% end %>
-
-  <br>
-  <h3>List of resources</h3>
-
-  <div class="boxforforms">
-    <table border="1">
-      <tr>
-        <td>Description</td>
-      </tr>
-      <% @event.resources.each do |resource| %>
-        <tr>
-          <td><%= resource.description %></td>
-        </tr>
-      <% end %>
-    </table>
-  </div>

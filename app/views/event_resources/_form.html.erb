@@ -11,21 +11,14 @@
     </div>
   <% end %>
 
-
-  <div class="control-group">
-    <%= f.label :resource_id, :class=>"conresource_idrol-label" %>
-  <div class="controls">
-      <%= f.select :resource_id, options_from_collection_for_select(Resource.all, "id","description"),{ :include_blank => 'Select type'} %>
-    </div>
+  <div class="field">
+    <%= f.label :resource_id %><br />
+    <%= f.text_field :resource_id %>
   </div>
-
-  <div class="control-group">
-    <%= f.label :event_id, :class=>"control-label" %>
-  <div class="controls">
-      <%= f.select :event_id, options_from_collection_for_select(Event.all, "id","name"),{ :include_blank => 'Select type'} %>
-    </div>
+  <div class="field">
+    <%= f.label :event_id %><br />
+    <%= f.number_field :event_id %>
   </div>
-  
   <div class="actions">
     <%= f.submit %>
   </div>

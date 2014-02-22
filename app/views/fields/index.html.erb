@@ -13,8 +13,8 @@
 <% @fields.each do |field| %>
   <tr>
     <td><%= field.name %></td>
-    <td><%= FieldType.find(field.field_type_id).name %></td>
-    <td><%= ResourceType.find(field.resource_type_id).name %></td>
+    <td><%= field.field_type_id %></td>
+    <td><%= field.resource_type_id %></td>
     <td><%= link_to 'Show', field %></td>
     <td><%= link_to 'Edit', edit_field_path(field) %></td>
     <td><%= link_to 'Destroy', field, method: :delete, data: { confirm: 'Are you sure?' } %></td>

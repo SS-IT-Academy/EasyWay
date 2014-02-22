@@ -7,6 +7,7 @@ class TableTemplatesController < ApplicationController
       format.json { render json: @table_templates }
     end
   end
+
   def show
     @table_template = TableTemplate.find(params[:id])
 
@@ -15,6 +16,7 @@ class TableTemplatesController < ApplicationController
       format.json { render json: @table_template }
     end
   end
+
   def new
     @table_template = TableTemplate.new
     respond_to do |format|
@@ -22,15 +24,13 @@ class TableTemplatesController < ApplicationController
       format.json { render json: @table_template }
     end
   end
+
   def edit
     @table_template = TableTemplate.find(params[:id])
     @horizontal_table_headers = TableHeader.horizontal_headers(@table_template.id)
-    @vertical_table_headers = TableHeader.vertical_headers(@table_template.id)   
-    @headers_hor = TableHeader.where("table_template_id = ? AND orientation = ?", params[:id], "horizontal").order(:position_num)
-    if @headers_hor.first
-      @resources_hor = Resource.where("resource_type_id = ?", @headers_hor.first.resource_type_id)      
-    end
+    @vertical_table_headers = TableHeader.vertical_headers(@table_template.id)
   end
+
   def create
     @table_template = TableTemplate.new(params[:table_template])
     respond_to do |format|
@@ -43,6 +43,7 @@ class TableTemplatesController < ApplicationController
       end
     end
   end
+
   def update
     @table_template = TableTemplate.find(params[:id])
     respond_to do |format|
@@ -55,6 +56,7 @@ class TableTemplatesController < ApplicationController
       end
     end
   end
+
   def destroy
     @table_template = TableTemplate.find(params[:id])
     @table_template.destroy

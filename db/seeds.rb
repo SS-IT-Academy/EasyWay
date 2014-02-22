@@ -5,7 +5,7 @@ FieldType.create!(:name => "Date")
 FieldType.create!(:name => "Timestamp")
 FieldType.create!(:name => "Boolean")
 FieldType.create!(:name => "Text")
-FieldType.create!(:name => "Complex")
+FieldType.create!(:name => ActiveRecord::Base::COMPLEX_FIELD_NAME)
 
 Permission.delete_all
 Permission.create!(:name => "Read")

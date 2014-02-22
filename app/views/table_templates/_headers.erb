@@ -1,0 +1,13 @@
+<table class="table">
+  <tbody>
+
+    <% @horizontal_table_headers.each do |head| %>
+      <tr>
+        <td>
+          <%= head.resource_type.name %>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>

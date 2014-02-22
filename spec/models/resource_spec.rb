@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ResourceType do
   let(:resource) { create :resource }
   
-  subject { resource }
+  subject { resource}
 
   it { should respond_to(:description) }
   it { should respond_to(:resource_type_id) }

@@ -102,7 +102,7 @@ describe RecurrencesController do
 
     it "recurrence not equal recurrence" do
       recurrence1 = create(:recurrence)
-      recurrence2 = create(:recurrence, repetition: "4")
+      recurrence2 = create(:recurrence, days_of_week: "4")
       put :update, id: recurrence1
       expect(assigns(recurrence1)).to_not eq (recurrence2)
     end
@@ -110,16 +110,22 @@ describe RecurrencesController do
     it "changes recurrence's attributes" do
       recurrence = create(:recurrence)
       put :update, id: recurrence, recurrence: attributes_for(:recurrence,
+        days_of_week: "4",
+        days_of_month: "20",
+        days_of_year: "80",
         start_date: DateTime.now.utc - 1.day,
         end_date: DateTime.now.utc + 4.day
       )
       recurrence.reload
+      recurrence.days_of_week.should eq("4")
+      recurrence.days_of_month.should eq("20")
+      recurrence.days_of_year.should eq("80")
       recurrence.start_date.should == DateTime.now.utc - 1.day
       recurrence.end_date.should eq(DateTime.now.utc + 4.day)
     end
 
     it 'redirects to the updated recurrence' do
-      put :update, id: create(:recurrence), recurrence: attributes_for(:recurrence, repetition: "4")
+      put :update, id: create(:recurrence), recurrence: attributes_for(:recurrence, days_of_week: "4")
       response.should redirect_to :recurrence
     end
 

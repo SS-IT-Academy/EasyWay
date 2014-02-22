@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Role:</b>
+  <%= @permission_resource.role_id %>
+</p>
+
+<p>
+  <b>Resource type:</b>
+  <%= @permission_resource.resource_type_id %>
+</p>
+
+<p>
+  <b>Read:</b>
+  <%= @permission_resource.read %>
+</p>
+
+<p>
+  <b>Create:</b>
+  <%= @permission_resource.create %>
+</p>
+
+<p>
+  <b>Edit:</b>
+  <%= @permission_resource.edit %>
+</p>
+
+<p>
+  <b>Destroy:</b>
+  <%= @permission_resource.destroy %>
+</p>
+
+
+<%= link_to 'Edit', edit_permission_resource_path(@permission_resource) %> |
+<%= link_to 'Back', permission_resources_path %>

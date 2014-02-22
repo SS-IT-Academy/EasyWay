@@ -1,13 +1,12 @@
 class NotifyEventMailer < ActionMailer::Base
-  default :from => "easyway105@gmail.com"
+  default :from => "easyway087@gmail.com"
   
   def notify_event_email(notify_event)
     @notify_event = notify_event
-    # @recipients = user.email
-    @user = User.find(@notify_event.recipients[0].user_id)
+    @recipients = user.email
     @url = 'http://localhost:3000/sign_in'
     attachments.inline['logo1.png'] = File.read('app/assets/images/logo1.png')
-    mail :subject => "Notify Event created!", :to => @user.email
+    mail :subject => "Event created!", :to => @user.email
   
   end
 end

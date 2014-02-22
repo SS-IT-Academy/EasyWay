@@ -2,7 +2,6 @@ class FieldType < ActiveRecord::Base
   attr_accessible :name
   
   has_many :fields
-  has_many :validators
   before_destroy :check_for_fields
   
   validates :name, :presence => true

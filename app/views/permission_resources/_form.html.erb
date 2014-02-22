@@ -1,0 +1,41 @@
+<%= form_for(@permission_resource) do |f| %>
+  <% if @permission_resource.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@permission_resource.errors.count, "error") %> prohibited this permission_resource from being saved:</h2>
+
+      <ul>
+      <% @permission_resource.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :role_id %><br />
+    <%= f.number_field :role_id %>
+  </div>
+  <div class="field">
+    <%= f.label :resource_type_id %><br />
+    <%= f.number_field :resource_type_id %>
+  </div>
+  <div class="field">
+    <%= f.label :read %><br />
+    <%= f.check_box :read %>
+  </div>
+  <div class="field">
+    <%= f.label :create %><br />
+    <%= f.check_box :create %>
+  </div>
+  <div class="field">
+    <%= f.label :edit %><br />
+    <%= f.check_box :edit %>
+  </div>
+  <div class="field">
+    <%= f.label :destroy %><br />
+    <%= f.check_box :destroy %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

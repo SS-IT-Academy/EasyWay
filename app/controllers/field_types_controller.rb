@@ -72,7 +72,7 @@ class FieldTypesController < ApplicationController
   # DELETE /field_types/1
   # DELETE /field_types/1.json
   def destroy
-    @field_type = FieldType.find(params[k:id])
+    @field_type = FieldType.find(params[:id])
     @field_type.destroy
 
     respond_to do |format|

@@ -12,8 +12,6 @@ describe Field do
   it { should respond_to(:resource_type_id) }
   it { should respond_to(:resource_type_reference_id) }
   it { should respond_to(:resource_values) }
-  it { should respond_to(:validators) }
-  it { should respond_to(:field_validations) }
   its(:field_type) { should == field_type }
   its(:resource_type) { should == resource_type }
 

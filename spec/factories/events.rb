@@ -4,7 +4,7 @@ FactoryGirl.define do
     name "Event"
     event_type_id 1
     start_at Time.now - 1.day
-    duration Time.now + 1.day
+    end_at Time.now + 1.day
     recurrence_id 1
 
     factory :event_with_type do
@@ -17,7 +17,7 @@ FactoryGirl.define do
     name ""
     event_type_id ""
     start_at ""
-    duration ""
+    end_at ""
     recurrence_id 1
   end
 

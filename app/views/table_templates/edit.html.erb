@@ -1,50 +1,88 @@
 <%= stylesheet_link_tag "/css/style-table-template" %>
 <link href="/css/style-table-template" type="text/css" >
 
-<% no_header = [''] %>
-<% unless @horizontal_table_headers.blank? %>
-	<% hor_headers = @horizontal_table_headers.collect{|header| header.resource_type.name}	%>
-<% else %>
-	<% hor_headers = no_header %>	
-<% end %>
-
-<% unless @vertical_table_headers.blank? %>
-	<% ver_headers = @vertical_table_headers.collect{|header| header.resource_type.name}%>
-<% else %>
-	<% ver_headers = no_header %>	
-<% end %>
-
 <h3>Table template</h3>
-<table id="timetable">
-  <tr>
-    <td id="table-freecell" class="td"></td>
-      <td id="table-filter" class="td">
-        <%= link_to '*Add table filter', new_table_filter_path(:table_template => @table_template.id)%>	
-      </td>
-  </tr>
-  <tr>
-    <td id="table-header-cell">            		  			        			            		            								
-      <div id="table-header" class="header-triangle">
-	    <%= link_to '✚', new_table_header_path(table_template_id: @table_template.id, orientation: TableHeader::ORIENTATIONS[0]), :id => 'ref-hor'%>
-	    <%= link_to '✚', new_table_header_path(table_template_id: @table_template.id, orientation: TableHeader::ORIENTATIONS[1]), :id => 'ref-ver'%>
-      </div>							          
-    </td>
-    <td id="table-header-hor-resources" class="td"><%= render :partial=>"table_templates/values" %></td>
-  </tr>
-  <tr>
-    <td id="table-header-ver-resources" class="td"></td>
-    <td id="table-event" class="td"></td>
-  </tr>
-</table>
+<div class="table-reponsive">
+  <table id="timetable" class="table">
+    <tbody>
+      <tr>
+
+        <td  id="table-header-cell">
+          <div id="table-header-hor" class="table-header">
+            <% @horizontal_table_headers.each do |h| %>
+              <div class="nobr">
+                <%=  h.resource_type.name %>
+                <span class="b">
+                  <%= link_to '-', table_header_path(h.id), method: :delete %>
+                </span>
+              </div>
+            <% end %>
+            <%= link_to 'add hor', new_table_header_path(table_template_id: @table_template.id, orientation: TableHeader::ORIENTATIONS[0]), :class => 'table-header-a' %>
+          </div>
+          <div id="table-header-ver" class="table-header">
+            <% @vertical_table_headers.each do |h| %>
+              <div class="nobr">
+                <%=  h.resource_type.name %>
+                <span class="b">
+                  <%= link_to '-', table_header_path(h.id), method: :delete %>
+                </span>
+              </div>
+            <% end %>
+            <%= link_to 'add ver', new_table_header_path(table_template_id: @table_template.id, orientation: TableHeader::ORIENTATIONS[1]), :class => 'table-header-a' %>
+          </div>
+        </td>
+
+
+        <td id="table-header-hor-resources">
+
+          <table class="table">
+            <tbody>
+
+              <% @horizontal_table_headers.each do |head| %>
+                <tr>
+                  <td>
+                    <%= head.resource_type.name %>
+                  </td>
+                </tr>
+              <% end %>
+
+            </tbody>
+          </table>
+
+        </td>
+      </tr>
+
+      <tr id="table-header-ver-resources">
+        <td class="pd0">
+
+          <table id="table-header-ver-title" class="table" style="margin-bottom: 0;">
+            <tr>
+              <% @vertical_table_headers.each do |head| %>
+                <td class="center">
+                  <% head.resource_type.name.each_char do |c| %>
+                    <div>
+                      <%= c %>
+                    </div>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          </table>
+
+        </td>
+        <td id="table-cell-item">
+          <%= link_to 'Add cell item', new_table_cell_item_path(table_template: @table_template.id, ) %>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
 <div class="boxforforms">
   <div class="actions">
     <%= render 'form' %>
     <%= link_to 'Show', @table_template %> |
     <%= link_to 'Back', table_templates_path %>
-  </div>	
+  </div>
 </div>
-<script>
-$(document).ready(function(){
-	resourceTypeHeaders($('#table-header'),{hor_headers:<%= hor_headers.to_s.html_safe %>, ver_headers:<%= ver_headers.to_s.html_safe %>});
-});	
-</script>

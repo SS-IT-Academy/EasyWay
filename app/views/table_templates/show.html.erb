@@ -1,3 +1,15 @@
+<% unless @horizontal_table_headers.blank? %>
+  <% hor_headers = @horizontal_table_headers.collect{|header| header.resource_type.name} %>
+<% else %>
+  <% hor_headers = 0 %>
+<% end %>
+
+<% unless @vertical_table_headers.blank? %>
+  <% ver_headers = @vertical_table_headers.collect{|header| header.resource_type.name}%>
+<% else %>
+  <% ver_headers = 0 %>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -5,11 +17,20 @@
   <%= @table_template.name %>
 </p>
 
-<p>
-  <b>Cell body:</b>
-  <%= @table_template.cell_body %>
-</p>
-
+<div class="table-reponsive">
+  <table id="timetable" class="table">
+    
+    <tr>
+      <td></td>
+      
+      <td>
+        <%= render :partial=>"table_templates/values" %>
+      </td>
+      
+    </tr>
+    
+  </table>
+</div>
 
 <%= link_to 'Edit', edit_table_template_path(@table_template) %> |
 <%= link_to 'Back', table_templates_path %>

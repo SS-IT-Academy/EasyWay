@@ -19,6 +19,14 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
+  <div class="field">	
+  	<%= f.label 'new password: ' %><br/>
+    <%= f.password_field :password %>
+	</div>
+	<div class="field">	
+  	<%= f.label 'confirm new password:' %><br/>
+    <%= f.password_field :password_confirmation %>
+	</div>
   </div>
  	<%= select_tag :roles_id, options_from_collection_for_select(Role.all, :id, :name) %>
   </div>

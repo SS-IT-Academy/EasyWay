@@ -25,6 +25,7 @@ describe Role do
   context "checks association" do
 
     it { should have_many(:users) }
+    it { should have_many(:permission_resources) }
     it { should have_many(:Menus) }
 
   end

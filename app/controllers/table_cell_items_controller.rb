@@ -21,21 +21,20 @@ class TableCellItemsController < ApplicationController
     end
   end
 
+  
   # GET /table_cell_items/new
   # GET /table_cell_items/new.json
   def new
     @table_cell_item = TableCellItem.new
     @table_template = TableTemplate.find(params[:table_template])
+    @resource_types = @table_template.get_resource_types_for_cell_item
+        
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @table_cell_item }
     end
   end
 
-  # GET /table_cell_items/1/edit
-  def edit
-    @table_cell_item = TableCellItem.find(params[:id])
-  end
 
   # POST /table_cell_items
   # POST /table_cell_items.json
@@ -53,6 +52,11 @@ class TableCellItemsController < ApplicationController
     end
   end
 
+  # GET /table_cell_items/1/edit
+  def edit
+    @table_cell_item = TableCellItem.find(params[:id])
+  end
+  
   # PUT /table_cell_items/1
   # PUT /table_cell_items/1.json
   def update

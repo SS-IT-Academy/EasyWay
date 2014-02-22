@@ -7,7 +7,11 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 
+gem 'rspec-rails'
+
 gem 'cancan'
+
+gem 'factory_girl_rails'
 
 gem 'ancestry'
 
@@ -42,21 +46,8 @@ gem 'thin'
 gem 'nested_form'
 gem "railties"
 gem 'simplecov'
+gem 'ancestry'
 
-gem 'safe_attributes'
-
-gem 'recurring_select',   '~> 1.1.0'
-
-gem 'ice_cube'
-
-gem 'will_paginate', '~> 3.0.5'
-
-gem 'devise'
-gem 'devise_invitable'
-gem 'strong_parameters'
-
-gem 'paint'
-gem 'awesome_print'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

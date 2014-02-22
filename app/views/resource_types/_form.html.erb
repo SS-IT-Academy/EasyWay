@@ -1,5 +1,5 @@
 
-<%= form_for @resource_type, :html => { :class => "form-horizontal" } do |f1| %>
+<%= form_for @resource_type, :html =>{:class=>"form-horizontal"} do |f1| %>
   <% if @resource_type.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@resource_type.errors.count, "error") %> prohibited this resource_type from being saved:</h2>
@@ -21,7 +21,7 @@
 
 
 
-  <% unless @resource_fields.blank? %>
+  <% if !@resource_fields.blank? %>
      <% @resource_fields.each do |field|%>
        <div class="control-group">
        <%= hidden_field_tag "fields[][id]", field.id%>
@@ -33,22 +33,14 @@
        <div class="controls">
           <%= select_tag "fields[][field_type_id]", options_from_collection_for_select(@field_types, "id", "name", field.field_type_id), :id=>field.id, :onchange=>"what_type_of_field(this)"%>
           <% if field.resource_type_reference_id%>
-              <div id="Create">         
-              <!-- reference_type_id -->
-              	<%= select_tag "fields[][resource_type_reference_id]", options_from_collection_for_select(@resource_types, "id", "name", field.resource_type_reference_id), :id => field.id %>
+              <div id="Create">
+              	<%= select_tag "fields[][reference_type_id]", options_from_collection_for_select(@resource_types, "id", "name", field.resource_type_reference_id), :id=>field.id%>
               </div>
           <% end %>
           <div class="controls-label">
        	  	<a href='#' class='btn btn-danger' onclick='resource_type_edit_remove_field(this)'>Remove Field</a>
        	  </div> 
        </div>
-          <%= hidden_field_tag "fields[][validator_ids][]", nil %>
-          <% Validator.all.each do |validator| %>
-            <div>
-            <%= check_box_tag :validator_ids, validator.id, field.validators.include?(validator), :name => 'fields[][validator_ids][]' %>
-            <%= validator.name %>
-          </div>
-          <% end %>
        </div>
      <%end%>
   <% end %>
@@ -59,11 +51,12 @@
   	   <%= link_to "Add field","#", :onclick => "resource_type_add_new_field(this)", :class=>"btn btn-inverse" %>
     </div>
   </div>
-    
+
+  
   
   
   <div class="actions">
-    <%= submit_tag %>
+    <%= f1.submit :class=>"btn btn-primary" %>
   </div>
     
 <% end %>

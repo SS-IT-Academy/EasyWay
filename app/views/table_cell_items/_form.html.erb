@@ -15,7 +15,7 @@
   </div>
   <div class="field">
     <%= f.label :resource_type_id %><br />
-    <%= f.select(:resource_type_id , ResourceType.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %>
+    <%= f.select(:resource_type_id , @resource_types.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %>
   </div>
   <div class="actions">
     <%= f.submit %>

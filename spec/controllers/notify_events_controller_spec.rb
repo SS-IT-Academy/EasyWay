@@ -1,3 +1,4 @@
+
 require 'spec_helper'
 
 describe NotifyEventsController do
@@ -59,10 +60,6 @@ describe NotifyEventsController do
   describe "POST create" do
     context "with valid attributes" do
       it "creates a new NotifyEvent" do
-        recipient = create(:recipient)
-        mapping = create(:mapping)
-        template = create(:notify_template)
-
           expect{
             post :create, notify_event: 
             attributes_for(:notify_event)}.
@@ -70,16 +67,13 @@ describe NotifyEventsController do
       end
 
       it "redirects to the new notify_event" do
-        recipient = create(:recipient)
-        mapping = create(:mapping)
-        template = create(:notify_template)
         post :create, notify_event: attributes_for(:notify_event)
         response.should redirect_to NotifyEvent.last
       end
 
       # it "assigns a newly created notify_event as @notify_event" do
       #   post :create, notify_event:
-      #   assigns(:notify_event).should be_a_new(NotifyEvent)
+      #   assigns(:notify_event).should be_a(NotifyEvent)
       #   assigns(:notify_event).should be_persisted
       # end
 
@@ -91,18 +85,12 @@ describe NotifyEventsController do
 
     context "with valid attributes" do
       it "does not save the new notify_event" do
-        recipient = create(:recipient)
-        mapping = create(:mapping)
-        template = create(:notify_template)
         expect{
           post :create, notify_event: attributes_for(:notify_event, name: nil)
         }.to_not change(NotifyEvent, :count)
       end
 
       it "re-renders the new method" do
-        recipient = create(:recipient)
-        mapping = create(:mapping)
-        template = create(:notify_template)
         post :create, notify_event: attributes_for(:notify_event, name: nil)
         response.should render_template :new
       end

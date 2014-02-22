@@ -1,0 +1,44 @@
+<script>
+function update_permroles_fields_div(role_id) {  
+  $.ajax({
+    url: "/update_permroles_fields",
+    type: "GET",
+    data: {"role_id" : role_id},
+    dataType: "html",
+    success: function(data) {
+      alert(data);
+    }
+  }); 
+}
+
+</script>
+
+<%= select_tag :role_id, options_from_collection_for_select(Role.all, :id, :name), :onchange => 'update_permroles_fields_div(this.value)' %>
+<table border="1">
+ <tr>
+    <th>Resource type</th>
+    <th>Read</th>
+    <th>Create</th>
+    <th>Edit</th>
+    <th>Destroy</th>
+  </tr>
+<% @resource_types.each do |resource_type| %>
+<tr>
+	<td>
+    <%= label_tag :resource_type, resource_type.name %>
+  	</td>
+  	<td>
+    <%= check_box_tag :read %>
+  	</td>
+  	<td>
+    <%= check_box_tag :create %>
+  	</td>
+  	<td>
+    <%= check_box_tag :edit %>
+	</td>
+	<td>
+    <%= check_box_tag :destroy %>
+	</td>
+</tr>
+<% end %>
+</table>

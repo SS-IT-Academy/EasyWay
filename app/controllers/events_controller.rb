@@ -1,15 +1,8 @@
 class EventsController < ApplicationController
-  require 'event_module'
-
-  include EventModule
-
-  before_filter :find_event, only:[:show, :edit, :update, :destroy]
-
   # GET /events
   # GET /events.json
   def index
-    @parent_events = Event.where(parent_id: nil)
-    @parent_events = @parent_events.paginate(:page => params[:page], :per_page => 5)
+    @events = Event.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -20,8 +13,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @child_events = Event.where(parent_id: @event.id)
-    @child_events = @child_events.paginate(:page => params[:page], :per_page => 5)
+    @event = Event.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,7 +28,6 @@ class EventsController < ApplicationController
     @events = Event.all
     @event_types = EventType.all
     @recurrences = Recurrence.all
-    @event.recurrence = Recurrence.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @event }
@@ -45,6 +36,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    @event = Event.find(params[:id])
     @events = Event.all
     @event_types = EventType.all
     @resources = Resource.all
@@ -53,12 +45,9 @@ class EventsController < ApplicationController
   end
 
   # POST /events
-  # POST /events.json  
+  # POST /events.json
   def create
     @event = Event.new(params[:event])
-
-    set_start_at_and_duration   
-    event_create 
 
     respond_to do |format|
       if @event.save
@@ -66,11 +55,6 @@ class EventsController < ApplicationController
           params[:resources].each {|param|
             @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
             @resource.save
-
-            @event.children.each do |child|
-              @resources = EventResource.new({:resource_id => param[:value], :event_id => child.id})
-              @resources.save
-            end
           }
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
@@ -88,49 +72,32 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
-    set_start_at_and_duration
-    
+    @event = Event.find(params[:id])
+
     respond_to do |format|
       if @event.update_attributes(params[:event])
-
-        event_update
-
-        params[:resources].each {|param|
-          if param[:id]
+        if params[:resources]
+          params[:resources].each {|param|
             @resource = EventResource.find(param[:id])
-            @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})        
-
-            @event.children.each do |child|
-              @resources = EventResource.new({:resource_id => param[:value], :event_id => child.id})
-              @resources.save
-            end
-          else
-            @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
-            @resource.save
-
-            @event.children.each do |child|
-              @resources = EventResource.new({:resource_id => param[:value], :event_id => child.id})
-              @resources.save
-            end
-          end
-        }
+            @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})
+          }
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
+          else
+            format.html { redirect_to @event }
+            format.json { render json: @event.errors, status: :unprocessable_entity }
+          end
       else
         format.html { render action: "edit" }
-        format.json { render json: @resource.errors, status: :unprocessable_entity }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
-
-
   end
 
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event.children.each do |child|
-      child.event_resources.destroy_all
-    end
+    @event = Event.find(params[:id])
     @event.destroy
 
     respond_to do |format|
@@ -148,9 +115,4 @@ class EventsController < ApplicationController
     }
     render :json => @event_all.to_json
   end
-
-  private
-    def find_event
-      @event = Event.find(params[:id])
-    end
 end

@@ -13,9 +13,4 @@ class NotifyEvent < ActiveRecord::Base
   def choice
     self.notify_observer_id || self.event_id
   end
-
-  def with_observer?
-    notify_observer_id != nil
-  end
-    
 end

@@ -9,11 +9,19 @@
       <% end %>
       </ul>
     </div>
-  <% end %>  
-  
+  <% end %>
+
   <div class="field">
-    <%= f.label :repetition %><br />
-    <%= f.select_recurring :repetition %>
+    <%= f.label :days_of_week %><br />
+    <%= f.text_field :days_of_week %>
+  </div>
+  <div class="field">
+    <%= f.label :days_of_month %><br />
+    <%= f.text_field :days_of_month %>
+  </div>
+  <div class="field">
+    <%= f.label :days_of_year %><br />
+    <%= f.text_field :days_of_year %>
   </div>
   <div class="field">
     <%= f.label :start_date %><br />

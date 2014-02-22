@@ -1,13 +1,5 @@
 EasyW::Application.routes.draw do
 
-  
-  devise_for :users
-  
-  resources :users
-
-  
-
-
   #START TIMETABLE
   resources :table_headers
   
@@ -24,50 +16,66 @@ EasyW::Application.routes.draw do
 
   resources :resource_values
 
-  resources :resource_types do
-    member do
-      post 'description'
-    end
-  end
+  resources :resource_types
 
   resources :fields
 
   resources :field_types
 
-  resources :field_validations
-
-  resources :validators
-
   get "manage_menu/index"
 
  
-  root :to => "home#index"
+  root :to=>"home#index"  
+  
+  root :to  => "home#index"
   
   resources :events
 
+
   resources :recurrences
 
+
+  resources :events
+
+
   resources :event_resources
+
 
   resources :event_types
 
   resources :menus
-
   resources :bookmarks
+  
+
+
 
   resources :permission_resources
 
   resources :notify_events
 
+  resources :menus
+
+  resources :menus
+
+  resources :resources
+
+  resources :menus
+
   resources :permissions
 
   resources :notify_schedulers
+
+  resources :users
 
   resources :recipients
 
   resources :notify_observer_properties
 
   resources :notify_observers
+
+  resources :events
+  
+  resources :notify_events
 
   resources :notify_templates
 
@@ -78,6 +86,9 @@ EasyW::Application.routes.draw do
 
   resources :resources, :has_many => :permission_roles
   resources :resource_types, :has_many => :permission_roles
+  resources :resource_values
+  resources :fields
+  resources :field_types
   match "/new_popup" => "Menus#new_popup"
 
   match "/update_fields" => "ResourceTypes#update_fields"
@@ -105,14 +116,11 @@ EasyW::Application.routes.draw do
   match "/remove_event_resource" => "EventResources#remove_event_resource"
   match "/resource_info" => "Resources#resource_info"
   match "/get_notify_template_mappings" => "NotifyObserverProperties#get_notify_template_mappings"
-  match "/show_property_mapping_content" => "NotifyEvents#show_property_mapping_content" 
-  match "/show_property" => "NotifyEvents#show_property" 
-  match "/show_property_c" => "NotifyEvents#show_property_c" 
-  match "/show_property_by_resource" => "NotifyEvents#show_property_by_resource"
-  match "/show_property_by_resource_value" => "NotifyEvents#show_property_by_resource_value" 
-  # match ':controller(/:action(/:id))', :via => [:get, :post]
+  match "/show_property_mapping_content" => "NotifyEvents#show_property_mapping_content"
 
-  
+    
+
+
   get "signed_out" => "authentication#signed_out"
   get "forgot_password" => "authentication#forgot_password"
   get "password_sent" => "authentication#password_sent"

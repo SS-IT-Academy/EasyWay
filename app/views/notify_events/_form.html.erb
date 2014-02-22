@@ -1,188 +1,79 @@
 <div class="boxforforms">
+<%= form_for @notify_event, :html =>{:class=>"form-horizontal"}  do |f| %>
+<% if @notify_event.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@notify_event.errors.count, "error") %> prohibited this notify_event from being saved:</h2>
+	<ul>
+		<% @notify_event.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
 
-  <%= form_for @notify_event, :html =>{:class=>"form-horizontal"}  do |f| %>
-    
-    <% if @notify_event.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@notify_event.errors.count, "error") %> prohibited this notify_event from being saved:</h2>
-        <ul>
-          <% @notify_event.errors.full_messages.each do |msg| %>
-            <li>
-              <%= msg %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+<div class="control-group">
+	<%= f.label :name, :class=>"control-label"  %>
+	 <div class="controls">
+       <%= f.text_field :name %>
+	 </div>
+</div>
+<br>
 
-    <div class="control-group">
-      <%= f.label :name, :class=>"control-label"  %>
-      <div class="controls">
-        <%= f.text_field :name %>
-      </div>
-    </div>
+<div class="control-group">
+	<%= f.label :notify_template_id, :class=>"control-label" %>
+	<div class="controls">
+		<%= select_tag("notify_event[notify_template_id]", options_from_collection_for_select(NotifyTemplate.all, :id, :notify_template_name), :include_blank => true) %>
+	</div>
+</div>
+<br>
 
-    <br>
+<%= field_set_tag 'Recipients' do %>
 
-    <!-- for new -->
-    <%if @notify_event.notify_template_id.blank?%>
-      
-      <div class="control-group">
-        <%= f.label :notify_template_id, :class=>"control-label" %>
-        <div class="controls">
-          <%= select_tag("notify_event[notify_template_id]", options_from_collection_for_select(NotifyTemplate.all, :id, :notify_template_name), :include_blank => true, :onchange => 'updatePropertyMapping()') %>
-        </div>
-      </div>
+<div id="marginforforms">
+	<div class="form-inline">
+		<%= label_tag(:name, "Group number", :class => "form-inline") %>
+		<%= text_field_tag "notify_event[recipients_attributes][][group_number]" %>
+		<%= label_tag(:user, "Select user") %>
+		<%= select_tag("notify_event[recipients_attributes][][user_id]", options_from_collection_for_select(User.all, :id, :username), :include_blank => true) %>
+		<a href="#" class="btn btn-primary" style="display: none">Remove</a>
+	</div>
+</div>
 
-      <%= field_set_tag 'Recipients' do %>
+<div class="control-group">
+	<div class="controls">
+		<%= link_to "Add recipient","#", :onclick => "add_recipient()", :class =>"btn btn-primary" %>
+	</div>
+</div>
+<%end%>
 
-        <div id="marginforforms">
-          <div class="form-inline">
-            <%= label_tag(:name, "Group number", :class => "form-inline") %>
-            <%= text_field_tag "notify_event[recipients_attributes][][group_number]" %>
-            <%= label_tag(:user, "Select user") %>
-            <%= select_tag("notify_event[recipients_attributes][][user_id]", options_from_collection_for_select(User.all, :id, :username), :include_blank => true) %>
-            <a href="#" class="btn btn-primary" style="display: none">Remove</a>
-          </div>
-        </div>
+<div class="control-group">
 
-        <div class="control-group">
-          <div class="controls">
-            <%= link_to "Add recipient","#", :onclick => "add_recipient()", :class =>"btn btn-primary" %>
-          </div>
-        </div>
+	<%= label_tag(:event, "Event", :class=>"control-label") %>
+	<div class="controls">
+		<%= radio_button_tag(:event, 'Event', false, {:onclick => "setRadioChecked('observer_Observer', false);setSelectEnabled('notify_event_event_id', true);setSelectEnabled('notify_event_notify_observer_id', false)" }) %>
+		<%= select_tag("notify_event[event_id]", options_from_collection_for_select(Event.all, :id, :name), :include_blank => true, :onchange => 'updatePropertyMapping()', :disabled => true ) %>
+	</div>
+</div>
+<div class="control-group">
+	<%= label_tag(:observer, "Observer", :class=>"control-label") %>
+	<div class="controls">
+		<%= radio_button_tag(:observer, "Observer", false, {:onclick => "setRadioChecked('event_Event', false);setSelectEnabled('notify_event_event_id', false);setSelectEnabled('notify_event_notify_observer_id', true)" }) %>
+		<%= select_tag("notify_event[notify_observer_id]", options_from_collection_for_select(NotifyObserver.all, :id, :name), :include_blank => true, :onchange => 'updatePropertyMapping()', :disabled => true ) %>
+	</div>
+</div>
 
-      <%end%>
-    
-      <div class="control-group">
-        <%= label_tag(:event, "Event", :class=>"control-label") %>
-        <div class="controls">
-          <%= radio_button_tag(:event, 'Event', false, {:onclick => "setRadioChecked('observer_Observer', false);setSelectEnabled('notify_event_event_id', true);setSelectEnabled('notify_event_notify_observer_id', false);setReset('notify_event_notify_observer_id');updatePropertyMapping()" }) %>
-          <%= select_tag("notify_event[event_id]", options_from_collection_for_select(Event.all, :id, :name), :include_blank => true, :onchange => 'updatePropertyMapping()', :disabled => true ) %>
-        </div>
-      </div>
+<div class="control-group" style='display: none;' id="notify_event_property_mapping_container">
+	<%= label_tag(:observer, "Template Mapping", :class=>"control-label") %>
+	<table class="tab" id="mappings" border="1">
+		<tbody id="mapping_tbody">
+		</tbody>
+	</table>	
+</div>
 
-      <div class="control-group">
-        <%= label_tag(:observer, "Observer", :class=>"control-label") %>
-        <div class="controls">
-          <%= radio_button_tag(:observer, "Observer", false, {:onclick => "setRadioChecked('event_Event', false);setSelectEnabled('notify_event_event_id', false);setSelectEnabled('notify_event_notify_observer_id', true);setReset('notify_event_event_id', false);updatePropertyMapping()" }) %>
-          <%= select_tag("notify_event[notify_observer_id]", options_from_collection_for_select(NotifyObserver.all, :id, :name), :include_blank => true, :onchange => 'updatePropertyMapping()', :disabled => true ) %>
-        </div>
-      </div>
-
-      <div class="control-group" style='display: none;' id="notify_event_property_mapping_container">
-        <%= label_tag(:observer, "Template Mapping", :class=>"control-label") %>
-          <table class="tab" id="mappings" border="1">
-            <tbody id="mapping_tbody">
-            </tbody>
-        </table>  
-      </div>
-
-    <% end %>
-    
-    <!-- for update -->
-    <%if !@notify_event.notify_template_id.blank?%>
-
-      <div class="control-group">
-      <%= f.label :notify_template_id, :class=>"control-label" %>
-        <div class="controls">
-          <%= select_tag("notify_event[notify_template_id]", options_from_collection_for_select(NotifyTemplate.all, :id, :notify_template_name, @notify_event.notify_template_id), :include_blank => true, :onchange => 'updatePropertyMapping()') %>
-        </div>
-      </div>
-
-      <br>
-
-      <%= field_set_tag 'Recipients' do %>
-
-        <div id="marginforforms">
-          <div class="form-inline">
-            <%= label_tag(:name, "Group number", :class => "form-inline") %>
-            <%= text_field_tag "notify_event[recipients_attributes][][group_number]", @recipients[0].group_number %>
-            <%= label_tag(:user, "Select user") %>
-            <%= select_tag("notify_event[recipients_attributes][][user_id]", options_from_collection_for_select(User.all, :id, :username, @recipients[0].user_id), :include_blank => true) %>
-            <a href="#" class="btn btn-primary" style="display: none">Remove</a>
-          </div>
-           <%@recipients[1..-1].each do |recipient|%>
-            <div class="form-inline">
-              <%= label_tag(:name, "Group number", :class => "form-inline") %>
-              <%= text_field_tag "notify_event[recipients_attributes][][group_number]", recipient.group_number %>
-              <%= label_tag(:user, "Select user") %>
-              <%= select_tag("notify_event[recipients_attributes][][user_id]", options_from_collection_for_select(User.all, :id, :username, recipient.user_id), :include_blank => true) %>
-              <a href='#' class="btn btn-danger" onClick='remove_field_recipient(this)'>Remove</a>
-            </div>
-          <%end%> 
-        </div>
-
-        <div class="control-group">
-          <div class="controls">
-            <%= link_to "Add recipient","#", :onclick => "add_recipient()", :class =>"btn btn-primary" %>
-          </div>
-        </div>
-
-      <%end%>
-
-
-      <!-- for update checkbox and select is down-->
-      <%if @notify_event.event_id!=nil%>
-
-        <div class="control-group">
-          <%= label_tag(:event, "Event", :class=>"control-label") %>
-          <div class="controls">
-            <%= radio_button_tag(:event, 'Event', true, {:onclick => "setRadioChecked('observer_Observer', false);setSelectEnabled('notify_event_event_id', true);setSelectEnabled('notify_event_notify_observer_id', false);setReset('notify_event_notify_observer_id');updatePropertyMapping()" }) %>
-            <%= select_tag("notify_event[event_id]", options_from_collection_for_select(Event.all, :id, :name, @notify_event.event_id), :include_blank => true, :onchange => 'updatePropertyMapping()', :disabled => false ) %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= label_tag(:observer, "Observer", :class=>"control-label") %>
-          <div class="controls">
-            <%= radio_button_tag(:observer, "Observer", false, {:onclick => "setRadioChecked('event_Event', false);setSelectEnabled('notify_event_event_id', false);setSelectEnabled('notify_event_notify_observer_id', true);setReset('notify_event_event_id', false);updatePropertyMapping()" }) %>
-            <%= select_tag("notify_event[notify_observer_id]", options_from_collection_for_select(NotifyObserver.all, :id, :name), :include_blank => true, :onchange => 'updatePropertyMapping()', :disabled => true ) %>
-          </div>
-        </div>
-
-      <%else%>
-
-        <div class="control-group">
-          <%= label_tag(:event, "Event", :class=>"control-label") %>
-          <div class="controls">
-            <%= radio_button_tag(:event, 'Event', false, {:onclick => "setRadioChecked('observer_Observer', false);setSelectEnabled('notify_event_event_id', true);setSelectEnabled('notify_event_notify_observer_id', false);setReset('notify_event_notify_observer_id');updatePropertyMapping()" }) %>
-            <%= select_tag("notify_event[event_id]", options_from_collection_for_select(Event.all, :id, :name, @notify_event.event_id), :include_blank => true, :onchange => 'updatePropertyMapping()', :disabled => true ) %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <%= label_tag(:observer, "Observer", :class=>"control-label") %>
-          <div class="controls">
-            <%= radio_button_tag(:observer, "Observer", true, {:onclick => "setRadioChecked('event_Event', false);setSelectEnabled('notify_event_event_id', false);setSelectEnabled('notify_event_notify_observer_id', true);setReset('notify_event_event_id', false);updatePropertyMapping()" }) %>
-            <%= select_tag("notify_event[notify_observer_id]", options_from_collection_for_select(NotifyObserver.all, :id, :name, @notify_event.notify_observer_id), :include_blank => true, :onchange => 'updatePropertyMapping()', :disabled => false ) %>
-          </div>
-        </div>
-
-      <%end%>
-      <!-- for update checkbox and select is upper-->
-
-      <!-- for update mapping-->
-      <div class="control-group" style='' id="notify_event_property_mapping_container">
-        <%= label_tag(:observer, "Template Mapping", :class=>"control-label") %>
-          <table class="tab" id="mappings" border="1">
-            <tbody id="mapping_tbody">
-              <tr>
-                <td align="center"><b>Notify Template property name</b></td>
-                <td align="center"><b>Mapped element</b></td>
-              </tr>
-              <%= render :partial => "notify_event_property_mapping_for_update", :collection => @parameters, :as => 'parameter', :locals => {:options => @options}, :layout => false %>
-            </tbody>
-          </table>  
-      </div>
-      
-    <% end %>
-
-
-    <div class="actions">
-	  <%= f.submit :class =>"btn btn-primary" %>
-    </div>
-
-  <% end %>
-  
+<div class="actions">
+	<%= f.submit :class =>"btn btn-primary" %>
+</div>
+<% end %>
 </div>

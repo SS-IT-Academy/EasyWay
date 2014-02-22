@@ -4,7 +4,8 @@ $(".content  .form-horizontal").submit(function(){
     if ($.trim($(this).val()).length == 0){
       $(this).addClass("highlight");
       isFormValid = false;
-    } else {
+      } 
+    else {
       $(this).removeClass("highlight");
     }
   });

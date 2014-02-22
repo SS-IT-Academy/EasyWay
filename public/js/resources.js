@@ -112,10 +112,7 @@ function what_type_of_field(obj){
       	$(obj).after(what_type_of_field_parse(data));
       }
   	});
-  else {
-    console.log($(obj).next("#Create"));
-    $(obj).next("#Create").remove();
-  }  
+  else $(obj).next("#Create").remove();
 }
 
 function what_type_of_field_parse(data){
@@ -125,24 +122,6 @@ function what_type_of_field_parse(data){
   }
   data_html+="</select></div>";
   return data_html;
-}
-
-function show_validators_for_resource_type(obj){
-  var sel_option = $(obj).children(":selected");
-  if (sel_option.value != undefined && sel_option.value != "")
-    $.ajax({
-      url: "/get_resource_type_validators",
-      type: "GET",
-      beforeSend: function ( xhr ) {
-        xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
-      },
-      data: {id: sel_option.value},
-      dataType: "json",
-      success: function(data) {
-        $(obj).after(what_type_of_field_parse(data));
-      }
-    });
-  else $(obj).next("#Create").remove();
 }
 
 function update_resources(resource_type_id) {  

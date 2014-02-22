@@ -8,24 +8,23 @@
       <th>Name</th>
       <th>Event type</th>
       <th>Start at</th>
-      <th>Duration</th>
-      <th>Repetition</th>
+      <th>End at</th>
+      <th>Recurrence</th>
       <th></th>
       <th></th>
       <th></th>
     </tr>
-    <%  @parent_events.each do |event| %>
+    <% @events.each do |event| %>
       <tr>
         <td><%= event.name %></td>
-        <td><%= event.event_type.name %></td>
+        <td><%= event.event_type_id %></td>
         <td><%= event.start_at %></td>
-        <td><%= event.duration %></td>
-        <td><%= event.children.count %></td>
+        <td><%= event.end_at %></td>
+        <td><%= event.recurrence_id %></td>
         <td><%= link_to 'Show', event, :class=>"btn btn-info"%></td>
         <td><%= link_to 'Edit', edit_event_path(event),:class=>"btn btn-success" %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger" %></td>
       </tr>
     <% end %>
   </table>
-  <%= will_paginate @parent_events %>
 </div>

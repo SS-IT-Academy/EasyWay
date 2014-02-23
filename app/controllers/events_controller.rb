@@ -58,12 +58,12 @@ class EventsController < ApplicationController
     @event = Event.new(params[:event])
 
     set_start_at_and_duration   
-    event_create 
+    create_children_event 
 
     respond_to do |format|
       if @event.save
         if params[:resources]
-          params[:resources].each {|param|
+          params[:resources].each do |param|
             @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
             @resource.save
 
@@ -71,7 +71,7 @@ class EventsController < ApplicationController
               @resources = EventResource.new({:resource_id => param[:value], :event_id => child.id})
               @resources.save
             end
-          }
+          end
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
         else
@@ -88,32 +88,34 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
-    set_start_at_and_duration
-    
+    set_start_at_and_duration    
+
     respond_to do |format|
       if @event.update_attributes(params[:event])
 
-        event_update
+        update_children_event
 
-        params[:resources].each {|param|
+        params[:resources].each do |param|
           if param[:id]
-            @resource = EventResource.find(param[:id])
-            @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})        
 
-            @event.children.each do |child|
+            @resource = EventResource.find(param[:id])
+            @resource.update_attributes({:resource_id => param[:value], :event_id => @event.id})  
+
+            Event.where('parent_id = ?', @event.id).each do |child|
               @resources = EventResource.new({:resource_id => param[:value], :event_id => child.id})
               @resources.save
             end
+            
           else
             @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})
             @resource.save
 
-            @event.children.each do |child|
+            Event.where('parent_id = ?', @event.id).each do |child|
               @resources = EventResource.new({:resource_id => param[:value], :event_id => child.id})
               @resources.save
             end
           end
-        }
+        end
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
@@ -121,8 +123,6 @@ class EventsController < ApplicationController
         format.json { render json: @resource.errors, status: :unprocessable_entity }
       end
     end
-
-
   end
 
   # DELETE /events/1

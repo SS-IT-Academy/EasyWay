@@ -19,10 +19,8 @@ class Event < ActiveRecord::Base
 
   private
   	def destroy_children_event_and_children_event_resources
-  	  self.children.each do |child|
-  	  	child.event_resources.delete
-      	child.delete
-  	  end
+      EventResource.where(:event_id => self.children).delete_all
+      Event.where('parent_id = ?', self.id).delete_all
   	end
 
     def start_at_validation

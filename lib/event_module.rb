@@ -12,48 +12,48 @@ module EventModule
     @event.duration = @event.start_at + @current_duration
 	end
 
-	def event_create
+	def create_children_event
 		validator = 0
     unless @event.recurrence.repetition.nil?
       all_repetition = @event.recurrence.get_repetition
-      0.upto(all_repetition.length-1) do |i| @event.children.build(
-          name: @event.name,
-          event_type_id: @event.event_type_id,
-          start_at: all_repetition[i], 
-          duration: all_repetition[i] + @current_duration
-        )
-        if i > 0
-          if validator > all_repetition[i]
-            @event.children.destroy_all
-            break
-          end
+      all_repetition.each_with_index do |occurrence, index| @event.children.build(
+        name: @event.name,
+        event_type_id: @event.event_type_id,
+        start_at: occurrence, 
+        duration: occurrence + @current_duration
+      )
+      if index > 0
+        if validator > occurrence
+          @event.children.destroy_all
+          break
         end
-        validator = all_repetition[i] + @current_duration  
+      end
+      validator = occurrence + @current_duration  
       end
     end
 	end
 
-	def event_update
+	def update_children_event
 		validator = 0
-      unless @event.recurrence_id.nil?
-        unless @event.recurrence.repetition.nil?
-          all_repetition = @event.recurrence.get_repetition
-            0.upto(all_repetition.length-1) do |i| @event.children.create(
-              name: @event.name,
-              event_type_id: @event.event_type_id,
-              start_at: all_repetition[i], 
-              duration: all_repetition[i] + @current_duration
-            )
-            if i > 0
-              if validator > all_repetition[i]
-                @event.children.destroy_all
-                break
-              end
-            end
-            validator = all_repetition[i] + @current_duration           
+    unless @event.recurrence_id.nil?
+      unless @event.recurrence.repetition.nil?
+        all_repetition = @event.recurrence.get_repetition        
+        all_repetition.each_with_index do |occurrence, index| @event.children.create(
+          name: @event.name,
+          event_type_id: @event.event_type_id,
+          start_at: occurrence, 
+          duration: occurrence + @current_duration
+        )
+        if index > 0
+          if validator > occurrence
+            @event.children.destroy_all
+            break
           end
         end
+        validator = occurrence + @current_duration           
+        end
       end
+    end
 	end
 	
 end

@@ -50,13 +50,15 @@ class EventsController < ApplicationController
     @resources = Resource.all
     @recurrences = Recurrence.all
     @event_resources = EventResource.where("event_id = ?", @event.id)
+    @event_resources_without_first = EventResource.where("event_id = ?", @event.id)
+    @event_resources_without_first.shift
   end
 
   # POST /events
   # POST /events.json  
   def create
     @event = Event.new(params[:event])
-
+    
     set_start_at_and_duration   
     create_children_event 
 

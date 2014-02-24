@@ -15,7 +15,8 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :recurrence
   
   validates :name, :start_at, :duration, :event_type_id, :presence => true
-  validate :start_at_validation, :children_time_validation
+  validate :start_at_validation
+  validate :children_time_validation, :on => :update
 
   def next_event
     Event.where('id > ?', self.id).first

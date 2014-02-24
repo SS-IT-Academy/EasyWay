@@ -53,7 +53,7 @@
   <div class="control-group datetime">
     <%= f.label :start_at, :class=>"control-label" %>
     <div class="controls">
-      <%= text_field :date_start_at, nil, :class =>'datepicker' %>
+      <%= text_field :date_start_at, nil, :class =>'datepicker', :value => @event.start_at.to_date %>
       <%= select_hour(Time.now.utc) %> <span>:</span>
       <%= select_minute(Time.now.utc) %>
     </div>
@@ -134,23 +134,46 @@
     <% end %>
     </div>  
   </div>
-  <div class="control-group">
-    <%if !@event_resources.blank?%>
-    <%@event_resources.each do |resource|%>
-    <div class='control-group'>
-      <%= hidden_field_tag "resources[][id]", resource.id %>
-      <label class='control-label' name='resources[][value]'>Resource</label>
-      <div class='controls'>
-      <%= select_tag "resources[][value]", options_from_collection_for_select(@resources, "id", "description", resource.resource_id), html_options = { :onchange => 'check_selected_resource()' }%>
-        <div>
-        <%= link_to '#', :class => 'btn', :onclick => 'event_remove_resource(this)', :id => resource.id do%>
-          Remove Field
-        <% end%>
-        </div>
+
+  <% if @event_resources.blank? %>
+    <div class="control-group">
+      <%= label "resources[][value]", "Resource", :class=>"control-label" %>
+      <div class="controls">
+        <%= select_tag "resources[][value]", options_from_collection_for_select(Resource.all, "id","description"),html_options = { :onchange => 'check_selected_resource()' } %>
       </div>
     </div>
-    <% end %>
-    <% end %>
+  <% end %>
+
+
+  <div class="control-group">
+    <% unless @event_resources.blank? %>
+
+      <div class="control-group">
+        <%= hidden_field_tag "resources[][id]", @event_resources[0].id %>
+        <%= label "resources[][value]", "Resource", :class=>"control-label" %>
+        <div class="controls">
+          <%= select_tag "resources[][value]", options_from_collection_for_select(@resources, "id","description", @event_resources[0].resource_id),html_options = { :onchange => 'check_selected_resource()' } %>
+        </div>
+      </div>
+
+      <% if @event_resources.count > 1 %>
+        <% @event_resources_without_first.each do |resource| %>
+          <div class='control-group'>
+            <%= hidden_field_tag "resources[][id]", resource.id %>
+            <label class='control-label' name='resources[][value]'>Resource</label>
+            <div class='controls'>
+              <%= select_tag "resources[][value]", options_from_collection_for_select(@resources, "id", "description", resource.resource_id), html_options = { :onchange => 'check_selected_resource()' }%>
+              <div>
+                <%= link_to '#', :class => 'btn', :onclick => 'event_remove_resource(this)', :id => resource.id do%>
+                  Remove Field
+                <% end%>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>    
+
     <div id="fieldsDiv" class="control-group"></div>  
     <div class="controls">
       <a href="#" class="btn btn-inverse" onclick="Add_resource_to_event()">Add resource</a>

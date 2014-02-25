@@ -1,6 +1,6 @@
 <%= form_for(@resource_value) do |f| %>
   <% if @resource_value.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-error">
       <h2><%= pluralize(@resource_value.errors.count, "error") %> prohibited this resource_value from being saved:</h2>
 
       <ul>

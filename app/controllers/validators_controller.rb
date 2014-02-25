@@ -1,6 +1,12 @@
 class ValidatorsController < ApplicationController
   # GET /validators
   # GET /validators.json
+  def all_types
+    @validators = Validator.all
+    puts "#" * 40, @validators.to_json.inspect, "#" * 40
+    render :json => @validators.to_json
+  end
+
   def index
     @validators = Validator.all
 

@@ -1,20 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<h4>
   <strong>Name: </strong>
-  <%= @resource_type.name %>
-</p>
+  <i><%= @resource_type.name %></i>
+</h4>
 <div class="form-inline"><b>Fields</b></div>
+<ol>
 <% @resource_type.fields.each do |field| %>
-   <div class="form-inline">
-    <%= field.name%>
-   </div>
+  <div class="form-inline">
+    <h4><li><%= field.name%></li></h4>
+    <strong>Type:</strong> <%= field.field_type.name %>
+  </div>
+  <strong><h5>Validators for <%= field.name %>:</h5></strong>
+  <% field.validators.each do |v| %>
+      <%= link_to v.name, v %><br>
+  <% end %>
+     
 <% end %>
+</ol>
 
-<h6>All available field names for making description:</h6>
+<h5>All available field names for making description:</h5>
 <p>
   <%= @resource_type.all_field_names.inspect %>
 </p>
+<p>Example: "My name is $${name_of_field}"<p>
 
 <div class="boxforforms">
 <%= form_for @resource_type, :html => { :class => "form-horizontal" },

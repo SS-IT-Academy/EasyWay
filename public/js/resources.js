@@ -99,7 +99,8 @@ function update_field_type_parse_data(data){
 }
 
 function what_type_of_field(obj){
-  if ($(obj).children(":selected").text() == "Complex")
+  var selected_type = $(obj).children(":selected").text();
+  if (selected_type == "Complex") {
     $.ajax({
       url: "/get_resource_types",
       type: "GET",
@@ -109,17 +110,34 @@ function what_type_of_field(obj){
       data: {},
       dataType: "json",
       success: function(data) {
-      	$(obj).after(what_type_of_field_parse(data));
+        $(obj).after(resource_type_parse(data));
       }
-  	});
-  else {
-    console.log($(obj).next("#Create"));
-    $(obj).next("#Create").remove();
+      
+    });
+    $("#Validators").remove();
+  } else {
+    $.ajax({
+      url: "/get_validators",
+      type: "GET",
+      beforeSend: function ( xhr ) {
+        xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+      },
+      data: {},
+      dataType: "json",
+      success: function(data) {
+        console.log(obj);
+        $(obj).after(validators_for_field_parse(data));
+        console.log($(obj.nextSibling).find('select'));
+        //$(obj.nextSibling).find('select')[0].multiSelect();
+
+      }
+    });
+    //if($(obj).nextSibling)) $($(obj).nextSibling.remove();
   }  
 }
 
-function what_type_of_field_parse(data){
-  data_html="<div id='Create'><select name=fields[][resource_type_reference_id]><option>Select Type</option>"
+function resource_type_parse(data){
+  data_html="<div><select name=fields[][resource_type_reference_id]><option>Select Type</option>"
   for(var i=0;i<data.length;i++){
     data_html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>" 	
   }
@@ -127,22 +145,14 @@ function what_type_of_field_parse(data){
   return data_html;
 }
 
-function show_validators_for_resource_type(obj){
-  var sel_option = $(obj).children(":selected");
-  if (sel_option.value != undefined && sel_option.value != "")
-    $.ajax({
-      url: "/get_resource_type_validators",
-      type: "GET",
-      beforeSend: function ( xhr ) {
-        xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
-      },
-      data: {id: sel_option.value},
-      dataType: "json",
-      success: function(data) {
-        $(obj).after(what_type_of_field_parse(data));
-      }
-    });
-  else $(obj).next("#Create").remove();
+
+function validators_for_field_parse(data){
+ data_html = "<div><select class='multiselect' name='fields[][validator_ids][]' multiple='multiple'"
+  for(var i=0;i<data.length;i++){
+    data_html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>"   
+  }
+  data_html+="</select></div>";
+  return data_html;
 }
 
 function update_resources(resource_type_id) {  

@@ -84,7 +84,7 @@ EasyW::Application.routes.draw do
   match "/update_resources" => "Resources#update_resources"
   
   match "/update_permroles_fields" => "PermissionRoles#update_permroles_fields"
-
+  match "/get_validators" => "Validators#all_types"
   match "/get_field_types" => "FieldTypes#get_all_types"
   match "/get_resource_types" => "ResourceTypes#all_types"
   match "/remove_resource_fields" => "ResourceValues#remove_values"

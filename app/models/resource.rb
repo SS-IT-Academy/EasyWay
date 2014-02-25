@@ -10,6 +10,7 @@ class Resource < ActiveRecord::Base
   act_as_permissionable_child ResourceType
   
   validates :resource_type_id, :presence => true
+  validates_associated_bubbling :resource_values
   
   scope :by_resource_type, lambda { |resource_type_id| where("resource_type_id = ?", resource_type_id) }
 

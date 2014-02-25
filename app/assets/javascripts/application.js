@@ -14,7 +14,9 @@
 //= require jquery_ujs
 //= require recurring_select
 //= require_tree .
+//= require twitter/bootstrap
+//= require bootstrap-multiselect
 
-	function addRecipient() {
-		alert("Add Clicked")
-	}
+function addRecipient() {
+	alert("Add Clicked")
+}

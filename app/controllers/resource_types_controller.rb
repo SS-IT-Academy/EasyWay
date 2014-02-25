@@ -57,17 +57,22 @@ class ResourceTypesController < ApplicationController
   # POST /resource_types
   # POST /resource_types.jsojoins(:field_type)n
   def create
+    puts "#" * 40, params[:fields], "#" * 40
     @resource_type = ResourceType.new(params[:resource_type])
     respond_to do |format|
       if @resource_type.save
         if params[:fields]
           params[:fields].each do |param|
-            @fields = Field.create(
+            @field = Field.new(
               :name                       => param[:name], 
               :field_type_id              => param[:field_type_id],
               :resource_type_id           => @resource_type.id, 
               :resource_type_reference_id => param[:resource_type_reference_id]
             )
+            param[:validator_ids].each do |index|
+              @field.field_validations.build(validator_id: index)
+            end
+            @field.save
           end
         end
         format.html { redirect_to @resource_type, notice: 'Resource type was successfully created.' }

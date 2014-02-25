@@ -67,77 +67,52 @@ class ResourcesController < ApplicationController
   # POST /resources
   # POST /resources.json
   def create
-    errors = []
-    @resource = Resource.new(params[:resource])
+    @resource = Resource.create(params[:resource])
     if params[:fields]
       params[:fields].each do |param|
-        @rv = ResourceValue.new(
+        @rv = @resource.resource_values.build(
           :field_id              => param[:field_id], 
           :value                 => param[:value],
           :resource_reference_id => param[:resource_reference_id]
         )
-        @rv.resource = @resource
-        @resource.resource_values << @rv
       end
     end        
-    # puts "\n\n#{params[:fields].inspect}\n\n"
-    # transaction_flag = true
-    # respond_to do |format|
-    #   Resource.transaction do
-    #     @resource.save
-    #     if params[:fields]
-    #       params[:fields].each do |param|
-    #         @rv = ResourceValue.new(
-    #           :field_id              => param[:field_id], 
-    #           :value                 => param[:value],
-    #           :resource_reference_id => param[:resource_reference_id],
-    #           :resource_id           => @resource.id
-    #         )
-    #         unless @rv.save
-    #           transaction_flag = false
-    #           @resource.errors[:base] << @rv.errors[:base]
-    #           raise ActiveRecord::Rollback, "Value was not saved!"
-    #         end
-    #       end
-    #     end
-    #   end  
-      if @resource.save #transaction_flag
+    respond_to do |format|
+      if @resource.save
         @resource.eval_description
         format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
         format.json { render json: @resource, status: :created, location: @resource }
       else
-        #@resource_types = ResourceType.all
         format.html { render action: :new }
         format.json { render json: @resource.errors, status: :unprocessable_entity }
       end
-    #end
+    end
   end
 
   # PUT /resources/1
   # PUT /resources/1.json
   def update
     @resource = Resource.find(params[:id])
-
-    respond_to do |format|
-      if @resource.update_attributes(params[:resource])
-        params[:values].each do |param|
-          if param[:id]
-            @value = ResourceValue.find(param[:id])
-            @value.update_attributes(
-              :value                 => param[:value], 
-              :field_id              => param[:field_id],
-              :resource_reference_id => param[:resource_reference_id], 
-              :resource_id           => params[:id]
-            )
-          else
-            @value = ResourceValue.create(
-              :value                 => param[:value], 
-              :field_id              => param[:field_id],
-              :resource_reference_id => param[:resource_reference_id], 
-              :resource_id           => params[:id]
-            )
-          end
+    if @resource.assign_attributes(params[:resource])
+      params[:values].each do |param|
+        if param[:id]
+          @rv = ResourceValue.find(param[:id])
+          @rv.assign_attributes(
+            :value                 => param[:value], 
+            :field_id              => param[:field_id],
+            :resource_reference_id => param[:resource_reference_id]
+          )
+        else
+          @rv = @resource.resource_values.build(
+            :value                 => param[:value], 
+            :field_id              => param[:field_id],
+            :resource_reference_id => param[:resource_reference_id], 
+          )
         end
+      end
+    end  
+    respond_to do |format|
+      if @resource.save
         @resource.eval_description
         format.html { redirect_to @resource, notice: 'Resource was successfully updated.' }
         format.json { head :no_content }

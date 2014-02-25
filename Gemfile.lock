@@ -34,6 +34,8 @@ GEM
     atomic (1.1.14)
     awesome_print (1.2.0)
     bcrypt-ruby (3.1.2)
+    bootstrap-multiselect-rails (0.0.2)
+      rails (~> 3.2.13)
     builder (3.0.4)
     cancan (1.6.10)
     capybara (2.2.1)
@@ -55,6 +57,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    commonjs (0.2.7)
     daemons (1.1.9)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
@@ -94,6 +97,12 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
+    less (2.4.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.4.2)
+      actionpack (>= 3.1)
+      less (~> 2.4.0)
+    libv8 (3.16.14.3)
     listen (2.5.0)
       celluloid (>= 0.15.2)
       celluloid-io (>= 0.15.0)
@@ -153,6 +162,7 @@ GEM
       jquery-rails
       rails (>= 3.1)
       sass-rails (>= 3.1)
+    ref (1.0.5)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -195,6 +205,9 @@ GEM
       activemodel (~> 3.0)
       activesupport (~> 3.0)
       railties (~> 3.0)
+    therubyracer (0.12.1)
+      libv8 (~> 3.16.14.0)
+      ref
     thin (1.6.1)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
@@ -207,6 +220,11 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    twitter-bootstrap-rails (2.2.8)
+      actionpack (>= 3.1)
+      execjs
+      rails (>= 3.1)
+      railties (>= 3.1)
     tzinfo (0.3.38)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
@@ -225,6 +243,7 @@ DEPENDENCIES
   ancestry
   awesome_print
   bcrypt-ruby
+  bootstrap-multiselect-rails
   cancan
   capybara
   coffee-rails (~> 3.2.1)
@@ -234,6 +253,7 @@ DEPENDENCIES
   guard-rspec
   ice_cube
   jquery-rails
+  less-rails
   nested_form
   paint
   rails (= 3.2.13)
@@ -247,7 +267,9 @@ DEPENDENCIES
   simplecov
   sqlite3
   strong_parameters
+  therubyracer
   thin
+  twitter-bootstrap-rails
   uglifier (>= 1.0.3)
   watchr
   will_paginate (~> 3.0.5)

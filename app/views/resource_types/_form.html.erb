@@ -1,7 +1,7 @@
 
 <%= form_for @resource_type, :html => { :class => "form-horizontal" } do |f1| %>
   <% if @resource_type.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-error">
       <h2><%= pluralize(@resource_type.errors.count, "error") %> prohibited this resource_type from being saved:</h2>
 
       <ul>
@@ -30,25 +30,22 @@
           <%= text_field_tag "fields[][name]", field.name%>  	  
        </div>
        <label class='control-label' for='fields[][field_type_id]'>Field Type</label>
-       <div class="controls">
-          <%= select_tag "fields[][field_type_id]", options_from_collection_for_select(@field_types, "id", "name", field.field_type_id), :id=>field.id, :onchange=>"what_type_of_field(this)"%>
-          <% if field.resource_type_reference_id%>
-              <div id="Create">         
-              <!-- reference_type_id -->
-              	<%= select_tag "fields[][resource_type_reference_id]", options_from_collection_for_select(@resource_types, "id", "name", field.resource_type_reference_id), :id => field.id %>
-              </div>
-          <% end %>
-          <div class="controls-label">
-       	  	<a href='#' class='btn btn-danger' onclick='resource_type_edit_remove_field(this)'>Remove Field</a>
-       	  </div> 
-       </div>
-          <%= hidden_field_tag "fields[][validator_ids][]", nil %>
-          <% Validator.all.each do |validator| %>
-            <div>
-            <%= check_box_tag :validator_ids, validator.id, field.validators.include?(validator), :name => 'fields[][validator_ids][]' %>
-            <%= validator.name %>
-          </div>
-          <% end %>
+         <div class="controls">
+            <%= select_tag "fields[][field_type_id]", options_from_collection_for_select(@field_types, "id", "name", field.field_type_id), :id=>field.id, :onchange=>"what_type_of_field(this)"%>
+            <% if field.resource_type_reference_id%>
+                <div id="ResourceTypes">         
+                <!-- reference_type_id -->
+                	<%= select_tag "fields[][resource_type_reference_id]", options_from_collection_for_select(@resource_types, "id", "name", field.resource_type_reference_id), :id => field.id %>
+                </div>
+            <% end %>
+            <div id="Validators">
+               <%= select_tag "fields[][validator_ids][]", options_from_collection_for_select(@validators, "id", "name"), multiple: true, class: 'multiselect' %>
+            </div>
+            <div class="controls-label">
+         	  	<a href='#' class='btn btn-danger' onclick='resource_type_edit_remove_field(this)'>Remove Field</a>
+         	  </div> 
+         </div>
+          
        </div>
      <%end%>
   <% end %>
@@ -67,3 +64,21 @@
   </div>
     
 <% end %>
+
+<select class="multiselect" multiple="multiple">
+<option value="cheese">Cheese</option>
+<option value="tomatoes">Tomatoes</option>
+<option value="mozarella">Mozzarella</option>
+<option value="mushrooms">Mushrooms</option>
+<option value="pepperoni">Pepperoni</option>
+<option value="onions">Onions</option>
+</select>
+ 
+<!-- Initialize the plugin: -->
+<script type="text/javascript">
+$(document).ready(function() {
+$('.multiselect').multiselect({
+  includeSelectAllOption: true
+});
+});
+</script>

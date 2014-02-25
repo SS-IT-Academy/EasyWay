@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require recurring_select
+ *= require bootstrap-multiselect
  *= require_tree .
  */
 #flash_error {

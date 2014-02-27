@@ -13,11 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require recurring_select
-//= require_tree .
 //= require twitter/bootstrap
 //= require bootstrap-multiselect
 //= require jquery.ui.widget
 //= require resources.js
+//= require events.js
+//= require bookmarks.js
+//= require_tree .
 
 function addRecipient() {
 	alert("Add Clicked")

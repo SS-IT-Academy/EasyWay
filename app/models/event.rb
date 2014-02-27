@@ -16,18 +16,39 @@ class Event < ActiveRecord::Base
   
   validates :name, :start_at, :duration, :event_type_id, :presence => true
   validate :start_at_validation
+  validate :children_time_validation, :on => :update
+
+  def next_event
+    Event.where('id > ?', self.id).first
+  end
+
+  def prev_event
+    Event.where('id < ?', self.id).last
+  end
 
   private
   	def destroy_children_event_and_children_event_resources
-  	  self.children.each do |child|
-  	  	child.event_resources.delete
-      	child.delete
-  	  end
+      EventResource.where(:event_id => self.children).delete_all
+      Event.where('parent_id = ?', self.id).delete_all
   	end
 
     def start_at_validation
       if start_at < Time.now
         errors.add(:start_at, "can't be less than time is now" )
+      end
+    end
+
+    def children_time_validation
+      unless self.parent_id.nil?
+        if self.start_at < self.prev_event.duration 
+          errors.add(:start_at, "can't be less than the end of the previous event" )
+        end
+
+        unless self.next_event.nil?
+          if self.duration > self.next_event.start_at
+            errors.add(:duration, "can't be greater than the start of the next event" )
+          end
+        end
       end
     end
 

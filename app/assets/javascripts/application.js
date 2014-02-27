@@ -16,7 +16,10 @@
 //= require_tree .
 //= require twitter/bootstrap
 //= require bootstrap-multiselect
+//= require jquery.ui.widget
+//= require resources.js
 
 function addRecipient() {
 	alert("Add Clicked")
 }
+

@@ -1,0 +1,1 @@
+$('#slideshow1').slideshow();

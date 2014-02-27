@@ -12,12 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.widget
+//= require jquery.rf.slideshow
+//= require jquery-ui-1.10.4.custom.js
 //= require recurring_select
 //= require_tree .
 //= require twitter/bootstrap
 //= require bootstrap-multiselect
-//= require jquery.ui.widget
+
 //= require resources.js
+//= require events.js
+//= require table_header.js
+//= require table_template.js
+
 
 function addRecipient() {
 	alert("Add Clicked")

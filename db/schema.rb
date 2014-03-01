@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140210184206) do
+ActiveRecord::Schema.define(:version => 20140301192225) do
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20140210184206) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "parent_id"
-    t.datetime "duration"
+    t.datetime "end_at"
   end
 
   create_table "field_types", :force => true do |t|
@@ -157,8 +157,6 @@ ActiveRecord::Schema.define(:version => 20140210184206) do
   end
 
   create_table "recurrences", :force => true do |t|
-    t.datetime "start_date"
-    t.datetime "end_date"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "repetition"

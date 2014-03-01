@@ -17,7 +17,6 @@
 //= require jquery-ui-1.10.4.custom.js
 //= require jquery.validate.js
 //= require recurring_select
-//= require_tree .
 //= require twitter/bootstrap
 //= require bootstrap-multiselect
 
@@ -25,8 +24,8 @@
 //= require events.js
 //= require table_header.js
 //= require table_template.js
-
-
+//= require bookmarks.js
+//= require_tree .
 
 function addRecipient() {
 	alert("Add Clicked")

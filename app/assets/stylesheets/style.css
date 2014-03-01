@@ -41,7 +41,6 @@ html,body{
 .boxforforms{
 	display: inline-block;
 	position: relative;
-	min-width:400px;
 	min-height:70px;
 	margin:0 auto;
 	padding:0 0 0 0;

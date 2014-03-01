@@ -1,7 +1,4 @@
 class EventsController < ApplicationController
-  require 'event_module'
-
-  include EventModule
 
   before_filter :find_event, only:[:show, :edit, :update, :destroy]
 
@@ -58,9 +55,9 @@ class EventsController < ApplicationController
   # POST /events.json  
   def create
     @event = Event.new(params[:event])
-    
-    set_start_at_and_duration   
-    create_children_event 
+
+    duration = @event.get_duration params    
+    @event.create_children_event(duration)
 
     respond_to do |format|
       if @event.save
@@ -90,12 +87,15 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
-    set_start_at_and_duration    
+    
+    if @event.parent_id.nil?
+      duration = @event.get_duration params
+    end  
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
 
-        update_children_event
+        @event.update_children_event(duration)
 
         params[:resources].each do |param|
           if param[:id]

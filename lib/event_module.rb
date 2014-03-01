@@ -5,7 +5,7 @@ module EventModule
   def get_duration(params)
     hours_duration = params[:hours_duration].to_i
     minutes_duration = params[:minutes_duration].to_i
-    self.recurrence.duration = hours_duration.hour + minutes_duration.minutes
+    duration = hours_duration.hour + minutes_duration.minutes
   end
 
   def get_repetition

@@ -4,8 +4,6 @@ class Recurrence < ActiveRecord::Base
   attr_accessible :repetition
   
   has_many :events
-  
-  validate :date_validation
 
   serialize :repetition, Hash
 

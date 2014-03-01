@@ -1,11 +1,15 @@
 class Event < ActiveRecord::Base
 
+  include EventModule
+
   before_update :destroy_children_event_and_children_event_resources
 
-  attr_accessible :recurrence_attributes, :name, :event_type_id, :recurrence_id, :start_at, :end_at
+  attr_accessible :recurrence_attributes, :name, :event_type_id, :recurrence_id, :start_at, :end_at, :time_end_at
   
-  belongs_to :parent,	:class_name => "Event"
-  has_many 	 :children, :class_name => "Event", :foreign_key=> "parent_id", :dependent => :delete_all
+  attr_accessor :time_end_at
+  
+  belongs_to :parent, :class_name => "Event"
+  has_many   :children, :class_name => "Event", :foreign_key=> "parent_id", :dependent => :delete_all
   
   has_many :event_resources, :dependent => :delete_all
   has_many :resources, :through => :event_resources
@@ -25,12 +29,12 @@ class Event < ActiveRecord::Base
   def prev_event
     Event.where('id < ?', self.id).last
   end
-
+  
   private
-  	def destroy_children_event_and_children_event_resources
+    def destroy_children_event_and_children_event_resources
       EventResource.where(:event_id => self.children).delete_all
       Event.where('parent_id = ?', self.id).delete_all
-  	end
+    end
 
     def start_at_validation
       if start_at < Time.now
@@ -40,8 +44,10 @@ class Event < ActiveRecord::Base
 
     def children_time_validation
       unless self.parent_id.nil?
-        if self.start_at < self.prev_event.end_at 
-          errors.add(:start_at, "can't be less than the end of the previous event" )
+        unless self.prev_event.parent_id.nil?
+          if self.start_at < self.prev_event.end_at 
+            errors.add(:start_at, "can't be less than the end of the previous event" )
+          end
         end
 
         unless self.next_event.nil?

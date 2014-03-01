@@ -96,6 +96,8 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.1.2)
+      railties (>= 3.1.0)
     json (1.8.1)
     less (2.4.0)
       commonjs (~> 0.2.7)
@@ -253,6 +255,7 @@ DEPENDENCIES
   guard-rspec
   ice_cube
   jquery-rails
+  jquery-ui-rails
   less-rails
   nested_form
   paint

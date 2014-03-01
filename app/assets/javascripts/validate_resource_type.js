@@ -4,7 +4,9 @@ $(document).ready(function(){
 	// http://bassistance.de/jquery-plugins/jquery-plugin-validation/
 	// http://docs.jquery.com/Plugins/Validation/
 	// http://docs.jquery.com/Plugins/Validation/validate#toptions
+  // $('#new_resource_type');
 		$('#new_resource_type').validate({
+
 	    rules: {
 	      'resource_type[name]': {
 	        minlength: 2,

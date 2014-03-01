@@ -218,7 +218,7 @@ select:focus{
 	opacity: 1 !important;
 }
 .dropdown-menu > li > a{
-	display: inline !important;
+	/** display: inline !important; **/
 
 }
 .dropdown-menu{

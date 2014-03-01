@@ -15,6 +15,7 @@
 //= require jquery.ui.widget
 //= require jquery.rf.slideshow
 //= require jquery-ui-1.10.4.custom.js
+//= require jquery.validate.js
 //= require recurring_select
 //= require_tree .
 //= require twitter/bootstrap
@@ -24,6 +25,7 @@
 //= require events.js
 //= require table_header.js
 //= require table_template.js
+
 
 
 function addRecipient() {

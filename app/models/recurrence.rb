@@ -1,11 +1,10 @@
 class Recurrence < ActiveRecord::Base
 	include IceCube
 
-  attr_accessible :repetition, :end_date, :start_date
+  attr_accessible :repetition
   
   has_many :events
   
-  validates :end_date, :start_date, :presence => true
   validate :date_validation
 
   serialize :repetition, Hash
@@ -17,21 +16,5 @@ class Recurrence < ActiveRecord::Base
       write_attribute(:repetition, RecurringSelect.dirty_hash_to_rule(new_rec).to_hash)
 	  end
 	end
-
-  def get_repetition
-    unless repetition.nil?
-      schedule = Schedule.new(self.start_date)
-      rule = RecurringSelect.dirty_hash_to_rule(self.repetition)
-      schedule.add_recurrence_rule rule.until(self.end_date)
-      schedule.all_occurrences
-    end
-  end
-
-  private
-    def date_validation
-      if start_date  > end_date || start_date < Time.now
-        errors.add(:start_date, "can't be greater than end date or less than time is now")
-      end
-    end
 
 end

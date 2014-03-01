@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
 
   before_update :destroy_children_event_and_children_event_resources
 
-  attr_accessible :recurrence_attributes, :name, :event_type_id, :recurrence_id, :start_at, :duration
+  attr_accessible :recurrence_attributes, :name, :event_type_id, :recurrence_id, :start_at, :end_at
   
   belongs_to :parent,	:class_name => "Event"
   has_many 	 :children, :class_name => "Event", :foreign_key=> "parent_id", :dependent => :delete_all
@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
 
   accepts_nested_attributes_for :recurrence
   
-  validates :name, :start_at, :duration, :event_type_id, :presence => true
+  validates :name, :start_at, :end_at, :event_type_id, :presence => true
   validate :start_at_validation
   validate :children_time_validation, :on => :update
 
@@ -40,13 +40,13 @@ class Event < ActiveRecord::Base
 
     def children_time_validation
       unless self.parent_id.nil?
-        if self.start_at < self.prev_event.duration 
+        if self.start_at < self.prev_event.end_at 
           errors.add(:start_at, "can't be less than the end of the previous event" )
         end
 
         unless self.next_event.nil?
-          if self.duration > self.next_event.start_at
-            errors.add(:duration, "can't be greater than the start of the next event" )
+          if self.end_at > self.next_event.start_at
+            errors.add(:end_at, "can't be greater than the start of the next event" )
           end
         end
       end

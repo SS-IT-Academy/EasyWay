@@ -1,36 +1,40 @@
-<p id="notice"><%= notice %></p>
-
 <h4>
   <strong>Name: </strong>
   <i><%= @resource_type.name %></i>
 </h4>
-<div class="form-inline"><b>Fields</b></div>
-<ol>
-<% @resource_type.fields.each do |field| %>
-  <div class="form-inline">
-    <h4><li><%= field.name%></li></h4>
-    <strong>Type:</strong> <%= field.field_type.name %>
-  </div>
-  <strong><h5>Validators for <%= field.name %>:</h5></strong>
-  <% field.validators.each do |v| %>
-      <%= link_to v.name, v %><br>
+<table cellspacing="2" border="1" cellpadding="5" align="center">
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Custom Validators</th>
+  </tr>
+  <% @resource_type.fields.each do |field| %>
+  <tr>
+    <td><%= field.name%></td>
+    <td><%= field.field_type.name %></td>
+    <td>
+      <% field.validators.each do |v| %>
+        <%= link_to v.name, v %><br>
+      <% end %>
+    </td>
+  </tr>
   <% end %>
-     
-<% end %>
-</ol>
+</table>
 
 <h5>All available field names for making description:</h5>
 <p>
-  <%= @resource_type.all_field_names.inspect %>
+  <% s = "" %>
+  <% @resource_type.all_field_names.each { |f| s += "#{f},  " } %>
+  <pre><%= s.chomp ",  " %></pre>
 </p>
-<p>Example: "My name is $${name_of_field}"<p>
+<p><strong>Example:</strong> "My name is <i>$${name_of_field}</i>"<p>
 
 <div class="boxforforms">
 <%= form_for @resource_type, :html => { :class => "form-horizontal" },
     :url => { :action => :description }, :method => :post do |f| %>
   <% if @resource_type.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@resource_type.errors.count, "error") %> prohibited this resource_type from being saved:</h2>
+      <h2><%= pluralize(@resource_type.errors.count, "error") %> prohibited this resource type from being saved:</h2>
 
       <ul>
       <% @resource_type.errors.full_messages.each do |msg| %>

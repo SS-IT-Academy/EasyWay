@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>Description:</b>
   <%= @resource.description %>
@@ -36,7 +34,7 @@
       <% if @values[i].resource_reference_id %>
         <%= Resource.find(@values[i].resource_reference_id).description %>
       <% else %>
-        <%= @values[i].value if @values[i].value %>
+        <%= @values[i].value %>
       <% end %> 
     </td>
   </tr>

@@ -20,6 +20,7 @@
 //= require twitter/bootstrap
 //= require bootstrap-multiselect
 
+//= require start.js
 //= require resources.js
 //= require events.js
 //= require table_header.js

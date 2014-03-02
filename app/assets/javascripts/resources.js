@@ -100,43 +100,50 @@ function update_field_type_parse_data(data){
 
 function what_type_of_field(obj){
   var selected_type = $(obj).children(":selected").text();
-  if (selected_type == "Complex") {
-    $.ajax({
-      url: "/get_resource_types",
-      type: "GET",
-      beforeSend: function ( xhr ) {
-        xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
-      },
-      data: {},
-      dataType: "json",
-      success: function(data) {
-        $(obj).after(resource_type_parse(data));
-      }
-      
-    });
-    $("#Validators").remove();
+  if (selected_type != "Select Type") {
+    if (selected_type == "Complex") {
+      $.ajax({
+        url: "/get_resource_types",
+        type: "GET",
+        beforeSend: function ( xhr ) {
+          xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+        },
+        data: {},
+        dataType: "json",
+        success: function(data) {
+          if($(obj).next('div')) $($(obj).next('div')).remove();
+          $(obj).after(resource_type_parse(data));
+        }
+        
+      });
+    } else {
+      $.ajax({
+        url: "/get_validators",
+        type: "GET",
+        beforeSend: function ( xhr ) {
+          xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+        },
+        data: { field_type_id: $(obj).children(":selected").attr("value")},
+        dataType: "json",
+        success: function(data) {
+          console.log(obj);
+          if($(obj).next('div')) $($(obj).next('div')).remove();
+          $(obj).after(validators_for_field_parse(data));
+          console.log($(obj.nextSibling).find('select'));
+          var el = $(obj.nextSibling).find('select')[0]; // add validator title:
+          console.log(el);
+
+          $(el).multiselect({
+            includeSelectAllOption: true,
+            numberDisplayed: 1
+          });
+
+        }
+      });
+    }  
   } else {
-    $.ajax({
-      url: "/get_validators",
-      type: "GET",
-      beforeSend: function ( xhr ) {
-        xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
-      },
-      data: {},
-      dataType: "json",
-      success: function(data) {
-        console.log(obj);
-        $(obj).after(validators_for_field_parse(data));
-        console.log($(obj.nextSibling).find('select'));
-        var el = $(obj.nextSibling).find('select')[0]
-        console.log(el);
-
-        $(el).multiselect();
-
-      }
-    });
-    //if($(obj).nextSibling)) $($(obj).nextSibling.remove();
-  }  
+    if($(obj).next('div')) $($(obj).next('div')).remove();
+  }
 }
 
 function resource_type_parse(data){
@@ -150,7 +157,7 @@ function resource_type_parse(data){
 
 
 function validators_for_field_parse(data){
- data_html = "<div><select class='multiselect' name='fields[][validator_ids][]' multiple='multiple'"
+ data_html = "<div><label style='right-padding:20px;left-padding:20px;'>Validators</label><select class='multiselect' name='fields[][validator_ids][]' multiple='multiple'"
   for(var i=0;i<data.length;i++){
     data_html+="<option value='"+data[i].id+"'>"+data[i].name+"</option>"   
   }

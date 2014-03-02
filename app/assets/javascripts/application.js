@@ -17,6 +17,7 @@
 //= require jquery.validate.js
 //= require recurring_select
 //= require twitter/bootstrap
+//= require bootstrap-select
 //= require bootstrap-multiselect
 
 //= require resources.js

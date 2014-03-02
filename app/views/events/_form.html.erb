@@ -2,7 +2,9 @@
 
   $(function () {
     $('.datepicker').datetimepicker({ dateFormat: "yy-mm-dd" });
+    //$('select').selectpicker();
   });
+
     
 </script>
 <%= form_for @event, :html =>{:class=>"form-horizontal"} do |f| %>
@@ -25,7 +27,7 @@
   <div class="control-group">
     <%= f.label :event_type_id, :class=>"control-label" %>
     <div class="controls">
-      <%= f.select :event_type_id, options_from_collection_for_select(EventType.all, "id","name", @event.event_type_id),{ :include_blank => 'Select type'} %>
+      <%= f.select :event_type_id, options_from_collection_for_select(EventType.all, "id","name", @event.event_type_id),{ :include_blank => 'Select type'}, {:class => "selectpicker"} %>
     </div>
   </div>  
   <div class="control-group datetime">
@@ -132,6 +134,6 @@
     </div>  
   </div>
   <div class="actions controls">
-    <%= f.submit %>
+    <%= f.submit :class => "btn" %>
   </div>
 <% end %>

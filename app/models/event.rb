@@ -19,7 +19,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :recurrence
   
   validates :name, :start_at, :end_at, :event_type_id, :presence => true
-  validate :start_at_validation
+  validate :date_validation
   validate :children_time_validation, :on => :update
 
   def next_event
@@ -36,9 +36,13 @@ class Event < ActiveRecord::Base
       Event.where('parent_id = ?', self.id).delete_all
     end
 
-    def start_at_validation
+    def date_validation
       if start_at < Time.now
         errors.add(:start_at, "can't be less than time is now" )
+      end
+
+      if start_at > end_at
+        errors.add(:end_at, "can't be less than time is now" )
       end
     end
 

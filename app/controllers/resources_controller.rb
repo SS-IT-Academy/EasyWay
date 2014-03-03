@@ -92,25 +92,24 @@ class ResourcesController < ApplicationController
   # PUT /resources/1
   # PUT /resources/1.json
   def update
+    puts "#" * 40, params, "#" * 40
     @resource = Resource.find(params[:id])
-    if @resource.assign_attributes(params[:resource])
-      params[:values].each do |param|
-        if param[:id]
-          @rv = ResourceValue.find(param[:id])
-          @rv.assign_attributes(
-            :value                 => param[:value], 
-            :field_id              => param[:field_id],
-            :resource_reference_id => param[:resource_reference_id]
-          )
-        else
-          @rv = @resource.resource_values.build(
-            :value                 => param[:value], 
-            :field_id              => param[:field_id],
-            :resource_reference_id => param[:resource_reference_id], 
-          )
-        end
+    params[:values].each do |param|
+      if param[:id]
+        @rv = ResourceValue.find(param[:id])
+        @rv.update_attributes(
+          :value                 => param[:value], 
+          :field_id              => param[:field_id],
+          :resource_reference_id => param[:resource_reference_id]
+        )
+      else
+        @rv = @resource.resource_values.create(
+          :value                 => param[:value], 
+          :field_id              => param[:field_id],
+          :resource_reference_id => param[:resource_reference_id]
+        )
       end
-    end  
+    end 
     respond_to do |format|
       if @resource.save
         @resource.eval_description

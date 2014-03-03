@@ -18,7 +18,6 @@ module EventModule
   end
 
   def create_children_event(duration)
-    validator = 0
     unless self.recurrence.repetition.nil?
       all_repetition = self.get_repetition
       all_repetition.each_with_index do |occurrence, index| self.children.build(
@@ -26,14 +25,7 @@ module EventModule
         event_type_id: self.event_type_id,
         start_at: occurrence, 
         end_at: occurrence + duration
-      )
-      if index > 0
-        if validator > occurrence
-          self.children.destroy_all
-          break
-        end
-      end
-      validator = occurrence + duration  
+      )  
       end
     end
   end
@@ -48,14 +40,7 @@ module EventModule
           event_type_id: self.event_type_id,
           start_at: occurrence, 
           end_at: occurrence + duration
-        )
-        if index > 0
-          if validator > occurrence
-            self.children.destroy_all
-            break
-          end
-        end
-        validator = occurrence + duration           
+        )                  
         end
       end
     end

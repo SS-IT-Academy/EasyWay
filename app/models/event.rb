@@ -52,9 +52,21 @@ class Event < ActiveRecord::Base
           end
         end
 
-        unless self.next_event.nil?
+        unless self.next_event.parent_id.nil?
           if self.end_at > self.next_event.start_at
             errors.add(:end_at, "can't be greater than the start of the next event" )
+          end
+        end
+
+        if self.prev_event.parent_id.nil?
+          if self.start_at < self.prev_event.start_at
+            errors.add(:start_at, "can't be less than parent event start")
+          end
+        end
+
+        if self.next_event.parent_id.nil?
+          if self.end_at > self.parent.end_at
+            errors.add(:end_at, "can't be greater than parent event end")
           end
         end
       end

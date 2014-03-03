@@ -10,15 +10,8 @@ describe Recurrence do
       it { should have_many(:events) }
     end
 
-    context "checking validations" do
-      it { should validate_presence_of(:end_date) }
-      it { should validate_presence_of(:start_date) }
-    end
-
     context "checks attr_accessible" do
       it { should allow_mass_assignment_of(:repetition) }
-      it { should allow_mass_assignment_of(:end_date) }
-      it { should allow_mass_assignment_of(:start_date) }
     end
 
   end

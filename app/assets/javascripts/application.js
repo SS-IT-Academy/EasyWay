@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery-ui-timepicker-addon
-//= require jquery.validate.js
+//= require jquery.validate
 //= require recurring_select
 //= require twitter/bootstrap
 //= require bootstrap-select

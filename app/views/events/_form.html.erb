@@ -1,12 +1,3 @@
-<script>
-
-  $(function () {
-    $('.datepicker').datetimepicker({ dateFormat: "yy-mm-dd" });
-    //$('select').selectpicker();
-  });
-
-    
-</script>
 <%= form_for @event, :html =>{:class=>"form-horizontal"} do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
@@ -21,25 +12,25 @@
   <div class="control-group"> 
     <%= f.label :name, :class=>"control-label" %>
     <div class="controls">
-      <%= f.text_field :name %>
+      <%= f.text_field :name, :class => "required" %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :event_type_id, :class=>"control-label" %>
     <div class="controls">
-      <%= f.select :event_type_id, options_from_collection_for_select(EventType.all, "id","name", @event.event_type_id),{ :include_blank => 'Select type'}, {:class => "selectpicker"} %>
+      <%= f.select :event_type_id, options_from_collection_for_select(EventType.all, "id","name", @event.event_type_id),{ :include_blank => 'Select type'}, {:class => "selectpicker required"} %>
     </div>
   </div>  
   <div class="control-group datetime">
     <%= f.label :start_at, :class=>"control-label" %>
     <div class="controls">
-      <%= f.text_field :start_at, :class =>'datepicker' %>
+      <%= f.text_field :start_at, :class =>'datepicker required' %>
     </div>
     <br>
     <div class="control-group datetime">
     <%= f.label :end_at, :class=>"control-label" %>
     <div class="controls">
-      <%= f.text_field :end_at, :class =>'datepicker' %>
+      <%= f.text_field :end_at, :class =>'datepicker required' %>
     </div>
   </div>  
   <div>

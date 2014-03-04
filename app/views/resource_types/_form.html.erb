@@ -1,4 +1,3 @@
-
 <%= form_for @resource_type, :html => { :class => "form-horizontal" } do |f1| %>
   <% if @resource_type.errors.any? %>
     <div class="alert alert-error">
@@ -38,9 +37,11 @@
                 	<%= select_tag "fields[][resource_type_reference_id]", options_from_collection_for_select(@resource_types, "id", "name", field.resource_type_reference_id), :id => field.id %>
                 </div>
             <% end %>
-            <div id="Validators">
-               <%= select_tag "fields[][validator_ids][]", options_from_collection_for_select(@validators, "id", "name"), multiple: true, class: 'multiselect' %>
-            </div>
+            <% unless field.validators.blank? %>
+              <div>
+                 <%= select_tag "fields[][validator_ids][]", options_from_collection_for_select(@validators, "id", "name"), multiple: true, class: 'multiselect' %>
+              </div>              
+            <% end %>
             <div class="controls-label">
          	  	<a href='#' class='btn btn-danger' onclick='resource_type_edit_remove_field(this)'>Remove Field</a>
          	  </div> 
@@ -60,8 +61,16 @@
   
   
   <div class="actions">
-    <%= submit_tag  "Create resource type", :class => "btn btn-primary" %>
+    <%= submit_tag params[:action] == 'new' ? "Create" : ("Update") + " resource type", :class => "btn btn-primary" %>
   </div>
     
 <% end %>
 
+<script>
+  $(document).ready(function() {
+    $(".multiselect").multiselect({
+      includeSelectAllOption: true,
+      numberDisplayed: 1
+    });
+  });
+</script>

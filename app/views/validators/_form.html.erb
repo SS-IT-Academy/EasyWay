@@ -28,6 +28,6 @@
     <%= f.text_field :message %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit  params[:action] == 'new' ? "Create" : ("Update") + " validator", :class=>"btn btn-primary" %>
   </div>
 <% end %>

@@ -53,7 +53,7 @@
   <div class="control-group datetime">
     <%= f.label :start_at, :class=>"control-label" %>
     <div class="controls">
-      <%= text_field :date_start_at, nil, :class =>'datepicker', :value => @event.start_at.to_date %>
+      <%= text_field :date_start_at, nil, :class =>'datepicker' %>
       <%= select_hour(Time.now.utc) %> <span>:</span>
       <%= select_minute(Time.now.utc) %>
     </div>

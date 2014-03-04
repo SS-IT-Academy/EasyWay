@@ -1,6 +1,5 @@
 <%=@resource.inspect%>
 <%= form_for @resource, :html => { :class => "form-horizontal" } do |f| %>
-  <!-- , :method => @resource.id.nil? ? "PUT" : "POST" -->
   <% if @resource.errors.any? %>
     <div class="alert alert-error">
       <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
@@ -13,12 +12,6 @@
     </div>
   <% end %>
 
-<!--   <div class="control-group">
-    <%= f.label :description, :class=>"control-label"%>
-    <div class="controls">
-       <%= f.text_field :description %>
-    </div>
-  </div> -->
   <% if @resource.resource_values.blank? %>
 	  <div class="control-group">
 		  <%= f.label :resource_type_id, :class=>"control-label" %>
@@ -54,7 +47,7 @@
   <div id="fieldsDiv" class="control-group">
   </div>
   <div class="actions">
-    <%= f.submit :class=>"btn btn-primary"%> 
+    <%= f.submit params[:action] == 'new' ? "Create" : ("Update") + " resource", :class=>"btn btn-primary" %> 
   </div>
 <% end %>
 

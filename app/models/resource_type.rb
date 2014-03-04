@@ -43,7 +43,12 @@ class ResourceType < ActiveRecord::Base
 
   def check_description
     if self.fields.any?
-      user_field_names = description.scan(/\$\$\{+[a-zA-Z0-9.]+}/).map { |name| name.delete("${}") }
+      if description
+        user_field_names = description.scan(/\$\$\{+[a-zA-Z0-9.]+}/).map { |name| name.delete("${}") }
+      else
+        update_attribute :description, ""
+        return true
+      end
       user_field_names.each do |name|
         unless self.all_field_names.include? name
           return errors[:base] << "Undefined name: #{name}"

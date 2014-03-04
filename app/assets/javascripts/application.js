@@ -26,6 +26,7 @@
 //= require table_header.js
 //= require table_template.js
 //= require bookmarks.js
+//= require validate_resource_type.js
 //= require_tree .
 
 function addRecipient() {

@@ -52,6 +52,7 @@ class ResourceTypesController < ApplicationController
     @resource_fields = Field.where("resource_type_id = ?", params[:id])
     @field_types = FieldType.all
     @resource_types = ResourceType.all
+    @validators = Validator.all
   end
 
   # POST /resource_types
@@ -111,12 +112,22 @@ class ResourceTypesController < ApplicationController
                 :resource_type_reference_id => param[:resource_type_reference_id]
               )
             else
-              @field = Field.new(
+              @field = Field.create(
                 :name             => param[:name],
                 :field_type_id    => param[:field_type_id],
-                :resource_type_id => params[:id]
+                :resource_type_id => params[:id],
+                :resource_type_reference_id => param[:resource_type_reference_id]
               )
             end
+            if @field.field_validations.any?
+              @field.field_validations.each { |v| v.destroy }
+            end
+            if param[:validator_ids]
+              param[:validator_ids].each do |index|
+                next if index == "multiselect-all"
+                @field.reload.field_validations.build(validator_id: index)
+              end
+            end            
             @field.save
           end
         end  

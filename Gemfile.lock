@@ -34,6 +34,11 @@ GEM
     atomic (1.1.14)
     awesome_print (1.2.0)
     bcrypt-ruby (3.1.2)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap-multiselect-rails (0.0.2)
       rails (~> 3.2.13)
     builder (3.0.4)
@@ -59,6 +64,7 @@ GEM
     coffee-script-source (1.7.0)
     commonjs (0.2.7)
     daemons (1.1.9)
+    debug_inspector (0.0.2)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -246,6 +252,8 @@ DEPENDENCIES
   ancestry
   awesome_print
   bcrypt-ruby
+  better_errors
+  binding_of_caller
   bootstrap-multiselect-rails
   cancan
   capybara

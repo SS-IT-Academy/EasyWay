@@ -1106,7 +1106,7 @@ input[type="color"],
 input,
 textarea,
 .uneditable-input {
-  width: 116px;
+  width: 206px;
 }
 
 textarea {
@@ -1196,7 +1196,7 @@ input[type="file"] {
 }
 
 select {
-  /*width: 220px;*/
+  width: 220px;
   background-color: #ffffff;
   border: 1px solid #cccccc;
 }

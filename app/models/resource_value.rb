@@ -6,21 +6,28 @@ class ResourceValue < ActiveRecord::Base
   # has_one :resource_type, :through => :resource,
   #    :foreign_key => "resource_reference_id"
   delegate :resource_type, :to => :resource, :allow_nil => true
-  validates :field_id, :resource_id, :presence => true
+  validates :field_id, :resource, :presence => true
   validate :custom_validation
 
   def custom_validation
     validators = Field.find(field_id).validators
     validators.each do |v|
-      puts v.body.gsub("@@", value)
-      begin
-        unless eval(v.body.gsub("@@", value))
-          errors[:base] << v.message
-        end
-      rescue
-        errors[:base] << "Validator '#{v.name}' with id #{v.id} has bad syntax"
-      end
+      evaluate_validator(v, value)
     end
     true
   end
+
+  private 
+
+  def evaluate_validator(validator, value)
+      puts validator.body.gsub("@@", value)
+      puts eval(validator.body.gsub("@@", value))
+      begin
+        result = eval(validator.body.gsub("@@", value))
+        raise Exception.new("Validator result class should be boolean, but is #{result.class}") unless [TrueClass, FalseClass].include?(result.class) 
+        errors[:base] << validator.message unless result
+      rescue => e
+        errors[:base] << "Validator '#{validator.name}' with id #{validator.id} has bad syntax. Error: #{e.message}"
+      end
+  end  
 end

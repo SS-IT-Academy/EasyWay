@@ -38,8 +38,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'watchr'
   gem 'shoulda-matchers'
-  #gem "better_errors"
-  #gem "binding_of_caller"
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 gem 'thin' 

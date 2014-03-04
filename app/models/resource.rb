@@ -1,8 +1,8 @@
 class Resource < ActiveRecord::Base
-  attr_accessible :description, :resource_type_id
+  attr_accessible :description, :resource_type_id, :resource_values_attributes
   
   belongs_to :resource_type
-  has_many :resource_values, :dependent => :destroy
+  has_many :resource_values, :dependent => :destroy,  :inverse_of => :resource
   has_many :event_resources
   has_many :events, :through => :event_resources
   has_many :permission_roles, as: :permissionable
@@ -11,6 +11,7 @@ class Resource < ActiveRecord::Base
   
   validates :resource_type_id, :presence => true
   validates_associated_bubbling :resource_values
+  accepts_nested_attributes_for :resource_values
   
   scope :by_resource_type, lambda { |resource_type_id| where("resource_type_id = ?", resource_type_id) }
 

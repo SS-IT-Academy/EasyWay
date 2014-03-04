@@ -17,14 +17,14 @@ function update_resource_parse_data(data){
   data_html="";
   for (var i=0;i<data.length;i++){
 	data_html+="<div class='control-group'>"+
-	"<input type='hidden' value='"+data[i].id+"'name='fields[][field_id]' size='30'>"+
-	"<label class='control-label' for='fields[]["+data[i].name+"]'>"+data[i].name+
+	"<input type='hidden' value='"+data[i].id+"'name='resource[resource_values_attributes][][field_id]' size='30'>"+
+	"<label class='control-label' for='resource[resource_values_attributes][]["+data[i].name+"]'>"+data[i].name+
 	"</label><div class='controls'>";
 	if (data[i].resource_type_reference_id == null){
-	  data_html+="<input id='"+data[i].id+"' name='fields[][value]' size='30' type='text'>";
+	  data_html+="<input id='"+data[i].id+"' name='resource[resource_values_attributes][][value]' size='30' type='text'>";
 	}
 	else {
-	  data_html+="<select id='field_complex' name='fields[][resource_reference_id]'><option></option></select>";
+	  data_html+="<select id='field_complex' name='resource[resource_values_attributes][][resource_reference_id]'><option></option></select>";
 	  $.ajax({
         url: "/get_resources",
     	type: "GET",

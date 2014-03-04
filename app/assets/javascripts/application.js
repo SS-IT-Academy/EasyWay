@@ -12,12 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.widget
-//= require jquery.rf.slideshow
-//= require jquery-ui-1.10.4.custom.js
-//= require jquery.validate.js
+//= require jquery.ui.all
+//= require jquery-ui-timepicker-addon
+//= require jquery.validate
 //= require recurring_select
 //= require twitter/bootstrap
+//= require bootstrap-select
 //= require bootstrap-multiselect
 
 //= require start.js

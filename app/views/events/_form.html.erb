@@ -1,25 +1,3 @@
-<script>
-  function enable_based_on(){
-    if ($(events).attr('disabled'))
-      $(events).removeAttr('disabled');
-  else
-    $(events).attr('disabled','disabled');
-  }
-
-  $(document).ready(function(){
-    $("input[name='repetition_checkbox']").change(function(){
-      if(this.checked)
-        $('.recurrence_subform').fadeIn('slow');
-      else
-        $('.recurrence_subform').fadeOut('slow');
-      });
-  });
-
-  $(function () {
-    $('.datepicker').datepicker({ dateFormat: "yy-mm-dd" });
-  });
-    
-</script>
 <%= form_for @event, :html =>{:class=>"form-horizontal"} do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
@@ -30,105 +8,78 @@
         <% end %>
       </ul>
     </div>
-  <% end %><!-- 
-  <div class="control-group">
-    <%= f.label "Events to based on", :class => "control-label" %>
-    <div class="controls">
-      <input type="checkbox" onchange="enable_based_on()">
-      <%= select_tag :events, options_from_collection_for_select(Event.all, "id","name"),html_options ={:include_blank => '', :onchange => "Create_event_with_pattern(this)", :disabled => true}%>
-    </div>
-  </div> -->
+  <% end %>
   <div class="control-group"> 
     <%= f.label :name, :class=>"control-label" %>
     <div class="controls">
-      <%= f.text_field :name %>
+      <%= f.text_field :name, :class => "required" %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :event_type_id, :class=>"control-label" %>
     <div class="controls">
-      <%= f.select :event_type_id, options_from_collection_for_select(EventType.all, "id","name", @event.event_type_id),{ :include_blank => 'Select type'} %>
+      <%= f.select :event_type_id, options_from_collection_for_select(EventType.all, "id","name", @event.event_type_id),{ :include_blank => 'Select type'}, {:class => "selectpicker required"} %>
     </div>
   </div>  
   <div class="control-group datetime">
     <%= f.label :start_at, :class=>"control-label" %>
     <div class="controls">
+<<<<<<< HEAD
       <%= text_field :date_start_at, nil, :class =>'datepicker' %>
       <%= select_hour(Time.now.utc) %> <span>:</span>
       <%= select_minute(Time.now.utc) %>
+=======
+      <%= f.text_field :start_at, :class =>'datepicker required' %>
+>>>>>>> 1dbd13aacca98a5bb6d45e103f2d75af59ff1874
     </div>
-  </div>
-  <div class="control-group datetime">
-    <%= f.label :duration, :class=>"control-label" %>
+    <br>
+    <div class="control-group datetime">
+    <%= f.label :end_at, :class=>"control-label" %>
     <div class="controls">
-
-      <%= select_tag :days_duration, options_for_select([
-        ['', '0'],
-        ['1 day', '1'],
-        ['2 days', '2'],
-        ['3 days', '3'],
-        ['4 days', '4'],
-        ['5 days', '5'],
-        ['6 days', '6'],
-        ['7 days', '7']
-      ]) %>
-
-      <%= select_tag :hours_duration, options_for_select([
-        ['', '0.0'],
-        ['1 hour', '1'],
-        ['2 hours', '2'],
-        ['3 hours', '3'],
-        ['4 hours', '4'],
-        ['5 hours', '5'],
-        ['6 hours', '6'],
-        ['7 hours', '7'],
-        ['8 hours', '8'],
-        ['9 hours', '9'],
-        ['10 hours', '10']
-      ]) %>
-
-      <%= select_tag :minutes_duration, options_for_select([
-        ['', '0.0'],
-        ['5 minutes', '5'],
-        ['10 minutes', '10'],
-        ['15 minutes', '15'],
-        ['20 minutes', '20'],
-        ['25 minutes', '25'],
-        ['30 minutes', '30'],
-        ['35 minutes', '35'],
-        ['40 minutes', '40'],
-        ['45 minutes', '45'],
-        ['50 minutes', '50'],
-        ['55 minutes', '55']
-      ]) %>
-
+      <%= f.text_field :end_at, :class =>'datepicker required' %>
     </div>
-  </div>
-  <div class="control-group" >
-    <%= f.label "Recurence", :class=>"control-label" %>
-    <input type="checkbox" name="repetition_checkbox">
-    <br>
-    <br>
-    <div class=" recurrence_subform" style="display:none">
+  </div>  
+  <div>
+    <div>
       <%= f.fields_for :recurrence, @event.recurrence do |recurrence_form| %>
-      <div>
+      <div class="control-group">
         <%= recurrence_form.label :repetition, :class=>"control-label" %>
-        <div>
+        <div class="controls">
           <%= recurrence_form.select_recurring :repetition %><br>
         </div>
       </div>
-      <br>
-      <div class="datetime">
-        <%= recurrence_form.label :start_date, :class=>"control-label" %>
-        <div>
-          <%= recurrence_form.datetime_select :start_date %><br>
-        </div>
-      </div>
-      <br>
-      <div class="datetime">
-        <%= recurrence_form.label :end_date, :class=>"control-label" %>
-        <div>
-          <%= recurrence_form.datetime_select :end_date %><br>
+      <div class="control-group">
+        <%= recurrence_form.label :duration, :class=>"control-label" %>
+        <div class="controls">
+          <%= select_tag :hours_duration, options_for_select([
+            ['', '0.0'],
+            ['1 hour', '1'],
+            ['2 hours', '2'],
+            ['3 hours', '3'],
+            ['4 hours', '4'],
+            ['5 hours', '5'],
+            ['6 hours', '6'],
+            ['7 hours', '7'],
+            ['8 hours', '8'],
+            ['9 hours', '9'],
+            ['10 hours', '10']
+          ]) %>
+
+          <%= select_tag :minutes_duration, options_for_select([
+            ['', '0.0'],
+            ['5 minutes', '5'],
+            ['10 minutes', '10'],
+            ['15 minutes', '15'],
+            ['20 minutes', '20'],
+            ['25 minutes', '25'],
+            ['30 minutes', '30'],
+            ['35 minutes', '35'],
+            ['40 minutes', '40'],
+            ['45 minutes', '45'],
+            ['50 minutes', '50'],
+            ['55 minutes', '55']
+          ]) %>
+
         </div>
       </div>
     <% end %>
@@ -179,7 +130,8 @@
       <a href="#" class="btn btn-inverse" onclick="Add_resource_to_event()">Add resource</a>
     </div>  
   </div>
-  <div class="actions controls">
-    <%= f.submit %>
+  <div class="actions controls ">
+    <%= f.submit :class => "btn" %>
   </div>
+  <br>
 <% end %>

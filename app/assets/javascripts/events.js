@@ -84,3 +84,9 @@ function Create_event_with_pattern(obj){
     }
   });
 }
+
+$(function () {
+  $('.datepicker').datetimepicker({ dateFormat: "yy-mm-dd" });
+  $("#new_event").validate();
+  //$('select').selectpicker();
+});

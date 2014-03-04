@@ -110,12 +110,9 @@ describe RecurrencesController do
     it "changes recurrence's attributes" do
       recurrence = create(:recurrence)
       put :update, id: recurrence, recurrence: attributes_for(:recurrence,
-        start_date: DateTime.now.utc - 1.day,
-        end_date: DateTime.now.utc + 4.day
-      )
+        repetition: '4')
       recurrence.reload
-      recurrence.start_date.should == DateTime.now.utc - 1.day
-      recurrence.end_date.should eq(DateTime.now.utc + 4.day)
+      recurrence.repetition.should eq('4')
     end
 
     it 'redirects to the updated recurrence' do

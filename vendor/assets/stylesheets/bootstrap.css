@@ -224,7 +224,7 @@ textarea {
 body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 20px;
   color: #333333;
   background-color: #ffffff;
@@ -768,7 +768,7 @@ h1 {
 }
 
 h2 {
-  font-size: 31.5px;
+  /*font-size: 31.5px;*/
 }
 
 h3 {
@@ -1106,7 +1106,7 @@ input[type="color"],
 input,
 textarea,
 .uneditable-input {
-  width: 206px;
+  width: 116px;
 }
 
 textarea {
@@ -1196,7 +1196,7 @@ input[type="file"] {
 }
 
 select {
-  width: 220px;
+  /*width: 220px;*/
   background-color: #ffffff;
   border: 1px solid #cccccc;
 }
@@ -1961,7 +1961,7 @@ legend + .control-group {
 
 .form-horizontal .control-label {
   float: left;
-  width: 160px;
+  /*width: 160px;*/
   padding-top: 5px;
   text-align: right;
 }
@@ -1969,7 +1969,7 @@ legend + .control-group {
 .form-horizontal .controls {
   *display: inline-block;
   *padding-left: 20px;
-  margin-left: 180px;
+  margin-left: 80px;
   *margin-left: 0;
 }
 

@@ -17,7 +17,8 @@
   </div>
   <div class="field">
     <%= f.label :field_type_id %><br />
-    <%= f.number_field :field_type_id %>
+    <%= f.select :field_type_id, options_from_collection_for_select(@field_types, :id, :name), 
+    { :include_blank => 'None' } %>
   </div>
   <div class="field">
     <%= f.label :body %><br />
@@ -28,6 +29,6 @@
     <%= f.text_field :message %>
   </div>
   <div class="actions">
-    <%= f.submit  params[:action] == 'new' ? "Create" : ("Update") + " validator", :class=>"btn btn-primary" %>
+    <%= f.submit (@validator.id.nil? ? "Create" : "Update") + " validator", :class=>"btn btn-primary" %>
   </div>
 <% end %>

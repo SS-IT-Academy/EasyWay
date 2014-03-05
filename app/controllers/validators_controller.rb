@@ -31,7 +31,7 @@ class ValidatorsController < ApplicationController
   # GET /validators/new.json
   def new
     @validator = Validator.new
-
+    @field_types = FieldType.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @validator }

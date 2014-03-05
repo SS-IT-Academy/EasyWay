@@ -61,7 +61,7 @@
   
   
   <div class="actions">
-    <%= submit_tag params[:action] == 'new' ? "Create" : ("Update") + " resource type", :class => "btn btn-primary" %>
+    <%= submit_tag (@resource_type.id.nil? == 'new' ? "Create" : "Update") + " resource type", :class => "btn btn-primary" %>
   </div>
     
 <% end %>

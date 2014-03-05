@@ -46,7 +46,7 @@
   <div id="fieldsDiv" class="control-group">
   </div>
   <div class="actions">
-    <%= f.submit @resource.id.nil? ? "Create" : ("Update") + " resource", :class=>"btn btn-primary" %> 
+    <%= f.submit (@resource.id.nil? ? "Create" : "Update") + " resource", :class=>"btn btn-primary" %> 
   </div>
 <% end %>
 

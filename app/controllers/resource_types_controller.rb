@@ -125,7 +125,7 @@ class ResourceTypesController < ApplicationController
             if param[:validator_ids]
               param[:validator_ids].each do |index|
                 next if index == "multiselect-all"
-                @field.reload.field_validations.build(validator_id: index)
+                @field.field_validations.build(validator_id: index.to_i)
               end
             end            
             @field.save

@@ -17,8 +17,8 @@
   </div>
   <div class="field">
     <%= f.label :field_type_id %><br />
-    <%= f.select :field_type_id, options_from_collection_for_select(@field_types, :id, :name), 
-    { :include_blank => 'None' } %>
+    <%= f.select :field_type_id, options_from_collection_for_select(@field_types, :id, :name, @validator.field_type_id), 
+     :include_blank => 'None' %>
   </div>
   <div class="field">
     <%= f.label :body %><br />

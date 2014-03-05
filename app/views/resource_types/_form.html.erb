@@ -30,17 +30,22 @@
        </div>
        <label class='control-label' for='fields[][field_type_id]'>Field Type</label>
          <div class="controls">
-            <%= select_tag "fields[][field_type_id]", options_from_collection_for_select(@field_types, "id", "name", field.field_type_id), :id=>field.id, :onchange=>"what_type_of_field(this)"%>
+            <%= select_tag "fields[][field_type_id]", options_from_collection_for_select(@field_types, "id", "name", field.field_type_id), :id=>field.id, :onchange=>"what_type_of_field(this)" %>
             <% if field.resource_type_reference_id%>
                 <div id="ResourceTypes">         
                 <!-- reference_type_id -->
                 	<%= select_tag "fields[][resource_type_reference_id]", options_from_collection_for_select(@resource_types, "id", "name", field.resource_type_reference_id), :id => field.id %>
                 </div>
-            <% end %>
-            <% unless field.validators.blank? %>
+            <% else %>
               <div>
-                 <%= select_tag "fields[][validator_ids][]", options_from_collection_for_select(@validators, "id", "name"), multiple: true, class: 'multiselect' %>
-              </div>              
+                <label style='right-padding:20px;left-padding:20px;'>Validators</label>
+                <%= select_tag "fields[][validator_ids][]", 
+                  options_from_collection_for_select(
+                    Validator.where("field_type_id IS NULL OR field_type_id = ?", field.field_type_id), 
+                    "id", "name", field.validators.map { |v| v.id }
+                  ), multiple: true, class: 'multiselect' 
+                %>
+              </div>
             <% end %>
             <div class="controls-label">
          	  	<a href='#' class='btn btn-danger' onclick='resource_type_edit_remove_field(this)'>Remove Field</a>
@@ -61,7 +66,7 @@
   
   
   <div class="actions">
-    <%= submit_tag (@resource_type.id.nil? == 'new' ? "Create" : "Update") + " resource type", :class => "btn btn-primary" %>
+    <%= submit_tag (@resource_type.id.nil? ? "Create" : "Update") + " resource type", :class => "btn btn-primary" %>
   </div>
     
 <% end %>

@@ -242,7 +242,6 @@ GEM
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    underscore-rails (1.5.2)
     warden (1.2.3)
       rack (>= 1.0)
     watchr (0.7)
@@ -289,6 +288,5 @@ DEPENDENCIES
   thin
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
-  underscore-rails
   watchr
   will_paginate (~> 3.0.5)

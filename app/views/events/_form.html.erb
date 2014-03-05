@@ -24,13 +24,7 @@
   <div class="control-group datetime">
     <%= f.label :start_at, :class=>"control-label" %>
     <div class="controls">
-<<<<<<< HEAD
-      <%= text_field :date_start_at, nil, :class =>'datepicker' %>
-      <%= select_hour(Time.now.utc) %> <span>:</span>
-      <%= select_minute(Time.now.utc) %>
-=======
-      <%= f.text_field :start_at, :class =>'datepicker required' %>
->>>>>>> 1dbd13aacca98a5bb6d45e103f2d75af59ff1874
+      <%= f.text_field :start_at, :class =>'datepicker' %>
     </div>
     <br>
     <div class="control-group datetime">
@@ -52,7 +46,7 @@
         <%= recurrence_form.label :duration, :class=>"control-label" %>
         <div class="controls">
           <%= select_tag :hours_duration, options_for_select([
-            ['', '0.0'],
+            ['', '0'],
             ['1 hour', '1'],
             ['2 hours', '2'],
             ['3 hours', '3'],
@@ -66,7 +60,7 @@
           ]) %>
 
           <%= select_tag :minutes_duration, options_for_select([
-            ['', '0.0'],
+            ['', '0'],
             ['5 minutes', '5'],
             ['10 minutes', '10'],
             ['15 minutes', '15'],

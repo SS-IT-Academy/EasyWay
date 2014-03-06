@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
 
   before_update :destroy_children_event_and_children_event_resources
 
-  attr_accessible :recurrence_attributes, :name, :event_type_id, :recurrence_id, :start_at, :end_at
+  attr_accessible :recurrence_attributes, :name, :event_type_id, :recurrence_id, :start_at, :end_at, :parent_id
   
   belongs_to :parent, :class_name => "Event"
   has_many   :children, :class_name => "Event", :foreign_key=> "parent_id", :dependent => :delete_all

@@ -86,7 +86,9 @@ function Create_event_with_pattern(obj){
 }
 
 $(function () {
-  $('.datepicker').datetimepicker({ dateFormat: "yy-mm-dd" });
+  $('.datepicker').datetimepicker({
+    dateFormat: "yy-mm-dd"
+    // dayNamesMin: [ "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su" ]
+  });
   $("#new_event").validate();
-  //$('select').selectpicker();
 });

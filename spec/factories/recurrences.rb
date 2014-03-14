@@ -3,8 +3,8 @@
 FactoryGirl.define do
 
   factory :recurrence do
-    repetition "2"
-    duration "1800"
+    repetition '{}'
+    duration 1.hour
   end
 
   factory :invalid_recurrence, parent: :recurrence do

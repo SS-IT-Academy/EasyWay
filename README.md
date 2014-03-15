@@ -18,7 +18,9 @@ For example, you can create a bookmark frequently visited pages.
 
 ### More about each part of project
 
-* [Event](https://github.com/SS-IT-Academy/EasyWay/wiki/About-Event)
+* [Events](https://github.com/SS-IT-Academy/EasyWay/wiki/About-Event)
+* [Resources](https://github.com/SS-IT-Academy/EasyWay/wiki/Resources)
+* [Notifications](https://github.com/SS-IT-Academy/EasyWay/wiki/Notifications)
 
 ### Ruby on Rails
 

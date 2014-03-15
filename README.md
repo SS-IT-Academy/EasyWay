@@ -17,3 +17,16 @@ This application requires:
 h3. Database
 
 This application uses Sqlite3 with ActiveRecord.
+
+h3. Development
+
+* Testing gem: RSpec, Shoulda, Factory Girl
+* UI framefork: Twitter Bootstrap
+* Authentication: Devise
+* Authorization: CanCan
+* Frontend framework: Backbone, Underscore
+* Other gem: IceCube, Recurring-select
+
+h3. Getting Started
+
+1. clone project

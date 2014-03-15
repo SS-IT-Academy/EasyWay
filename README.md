@@ -33,3 +33,7 @@ This application uses Sqlite3 with ActiveRecord.
 2. run bundle `bundle install`
 3. rake db `rake db:migrate`
 4. srart server `rails s`
+
+### Documentation
+
+* [Event](https://github.com/SS-IT-Academy/EasyWay/wiki/About-Event)

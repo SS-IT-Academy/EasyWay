@@ -7,6 +7,19 @@ The objectives of system are planning of education and planning of using resourc
 It is posible to configure site usage by itself.
 For example, you can create a bookmark frequently visited pages.
 
+### Possibilities in our system
+
+* you can register
+* you can use the resources that are the essence of reality. For example students, teachers and audience
+* сreate an event and sub-event, using the right resources
+* create a bookmark frequently visited pages
+* make notification of an event
+* display events in tables
+
+### More about each part of project
+
+* [Event](https://github.com/SS-IT-Academy/EasyWay/wiki/About-Event)
+
 ### Ruby on Rails
 
 This application requires:
@@ -34,6 +47,3 @@ This application uses Sqlite3 with ActiveRecord.
 3. rake db `rake db:migrate`
 4. srart server `rails s`
 
-### Documentation
-
-* [Event](https://github.com/SS-IT-Academy/EasyWay/wiki/About-Event)

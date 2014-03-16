@@ -40,8 +40,8 @@ class Resource < ActiveRecord::Base
         end
       end
     end
-    puts description
     self.update_attribute :description, description
+    description
   end
 
   def self.resource_fields_with_values_by_resource(resource_id)

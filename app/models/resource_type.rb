@@ -5,9 +5,9 @@ class ResourceType < ActiveRecord::Base
   has_many :resources, :dependent => :restrict 
   has_many :resource_values, :through => :resources 
   has_many :fields_resource_values, 
-  			:through => :fields, 
-  			:source => :resource_values,
-  			:class_name => ResourceValue
+  			   :through => :fields, 
+  			   :source => :resource_values,
+  			   :class_name => ResourceValue
   has_many :permission_roles, as: :permissionable
 
   validates :name, presence: true, uniqueness: true
@@ -44,7 +44,7 @@ class ResourceType < ActiveRecord::Base
   def check_description
     if self.fields.any?
       if description
-        user_field_names = description.scan(/\$\$\{+[a-zA-Z0-9.]+}/).map { |name| name.delete("${}") }
+        user_field_names = description.scan(/\$\$\{[a-zA-Z0-9._]+}/).map { |name| name.delete("${}") }
       else
         update_attribute :description, ""
         return true

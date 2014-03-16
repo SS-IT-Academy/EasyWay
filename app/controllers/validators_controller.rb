@@ -41,6 +41,7 @@ class ValidatorsController < ApplicationController
   # GET /validators/1/edit
   def edit
     @validator = Validator.find(params[:id])
+    @field_types = FieldType.all
   end
 
   # POST /validators

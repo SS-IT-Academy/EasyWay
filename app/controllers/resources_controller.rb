@@ -29,7 +29,7 @@ class ResourcesController < ApplicationController
   # GET /resources/1
   # GET /resources/1.json
   def show
-    @resource_type = ResourceType.find(@resource.resource_type_id)
+    @resource_type = @resource.resource_type
     @values = ResourceValue.where("resource_id = ?", params[:id])
     @field_types = []
     @values.each do |value|
@@ -141,6 +141,6 @@ class ResourcesController < ApplicationController
   end  
 
   def get_resource_types
-     @resource_types = ResourceType.all   
+    @resource_types = ResourceType.all   
   end 
 end

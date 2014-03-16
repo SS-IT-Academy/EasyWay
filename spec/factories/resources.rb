@@ -23,6 +23,6 @@ FactoryGirl.define do
     field
     resource
     value "new resource value"
-    sequence(:resource_reference_id) { |n| n }
+    #sequence(:resource_reference_id) { |n| n }
   end
 end

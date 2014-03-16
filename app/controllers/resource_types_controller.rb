@@ -1,9 +1,10 @@
 class ResourceTypesController < ApplicationController
+  before_filter :get_resource_type,  only: [:show, :edit, :update, :destroy, :description]
+  before_filter :get_resource_types, only: [:index, :all_types, :edit]
+
   # GET /resource_types
   # GET /resource_types.json
   def index
-    @resource_types = ResourceType.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @resource_types }
@@ -11,13 +12,11 @@ class ResourceTypesController < ApplicationController
   end
   
   def all_types
-    @resource_types = ResourceType.all
     render :json => @resource_types.to_json
   end
   # GET /resource_types/1
   # GET /resource_types/1.json
   def show
-    @resource_type = ResourceType.find(params[:id])
     @resource_fields = Field.where("resource_type_id = ?", params[:id])
     
     respond_to do |format|
@@ -48,10 +47,8 @@ class ResourceTypesController < ApplicationController
   
   # GET /resource_types/1/edit
   def edit
-    @resource_type = ResourceType.find(params[:id])
     @resource_fields = Field.where("resource_type_id = ?", params[:id])
     @field_types = FieldType.all
-    @resource_types = ResourceType.all
     @validators = Validator.all
   end
 
@@ -86,7 +83,6 @@ class ResourceTypesController < ApplicationController
   end
 
   def description
-    @resource_type = ResourceType.find(params[:id])
     if @resource_type.update_attributes(params[:resource_type])
       redirect_to resource_types_url, notice: 'Description was successfully updated.'   
     else
@@ -97,8 +93,6 @@ class ResourceTypesController < ApplicationController
   # PUT /resouresource_type_reference_idrce_types/1
   # PUT /resource_types/1.json
   def update
-    @resource_type = ResourceType.find(params[:id])
-      
     respond_to do |format|
       if @resource_type.update_attributes(params[:resource_type])
         if params[:fields]
@@ -125,7 +119,7 @@ class ResourceTypesController < ApplicationController
             if param[:validator_ids]
               param[:validator_ids].each do |index|
                 next if index == "multiselect-all"
-                @field.reload.field_validations.build(validator_id: index)
+                @field.field_validations.build(validator_id: index.to_i)
               end
             end            
             @field.save
@@ -143,7 +137,6 @@ class ResourceTypesController < ApplicationController
   # DELETE /resource_types/1
   # DELETE /resource_types/1.json
   def destroy
-    @resource_type = ResourceType.find(params[:id])
     begin
       if @resource_type.destroy
         respond_to do |format|
@@ -156,5 +149,15 @@ class ResourceTypesController < ApplicationController
         format.html { redirect_to "index", notice: "Resource_type cann't delete." }
       end
     end
+  end
+
+  private 
+
+  def get_resource_type
+    @resource_type = ResourceType.find(params[:id])    
+  end
+
+  def get_resource_types
+    @resource_types = ResourceType.all   
   end
 end

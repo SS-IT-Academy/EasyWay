@@ -20,14 +20,16 @@ class ResourceValue < ActiveRecord::Base
   private 
 
   def evaluate_validator(validator, value)
-      puts validator.body.gsub("@@", value)
-      puts eval(validator.body.gsub("@@", value))
-      begin
-        result = eval(validator.body.gsub("@@", value))
-        raise Exception.new("Validator result class should be boolean, but is #{result.class}") unless [TrueClass, FalseClass].include?(result.class) 
-        errors[:base] << validator.message unless result
-      rescue => e
-        errors[:base] << "Validator '#{validator.name}' with id #{validator.id} has bad syntax. Error: #{e.message}"
+    puts validator.body.gsub("@@", value)
+    puts eval(validator.body.gsub("@@", value))
+    begin
+      result = eval(validator.body.gsub("@@", value))
+      unless [TrueClass, FalseClass].include?(result.class) 
+        raise Exception.new("Validator result class should be boolean, but is #{result.class}") 
       end
+      errors[:base] << validator.message unless result
+    rescue => e
+      errors[:base] << "Validator '#{validator.name}' with id #{validator.id} has bad syntax. Error: #{e.message}"
+    end
   end  
 end

@@ -238,3 +238,8 @@ select:focus{
 .dropdown-menu{
 	min-width: 100px !important;	
 }
+
+
+#hours_duration, #minutes_duration{
+	width: 110px;
+}

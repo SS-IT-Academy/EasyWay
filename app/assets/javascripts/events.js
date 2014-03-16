@@ -91,4 +91,5 @@ $(function () {
     // dayNamesMin: [ "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su" ]
   });
   $("#new_event").validate();
+  //$('select').selectpicker();
 });

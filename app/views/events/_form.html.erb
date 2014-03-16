@@ -26,15 +26,14 @@
     <div class="controls">
       <%= f.text_field :start_at, :class =>'datepicker' %>
     </div>
-    <br>
-    <div class="control-group datetime">
+  </div>
+  <div class="control-group datetime">
     <%= f.label :end_at, :class=>"control-label" %>
     <div class="controls">
       <%= f.text_field :end_at, :class =>'datepicker required' %>
     </div>
   </div>  
   <div>
-    <div>
       <%= f.fields_for :recurrence, @event.recurrence do |recurrence_form| %>
       <div class="control-group">
         <%= recurrence_form.label :repetition, :class=>"control-label" %>
@@ -77,7 +76,6 @@
         </div>
       </div>
     <% end %>
-    </div>  
   </div>
 
   <% if @event_resources.blank? %>

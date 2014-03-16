@@ -6,7 +6,7 @@ FactoryGirl.define do
     start_at Time.now + 1.day
     end_at Time.now + 2.day
     recurrence_id 1
-    #parent_id nil
+    #parent_id 1
 
     factory :event_with_type do
       association :event_type, factory: :event_type, name: "Some Name"

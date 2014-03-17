@@ -32,6 +32,8 @@ This application requires:
 ### Database
 
 This application uses Sqlite3 with ActiveRecord.
+To see database diagram and relations, you must download ArgoUml and open this file `EasyWay-DB_full_diagram.argo`
+
 
 ### Development
 

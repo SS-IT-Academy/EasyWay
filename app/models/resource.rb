@@ -26,6 +26,10 @@ class Resource < ActiveRecord::Base
     value_ids 
   end
 
+  def get_permission_roles
+    permission_roles.unscoped.where(permissionable_id: self.id).where(permissionable_type: resource_type.name)
+  end
+
   def eval_description
     rt = ResourceType.find(self.resource_type_id)
     field_names = rt.all_field_names

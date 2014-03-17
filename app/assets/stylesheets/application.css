@@ -32,3 +32,8 @@
   margin-bottom: 10px;
   background-color: #A3B15A;
 }
+
+tr.resource-type-row {
+	text-align: left;
+	background-color: #eee;
+}

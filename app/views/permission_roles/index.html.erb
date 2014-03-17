@@ -1,41 +1,52 @@
-<script>
-function update_permroles_fields_div(role_id) {  
-  $.ajax({
-    url: "/update_permroles_fields",
-    type: "GET",
-    data: {"role_id" : role_id},
-    dataType: "JSON",
-    success: function(data) {
-    	alert(data);
-    }
-  }); 
-}
-</script>
-
+<div id="permission_roles_content">
 <%= form_tag({action: :create}, :method => :post, :remote => true) do %>
-<%= select_tag :roles_id, options_from_collection_for_select(Role.all, :id, :name), :onchange => 'update_permroles_fields_div(this.value)' %>
-<table border="1">
- <tr>
-    <th>Resource type</th>
-    <% @permissions.each do |permission| %>
-    <th><%= label_tag :permission, permission.name %></th>
+  <div>
+    <%= label_tag :role %>
+    <%= select_tag :roles_id, options_for_select(Role.all.map{|r| [r.name, r.id]}, @current_role.id) %>
+  </div>
+  <table border="1">
+   <tr>
+      <th>Resource type</th>
+      <th>Resource</th>
+      <% @permissions.each do |permission| %>
+      <th><%= label_tag :permission, permission.name %></th>
+      <% end %>
+    </tr>
+    <% @resource_types.each do |resource_type| %>
+        <tr class="resource-type-row">
+          <td colspan="6">
+            <% num = DateTime.now.to_f.to_s %>
+            <%= label_tag "create" do %>
+              <%= hidden_field_tag "permission_roles[#{num}][permissions_id]", @create_permission.id  %>
+              <%= hidden_field_tag "permission_roles[#{num}][roles_id]", @current_role.id %>
+              <%= check_box_tag "permission_roles[#{num}][permissionable_type]", resource_type.name, checked = @permission_roles.select{|pr| pr.permissionable_type == resource_type.name && pr.permissions_id == @create_permission.id && pr.roles_id == @current_role.id }.any? %>
+              Can create? <%= resource_type.name %>
+            <% end %>
+          </td>
+        </tr>
+        <% resources = Resource.by_resource_type(resource_type.id) %>
+        <% resources.each_with_index do |r, i| %>
+          <tr>
+            <% if i ==  0 %>
+              <td rowspan="<%= resources.count %>"></td>
+            <% end %>
+            <td>
+              <%= label_tag :resource, r.description.try(:truncate, 15) %>
+            </td>
+            <% @permissions.each do |permission| %>
+              <td>
+                <% num = DateTime.now.to_f.to_s %>
+                <%= hidden_field_tag "permission_roles[#{num}][permissions_id]", permission.id %>
+                <%= hidden_field_tag "permission_roles[#{num}][roles_id]", @current_role.id %>
+                <%= check_box_tag "permission_roles[#{num}][permissionable_type]", resource_type.name, checked = r.get_permission_roles.select{|pr| pr.permissions_id == permission.id && pr.roles_id == @current_role.id }.any? %>
+                <%= hidden_field_tag "permission_roles[#{num}][permissionable_id]", r.id %>   
+              </td>
+            <% end %>  
+          </tr>
+      <% end %>
     <% end %>
-  </tr>
-	<% @resource_types.each do |resource_type| %>
-	<tr>
-		<td>
-    	<%= label_tag :resource_type, resource_type.name %>
-  		</td>
-  	 	<% @permissions.each do |permission| %>
-  		<td>
-  		<%= "#{resource_type.id} #{permission.id}"%>
-    	<%= check_box_tag "permission_role[ResourceType][#{resource_type.id}][]", permission.id %>   
-  		</td>
-  		<% end %>
-	</tr>
-	<% end %>
-</table>
-<br>
-<%= submit_tag "Submit"%>
-<% end%>
-
+  </table>
+  <br>
+  <%= submit_tag "Submit"%>
+<% end %>
+</div>

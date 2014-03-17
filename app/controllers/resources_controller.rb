@@ -1,7 +1,9 @@
 class ResourcesController < ApplicationController
+<<<<<<< HEAD
   before_filter :get_resource, only: [:edit, :show, :update, :destroy, :resource_info]
   before_filter :get_resource_types, only: [:edit, :new, :index]
 
+  load_and_authorize_resource
   # GET /resources
   # GET /resources.json
   def index

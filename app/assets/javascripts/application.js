@@ -37,4 +37,3 @@
 function addRecipient() {
 	alert("Add Clicked")
 }
-

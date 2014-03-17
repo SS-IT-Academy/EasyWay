@@ -1,0 +1,41 @@
+<script>
+function update_permroles_fields_div(role_id) {  
+  $.ajax({
+    url: "/update_permroles_fields",
+    type: "GET",
+    data: {"role_id" : role_id},
+    dataType: "JSON",
+    success: function(data) {
+    	alert(data);
+    }
+  }); 
+}
+</script>
+
+<%= form_tag({action: :create}, :method => :post, :remote => true) do %>
+<%= select_tag :roles_id, options_from_collection_for_select(Role.all, :id, :name), :onchange => 'update_permroles_fields_div(this.value)' %>
+<table border="1">
+ <tr>
+    <th>Resource type</th>
+    <% @permissions.each do |permission| %>
+    <th><%= label_tag :permission, permission.name %></th>
+    <% end %>
+  </tr>
+	<% @resource_types.each do |resource_type| %>
+	<tr>
+		<td>
+    	<%= label_tag :resource_type, resource_type.name %>
+  		</td>
+  	 	<% @permissions.each do |permission| %>
+  		<td>
+  		<%= "resourseTypeId =#{resource_type.id} permissionId=#{permission.id}"%>
+    	<%= check_box_tag "permission_role[ResourceType][#{resource_type.id}][]", permission.id %>   
+  		</td>
+  		<% end %>
+	</tr>
+	<% end %>
+</table>
+<br>
+<%= submit_tag "Submit"%>
+<% end%>
+

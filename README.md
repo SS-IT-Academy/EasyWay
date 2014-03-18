@@ -9,7 +9,7 @@ For example, you can create a bookmark frequently visited pages.
 
 ### Possibilities in our system
 
-* you can register
+* authentication and authorization system
 * you can use the resources that are the essence of reality. For example students, teachers and audience
 * сreate an event and sub-event, using the right resources
 * create a bookmark frequently visited pages

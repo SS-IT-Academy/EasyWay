@@ -1,5 +1,4 @@
 class ResourcesController < ApplicationController
-<<<<<<< HEAD
   before_filter :get_resource, only: [:edit, :show, :update, :destroy, :resource_info]
   before_filter :get_resource_types, only: [:edit, :new, :index]
 

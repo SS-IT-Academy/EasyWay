@@ -31,7 +31,7 @@
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink
-//= require backbone/easy_w
+//= require backbone/easy_way
 //= require_tree .
 
 function addRecipient() {

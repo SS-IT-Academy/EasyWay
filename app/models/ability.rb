@@ -5,7 +5,7 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
 
-    if user.role.admin?
+    if user.role.id == 1
       can :manage, :all
     else
       Permission.where("name != 'Create'").each do |permission|

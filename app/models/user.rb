@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 #   validates_uniqueness_of :email
 #   validates_uniqueness_of :username
   def default_values
-    self.roleid ||= 5
+    self.roleid ||= 1
   end
 
 #   def encrypt_password

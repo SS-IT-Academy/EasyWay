@@ -19,7 +19,7 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-  </div>
+  <div>
  	<%= select_tag :roles_id, options_from_collection_for_select(Role.all, :id, :name) %>
   </div>
   <div class="actions">

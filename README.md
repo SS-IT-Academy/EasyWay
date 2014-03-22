@@ -18,7 +18,7 @@ For example, you can create a bookmark frequently visited pages.
 
 ### More about each part of project
 
-* [Events](https://github.com/SS-IT-Academy/EasyWay/wiki/About-Event)
+* [Events](https://github.com/SS-IT-Academy/EasyWay/wiki/About-Events)
 * [Resources](https://github.com/SS-IT-Academy/EasyWay/wiki/Resources)
 * [Notifications](https://github.com/SS-IT-Academy/EasyWay/wiki/Notifications)
 

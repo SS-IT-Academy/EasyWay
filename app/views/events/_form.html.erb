@@ -117,9 +117,16 @@
       <% end %>
     <% end %>    
 
-    <div id="fieldsDiv" class="control-group"></div>  
+    <div id="fieldsDiv" class="control-group">
+      <script type="text/template" id="resources_template">
+        <div class='control-group'>
+          <label class='control-label' name='resources[][value]'>Resource</label>
+          <div class='controls'></div>
+        </div>
+      </script>
+    </div>  
     <div class="controls">
-      <a href="#" class="btn btn-inverse" id="add_resource">Add resource</a>
+      <span class="btn btn-inverse" id="add_resource">Add resource</span>
     </div>  
   </div>
   <div class="actions controls ">

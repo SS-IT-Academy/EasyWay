@@ -1,17 +1,17 @@
-function Add_resource_to_event(){
-  $.ajax({
-    url: "/add_event_resources",
-    type: "GET",
-    beforeSend: function ( xhr ) {
-      xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
-    },
-    data: {},
-    dataType: "json",
-    success: function(data) {
-      $("#fieldsDiv").append(parse_event_resources(data));
-    }
-  }); 	
-}
+// function Add_resource_to_event(){
+//   $.ajax({
+//     url: "/add_event_resources",
+//     type: "GET",
+//     beforeSend: function ( xhr ) {
+//       xhr.setRequestHeader("X-CSRF-Token", $('meta[name=csrf-token]').attr('content'));
+//     },
+//     data: {},
+//     dataType: "json",
+//     success: function(data) {
+//       $("#fieldsDiv").append(parse_event_resources(data));
+//     }
+//   }); 	
+// }
 
 function check_selected_resource(){
   $('select[name="resources[][value]"] option').attr('disabled',false);
@@ -25,18 +25,18 @@ function check_selected_resource(){
     });
 }
 
-function parse_event_resources(data){
-  data_html="<div class='control-group'><label class='control-label' name='resources[][value]'>Resource</label>"+
-  "<div class='controls'><select name='resources[][value]' onchange='check_selected_resource()'> <option></option>";
-  for(var i=0;i<data.length;i++){
-    data_html+="<option value="+data[i].id+">"+data[i].description+"</option>";
-  }
-  data_html+="</select><div><a href='#' class='btn' onclick='resource_type_remove_field(this)'>Remove Field</a></div></div></div>";
+// function parse_event_resources(data){
+//   data_html="<div class='control-group'><label class='control-label' name='resources[][value]'>Resource</label>"+
+//   "<div class='controls'><select name='resources[][value]' onchange='check_selected_resource()'> <option></option>";
+//   for(var i=0;i<data.length;i++){
+//     data_html+="<option value="+data[i].id+">"+data[i].description+"</option>";
+//   }
+//   data_html+="</select><div><a href='#' class='btn' onclick='resource_type_remove_field(this)'>Remove Field</a></div></div></div>";
 
   
 
-  return data_html
-}
+//   return data_html
+// }
 
 function event_remove_resource(obj){
   if (confirm("Are you sure")){

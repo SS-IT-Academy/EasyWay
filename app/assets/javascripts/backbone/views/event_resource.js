@@ -1,23 +1,4 @@
 // Models View
-EasyWay.Views.EventResources = Backbone.View.extend({
-	tagName: 'select',
-
-	initialize: function(){
-		this.$el.attr({ name: 'resources[][value]'});
-	},
-
-	render: function(){
-		this.collection.each(this.addOne, this);
-		return this;
-	},
-
-	addOne: function(event_resource){
-		var eventResource = new EasyWay.Views.EventResource({ model: event_resource });
-		this.$el.append(eventResource.render().el);
-	}
-})
-
-// Collections View
 EasyWay.Views.EventResource = Backbone.View.extend({
 	tagName: 'option',
 
@@ -30,6 +11,27 @@ EasyWay.Views.EventResource = Backbone.View.extend({
 		return this;
 	}
 
+})
+
+// Collections View
+EasyWay.Views.EventResources = Backbone.View.extend({
+	tagName: 'select',
+
+	initialize: function(){
+		this.$el.attr({ name: 'resources[][value]'});
+		this.render();
+	},
+
+	render: function(){
+		this.collection.each(this.addOne, this);
+		return this;
+	},
+
+	addOne: function(event_resource){
+		var eventResource = new EasyWay.Views.EventResource({ model: event_resource });
+		this.$el.append(eventResource.render().el);
+	}
+
 });
 
 // Add button view
@@ -37,7 +39,7 @@ EasyWay.Views.AddButton = Backbone.View.extend({
 	el: '#add_resource',
 
 	initialize: function(){
-
+		
 	},
 
 	events: {
@@ -45,25 +47,15 @@ EasyWay.Views.AddButton = Backbone.View.extend({
 	},
 
 	addResource: function(){
-		//alert('click');
-		var eventResourseCollection = new EasyWay.Collections.EventResource([
-			{
-				description: 'Wan'
-			},
-			{
-				description: 'Wan'
-			}
-		]);
 		var eventResourseCollectionView = new EasyWay.Views.EventResources({collection: eventResourseCollection});
-		$('#fieldsDiv').append(eventResourseCollectionView.render().el);
+		$('#fieldsDiv').append(eventResourseCollectionView.el);
 	}
 })
 
+window.eventResourseCollection = new EasyWay.Collections.EventResource();
+eventResourseCollection.fetch();
+
 $(document).ready(function(){	
-	// var eventResourseCollection = new EasyWay.Collections.EventResource();
-	// eventResourseCollection.fetch();
-	// var eventResourseCollectionView = new EasyWay.Views.EventResources({collection: eventResourseCollection});
-	// $('#fieldsDiv').append(eventResourseCollectionView.render().el);
 
 	var addButton = new EasyWay.Views.AddButton();
 })

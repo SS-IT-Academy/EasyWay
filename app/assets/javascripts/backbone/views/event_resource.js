@@ -6,8 +6,11 @@ EasyWay.Views.EventResource = Backbone.View.extend({
 		this.$el.attr({ value: this.model.get('id')});
 	},
 
+	template: _.template( '<%= description %>' ),
+
 	render: function(){
-		this.$el.html(this.model.get('description'));
+		var template = this.template(this.model.toJSON());
+		this.$el.html(template);
 		return this;
 	}
 
@@ -41,6 +44,8 @@ EasyWay.Views.AddButton = Backbone.View.extend({
 	initialize: function(){
 		
 	},
+
+	template: _.template("<div class='control-group'><label class='control-label' name='resources[][value]'>Resource</label><div class='controls'></div></div>"),
 
 	events: {
 		'click': 'addResource'

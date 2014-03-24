@@ -244,3 +244,7 @@ select:focus{
 #event_recurrence_attributes_minute_duration{
 	width: 110px;
 }
+
+body .ui-datepicker{
+	width: 12em;
+}

@@ -87,8 +87,10 @@ function Create_event_with_pattern(obj){
 
 $(function () {
   $('.datepicker').datetimepicker({
-    dateFormat: "yy-mm-dd"
-    // dayNamesMin: [ "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su" ]
+    dateFormat: "yy-mm-dd",
+    firstDay: 1,
+    controlType: 'select',
+    stepMinute: 5
   });
   $("#new_event").validate();
   //$('select').selectpicker();

@@ -240,6 +240,7 @@ select:focus{
 }
 
 
-#hours_duration, #minutes_duration{
+#event_recurrence_attributes_hour_duration,
+#event_recurrence_attributes_minute_duration{
 	width: 110px;
 }

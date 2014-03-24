@@ -44,7 +44,7 @@
       <div class="control-group">
         <%= recurrence_form.label :duration, :class=>"control-label" %>
         <div class="controls">
-          <%= select_tag :hours_duration, options_for_select([
+          <%= recurrence_form.select :hour_duration, options_for_select([
             ['', '0'],
             ['1 hour', '1'],
             ['2 hours', '2'],
@@ -56,9 +56,9 @@
             ['8 hours', '8'],
             ['9 hours', '9'],
             ['10 hours', '10']
-          ]) %>
+          ],@event.recurrence.hour_duration) %>
 
-          <%= select_tag :minutes_duration, options_for_select([
+          <%= recurrence_form.select :minute_duration, options_for_select([
             ['', '0'],
             ['5 minutes', '5'],
             ['10 minutes', '10'],
@@ -71,7 +71,7 @@
             ['45 minutes', '45'],
             ['50 minutes', '50'],
             ['55 minutes', '55']
-          ]) %>
+          ],@event.recurrence.minute_duration) %>
 
         </div>
       </div>

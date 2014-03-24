@@ -3,8 +3,8 @@ module EventModule
   include IceCube
 
   def get_duration(params)
-    hours_duration = params[:hours_duration].to_i
-    minutes_duration = params[:minutes_duration].to_i
+    hours_duration = params[:event][:recurrence_attributes][:hour_duration].to_i
+    minutes_duration = params[:event][:recurrence_attributes][:minute_duration].to_i
     duration = hours_duration.hour + minutes_duration.minutes
   end
 

@@ -20,6 +20,8 @@ EasyWay.Views.EventResource = Backbone.View.extend({
 EasyWay.Views.EventResources = Backbone.View.extend({
 	tagName: 'select',
 
+	template: _.template('<br><span class="btn" id="remove_resource">Remove resource</span>'),
+
 	initialize: function(){
 		this.$el.attr({ name: 'resources[][value]'});
 		this.render();
@@ -45,15 +47,23 @@ EasyWay.Views.AddButton = Backbone.View.extend({
 		
 	},
 
-	template: _.template("<div class='control-group'><label class='control-label' name='resources[][value]'>Resource</label><div class='controls'></div></div>"),
+	template: _.template("<div class='control-group'><label class='control-label' name='resources[][value]'>Resource</label><div class='controls my_res'></div></div>"),
+
+	temp: _.template('<br><span class="btn" id="remove_resource" onclick="event_remove_resource(this)">Remove Field</span>'),
 
 	events: {
-		'click': 'addResource'
+		'click': 'addResource',
+		'click #remove_resource': 'removeResource'
+	},
+
+	removeResource: function(){
+
 	},
 
 	addResource: function(){
 		var eventResourseCollectionView = new EasyWay.Views.EventResources({collection: eventResourseCollection});
-		$('#fieldsDiv').append(eventResourseCollectionView.el);
+		$('#fieldsDiv').append(this.template());
+		$('.my_res').last().append(eventResourseCollectionView.el).append(this.temp());
 	}
 })
 

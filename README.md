@@ -49,5 +49,5 @@ To see database diagram and relations, you must download ArgoUml and open this f
 1. clone project `git clone https://github.com/SS-IT-Academy/EasyWay`
 2. run bundle `bundle install`
 3. rake db `rake db:migrate`
-4. srart server `rails s`
+4. start server `rails s`
 

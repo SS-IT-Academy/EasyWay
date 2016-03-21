@@ -1,3 +1,4 @@
+<div class="boxforforms">
 <%= form_for(@recipient) do |f| %>
   <% if @recipient.errors.any? %>
     <div id="error_explanation">
@@ -12,8 +13,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :notifyevent_id %><br />
-    <%= f.number_field :notifyevent_id %>
+    <%= f.label :notify_event_id %><br />
+    <%= f.number_field :notify_event_id %>
   </div>
   <div class="field">
     <%= f.label :user_id %><br />
@@ -24,6 +25,7 @@
     <%= f.number_field :group_number %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class =>"btn btn-primary" %>
   </div>
 <% end %>
+</div>

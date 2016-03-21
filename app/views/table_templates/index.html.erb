@@ -1,0 +1,25 @@
+<div class="boxforforms">
+<h3>Listing table templates</h3>
+<%= link_to 'New Table template', new_table_template_path, :class=>"btn btn-primary" %>
+<br />
+<br />
+<table id="ResourceTable" class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @table_templates.each do |table_template| %>
+  <tr>
+    <td><%= table_template.name %></td>
+    <td><%= table_template.cell_body %></td>
+    
+    <td><%= link_to 'Show', edit_table_template_path(table_template), :class => "btn btn-info" %></td>
+    <td><%= link_to 'Destroy', table_template, method: :delete, :class => "btn btn-danger" ,data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+</div>

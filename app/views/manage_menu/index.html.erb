@@ -1,0 +1,3 @@
+<%= select_tag('menu[role_id]', options_from_collection_for_select(Role.all, 'id', 'name'),:include_blank =>"",:onchange =>"renderForm(this.value)" ) %>  	
+<div id="menuManage" class="header box-manage-menu"></div>
+<div id="menuForm" ></div>

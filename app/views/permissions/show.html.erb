@@ -1,0 +1,9 @@
+<h1>Show</h1>
+<p>
+  <b>Permission:
+  <i><%= @permission.id %></i></b>
+  <%= @permission.name %>
+</p>
+
+<%= link_to 'Edit', edit_permission_path(@permission) %> |
+<%= link_to 'Back', permissions_path %>

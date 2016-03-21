@@ -6,7 +6,7 @@ class NotifyTemplatesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @notify_templates }
+      format.json { render :json => @notify_templates }
     end
   end
 
@@ -17,7 +17,7 @@ class NotifyTemplatesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @notify_template }
+      format.json { render :json => @notify_template }
     end
   end
 

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  parent_id: 1
+  role_id: 1
+  url: MyString
+  user_id: 1
+  text: MyString
+  title: MyString
+  target: MyString
+
+two:
+  parent_id: 1
+  role_id: 1
+  url: MyString
+  user_id: 1
+  text: MyString
+  title: MyString
+  target: MyString

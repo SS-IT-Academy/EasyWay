@@ -1,4 +1,5 @@
-<h1>Listing recipients</h1>
+<div class="boxforforms">
+<h3>Listing recipients</h3>
 
 <table>
   <tr>
@@ -12,16 +13,17 @@
 
 <% @recipients.each do |recipient| %>
   <tr>
-    <td><%= recipient.notifyevent_id %></td>
+    <td><%= recipient.notify_event_id %></td>
     <td><%= recipient.user_id %></td>
     <td><%= recipient.group_number %></td>
-    <td><%= link_to 'Show', recipient %></td>
-    <td><%= link_to 'Edit', edit_recipient_path(recipient) %></td>
-    <td><%= link_to 'Destroy', recipient, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', recipient, :class => "btn btn-info" %></td>
+    <td><%= link_to 'Edit', edit_recipient_path(recipient), :class => "btn btn-info" %></td>
+    <td><%= link_to 'Destroy', recipient, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Recipient', new_recipient_path %>
+<%= link_to 'New Recipient', new_recipient_path, :class => "btn btn-primary" %>
+</div>

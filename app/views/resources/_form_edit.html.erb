@@ -1,0 +1,49 @@
+
+<%= form_for @resource, :html =>{:class=>"form-horizontal"} do |f| %>
+  <% if @resource.errors.any? %>
+    <div id="error_explanation", class="control-group">
+      <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
+
+      <ul>
+      <% @resource.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="control-group">
+    <%= f.label :description, :class=>"control-label"%>
+    <div class="controls">
+       <%= f.text_field :description, :disabled => true %>
+    </div>
+  </div>
+  <% if !@resource.resource_values.blank? %>
+  	<% @resource.resource_type.fields.each_with_index do |field,i|%>
+  	  <div class="control-group">
+  	    <%= hidden_field_tag "values[][field_id]", field.id%>
+  	    <%= label_tag "values[][value]",field.name, :class=>"control-label"%>
+          <div class="controls">
+	 	    <% if @resource.resource_values[i]%>
+	  	      <%= hidden_field_tag "values[][id]", @resource.resource_values[i].id%>
+	  	      <% @value = @resource.resource_values[i].value %>
+	  	      <% @reference = @resource.resource_values[i].resource_reference_id %>
+	  	    <% else %>
+	  	      <% @value ="" %>
+	  	      <% @reference ="" %>
+	  	    <% end %>    
+            <% if field.resource_type_reference_id%>
+              <%= select_tag "values[][resource_reference_id]",  options_from_collection_for_select(Resource.where("resource_type_id = ?",field.resource_type_reference_id), "id","description", @reference),{:include_blank => 'Select'} %>
+            <% else %>
+              <%= text_field_tag "values[][value]", @value%>
+            <% end %>
+          </div>
+      </div>
+  	<% end %>
+  <% end %>
+  
+  <div id="fieldsDiv" class="control-group">
+  </div>
+  <div class="actions">
+    <%= f.submit%> 
+  </div>
+<% end %>

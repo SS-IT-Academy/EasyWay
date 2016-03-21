@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Role:</b>
+  <%= @role.name %>
+</p>
+<p>
+  <b>ID Role:</b>
+  <%= @role.id %>
+</p>
+<p>
+  <b>Users, which belong to this role:</b>
+</p>
+<table class="table_role_show">
+  <th>N</th>
+  <th>Login</th>
+  <th>Email</th>
+  <ol>
+    <% i = 0 %>
+    <% @users.each do |user| %>
+      <% if user.roleid == @role.id %> 
+        <% i+=1 %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+          </tr>  
+      <% end %>
+    <% end %>
+   </ol>
+</table>
+
+<%= link_to 'Edit', edit_role_path(@role) %> |
+<%= link_to 'Back', roles_path %>

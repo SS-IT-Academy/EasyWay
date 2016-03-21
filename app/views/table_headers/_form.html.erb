@@ -1,0 +1,45 @@
+<%= form_for @table_header, :html =>{:class=>"form-horizontal"} do |f| %>
+  <% if @table_header.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@table_header.errors.count, "error") %> prohibited this table_header from being saved:</h2>
+      <ul>
+        <% @table_header.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="control-group">
+      <%= f.label :resource_type_id, :class => "control-label" %>
+      <div class="controls">  	
+        <%= f.select :resource_type_id,  options_from_collection_for_select(@resource_types, "id", "name", @table_header.resource_type_id),{:include_blank => ''}, :onchange => 'addResTypeField(this.value)' %>
+  	  </div>
+    </div>
+    <div class="hidden">
+      <% if @table_template %>
+        <%= f.hidden_field :table_template_id, :value => @table_template.id %>
+      <% end %>
+    </div>  
+    <div class="control-group" >
+      <%= f.label :orientation, :class => "control-label" %>    
+      <div class="controls">
+        <%= f.hidden_field(:orientation, :value => params[:orientation]) if TableHeader::ORIENTATIONS.include?(params[:orientation])%>
+        <%= f.select(:orientation, TableHeader::ORIENTATIONS, {:include_blank => ''}, :id => "orientation", :disabled => TableHeader::ORIENTATIONS.include?(params[:orientation])) %>
+      </div>    
+    </div> 
+    <div class="control-group">
+      <%= f.label :position_num, :class => "control-label" %>
+      <div class="controls">
+        <%= f.number_field :position_num, :readonly => true %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :parent_id, :class => "control-label" %>
+      <div class="controls">
+        <%= f.number_field :parent_id %>
+      </div> 
+    </div>
+    <div class="actions">
+      <%= f.submit :class => "btn btn-primary"%>
+    </div>
+<% end %>

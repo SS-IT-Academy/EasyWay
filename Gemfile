@@ -5,7 +5,13 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+group :development do
+  gem 'sqlite3'
+end
+
+gem 'cancan'
+
+gem 'ancestry'
 
 gem 'bcrypt-ruby', :require=>'bcrypt'
 
@@ -17,12 +23,54 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
+group :development, :test do
+  gem "factory_girl_rails"
+  gem "capybara"
+  gem "guard-rspec"
+  gem 'rspec-rails'
+  gem 'watchr'
+  gem 'shoulda-matchers'
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem 'jasmine'
+end
+
+gem 'thin' 
+gem 'nested_form'
+gem "railties"
+gem 'simplecov'
+
+gem 'safe_attributes'
+
+gem 'recurring_select',   '~> 1.1.0'
+
+gem 'ice_cube'
+
+gem 'will_paginate', '~> 3.0.5'
+
+gem 'devise'
+gem 'devise_invitable'
+gem 'strong_parameters'
+
+gem 'paint'
+gem 'awesome_print'
+gem 'bootstrap-multiselect-rails'
+gem 'twitter-bootstrap-rails'
+gem "less-rails"
+
+gem "rails-backbone"
+
+# group :production do
+#   gem 'pg', '0.12.2'
+# end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

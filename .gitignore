@@ -1,9 +1,7 @@
 
+
 # Игнорирование конфига bundler
 /.bundle
-
-# Игнорирование дефолтной базы данных SQLite.
-/db/*.sqlite3
 
 # Игнорирование всех логов и временных файлов.
 /log/*.log
@@ -17,14 +15,13 @@ doc/
 .DS_Store
 .idea
 
+/coverage/
 
 
+db/*.sqlite3
+db/schema.rb
 
+#config/routes.rb
+#Gemfile
 
- 
-
-
-
-
-
-
+db/development.sqlite3

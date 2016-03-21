@@ -1,0 +1,3 @@
+class ManageMenuController < ApplicationController
+  
+end

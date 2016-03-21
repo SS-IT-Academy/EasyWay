@@ -1,0 +1,2 @@
+module ManageMenuHelper
+end

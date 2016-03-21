@@ -1,0 +1,30 @@
+<%= stylesheet_link_tag "/css/style-table-template" %>
+<link href="/css/style-table-template" type="text/css" >
+
+<% if @resources_hor %>
+<table id="table-resources">
+  <tr>
+    <% @resources_hor.each do |res| %>
+	  <td class="table-resource-parent" colspan = 2>
+	    <% res.resource_values.each do |val| %>
+		  <%= val.value %>					
+		<% end %>
+	  </td>
+	<% end %>
+  </tr>
+  <% if @headers_hor.length > 1 %>
+    <tr>				
+      <% @resources_hor.each do |res| %>
+	    <% @first_children = ResourceValue.where("resource_reference_id = ?", res.id) %>			
+	    <% @first_children.each do |child| %>					
+	      <td class="table-resource-child">
+		    <% child.resource.resource_values.each do |resval|%>
+		      <%= resval.value %>
+		    <% end %>
+		  </td>
+	    <% end %>	
+      <% end %>
+    </tr>
+  <% end %> 				
+</table>
+<% end %>

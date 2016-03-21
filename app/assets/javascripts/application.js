@@ -12,4 +12,28 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
+//= require jquery-ui-timepicker-addon
+//= require jquery.validate
+//= require recurring_select
+//= require twitter/bootstrap
+//= require bootstrap-select
+//= require bootstrap-multiselect
+
+//= require start.js
+//= require resources.js
+//= require events.js
+//= require table_header.js
+//= require table_template.js
+//= require bookmarks.js
+//= require validate_resource_type.js
+//= require underscore
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
+//= require backbone/easy_way
 //= require_tree .
+
+function addRecipient() {
+	alert("Add Clicked")
+}

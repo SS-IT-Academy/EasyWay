@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>Username:</b>
   <%= @user.username %>
@@ -10,19 +8,27 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <b>Password hash:</b>
-  <%= @user.password_hash %>
-</p>
 
 <p>
-  <b>Password salt:</b>
-  <%= @user.password_salt %>
+  <b>Password:</b>
+  <%= @user.encrypted_password %>
 </p>
 
 <p>
   <b>Roleid:</b>
   <%= @user.roleid %>
+
+  <% @roles.each do |role| %>
+    <li>
+      <% if role.id == @user.roleid %> 
+        <%= check_box_tag 'role_ids', role.id, checked = true -%>
+        <%= role.name -%>
+      <% else %>
+        <%= check_box_tag 'role_ids', role.id, checked = false, :disabled => true -%>
+        <%= role.name -%>
+      <% end %>
+    </li>
+  <% end %>
 </p>
 
 

@@ -1,0 +1,29 @@
+<%= form_for(@resource_value) do |f| %>
+  <% if @resource_value.errors.any? %>
+    <div class="alert alert-error">
+      <h2><%= pluralize(@resource_value.errors.count, "error") %> prohibited this resource_value from being saved:</h2>
+
+      <ul>
+      <% @resource_value.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :field_id %><br />
+    <%= f.select(:field_id , Field.all.collect { |p| [ p.name, p.id ] }, {:include_blank => ''}) %>
+  </div>
+  <div class="field">
+    <%= f.label :resource_id %><br />
+    <%= f.select(:resource_id , Resource.all.collect { |p| [ p.description, p.id ] }, {:include_blank => ''}) %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.text_field :value %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

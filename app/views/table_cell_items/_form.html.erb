@@ -1,0 +1,23 @@
+<%= form_for(@table_cell_item) do |f| %>
+  <% if @table_cell_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@table_cell_item.errors.count, "error") %> prohibited this table_cell_item from being saved:</h2>
+      <ul>
+      <% @table_cell_item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :table_template_id, :value => @table_template.id %>
+  </div>
+  <div class="field">
+    <%= f.label :resource_type_id %><br />
+    <%= f.select(:resource_type_id , ResourceType.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''}) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

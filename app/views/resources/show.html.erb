@@ -1,0 +1,45 @@
+<p>
+  <b>Description:</b>
+  <%= @resource.description %>
+</p>
+
+<p>
+  <b>Resource type:</b>
+  <%= @resource.resource_type_id %>
+</p>
+
+<p>
+  <b>Resource type name:</b>
+  <%= @resource_type.name %>
+</p>
+<table cellspacing="2" border="1" cellpadding="5" align="center">
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Value</th>
+  </tr>  
+
+<% @field_types.each_with_index do |field_type, i| %>
+  <tr>
+    <td><%= Field.find(@values[i].field_id).name %></td>
+    <td>
+      <% if field_type.is_a? ResourceType %>
+        <% resource = Resource.find(@values[i].resource_reference_id) %>
+        <%= link_to field_type.name, ResourceType.find(resource.resource_type_id) %>
+      <% else %>
+        <%= field_type.name %>
+      <% end %>
+    </td>
+    <td>      
+      <% if @values[i].resource_reference_id %>
+        <%= Resource.find(@values[i].resource_reference_id).description %>
+      <% else %>
+        <%= @values[i].value %>
+      <% end %> 
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Edit', edit_resource_path(@resource) %> |
+<%= link_to 'Back', resources_path %>

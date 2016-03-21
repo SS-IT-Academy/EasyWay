@@ -1,4 +1,7 @@
 class NotifyObserver < ActiveRecord::Base
-  has_many :eventproperties
   attr_accessible :name
+  
+  has_many :notify_observer_properties, :dependent => :destroy
+  
+  validates :name, :presence => true
 end

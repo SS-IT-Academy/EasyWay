@@ -1,0 +1,2 @@
+module TableFiltersHelper
+end

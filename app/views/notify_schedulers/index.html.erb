@@ -4,7 +4,7 @@
   <tr>
     <th>Period</th>
     <th>Start at</th>
-    <th>Start end</th>
+    <th>End at</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,10 +14,10 @@
   <tr>
     <td><%= notify_scheduler.period %></td>
     <td><%= notify_scheduler.start_at %></td>
-    <td><%= notify_scheduler.start_end %></td>
+    <td><%= notify_scheduler.end_at %></td>
     <td><%= link_to 'Show', notify_scheduler %></td>
     <td><%= link_to 'Edit', edit_notify_scheduler_path(notify_scheduler) %></td>
-    <td><%= link_to 'Destroy', notify_scheduler, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', notify_scheduler, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

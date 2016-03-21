@@ -1,0 +1,36 @@
+<%= form_for @bookmark, :html =>{:class=>"form-horizontal"} do |f| %>
+  <% if @bookmark.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
+
+      <ul>
+      <% @bookmark.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="boxforforms">
+  <div class="control-group ">
+    <%= f.label :url, :class=>"control-label"%>
+    <div class="controls">
+    <%= f.text_field :url, :id=>"url",:readonly => false %>
+  </div>
+  </div>
+  <div class="control-group ">
+    <%= f.label :title, :class=>"control-label"%>
+    <div class="controls">
+    <%= f.text_field :title %>
+  </div>
+  </div>
+   <div class="control-group ">
+    <%= f.label :description, :class=>"control-label"%>
+    <div class="controls">
+    <%= f.text_field :description %>
+  </div>
+  </div>
+  <div class="actions controls"">
+    <%= f.submit :class =>"btn btn-primary" %>
+  </div>
+  </div>
+<% end %>

@@ -4,10 +4,10 @@ one:
   resource_id: 1
   field_id: 1
   value: MyString
-  resource_reference: 
+  resource_reference_id: 
 
 two:
   resource_id: 1
   field_id: 1
   value: MyString
-  resource_reference: 
+  resource_reference_id: 

@@ -1,0 +1,29 @@
+<%= form_for(@recurrence) do |f| %>
+  <% if @recurrence.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recurrence.errors.count, "error") %> prohibited this recurrence from being saved:</h2>
+
+      <ul>
+      <% @recurrence.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>  
+  
+  <div class="field">
+    <%= f.label :repetition %><br />
+    <%= f.select_recurring :repetition %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.datetime_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.datetime_select :end_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

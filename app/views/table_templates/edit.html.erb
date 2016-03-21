@@ -1,0 +1,50 @@
+<%= stylesheet_link_tag "/css/style-table-template" %>
+<link href="/css/style-table-template" type="text/css" >
+
+<% no_header = [''] %>
+<% unless @horizontal_table_headers.blank? %>
+	<% hor_headers = @horizontal_table_headers.collect{|header| header.resource_type.name}	%>
+<% else %>
+	<% hor_headers = no_header %>	
+<% end %>
+
+<% unless @vertical_table_headers.blank? %>
+	<% ver_headers = @vertical_table_headers.collect{|header| header.resource_type.name}%>
+<% else %>
+	<% ver_headers = no_header %>	
+<% end %>
+
+<h3>Table template</h3>
+<table id="timetable">
+  <tr>
+    <td id="table-freecell" class="td"></td>
+      <td id="table-filter" class="td">
+        <%= link_to '*Add table filter', new_table_filter_path(:table_template => @table_template.id)%>	
+      </td>
+  </tr>
+  <tr>
+    <td id="table-header-cell">            		  			        			            		            								
+      <div id="table-header" class="header-triangle">
+	    <%= link_to '✚', new_table_header_path(table_template_id: @table_template.id, orientation: TableHeader::ORIENTATIONS[0]), :id => 'ref-hor'%>
+	    <%= link_to '✚', new_table_header_path(table_template_id: @table_template.id, orientation: TableHeader::ORIENTATIONS[1]), :id => 'ref-ver'%>
+      </div>							          
+    </td>
+    <td id="table-header-hor-resources" class="td"><%= render :partial=>"table_templates/values" %></td>
+  </tr>
+  <tr>
+    <td id="table-header-ver-resources" class="td"></td>
+    <td id="table-event" class="td"></td>
+  </tr>
+</table>
+<div class="boxforforms">
+  <div class="actions">
+    <%= render 'form' %>
+    <%= link_to 'Show', @table_template %> |
+    <%= link_to 'Back', table_templates_path %>
+  </div>	
+</div>
+<script>
+$(document).ready(function(){
+	resourceTypeHeaders($('#table-header'),{hor_headers:<%= hor_headers.to_s.html_safe %>, ver_headers:<%= ver_headers.to_s.html_safe %>});
+});	
+</script>

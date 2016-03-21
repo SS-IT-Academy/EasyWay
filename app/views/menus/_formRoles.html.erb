@@ -1,0 +1,32 @@
+<%= form_for @menu, :html =>{:class=>"form-horizontal"} do |f1| %>
+  <% if @menu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
+      <ul>
+      <% @menu.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+     <% end %>
+  <div class="boxforforms">
+  	
+  	 <%= f1.hidden_field :parent_id, :value=>@parent_id%>
+  	 <%= f1.hidden_field :role_id, :value=>@role%>  
+  	      <div class="control-group">
+  	      <%= f1.label :title,:class =>"control-label"%>
+  	     <div class="controls">
+            <%= select_tag('menu[bookmark_id]', options_from_collection_for_select(@bookmark, 'id', 'title'),:include_blank =>"") %>
+         </div>
+        </div>
+       <div class="control-group">
+  	 <%= f1.label :position, :class =>"control-label" %>
+  	 <div class="controls">
+     <%= f1.number_field :position %>
+   </div>
+  </div>
+  <div class="actions controls">
+    <%= f1.submit :class =>"btn btn-primary " %>    
+ </div>
+ </div>
+<% end %>

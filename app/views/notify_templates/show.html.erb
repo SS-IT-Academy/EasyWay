@@ -1,8 +1,9 @@
+<div class="boxforforms">
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Template name:</b>
-  <%= @notify_template.template_name %>
+  <b>Notify template name:</b>
+  <%= @notify_template.notify_template_name %>
 </p>
 
 <p>
@@ -16,5 +17,6 @@
 </p>
 
 
-<%= link_to 'Edit', edit_notify_template_path(@notify_template) %> |
-<%= link_to 'Back', notify_templates_path %>
+<%= link_to 'Edit', edit_notify_template_path(@notify_template), :class => "btn btn-info" %> 
+<%= link_to 'Back', notify_templates_path, :class => "btn btn-info" %>
+</div>

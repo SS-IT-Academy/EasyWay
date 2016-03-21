@@ -1,3 +1,4 @@
+<div class="boxforforms">
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -5,6 +6,13 @@
   <%= @notify_observer.name %>
 </p>
 
+<ol>
+<% for notify_observer_property in @notify_observer.notify_observer_properties %>
+  <li><%= notify_observer_property.name %></li>
+<% end %>
+</ol>
 
-<%= link_to 'Edit', edit_notify_observer_path(@notify_observer) %> |
-<%= link_to 'Back', notify_observers_path %>
+
+<%= link_to 'Edit', edit_notify_observer_path(@notify_observer), :class => "btn btn-info" %>
+<%= link_to 'Back', notify_observers_path, :class => "btn btn-info" %>
+</div>

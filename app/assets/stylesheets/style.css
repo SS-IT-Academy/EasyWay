@@ -1,0 +1,250 @@
+.nested_menu_item{
+	margin-left : 15px;
+}
+
+html,body{
+	margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    position:relative;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+}
+
+.header{
+	height: 60px;
+	min-width: 700px;
+	background-image: url(../images/bg.jpg);
+	background-color: black;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+
+.footer{
+  width: 100%;
+  position: absolute;
+  left:0;
+  bottom: 0;
+	background-color: #D8D8D8;
+	border-top: 1px solid #EEEEEE;
+	margin-top: 40px;
+	background-size: 100% 100%;
+	padding-top: 25px;
+	color: #A0A0A0;
+	overflow: auto;
+}
+
+.content{
+	width: 100%;
+	min-height: 400px;
+	text-align: center;
+	display: inline-block;
+	margin-bottom: 100px;
+}
+
+
+.buttonfloat{
+	float: right;
+	margin: 15px 5px 15px 5px;
+}	
+
+.boxforforms{
+	display: inline-block;
+	position: relative;
+	min-height:70px;
+	margin:0 auto;
+	padding:0 0 0 0;
+}
+
+.form_sign_in{
+	display: inline;
+	text-align: center;
+	margin: auto;
+}
+
+.marginforforms{
+	margin: 20px 0 20px 0;	
+}
+
+.font_for_menu{
+	font-size: 11pt;	
+}
+
+fieldset {
+    padding: 1em;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    display: inline-block;
+    margin-bottom: 2em;
+    margin-left: 2em;
+}
+
+legend {
+    width: auto;
+    padding: 3px;
+}
+
+.star{
+	background: url(../images/star.png)  no-repeat;
+	width: 20px;
+	height: 20px;
+	float: right;
+	background-size: 100% 100%;
+	margin: -18px 0px 0 0;
+}
+
+.border_for_tables{
+	width: 800px;
+	min-height: 250p;
+	margin: auto;
+	border: solid 2px #EEEEEE;
+}
+
+#popup {
+	background-color: #333;
+    border-radius: 0 5px 5px 0;
+	top: 230px;
+    box-shadow: 0 0 3px #333;
+	color: #cfcfcf;
+	display: none;
+	left: -50px;
+	opacity: 0;
+    position: fixed;
+    width: 300px;
+}
+#popup-header {
+	background-color: #000;
+	border-radius: 0 5px 0 0;
+	padding: 5px;
+}
+#popup-main {
+	font-size: 14px;
+	padding: 5px;
+}
+
+label.valid {
+	width: 24px;
+	height: 24px;
+	background: url(/images/valid.png) center center no-repeat;
+	display: inline-block;
+	text-indent: -9999px;
+}
+label.error {
+	font-weight: bold;
+	color: red;
+	padding: 2px 8px;
+	margin-top: 2px;
+}
+select:focus{
+	border-color: rgba(82, 168, 236, 0.8);
+	outline: 0;
+	outline: thin dotted \9;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+.datetime select{
+	width:80px !important;
+}
+
+.highlight{
+	display: inline-block !important;
+	border-color: rgba(255, 0, 0, 2) !important;
+	outline: 0 !important;
+	outline: thin dotted \9 !important;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 12px rgba(255, 0, 0, 0.6) !important;
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 12px rgba(255, 0, 0, 0.6) !important;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 12px rgba(255, 0, 0, 0.6) !important;
+}
+
+.box-manage-menu{
+	width: 1200px;
+	height: 105px;
+	margin: auto;
+}
+.logo{
+	height: 60px;
+	font-family: 'Bilbo Swash Caps', cursive;
+	font-size: 22pt;
+	float: left;
+	line-height: 60px;
+	vertical-align: middle;
+	color: white !important;
+	padding-left: 20px;
+}
+.logo a{
+	color: white;
+	text-decoration: none;
+}
+.menu-position{
+	height: 25px;
+	border: solid 2px #000000;
+	background-color: #242424;
+}
+.navbar .nav > li > a {
+	padding: 0 10px !important;
+	text-shadow: none !important;
+	color: white !important;
+}
+.navbar .nav > li:first-child > a {
+	padding: 0 5px !important;
+}
+.footer .copyright{
+	text-align: center;
+}
+
+.footer .tool1{
+	position: absolute;
+	left: 10px;
+	width: 40px;
+	height: 40px;
+}
+.footer .tool2{
+	position: absolute;
+	left: 50px;
+	width: 40px;
+	height: 40px;
+}
+
+.nav > li > a{
+	display: inline-block !important;
+}
+
+.font{
+	font-family: 'Bilbo Swash Caps', cursive;
+	font-weight: bold;
+}
+
+.close{
+	color: #A9302A !important;
+	opacity: 0.8 !important;
+	font-weight: normal !important;
+    float: none !important;
+}
+
+.open > .dropdown-menu{
+	opacity: 1 !important;
+}
+.dropdown-menu > li > a{
+	/** display: inline !important; **/
+
+}
+.dropdown-menu{
+	min-width: 100px !important;	
+}
+
+
+#event_recurrence_attributes_hour_duration,
+#event_recurrence_attributes_minute_duration{
+	width: 110px;
+}
+
+body .ui-datepicker{
+	width: 12em;
+}

@@ -1,8 +1,9 @@
+<div class="boxforforms">
 <p id="notice"><%= notice %></p>
 
 <p>
   <b>Notifyevent:</b>
-  <%= @recipient.notifyevent_id %>
+  <%= @recipient.notify_event_id %>
 </p>
 
 <p>
@@ -16,5 +17,6 @@
 </p>
 
 
-<%= link_to 'Edit', edit_recipient_path(@recipient) %> |
-<%= link_to 'Back', recipients_path %>
+<%= link_to 'Edit', edit_recipient_path(@recipient), :class => "btn btn-info" %> 
+<%= link_to 'Back', recipients_path, :class => "btn btn-info" %>
+</div>

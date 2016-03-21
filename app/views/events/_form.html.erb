@@ -1,17 +1,129 @@
-<%= form_for(@event) do |f| %>
+<%= form_for @event, :html =>{:class=>"form-horizontal"} do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
       <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="control-group"> 
+    <%= f.label :name, :class=>"control-label" %>
+    <div class="controls">
+      <%= f.text_field :name, :class => "required" %>
+    </div>
   </div>
+  <div class="control-group">
+    <%= f.label :event_type_id, :class=>"control-label" %>
+    <div class="controls">
+      <%= f.select :event_type_id, options_from_collection_for_select(EventType.all, "id","name", @event.event_type_id),{ :include_blank => 'Select type'}, {:class => "selectpicker required"} %>
+    </div>
+  </div>  
+  <div class="control-group datetime">
+    <%= f.label :start_at, :class=>"control-label" %>
+    <div class="controls">
+      <%= f.text_field :start_at, :class =>'datepicker' %>
+    </div>
+  </div>
+  <div class="control-group datetime">
+    <%= f.label :end_at, :class=>"control-label" %>
+    <div class="controls">
+      <%= f.text_field :end_at, :class =>'datepicker required' %>
+    </div>
+  </div>  
+  <div>
+      <%= f.fields_for :recurrence, @event.recurrence do |recurrence_form| %>
+      <div class="control-group">
+        <%= recurrence_form.label :repetition, :class=>"control-label" %>
+        <div class="controls">
+          <%= recurrence_form.select_recurring :repetition %><br>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= recurrence_form.label :duration, :class=>"control-label" %>
+        <div class="controls">
+          <%= recurrence_form.select :hour_duration, options_for_select([
+            ['', '0'],
+            ['1 hour', '1'],
+            ['2 hours', '2'],
+            ['3 hours', '3'],
+            ['4 hours', '4'],
+            ['5 hours', '5'],
+            ['6 hours', '6'],
+            ['7 hours', '7'],
+            ['8 hours', '8'],
+            ['9 hours', '9'],
+            ['10 hours', '10']
+          ],@event.recurrence.hour_duration) %>
+
+          <%= recurrence_form.select :minute_duration, options_for_select([
+            ['', '0'],
+            ['5 minutes', '5'],
+            ['10 minutes', '10'],
+            ['15 minutes', '15'],
+            ['20 minutes', '20'],
+            ['25 minutes', '25'],
+            ['30 minutes', '30'],
+            ['35 minutes', '35'],
+            ['40 minutes', '40'],
+            ['45 minutes', '45'],
+            ['50 minutes', '50'],
+            ['55 minutes', '55']
+          ],@event.recurrence.minute_duration) %>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @event_resources.blank? %>
+    <div class="control-group">
+      <%= label "resources[][value]", "Resource", :class=>"control-label" %>
+      <div class="controls">
+        <%= select_tag "resources[][value]", options_from_collection_for_select(Resource.all, "id","description"),html_options = { :onchange => 'check_selected_resource()' } %>
+      </div>
+    </div>
+  <% end %>
+
+
+  <div class="control-group">
+    <% unless @event_resources.blank? %>
+
+      <div class="control-group">
+        <%= hidden_field_tag "resources[][id]", @event_resources[0].id %>
+        <%= label "resources[][value]", "Resource", :class=>"control-label" %>
+        <div class="controls">
+          <%= select_tag "resources[][value]", options_from_collection_for_select(@resources, "id","description", @event_resources[0].resource_id),html_options = { :onchange => 'check_selected_resource()' } %>
+        </div>
+      </div>
+
+      <% if @event_resources.count > 1 %>
+        <% @event_resources_without_first.each do |resource| %>
+          <div class='control-group'>
+            <%= hidden_field_tag "resources[][id]", resource.id %>
+            <label class='control-label' name='resources[][value]'>Resource</label>
+            <div class='controls'>
+              <%= select_tag "resources[][value]", options_from_collection_for_select(@resources, "id", "description", resource.resource_id), html_options = { :onchange => 'check_selected_resource()' }%>
+              <div>
+                <%= link_to '#', :class => 'btn', :onclick => 'event_remove_resource(this)', :id => resource.id do%>
+                  Remove Field
+                <% end%>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>    
+
+    <div id="fieldsDiv" class="control-group"></div>  
+    <div class="controls">
+      <span class="btn btn-inverse" id="add_resource">Add resource</span>
+    </div>  
+  </div>
+  <div class="actions controls ">
+    <%= f.submit :class => "btn" %>
+  </div>
+  <br>
 <% end %>

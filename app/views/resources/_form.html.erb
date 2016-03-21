@@ -1,0 +1,51 @@
+<%= form_for @resource, :html => { :class => "form-horizontal" } do |f| %>
+  <% if @resource.errors.any? %>
+    <div class="alert alert-error">
+      <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
+
+      <ul>
+      <% @resource.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+	  <div class="control-group">
+		  <%= f.label :resource_type_id, :class=>"control-label" %>
+		  <div class="controls">
+		  <%= f.select :resource_type_id,  options_from_collection_for_select(@resource_types, "id","name",@resource.resource_type_id),{:include_blank => 'Select type'}, :onchange => 'update_resource_fields_div(this.value)' %>	
+		  </div> 
+	  </div>
+  <% if !@resource.resource_values.blank? %>
+  	<% @resource.resource_type.fields.each_with_index do |field, i|%>
+  	  <div class="control-group">
+  	    <%= hidden_field_tag "resource[resource_values_attributes][][field_id]", field.id%>
+  	    <%= label_tag "resource[resource_values_attributes][][value]",field.name, :class=>"control-label"%>
+          <div class="controls">
+	 	      <% if @resource.resource_values[i]%>
+	  	      <%= hidden_field_tag "resource[resource_values_attributes][][id]", @resource.resource_values[i].id%>
+	  	      <% @value = @resource.resource_values[i].value %>
+	  	      <% @reference = @resource.resource_values[i].resource_reference_id %>
+	  	    <% else %>
+	  	      <% @value ="" %>
+	  	      <% @reference ="" %>
+	  	    <% end %>    
+            <% if field.resource_type_reference_id%>
+              <%= select_tag "resource[resource_values_attributes][][resource_reference_id]",  options_from_collection_for_select(Resource.where("resource_type_id = ?",field.resource_type_reference_id), "id","description", @reference),{:include_blank => 'Select'} %>
+            <% else %>
+              <%= text_field_tag "resource[resource_values_attributes][][value]", @value%>
+            <% end %>
+          </div>
+
+      </div>
+  	<% end %>
+  <% end %>
+  <div id="fieldsDiv" class="control-group">
+  </div>
+  <div class="actions">
+    <%= f.submit (@resource.id.nil? ? "Create" : "Update") + " resource", :class=>"btn btn-primary" %> 
+  </div>
+<% end %>
+

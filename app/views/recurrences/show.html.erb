@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<!-- <p>
+  <b>Repetition:</b>
+  <%= @recurrence.repetition %>
+</p> -->
+
+<p>
+  <b>Start date:</b>
+  <%= @recurrence.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @recurrence.end_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_recurrence_path(@recurrence) %> |
+<%= link_to 'Back', recurrences_path %>

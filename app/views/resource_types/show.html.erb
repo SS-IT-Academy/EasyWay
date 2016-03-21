@@ -1,0 +1,60 @@
+<h4>
+  <strong>Name: </strong>
+  <i><%= @resource_type.name %></i>
+</h4>
+<table cellspacing="2" border="1" cellpadding="5" align="center">
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Custom Validators</th>
+  </tr>
+  <% @resource_type.fields.each do |field| %>
+  <tr>
+    <td><%= field.name%></td>
+    <td><%= field.field_type.name %></td>
+    <td>
+      <% field.validators.each do |v| %>
+        <%= link_to v.name, v %><br>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<h5>All available field names for making description:</h5>
+<p>
+  <% s = "" %>
+  <% @resource_type.all_field_names.each { |f| s += "#{f},  " } %>
+  <pre><%= s.chomp ",  " %></pre>
+</p>
+<p><strong>Example:</strong> "My name is <i>$${name_of_field}</i>"<p>
+
+<div class="boxforforms">
+<%= form_for @resource_type, :html => { :class => "form-horizontal" },
+    :url => { :action => :description }, :method => :post do |f| %>
+  <% if @resource_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@resource_type.errors.count, "error") %> prohibited this resource type from being saved:</h2>
+
+      <ul>
+      <% @resource_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :description, :class=>"control-label" %>
+    <div class="controls">
+      <%= f.text_field :description %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit "Update description", :class => "btn btn-primary" %>
+  </div> 
+<% end %>
+</div>
+<br>
+<%= link_to 'Edit', edit_resource_type_path(@resource_type) %> |
+<%= link_to 'Back', resource_types_path %>

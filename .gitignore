@@ -12,6 +12,7 @@ doc/
 .DS_Store
 .idea
 .metadata
+/nbproject/
 
 /coverage/
 

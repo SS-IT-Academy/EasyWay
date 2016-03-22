@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.2.4'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.22'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -19,30 +19,8 @@ gem 'bcrypt-ruby', :require=>'bcrypt'
 gem 'recaptcha', :require => "recaptcha/rails"
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
-end
-
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-
-group :development, :test do
-  gem "factory_girl_rails"
-  gem "capybara"
-  gem "guard-rspec"
-  gem 'rspec-rails'
-  gem 'watchr'
-  gem 'shoulda-matchers'
-  gem "better_errors"
-  gem "binding_of_caller"
-  gem 'jasmine'
-end
 
 gem 'thin' 
 gem 'nested_form'
@@ -68,6 +46,30 @@ gem 'twitter-bootstrap-rails'
 gem "less-rails"
 
 gem "rails-backbone"
+
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  gem 'therubyracer', :platforms => :ruby
+
+  gem 'uglifier', '>= 1.0.3'
+end
+
+group :development, :test do
+  gem 'minitest'
+  gem 'test-unit', '~> 3.0'
+  gem "factory_girl_rails"
+  gem "capybara"
+  gem "guard-rspec"
+  gem 'rspec-rails'
+  gem 'watchr'
+  gem 'shoulda-matchers'
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem 'jasmine'
+end
 
 group :production do
   gem 'rails_12factor'

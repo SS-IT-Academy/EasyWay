@@ -1,8 +1,9 @@
-class CreateEvents < ActiveRecord::Migration
+class CreateEventsSecond < ActiveRecord::Migration
   def change
+    drop_table :events
     create_table :events do |t|
       t.string :name
-      t.integer :event_type_id
+      t.references :event_types, index: true
       t.timestamp :start_at
       t.timestamp :end_at
       t.integer :recurrence_id

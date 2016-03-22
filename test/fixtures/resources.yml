@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  description: First
-  resource_type_id: 1
-
-two:
-  description: MyString
-  resource_type_id: 1

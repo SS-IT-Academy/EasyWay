@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
+ruby '2.2.4'
 
 gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-group :development do
-  gem 'sqlite3'
-end
+# For ubuntu you probably should de the next before gem instalation:
+# sudo apt-get install libpq-dev
+gem 'pg'
 
 gem 'cancan'
 
@@ -68,9 +69,11 @@ gem "less-rails"
 
 gem "rails-backbone"
 
-# group :production do
-#   gem 'pg', '0.12.2'
-# end
+group :production do
+  gem 'rails_12factor'
+  gem 'unicorn'
+  gem 'unicorn-rails'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

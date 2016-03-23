@@ -1,34 +1,34 @@
 require "spec_helper"
 
-describe NotifyTemplatesController do
+describe NotifyTemplatesController, type: :controller do
   describe "routing" do
 
     it "routes to #index" do
-      get("/notify_templates").should route_to("notify_templates#index")
+      expect(:get => "/notify_templates").to route_to(controller: "notify_templates", action: "index")      
     end
 
     it "routes to #new" do
-      get("/notify_templates/new").should route_to("notify_templates#new")
+      expect(:get => "/notify_templates/new").to route_to(controller: "notify_templates", action: "new")      
     end
 
     it "routes to #show" do
-      get("/notify_templates/1").should route_to("notify_templates#show", :id => "1")
+      expect(:get => "/notify_templates/1").to route_to(controller: "notify_templates", action: "show", id: '1')
     end
 
     it "routes to #edit" do
-      get("/notify_templates/1/edit").should route_to("notify_templates#edit", :id => "1")
+      expect(:get => "/notify_templates/1/edit").to route_to(controller: "notify_templates", action: "edit", id: '1')      
     end
 
     it "routes to #create" do
-      post("/notify_templates").should route_to("notify_templates#create")
+      expect(:post => "/notify_templates").to route_to(controller: "notify_templates", action: "create")      
     end
 
     it "routes to #update" do
-      put("/notify_templates/1").should route_to("notify_templates#update", :id => "1")
+      expect(:put => "/notify_templates/1").to route_to(controller: "notify_templates", action: "update", id: '1')      
     end
 
     it "routes to #destroy" do
-      delete("/notify_templates/1").should route_to("notify_templates#destroy", :id => "1")
+      expect(:delete => "/notify_templates/1").to route_to(controller: "notify_templates", action: "destroy", id: '1')      
     end
 
   end

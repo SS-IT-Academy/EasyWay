@@ -1,5 +1,7 @@
 require 'spec_helper'
 describe NotifyTemplatesController do
+  include RSpec::Rails::ControllerExampleGroup  
+  
   describe 'GET index' do
     it "responds successfully with an HTTP 200 status code" do
       get :index

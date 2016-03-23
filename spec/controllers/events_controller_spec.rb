@@ -3,6 +3,7 @@
 require 'spec_helper'
 
 describe EventsController do
+  include RSpec::Rails::ControllerExampleGroup
 
   context 'GET index' do
 
@@ -84,7 +85,7 @@ describe EventsController do
         :start_at => Time.now + 1.day, 
         :end_at => Time.now + 2.day, 
         :recurrence_id => 1,
-        :event_type_id => 1 
+        :event_types_id => 1 
       }
     end
     
@@ -129,7 +130,7 @@ describe EventsController do
         :start_at => Time.now + 1.day, 
         :end_at => Time.now + 2.day, 
         :recurrence_id => 1,
-        :event_type_id => 1 
+        :event_types_id => 1 
       }
     end
 

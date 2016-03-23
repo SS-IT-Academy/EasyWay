@@ -63,6 +63,7 @@ GEM
     coffee-script-source (1.10.0)
     commonjs (0.2.7)
     daemons (1.2.3)
+    database_cleaner (1.5.1)
     debug_inspector (0.0.2)
     devise (3.5.6)
       bcrypt (~> 3.0)
@@ -207,6 +208,12 @@ GEM
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
       rspec-mocks (~> 3.4.0)
+    rspec-activemodel-mocks (1.0.3)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      rspec-mocks (>= 2.99, < 4.0)
+    rspec-collection_matchers (1.1.2)
+      rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -301,6 +308,7 @@ DEPENDENCIES
   cancan
   capybara
   coffee-rails (~> 3.2.1)
+  database_cleaner
   devise
   devise_invitable
   factory_girl_rails
@@ -320,6 +328,8 @@ DEPENDENCIES
   railties
   recaptcha
   recurring_select (~> 1.1.0)
+  rspec-activemodel-mocks
+  rspec-collection_matchers
   rspec-rails
   safe_attributes
   sass-rails (~> 3.2.3)

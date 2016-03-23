@@ -18,8 +18,7 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe ResourceValuesController do
-
+describe ResourceValuesController, type: :controller, authenticated: true do
   # This should return the minimal set of attributes required to create a valid
   # ResourceValue. As you add validations to ResourceValue, be sure to
   # adjust the attributes here as well.
@@ -154,7 +153,7 @@ describe ResourceValuesController do
     it "redirects to the resource_values list" do
       #resource_value = ResourceValue.create! valid_attributes
       delete :destroy, {:id => resource_value.to_param}, valid_session
-      response.should redirect_to(resource_values_url)
+      response.should redirect_to(resource_values_url(:only_path => true))
     end
   end
 

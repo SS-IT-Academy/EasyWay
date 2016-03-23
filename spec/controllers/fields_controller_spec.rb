@@ -20,8 +20,7 @@ require 'spec_helper'
 
 
 
-describe FieldsController do
-  # let(:resource_type) { FactoryGirl.create :resource_type }
+describe FieldsController , type: :controller, authenticated: true do# let(:resource_type) { FactoryGirl.create :resource_type }
   # let(:field_type) { FactoryGirl.create :field_type }
   # This should return the minimal set of attributes required to create a valid
   # Field. As you add validations to Field, be sure to

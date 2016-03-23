@@ -20,7 +20,7 @@ describe Event do
 			it { should validate_presence_of(:name) }
 			it { should validate_presence_of(:start_at) }
 			it { should validate_presence_of(:end_at) }
-			it { should validate_presence_of(:event_type_id) }
+			it { should validate_presence_of(:event_types_id) }
 
 		end
 
@@ -30,7 +30,7 @@ describe Event do
 			it { should allow_mass_assignment_of(:name) }
 			it { should allow_mass_assignment_of(:end_at) }
 			it { should allow_mass_assignment_of(:start_at) }
-			it { should allow_mass_assignment_of(:event_type_id) }
+			it { should allow_mass_assignment_of(:event_types_id) }
 			it { should allow_mass_assignment_of(:recurrence_id) }
 
 		end

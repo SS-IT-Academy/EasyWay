@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe ManageMenuController do
-
+describe ManageMenuController , type: :controller, authenticated: true do
   describe "GET 'index'" do
     it "returns http success" do
       get 'index'

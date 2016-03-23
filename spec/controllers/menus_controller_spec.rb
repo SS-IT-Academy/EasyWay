@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe MenusController do
-
+describe MenusController , type: :controller, authenticated: true do
   context 'GET index' do
 
     it "assigns Menus" do

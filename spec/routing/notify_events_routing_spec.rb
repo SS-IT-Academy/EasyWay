@@ -1,34 +1,34 @@
 require "spec_helper"
 
-describe NotifyEventsController do
+describe NotifyEventsController, type: :controller do
   describe "routing" do
 
     it "routes to #index" do
-      get("/notify_events").should route_to("notify_events#index")
+      expect(:get => "/notify_events").to route_to(controller: "notify_events", action: "index")      
     end
 
     it "routes to #new" do
-      get("/notify_events/new").should route_to("notify_events#new")
+      expect(:get => "/notify_events/new").to route_to(controller: "notify_events", action: "new")      
     end
 
     it "routes to #show" do
-      get("/notify_events/1").should route_to("notify_events#show", :id => "1")
+      expect(:get => "/notify_events/1").to route_to(controller: "notify_events", action: "show", id: '1')      
     end
 
     it "routes to #edit" do
-      get("/notify_events/1/edit").should route_to("notify_events#edit", :id => "1")
+      expect(:get => "/notify_events/1/edit").to route_to(controller: "notify_events", action: "edit", id: '1')      
     end
 
     it "routes to #create" do
-      post("/notify_events").should route_to("notify_events#create")
+      expect(:post => "/notify_events").to route_to(controller: "notify_events", action: "create")      
     end
 
     it "routes to #update" do
-      put("/notify_events/1").should route_to("notify_events#update", :id => "1")
+      expect(:put => "/notify_events/1").to route_to(controller: "notify_events", action: "update", id: '1')      
     end
 
     it "routes to #destroy" do
-      delete("/notify_events/1").should route_to("notify_events#destroy", :id => "1")
+      expect(:delete => "/notify_events/1").to route_to(controller: "notify_events", action: "destroy", id: '1')      
     end
 
   end

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe EventTypesController do
-
+describe EventTypesController , type: :controller, authenticated: true do
   context "GET index" do
 
     it "event_type should include event_type" do

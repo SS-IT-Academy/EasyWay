@@ -34,6 +34,3 @@
 //= require backbone/easy_way
 //= require_tree .
 
-function addRecipient() {
-	alert("Add Clicked")
-}

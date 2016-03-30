@@ -1,4 +1,10 @@
 class Role < ActiveRecord::Base
+  ADMIN   = "Admin"
+  MANAGER = "Manager"
+  TEACHER = "Teacher"
+  TRAINEE = "Trainee"
+  GUEST   = "Guest"
+
   attr_accessible :name
   validates_uniqueness_of :name, :message => "Please choose another name"
   validates_presence_of :name, :message => "Field name can`t be blank"

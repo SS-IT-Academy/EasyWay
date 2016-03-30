@@ -1,7 +1,7 @@
 <div class="navbar">
   <div>		 
     <ul class="nav draggables">
-      <% Menu.roots.where('role_id = ? OR user_id = ?',@role_id ,@user_id).each do |item|%>
+      <% Menu.roots.where('role_id = ? OR user_id = ?', @role_id, @user_id.to_i).each do |item|%>
 		<% if item.children.where('role_id = ? OR user_id = ?',@role_id ,@user_id).empty?%>
           <%= content_tag :li, :id => item.id do%>
            <%= link_to item.bookmark.title, item.bookmark.url %>

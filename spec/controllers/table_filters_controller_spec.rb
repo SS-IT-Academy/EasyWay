@@ -1,8 +1,6 @@
 require 'spec_helper'
 
-describe TableFiltersController do
-
-  
+describe TableFiltersController , type: :controller, authenticated: true do
   context "GET index" do
 
     it "table_filters should include table_filter" do

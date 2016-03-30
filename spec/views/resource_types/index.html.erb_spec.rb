@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "resource_types/index" do
+describe "resource_types/index", type: :view do
   before(:each) do
     assign(:resource_types, [
       stub_model(ResourceType,

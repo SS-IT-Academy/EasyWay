@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe RolesController do
-
+describe RolesController , type: :controller, authenticated: true do
   context 'GET index' do
 
     it "assigns Roles" do

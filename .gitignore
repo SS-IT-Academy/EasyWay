@@ -1,27 +1,24 @@
 
 
-# Игнорирование конфига bundler
 /.bundle
 
-# Игнорирование всех логов и временных файлов.
 /log/*.log
 /tmp
 
-# Игнорирование прочих ненужных файлов.
 doc/
 *.swp
 *~
 .project
 .DS_Store
 .idea
+.metadata
+/nbproject/
 
 /coverage/
-
-
+/public/assets
 db/*.sqlite3
 db/schema.rb
 
-#config/routes.rb
-#Gemfile
+config/database.yml
 
 db/development.sqlite3

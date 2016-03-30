@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
+//= require jquery-ui
 //= require jquery-ui-timepicker-addon
 //= require jquery.validate
 //= require recurring_select
@@ -34,6 +34,3 @@
 //= require backbone/easy_way
 //= require_tree .
 
-function addRecipient() {
-	alert("Add Clicked")
-}

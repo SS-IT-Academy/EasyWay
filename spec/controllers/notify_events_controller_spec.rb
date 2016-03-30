@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe NotifyEventsController do
-
+describe NotifyEventsController , type: :controller, authenticated: true do
   describe 'GET index' do
     it "responds successfully with an HTTP 200 status code" do
       get :index

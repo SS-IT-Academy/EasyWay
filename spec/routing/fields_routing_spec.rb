@@ -1,34 +1,34 @@
 require "spec_helper"
 
-describe FieldsController do
+describe FieldsController, type: :controller do
   describe "routing" do
 
     it "routes to #index" do
-      get("/fields").should route_to("fields#index")
+      expect(:get => "/fields").to route_to(controller: "fields", action: "index")      
     end
 
     it "routes to #new" do
-      get("/fields/new").should route_to("fields#new")
+      expect(:get => "/fields/new").to route_to(controller: "fields", action: "new")      
     end
 
     it "routes to #show" do
-      get("/fields/1").should route_to("fields#show", :id => "1")
+      expect(:get => "/fields/1").to route_to(controller: "fields", action: "show", id: '1')      
     end
 
     it "routes to #edit" do
-      get("/fields/1/edit").should route_to("fields#edit", :id => "1")
+      expect(:get => "/fields/1/edit").to route_to(controller: "fields", action: "edit", id: '1')      
     end
 
     it "routes to #create" do
-      post("/fields").should route_to("fields#create")
+      expect(:post => "/fields").to route_to(controller: "fields", action: "create")      
     end
 
     it "routes to #update" do
-      put("/fields/1").should route_to("fields#update", :id => "1")
+      expect(:put => "/fields/1").to route_to(controller: "fields", action: "update", id: '1')      
     end
 
     it "routes to #destroy" do
-      delete("/fields/1").should route_to("fields#destroy", :id => "1")
+      expect(:delete => "/fields/1").to route_to(controller: "fields", action: "destroy", id: '1')      
     end
 
   end

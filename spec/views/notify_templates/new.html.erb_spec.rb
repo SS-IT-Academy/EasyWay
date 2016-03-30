@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "notify_templates/new" do
+describe "notify_templates/new", type: :view do
   before(:each) do
     assign(:notify_template, stub_model(NotifyTemplate,
       :template_name => "MyString",

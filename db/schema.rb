@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(:version => 20140324135200) do
     t.text     "description"
   end
 
+  create_table "event_properties", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "event_resources", :force => true do |t|
     t.integer  "resource_id"
     t.integer  "event_id"
@@ -41,11 +47,11 @@ ActiveRecord::Schema.define(:version => 20140324135200) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
-    t.integer  "event_type_id"
+    t.integer  "event_types_id"
     t.datetime "start_at"
     t.integer  "recurrence_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "parent_id"
     t.datetime "end_at"
   end

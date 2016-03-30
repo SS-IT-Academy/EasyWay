@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "resource_types/show" do
+describe "resource_types/show", type: :view do
   before(:each) do
     @resource_type = assign(:resource_type, stub_model(ResourceType,
       :name => "Name"

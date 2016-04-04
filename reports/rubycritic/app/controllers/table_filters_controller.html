@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-f circled-text circle ">F</span>
+  <h2 class="file-name">TableFiltersController</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-21 20:16:13 +0200'>2016-03-21 20:16:13 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      83 complexity
+    </div>
+    <div class="file-stat">
+      11.9 complexity per method
+    </div>
+    <div class="file-stat">
+      4 churn
+    </div>
+    <div class="file-stat">
+      7 methods
+    </div>
+    <div class="file-stat">
+      188 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class TableFiltersController &lt; ApplicationController
+  # GET /table_filters
+  # GET /table_filters.json
+  def index<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 43 nodes                        <a href="bookmarks_controller.html#L4" class="js-smell-location">0</a>                  <a href="bookmarks_controller.html#L26" class="js-smell-location">1</a>                  <a href="event_properties_controller.html#L4" class="js-smell-location">2</a>                  <a href="event_properties_controller.html#L26" class="js-smell-location">3</a>                  <a href="event_resources_controller.html#L4" class="js-smell-location">4</a>                  <a href="event_resources_controller.html#L26" class="js-smell-location">5</a>                  <a href="event_types_controller.html#L4" class="js-smell-location">6</a>                  <a href="event_types_controller.html#L26" class="js-smell-location">7</a>                  <a href="field_types_controller.html#L4" class="js-smell-location">8</a>                  <a href="field_types_controller.html#L26" class="js-smell-location">9</a>                  <a href="field_validations_controller.html#L4" class="js-smell-location">10</a>                  <a href="field_validations_controller.html#L26" class="js-smell-location">11</a>                  <a href="fields_controller.html#L4" class="js-smell-location">12</a>                  <a href="fields_controller.html#L26" class="js-smell-location">13</a>                  <a href="menus_controller.html#L4" class="js-smell-location">14</a>                  <a href="notify_events_controller.html#L7" class="js-smell-location">15</a>                  <a href="notify_observer_properties_controller.html#L4" class="js-smell-location">16</a>                  <a href="notify_observer_properties_controller.html#L35" class="js-smell-location">17</a>                  <a href="notify_observers_controller.html#L4" class="js-smell-location">18</a>                  <a href="notify_observers_controller.html#L26" class="js-smell-location">19</a>                  <a href="notify_schedulers_controller.html#L4" class="js-smell-location">20</a>                  <a href="notify_schedulers_controller.html#L26" class="js-smell-location">21</a>                  <a href="notify_templates_controller.html#L4" class="js-smell-location">22</a>                  <a href="notify_templates_controller.html#L26" class="js-smell-location">23</a>                  <a href="permissions_controller.html#L4" class="js-smell-location">24</a>                  <a href="permissions_controller.html#L26" class="js-smell-location">25</a>                  <a href="recipients_controller.html#L4" class="js-smell-location">26</a>                  <a href="recipients_controller.html#L26" class="js-smell-location">27</a>                  <a href="recurrences_controller.html#L4" class="js-smell-location">28</a>                  <a href="recurrences_controller.html#L26" class="js-smell-location">29</a>                  <a href="resource_types_controller.html#L30" class="js-smell-location">30</a>                  <a href="resource_values_controller.html#L4" class="js-smell-location">31</a>                  <a href="resource_values_controller.html#L26" class="js-smell-location">32</a>                  <a href="resources_controller.html#L8" class="js-smell-location">33</a>                  <a href="roles_controller.html#L2" class="js-smell-location">34</a>                  <a href="roles_controller.html#L26" class="js-smell-location">35</a>                  <a href="table_cell_items_controller.html#L4" class="js-smell-location">36</a>                  <a href="table_filters_controller.html#L4" class="js-smell-location">37</a>                  <a href="table_headers_controller.html#L3" class="js-smell-location">38</a>                  <a href="table_templates_controller.html#L2" class="js-smell-location">39</a>                  <a href="table_templates_controller.html#L18" class="js-smell-location">40</a>                  <a href="users_controller.html#L32" class="js-smell-location">41</a>                  <a href="validators_controller.html#L10" class="js-smell-location">42</a>                  </span>  </li></ul>
+    @table_filters = TableFilter.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @table_filters }
+    end
+  end
+
+  # GET /table_filters/1
+  # GET /table_filters/1.json
+  def show<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 22 nodes                        <a href="bookmarks_controller.html#L15" class="js-smell-location">0</a>                  <a href="event_properties_controller.html#L15" class="js-smell-location">1</a>                  <a href="event_resources_controller.html#L15" class="js-smell-location">2</a>                  <a href="event_types_controller.html#L15" class="js-smell-location">3</a>                  <a href="field_types_controller.html#L15" class="js-smell-location">4</a>                  <a href="field_validations_controller.html#L15" class="js-smell-location">5</a>                  <a href="fields_controller.html#L15" class="js-smell-location">6</a>                  <a href="menus_controller.html#L15" class="js-smell-location">7</a>                  <a href="notify_events_controller.html#L18" class="js-smell-location">8</a>                  <a href="notify_observer_properties_controller.html#L24" class="js-smell-location">9</a>                  <a href="notify_observers_controller.html#L15" class="js-smell-location">10</a>                  <a href="notify_schedulers_controller.html#L15" class="js-smell-location">11</a>                  <a href="notify_templates_controller.html#L15" class="js-smell-location">12</a>                  <a href="permissions_controller.html#L15" class="js-smell-location">13</a>                  <a href="recipients_controller.html#L15" class="js-smell-location">14</a>                  <a href="recurrences_controller.html#L15" class="js-smell-location">15</a>                  <a href="resource_values_controller.html#L15" class="js-smell-location">16</a>                  <a href="table_cell_items_controller.html#L15" class="js-smell-location">17</a>                  <a href="table_filters_controller.html#L15" class="js-smell-location">18</a>                  <a href="table_headers_controller.html#L12" class="js-smell-location">19</a>                  <a href="table_templates_controller.html#L10" class="js-smell-location">20</a>                  <a href="validators_controller.html#L21" class="js-smell-location">21</a>                  </span>  </li></ul>
+    @table_filter = TableFilter.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @table_filter }
+    end
+  end
+
+  # GET /table_filters/new
+  # GET /table_filters/new.json
+  def new<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="table_cell_items_controller.html#L26" class="js-smell-location">0</a>                  <a href="table_filters_controller.html#L26" class="js-smell-location">1</a>                  </span>  </li></ul>
+    @table_filter = TableFilter.new
+    @table_template = TableTemplate.find(params[:table_template])
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @table_filter }
+    end
+  end
+
+  # GET /table_filters/1/edit
+  def edit
+    @table_filter = TableFilter.find(params[:id])
+  end
+
+  # POST /table_filters
+  # POST /table_filters.json
+  def create<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 19 nodes                        <a href="bookmarks_controller.html#L42" class="js-smell-location">0</a>                  <a href="event_properties_controller.html#L42" class="js-smell-location">1</a>                  <a href="event_resources_controller.html#L42" class="js-smell-location">2</a>                  <a href="event_types_controller.html#L42" class="js-smell-location">3</a>                  <a href="field_types_controller.html#L42" class="js-smell-location">4</a>                  <a href="field_validations_controller.html#L42" class="js-smell-location">5</a>                  <a href="fields_controller.html#L42" class="js-smell-location">6</a>                  <a href="menus_controller.html#L48" class="js-smell-location">7</a>                  <a href="notify_observer_properties_controller.html#L51" class="js-smell-location">8</a>                  <a href="notify_schedulers_controller.html#L42" class="js-smell-location">9</a>                  <a href="notify_templates_controller.html#L42" class="js-smell-location">10</a>                  <a href="permissions_controller.html#L42" class="js-smell-location">11</a>                  <a href="recipients_controller.html#L42" class="js-smell-location">12</a>                  <a href="recurrences_controller.html#L42" class="js-smell-location">13</a>                  <a href="resource_values_controller.html#L42" class="js-smell-location">14</a>                  <a href="roles_controller.html#L42" class="js-smell-location">15</a>                  <a href="table_cell_items_controller.html#L42" class="js-smell-location">16</a>                  <a href="table_filters_controller.html#L42" class="js-smell-location">17</a>                  <a href="validators_controller.html#L49" class="js-smell-location">18</a>                  </span>  </li></ul>
+    @table_filter = TableFilter.new(params[:table_filter])
+
+    respond_to do |format|
+      if @table_filter.save
+        format.html { redirect_to @table_filter, notice: &#39;Table filter was successfully created.&#39; }
+        format.json { render json: @table_filter, status: :created, location: @table_filter }
+      else
+        format.html { render action: &quot;new&quot; }
+        format.json { render json: @table_filter.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /table_filters/1
+  # PUT /table_filters/1.json
+  def update<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 22 nodes                        <a href="bookmarks_controller.html#L58" class="js-smell-location">0</a>                  <a href="event_properties_controller.html#L58" class="js-smell-location">1</a>                  <a href="event_resources_controller.html#L58" class="js-smell-location">2</a>                  <a href="event_types_controller.html#L58" class="js-smell-location">3</a>                  <a href="field_types_controller.html#L58" class="js-smell-location">4</a>                  <a href="field_validations_controller.html#L58" class="js-smell-location">5</a>                  <a href="fields_controller.html#L58" class="js-smell-location">6</a>                  <a href="menus_controller.html#L64" class="js-smell-location">7</a>                  <a href="notify_observer_properties_controller.html#L68" class="js-smell-location">8</a>                  <a href="notify_observers_controller.html#L63" class="js-smell-location">9</a>                  <a href="notify_schedulers_controller.html#L58" class="js-smell-location">10</a>                  <a href="notify_templates_controller.html#L58" class="js-smell-location">11</a>                  <a href="permissions_controller.html#L58" class="js-smell-location">12</a>                  <a href="recipients_controller.html#L58" class="js-smell-location">13</a>                  <a href="recurrences_controller.html#L58" class="js-smell-location">14</a>                  <a href="resource_values_controller.html#L58" class="js-smell-location">15</a>                  <a href="roles_controller.html#L58" class="js-smell-location">16</a>                  <a href="table_cell_items_controller.html#L58" class="js-smell-location">17</a>                  <a href="table_filters_controller.html#L58" class="js-smell-location">18</a>                  <a href="table_headers_controller.html#L65" class="js-smell-location">19</a>                  <a href="table_templates_controller.html#L46" class="js-smell-location">20</a>                  <a href="validators_controller.html#L65" class="js-smell-location">21</a>                  </span>  </li></ul>
+    @table_filter = TableFilter.find(params[:id])
+
+    respond_to do |format|
+      if @table_filter.update_attributes(params[:table_filter])
+        format.html { redirect_to @table_filter, notice: &#39;Table filter was successfully updated.&#39; }
+        format.json { head :no_content }
+      else
+        format.html { render action: &quot;edit&quot; }
+        format.json { render json: @table_filter.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /table_filters/1
+  # DELETE /table_filters/1.json
+  def destroy<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 23 nodes                        <a href="bookmarks_controller.html#L74" class="js-smell-location">0</a>                  <a href="event_properties_controller.html#L74" class="js-smell-location">1</a>                  <a href="event_resources_controller.html#L74" class="js-smell-location">2</a>                  <a href="event_types_controller.html#L74" class="js-smell-location">3</a>                  <a href="field_validations_controller.html#L74" class="js-smell-location">4</a>                  <a href="fields_controller.html#L74" class="js-smell-location">5</a>                  <a href="menus_controller.html#L80" class="js-smell-location">6</a>                  <a href="notify_events_controller.html#L201" class="js-smell-location">7</a>                  <a href="notify_observer_properties_controller.html#L84" class="js-smell-location">8</a>                  <a href="notify_observers_controller.html#L79" class="js-smell-location">9</a>                  <a href="notify_schedulers_controller.html#L74" class="js-smell-location">10</a>                  <a href="notify_templates_controller.html#L74" class="js-smell-location">11</a>                  <a href="permissions_controller.html#L74" class="js-smell-location">12</a>                  <a href="recipients_controller.html#L74" class="js-smell-location">13</a>                  <a href="recurrences_controller.html#L74" class="js-smell-location">14</a>                  <a href="resource_values_controller.html#L74" class="js-smell-location">15</a>                  <a href="roles_controller.html#L74" class="js-smell-location">16</a>                  <a href="table_cell_items_controller.html#L74" class="js-smell-location">17</a>                  <a href="table_filters_controller.html#L74" class="js-smell-location">18</a>                  <a href="table_headers_controller.html#L79" class="js-smell-location">19</a>                  <a href="table_templates_controller.html#L58" class="js-smell-location">20</a>                  <a href="users_controller.html#L102" class="js-smell-location">21</a>                  <a href="validators_controller.html#L81" class="js-smell-location">22</a>                  </span>  </li></ul>
+    @table_filter = TableFilter.find(params[:id])
+    @table_filter.destroy
+
+    respond_to do |format|
+      format.html { redirect_to table_filters_url }
+      format.json { head :no_content }
+    end
+  end
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

@@ -1,0 +1,8386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='en' http-equiv='Content-Language' />
+    <title>metrics</title>
+    <style>
+    /*
+Copyright (c) 2008, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.5.2
+*/
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;font-variant:normal;}sup {vertical-align:text-top;}sub {vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}
+
+    /* --------------------------------------------------------------
+
+   buttons.css
+   * Gives you some great CSS-only buttons.
+
+   Created by Kevin Hale [particletree.com]
+   * particletree.com/features/rediscovering-the-button-element
+
+   See Readme.txt in this folder for instructions.
+
+-------------------------------------------------------------- */
+
+button {
+  display:block;
+  float:left;
+  margin:0 0.583em 0.667em 0;
+  padding:5px 10px 5px 7px;   /* Links */
+
+  border:1px solid #dedede;
+  border-top:1px solid #eee;
+  border-left:1px solid #eee;
+
+  background-color:#f5f5f5;
+  font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+  font-size:100%;
+  line-height:130%;
+  text-decoration:none;
+  font-weight:bold;
+  color:#565656;
+  cursor:pointer;
+}
+button {
+  width:auto;
+  overflow:visible;
+  padding:4px 10px 3px 7px;   /* IE6 */
+}
+button[type] {
+  padding:4px 10px 4px 7px;   /* Firefox */
+  line-height:17px;           /* Safari */
+}
+*:first-child+html button[type] {
+  padding:4px 10px 3px 7px;   /* IE7 */
+}
+button img {
+  margin:0 3px -3px 0 !important;
+  padding:0;
+  border:none;
+  width:16px;
+  height:16px;
+  float:none;
+}
+
+
+/* Button colors
+-------------------------------------------------------------- */
+
+/* Standard */
+button:hover {
+  background-color:#dff4ff;
+  border:1px solid #c2e1ef;
+  color:#336699;
+}
+
+/* Positive */
+body .positive {
+  color:#529214;
+}
+button.positive:hover {
+  background-color:#E6EFC2;
+  border:1px solid #C6D880;
+  color:#529214;
+}
+
+/* Negative */
+body .negative {
+  color:#d12f19;
+}
+button.negative:hover {
+  background:#fbe3e4;
+  border:1px solid #fbc2c4;
+  color:#d12f19;
+}
+
+    html {
+  background-color: #e0e0e0; }
+
+body {
+  font-size: 100%;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: #333333; }
+
+a {
+  color: #ed1556;
+  text-decoration: none; }
+  a:hover {
+    color: #ffffff;
+    background-color: #ed1556; }
+
+#header, #content, #footer {
+  margin: 0 auto;
+  background: #eeeeee;
+  padding: 0 2em;
+  z-index: 0;
+  position: relative;
+  font-size: 1em; }
+
+#header {
+  background: #ffffff; }
+  #header h1 {
+    font-weight: bold;
+    font-size: 1.5em; }
+  #header address.watermark {
+    position: absolute;
+    font-weight: bold;
+    right: 3em;
+    top: 0;
+    font-size: .75em;
+    color: #cccccc; }
+    #header address.watermark a {
+      color: #cccccc;
+      font-weight: bold;
+      font-size: 2em; }
+      #header address.watermark a:hover {
+        background: transparent;
+        color: #aaaaaa; }
+
+#content {
+  padding-top: 1em;
+  padding-bottom: 2em; }
+  #content strong {
+    font-weight: bold; }
+  #content em {
+    font-style: italic; }
+  #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+    color: #4e4e4e; }
+  #content h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: .75em;
+    padding: .25em 0;
+    line-height: 1.2;
+    border-bottom: 1px solid #c0c0c0; }
+  #content h2 {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 1em 0 .2em; }
+  #content h3 {
+    font-weight: bold;
+    font-size: 1.25em;
+    margin: .25em 0; }
+  #content h4, #content h5, #content h6 {
+    font-weight: bold;
+    margin-top: .5em; }
+  #content code, #content pre, #content textarea, #content input {
+    font-family: Monaco, Deja Vu Sans Mono, Inconsolata, Consolas, monospace; }
+  #content form p {
+    margin-top: 1em;
+    position: relative; }
+    #content form p.checkbox label {
+      margin-top: 0 !important; }
+  #content form input.text, #content form textarea {
+    width: 30em;
+    padding: .2em .4em;
+    color: #4e4e4e; }
+  #content form input.text {
+    height: 1.4em; }
+  #content form label {
+    float: left;
+    display: block;
+    margin-top: .5em;
+    width: 8em;
+    margin-right: .75em; }
+  #content form .with_errors label {
+    background: red;
+    color: white;
+    position: relative;
+    top: -.7em; }
+  #content form .with_errors.required label {
+    position: static;
+    margin-right: .25em;
+    padding: 0 .2em; }
+  #content form .with_errors input, #content form .with_errors textarea {
+    border: 2px solid #f22;
+    background: #fee;
+    color: #222222; }
+  #content form .required label {
+    float: none;
+    display: block;
+    width: auto;
+    position: relative;
+    font-weight: bold;
+    margin-top: 1em;
+    text-indent: -.65em; }
+    #content form .required label:before {
+      content: "* ";
+      color: #ed1556; }
+  #content form .required input.text {
+    width: 25.6em;
+    font-size: 24px;
+    font-weight: bold; }
+  #content form .normal {
+    margin-top: 2em; }
+  #content form h2.notifier label {
+    float: none;
+    width: auto;
+    margin-right: 0; }
+    #content form h2.notifier label .warning {
+      font-size: .5em;
+      font-weight: normal;
+      color: #999999; }
+  #content form fieldset {
+    padding-bottom: 1em;
+    margin-left: 1.35em;
+    border-bottom: 1px solid #c0c0c0;
+    margin-bottom: 1em; }
+    #content form fieldset h3 {
+      margin-top: 1em;
+      margin-bottom: 0; }
+    #content form fieldset p.normal {
+      margin-top: 1em; }
+    #content form fieldset p label {
+      width: 6.7em; }
+  #content form p.submit {
+    margin-top: 2em; }
+    #content form p.submit:after {
+      display: block;
+      clear: both;
+      float: none;
+      content: ".";
+      text-indent: -9999em;
+      text-align: left; }
+    #content form p.submit.destroy button,     #content form p.submit.manual-build button {
+      float: none;
+      display: inline; }
+    #content form p.submit.manual-build button {
+      margin-right: 0; }
+  #content #build form, #content #last_build form {
+    font-size: .75em; }
+    #content #build form p.submit,     #content #last_build form p.submit {
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      right: .5em;
+      top: 1.25em; }
+  #content .blank_slate p,   #content .error p {
+    position: relative;
+    top: .3em; }
+  #content .blank_slate h1,   #content .error h1 {
+    border-width: 0;
+    margin: 0;
+    padding: 0; }
+    #content .blank_slate h1 button,     #content .error h1 button {
+      float: none;
+      border: 0 none;
+      background: transparent;
+      display: inline;
+      color: #ed1556;
+      padding: 0.25em 0;
+      margin: 0; }
+      #content .blank_slate h1 button:hover,       #content .error h1 button:hover {
+        background: #ed1556;
+        color: #ffffff; }
+  #content .error dt {
+    margin-top: 1.4em;
+    margin-bottom: .3em;
+    font-size: 1.75em;
+    font-family: Georgia, Times New Roman, serif; }
+  #content .error dd {
+    line-height: 1.4; }
+  #content .error .backtrace {
+    margin: 1em 0;
+    overflow: scroll;
+    height: 30em;
+    border: 1px solid #c0c0c0;
+    line-height: 1.6; }
+  #content #projects {
+    margin: 1em 0 2em;
+    border-top: 1px solid #c0c0c0; }
+    #content #projects li {
+      position: relative;
+      border-bottom: 1px solid #c0c0c0; }
+      #content #projects li.odd {
+        background: #e6e6e6; }
+      #content #projects li.building {
+        background: transparent url(/spinner.gif) no-repeat scroll right; }
+      #content #projects li a {
+        font-size: 2em;
+        padding: .25em;
+        line-height: 1.2;
+        font-weight: bold;
+        display: block; }
+        #content #projects li a.success {
+          color: #337022; }
+        #content #projects li a.failed {
+          color: #ff1100; }
+      #content #projects li .meta {
+        position: absolute;
+        right: .6em;
+        top: 1.5em;
+        font-size: 0.8em;
+        color: #999999;
+        text-align: right; }
+      #content #projects li.building .meta {
+        right: 1.6em; }
+      #content #projects li.success .meta {
+        color: #337022; }
+      #content #projects li.failed .meta {
+        color: #ff1100; }
+  #content #previous_builds li a {
+    display: block;
+    padding: .25em;
+    margin-bottom: .25em;
+    border-width: 1px;
+    border-style: solid; }
+    #content #previous_builds li a strong {
+      font-size: 1.3em; }
+    #content #previous_builds li a .attribution {
+      font-size: .9em; }
+  #content #projects li.success a,   #content #previous_builds li.success a {
+    background-color: #bbf8aa;
+    border-color: #99d688;
+    color: #337022; }
+    #content #projects li.success a .attribution,     #content #previous_builds li.success a .attribution {
+      color: #77b466; }
+    #content #projects li.success a:hover,     #content #previous_builds li.success a:hover {
+      background-color: #ddffcc; }
+  #content #projects li.failed a,   #content #previous_builds li.failed a {
+    background-color: #ffbbaa;
+    border-color: #dd9988;
+    color: #ff1100; }
+    #content #projects li.failed a .attribution,     #content #previous_builds li.failed a .attribution {
+      color: #bb7766; }
+    #content #projects li.failed a:hover,     #content #previous_builds li.failed a:hover {
+      background-color: #ffddcc; }
+  #content #build, #content #last_build {
+    position: relative; }
+    #content #build h1, #content #build blockquote,     #content #last_build h1, #content #last_build blockquote {
+      border-width: 0 1px;
+      border-style: solid; }
+    #content #build h1,     #content #last_build h1 {
+      border-top-width: 1px; }
+    #content #build blockquote,     #content #last_build blockquote {
+      bottom-bottom-width: 1px;
+      line-height: 1.4; }
+    #content #build.success h1, #content #build.success blockquote,     #content #last_build.success h1, #content #last_build.success blockquote {
+      background-color: #bbf8aa;
+      border-color: #99d688 #ccffbb #ccffbb #99d688; }
+    #content #build.success h1,     #content #last_build.success h1 {
+      color: #337022; }
+    #content #build.success .meta,     #content #last_build.success .meta {
+      color: #77b466; }
+    #content #build.failed h1, #content #build.failed blockquote,     #content #last_build.failed h1, #content #last_build.failed blockquote {
+      background-color: #ffbbaa;
+      border-color: #dd9988 #ffccbb #ffccbb #dd9988; }
+    #content #build.failed h1,     #content #last_build.failed h1 {
+      color: #ff1100; }
+    #content #build.failed .meta,     #content #last_build.failed .meta {
+      color: #bb7766; }
+    #content #build h1,     #content #last_build h1 {
+      margin-top: .5em;
+      margin-bottom: 0;
+      padding: .25em;
+      color: #337022; }
+    #content #build blockquote,     #content #last_build blockquote {
+      padding: .75em;
+      margin-bottom: 2em; }
+      #content #build blockquote .meta,       #content #last_build blockquote .meta {
+        margin-top: 1em;
+        display: block;
+        font-size: .9em; }
+    #content #build pre.output,     #content #last_build pre.output {
+      background: #111;
+      color: #fff;
+      padding: .5em;
+      overflow: auto;
+      max-height: 50em;
+      font-size: .825em; }
+      #content #build pre.output .color30,       #content #last_build pre.output .color30 {
+        color: #333; }
+      #content #build pre.output .color31,       #content #last_build pre.output .color31 {
+        color: #e33; }
+      #content #build pre.output .color32,       #content #last_build pre.output .color32 {
+        color: #3e3; }
+      #content #build pre.output .color33,       #content #last_build pre.output .color33 {
+        color: #ee3; }
+      #content #build pre.output .color34,       #content #last_build pre.output .color34 {
+        color: #33e; }
+      #content #build pre.output .color35,       #content #last_build pre.output .color35 {
+        color: #e3e; }
+      #content #build pre.output .color36,       #content #last_build pre.output .color36 {
+        color: #3ee; }
+      #content #build pre.output .color37,       #content #last_build pre.output .color37 {
+        color: #fff; }
+  #content #push_path {
+    display: block;
+    margin-top: 1em;
+    margin-left: 2em; }
+  #content div#graph {
+    width: 100%;
+    height: 600px; }
+
+a.success {
+  color: #bbf8aa; }
+  a.success:hover {
+    background-color: #bbf8aa;
+    color: white; }
+a.failed {
+  color: #ffbbaa; }
+  a.failed:hover {
+    background-color: #ffbbaa;
+    color: white; }
+
+#footer {
+  padding: 1.5em 2.5em;
+  border-top: 1px solid #ccc;
+  font-size: .8em;
+  color: #666;
+  text-align: right; }
+  #footer strong {
+    font-weight: bold; }
+
+    table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  border: 1px solid #666;
+  background: #fff;
+  margin-bottom: 20px;
+}
+
+table tr.light {
+   background: #fff;
+}
+
+table tr.dark {
+  background: #f9f9f9;
+}
+
+table tr:hover {
+  background: #FFFFC0;
+}
+
+table td, table th {
+  padding: 4px;
+  font-size: 11px;
+}
+table th {
+  text-align: center;
+  color: #337022;
+  background: #DDFFCC;
+  font-weight: bold;
+  border: #99D688 1px solid;
+}
+
+table td {
+  border: #d0d0d0 1px solid;
+}
+
+table td.score {
+  text-align: right;
+}
+
+.warning {
+  background: yellow;
+}
+
+    .bluff-tooltip {
+  background: #fff;
+  border: 1px solid #d1edf5;
+  padding: 8px 8px 6px;
+}
+.bluff-tooltip .color {
+  display: block;
+  height: 4px;
+  width: 30px;
+  margin: 0 0 4px;
+  overflow: hidden;
+}
+.bluff-tooltip .data {
+  font-weight: bold;
+}
+    </style>
+    <link REL="SHORTCUT ICON" HREF="/favicon.ico">
+    <script language="javascript" src="utils.js" type="text/javascript"></script>
+    <script language="javascript" src="js-class.js" type="text/javascript"></script>
+    <script language="javascript" src="bluff-min.js" type="text/javascript"></script>
+    <script language="javascript" src="excanvas.js" type="text/javascript"></script>
+    <script language="javascript" src="standalone-framework.js" type="text/javascript"></script>
+    <script language="javascript" src="highcharts.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id='header'>
+      <h1><a href="/">metrics</a> | <a href="index.html">easyway</a></h1>
+      <address class='watermark'>
+        built with
+        <a href='https://github.com/metricfu/metric_fu'>MetricFu</a>
+      </address>
+    </div>
+    <div id='content'>
+      <h3>Saikuro Results</h3>
+<p><a href='http://saikuro.rubyforge.org/'>Saikuro</a> analyzes ruby code for cyclomatic complexity.</p>
+
+<h2>Analyzed Methods</h2>
+  <table>
+    <tr>
+      <th>Method Name</th>
+      <th>Complexity</th>
+      <th># Lines</th>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesController#update</td>
+      <td>15</td>
+      <td>40</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventsController#update</td>
+      <td>13</td>
+      <td>54</td>
+    </tr>
+    
+    <tr>
+      <td>EventsController#update</td>
+      <td>12</td>
+      <td>39</td>
+    </tr>
+    
+    <tr>
+      <td>EventsController#create</td>
+      <td>12</td>
+      <td>29</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventsController#create</td>
+      <td>12</td>
+      <td>52</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventsController#edit</td>
+      <td>11</td>
+      <td>43</td>
+    </tr>
+    
+    <tr>
+      <td>Event#children_time_validation</td>
+      <td>10</td>
+      <td>26</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesController#create</td>
+      <td>10</td>
+      <td>26</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserversController#create</td>
+      <td>8</td>
+      <td>18</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesController#destroy</td>
+      <td>8</td>
+      <td>13</td>
+    </tr>
+    
+    <tr>
+      <td>Ability#initialize</td>
+      <td>7</td>
+      <td>33</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#update</td>
+      <td>7</td>
+      <td>14</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>EventTypesController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>EventTypesController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>EventPropertiesController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>EventPropertiesController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>RecipientsController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>RecipientsController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>RecurrencesController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>RecurrencesController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>PermissionsController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>PermissionsController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>BookmarksController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>BookmarksController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>NotifySchedulersController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>NotifySchedulersController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>FieldsController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>FieldsController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyTemplatesController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyTemplatesController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>TableCellItemsController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>TableCellItemsController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>FieldValidationsController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>FieldValidationsController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>TableFiltersController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>TableFiltersController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>ValidatorsController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>ValidatorsController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserversController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>FieldTypesController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>FieldTypesController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>TableTemplatesController#update</td>
+      <td>7</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td>TableTemplatesController#create</td>
+      <td>7</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td>EventResourcesController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>EventResourcesController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceValuesController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceValuesController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserverPropertiesController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserverPropertiesController#create</td>
+      <td>7</td>
+      <td>13</td>
+    </tr>
+    
+    <tr>
+      <td>TableHeadersController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>TableHeadersController#create</td>
+      <td>7</td>
+      <td>13</td>
+    </tr>
+    
+    <tr>
+      <td>MenusController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>MenusController#create</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesController#update</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesController#create</td>
+      <td>7</td>
+      <td>13</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceType#check_description</td>
+      <td>6</td>
+      <td>15</td>
+    </tr>
+    
+    <tr>
+      <td>TableHeadersController#new</td>
+      <td>6</td>
+      <td>22</td>
+    </tr>
+    
+    <tr>
+      <td>Resource#eval_description</td>
+      <td>5</td>
+      <td>16</td>
+    </tr>
+    
+    <tr>
+      <td>EventsController#destroy</td>
+      <td>5</td>
+      <td>10</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesController#show</td>
+      <td>5</td>
+      <td>16</td>
+    </tr>
+    
+    <tr>
+      <td>PermissionRolesController#index</td>
+      <td>4</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceValue#evaluate_validator</td>
+      <td>4</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceValue#custom_validation</td>
+      <td>4</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>EventModule#update_children_event</td>
+      <td>4</td>
+      <td>14</td>
+    </tr>
+    
+    <tr>
+      <td>Resource#all_value_ids</td>
+      <td>4</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceType#all_field_names</td>
+      <td>4</td>
+      <td>15</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceType#all_field_ids</td>
+      <td>4</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>EventTypesController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>EventPropertiesController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>RecipientsController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>RecurrencesController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>PermissionsController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>BookmarksController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>NotifySchedulersController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>FieldsController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyTemplatesController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>TableCellItemsController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>FieldValidationsController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>TableFiltersController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>ValidatorsController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserversController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>FieldTypesController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>TableTemplatesController#destroy</td>
+      <td>4</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>EventResourcesController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceValuesController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserverPropertiesController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>TableHeadersController#destroy</td>
+      <td>4</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>MenusController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesController#resource_info</td>
+      <td>4</td>
+      <td>19</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesController#destroy</td>
+      <td>4</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesController#edit</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesController#new</td>
+      <td>4</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventsController#show_property_mapping_content</td>
+      <td>4</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventsController#destroy</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>EventModule#create_children_event</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td>Event#date_validation</td>
+      <td>3</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#show</td>
+      <td>3</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#index</td>
+      <td>3</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#show</td>
+      <td>3</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>EventTypesController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>EventTypesController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>EventTypesController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>EventPropertiesController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>EventPropertiesController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>EventPropertiesController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>RecipientsController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>RecipientsController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>RecipientsController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>RecurrencesController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>RecurrencesController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>RecurrencesController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>PermissionsController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>PermissionsController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>PermissionsController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>BookmarksController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>BookmarksController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>BookmarksController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>NotifySchedulersController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>NotifySchedulersController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>NotifySchedulersController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>FieldsController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>FieldsController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>FieldsController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyTemplatesController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyTemplatesController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyTemplatesController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>TableCellItemsController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>TableCellItemsController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>TableCellItemsController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>FieldValidationsController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>FieldValidationsController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>FieldValidationsController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>TableFiltersController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>TableFiltersController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>TableFiltersController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>ValidatorsController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>ValidatorsController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>ValidatorsController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserversController#new</td>
+      <td>3</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserversController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserversController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>FieldTypesController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>FieldTypesController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>FieldTypesController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>TableTemplatesController#new</td>
+      <td>3</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>TableTemplatesController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>TableTemplatesController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>EventResourcesController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>EventResourcesController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>EventResourcesController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceValuesController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceValuesController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceValuesController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserverPropertiesController#new</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserverPropertiesController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserverPropertiesController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>TableHeadersController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>TableHeadersController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>MenusController#new</td>
+      <td>3</td>
+      <td>10</td>
+    </tr>
+    
+    <tr>
+      <td>MenusController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>MenusController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>EventsController#new</td>
+      <td>3</td>
+      <td>10</td>
+    </tr>
+    
+    <tr>
+      <td>EventsController#show</td>
+      <td>3</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>EventsController#index</td>
+      <td>3</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesController#index</td>
+      <td>3</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesController#new</td>
+      <td>3</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesController#index</td>
+      <td>3</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventsController#new</td>
+      <td>3</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventsController#show</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventsController#index</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>ApplicationHelper#show_field_error</td>
+      <td>2</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>UsersHelper#show_field_error</td>
+      <td>2</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>Recurrence#repetition=</td>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>FieldType#check_for_fields</td>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>User#initialize</td>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>PermissionRolesController#create</td>
+      <td>2</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>Ability#init_user</td>
+      <td>2</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>EventModule#get_repetition</td>
+      <td>2</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>TableTemplatesController#edit</td>
+      <td>2</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceValuesController#remove_values</td>
+      <td>2</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesController#update_resources</td>
+      <td>2</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesController#description</td>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventsController#options_for_parameters_mapping</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventsController#show_property_by_resource</td>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>WelcomeController#index</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>UserMailer#welcome_email</td>
+      <td>1</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventMailer#notify_event_email</td>
+      <td>1</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEvent#with_observer?</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEvent#choice</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>EventPropertiesEntity#to_s</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>EventPropertiesEntity#intialize</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Role#beginer?</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Role#admin?</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>User#default_values</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ApplicationController#configure_permitted_parameters</td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>ApplicationController#guest_menu</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>EventModule#get_duration</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>Resource#self.resources_by_event</td>
+      <td>1</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>Resource#self.resource_fields_with_values_by_resource</td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>Resource#get_permission_roles</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Event#destroy_children_event_and_children_event_resources</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>Event#prev_event</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Event#next_event</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#create</td>
+      <td>1</td>
+      <td>30</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#edit</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#get_recipients</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>EventTypesController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>EventPropertiesController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>RecipientsController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>RecurrencesController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>PermissionsController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>BookmarksController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>NotifySchedulersController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>FieldsController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyTemplatesController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>TableCellItemsController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>FieldValidationsController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>TableFiltersController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ValidatorsController#edit</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>ValidatorsController#all_types</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserversController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>FieldTypesController#get_all_types</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>FieldTypesController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>EventResourcesController#remove_event_resource</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>EventResourcesController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceValuesController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserverPropertiesController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserverPropertiesController#get_notify_template_mappings</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserverPropertiesController#get_notify_observer_properties</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>TableHeadersController#edit</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>MenusController#render_form_for_menu</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>MenusController#render_menu</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>MenusController#delete_menu_item</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>MenusController#edit</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>EventsController#find_event</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>EventsController#event_based_on</td>
+      <td>1</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>EventsController#edit</td>
+      <td>1</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesController#get_resource_types</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesController#get_resource</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesController#add_event_resources</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesController#some_records</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesController#get_resource_types</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesController#get_resource_type</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesController#edit</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesController#get_restype_fields</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesController#update_fields</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesController#all_types</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventsController#show_property_by_resource_value</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+  </table>
+
+
+
+<h2>Analyzed Classes</h2>
+  <table>
+    <tr>
+      <th>Class Name</th>
+      <th>Complexity</th>
+      <th># Lines</th>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventsController</td>
+      <td>58</td>
+      <td>241</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesController</td>
+      <td>50</td>
+      <td>162</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesController</td>
+      <td>44</td>
+      <td>146</td>
+    </tr>
+    
+    <tr>
+      <td>EventsController</td>
+      <td>41</td>
+      <td>157</td>
+    </tr>
+    
+    <tr>
+      <td>TableHeadersController</td>
+      <td>31</td>
+      <td>87</td>
+    </tr>
+    
+    <tr>
+      <td>MenusController</td>
+      <td>31</td>
+      <td>105</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceValuesController</td>
+      <td>30</td>
+      <td>91</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserverPropertiesController</td>
+      <td>30</td>
+      <td>92</td>
+    </tr>
+    
+    <tr>
+      <td>ValidatorsController</td>
+      <td>29</td>
+      <td>89</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserversController</td>
+      <td>29</td>
+      <td>87</td>
+    </tr>
+    
+    <tr>
+      <td>FieldTypesController</td>
+      <td>29</td>
+      <td>86</td>
+    </tr>
+    
+    <tr>
+      <td>TableTemplatesController</td>
+      <td>29</td>
+      <td>65</td>
+    </tr>
+    
+    <tr>
+      <td>EventResourcesController</td>
+      <td>29</td>
+      <td>88</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController</td>
+      <td>28</td>
+      <td>82</td>
+    </tr>
+    
+    <tr>
+      <td>EventTypesController</td>
+      <td>28</td>
+      <td>82</td>
+    </tr>
+    
+    <tr>
+      <td>EventPropertiesController</td>
+      <td>28</td>
+      <td>82</td>
+    </tr>
+    
+    <tr>
+      <td>RecipientsController</td>
+      <td>28</td>
+      <td>82</td>
+    </tr>
+    
+    <tr>
+      <td>RecurrencesController</td>
+      <td>28</td>
+      <td>82</td>
+    </tr>
+    
+    <tr>
+      <td>PermissionsController</td>
+      <td>28</td>
+      <td>82</td>
+    </tr>
+    
+    <tr>
+      <td>BookmarksController</td>
+      <td>28</td>
+      <td>84</td>
+    </tr>
+    
+    <tr>
+      <td>NotifySchedulersController</td>
+      <td>28</td>
+      <td>82</td>
+    </tr>
+    
+    <tr>
+      <td>FieldsController</td>
+      <td>28</td>
+      <td>82</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyTemplatesController</td>
+      <td>28</td>
+      <td>82</td>
+    </tr>
+    
+    <tr>
+      <td>TableCellItemsController</td>
+      <td>28</td>
+      <td>82</td>
+    </tr>
+    
+    <tr>
+      <td>FieldValidationsController</td>
+      <td>28</td>
+      <td>82</td>
+    </tr>
+    
+    <tr>
+      <td>TableFiltersController</td>
+      <td>28</td>
+      <td>82</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController</td>
+      <td>23</td>
+      <td>110</td>
+    </tr>
+    
+    <tr>
+      <td>Event</td>
+      <td>16</td>
+      <td>74</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceType</td>
+      <td>14</td>
+      <td>59</td>
+    </tr>
+    
+    <tr>
+      <td>Resource</td>
+      <td>13</td>
+      <td>66</td>
+    </tr>
+    
+    <tr>
+      <td>EventModule</td>
+      <td>10</td>
+      <td>48</td>
+    </tr>
+    
+    <tr>
+      <td>Ability</td>
+      <td>9</td>
+      <td>46</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceValue</td>
+      <td>8</td>
+      <td>35</td>
+    </tr>
+    
+    <tr>
+      <td>PermissionRolesController</td>
+      <td>6</td>
+      <td>19</td>
+    </tr>
+    
+    <tr>
+      <td>ApplicationController</td>
+      <td>4</td>
+      <td>33</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>4</td>
+      <td>93</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>4</td>
+      <td>28</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>3</td>
+      <td>50</td>
+    </tr>
+    
+    <tr>
+      <td>User</td>
+      <td>3</td>
+      <td>70</td>
+    </tr>
+    
+    <tr>
+      <td>::::::Remove</td>
+      <td>3</td>
+      <td>78</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>3</td>
+      <td>27</td>
+    </tr>
+    
+    <tr>
+      <td>ApplicationHelper</td>
+      <td>2</td>
+      <td>13</td>
+    </tr>
+    
+    <tr>
+      <td>UsersHelper</td>
+      <td>2</td>
+      <td>13</td>
+    </tr>
+    
+    <tr>
+      <td>::OR</td>
+      <td>2</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>2</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>2</td>
+      <td>21</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEvent</td>
+      <td>2</td>
+      <td>20</td>
+    </tr>
+    
+    <tr>
+      <td>Recurrence</td>
+      <td>2</td>
+      <td>17</td>
+    </tr>
+    
+    <tr>
+      <td>TableHeader</td>
+      <td>2</td>
+      <td>16</td>
+    </tr>
+    
+    <tr>
+      <td>EventPropertiesEntity</td>
+      <td>2</td>
+      <td>10</td>
+    </tr>
+    
+    <tr>
+      <td>FieldType</td>
+      <td>2</td>
+      <td>16</td>
+    </tr>
+    
+    <tr>
+      <td>Role</td>
+      <td>2</td>
+      <td>24</td>
+    </tr>
+    
+    <tr>
+      <td>::::::::::::::::::</td>
+      <td>2</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>::::::Remove::::::::::::::::</td>
+      <td>2</td>
+      <td>25</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>2</td>
+      <td>24</td>
+    </tr>
+    
+    <tr>
+      <td>WelcomeController</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>UserMailer</td>
+      <td>1</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventMailer</td>
+      <td>1</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>18</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>13</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>Listing</td>
+      <td>1</td>
+      <td>10</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>Listing</td>
+      <td>1</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td>Listing</td>
+      <td>1</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>13</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>Listing</td>
+      <td>1</td>
+      <td>18</td>
+    </tr>
+    
+    <tr>
+      <td>Listing</td>
+      <td>1</td>
+      <td>10</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>10</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>Listing</td>
+      <td>1</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>Listing</td>
+      <td>1</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td>Listing</td>
+      <td>1</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceType</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>PermissionRole</td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>OR</td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>::::TableHeader</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>::Remove::::</td>
+      <td>1</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>EventResourcesHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>ManageMenuHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>EventsHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>ValidatorsHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>RolesControllerHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>PermissionRolesHelper</td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>FieldTypesHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>MenusHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>TableTemplatesHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyEventsHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>EventPropertiesHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceTypesHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>TableCellItemsHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>EventTypesHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>RecipientsHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>TableHeadersHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyTemplatesHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>RecurrencesHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>NotifySchedulersHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>FieldsHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>FieldValidationsHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>BookmarksHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>ResourceValuesHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>ResourcesHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>TableFiltersHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserversHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>HomeController</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>AuthenticationController</td>
+      <td>0</td>
+      <td>89</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td>ManageMenuController</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td>::::Logged::Designed</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>::::Logged</td>
+      <td>0</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td>Editing</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>Add</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>Listing</td>
+      <td>0</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td>Login</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td>Editing</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>New</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td>Editing</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>New</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td>Edit</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>New</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td>Editing::::::TableHeader::::::TableHeader</td>
+      <td>0</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>Editing::::::TableHeader::::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>Editing::::::TableHeader::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Editing::::::TableHeader</td>
+      <td>0</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>Editing::::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>Editing::</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>Editing</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>Listing</td>
+      <td>0</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>::::::::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::::::</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>::::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>10</td>
+    </tr>
+    
+    <tr>
+      <td>New</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>Editing</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>New</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>10</td>
+    </tr>
+    
+    <tr>
+      <td>Editing</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>New</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Listing::Name</td>
+      <td>0</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>Listing</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Editing</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>New</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    
+    <tr>
+      <td>Listing::Name</td>
+      <td>0</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td>Listing</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Editing</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>New</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>EventResource</td>
+      <td>0</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>Menu</td>
+      <td>0</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>Validator</td>
+      <td>0</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>Recipient</td>
+      <td>0</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>Mapping</td>
+      <td>0</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>TableFilter</td>
+      <td>0</td>
+      <td>14</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserverProperty</td>
+      <td>0</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>Bookmark</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>TableTemplate</td>
+      <td>0</td>
+      <td>16</td>
+    </tr>
+    
+    <tr>
+      <td>EventProperty</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>TableCellItem</td>
+      <td>0</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>EventType</td>
+      <td>0</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>Field</td>
+      <td>0</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td>FieldValidation</td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>Permission</td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyTemplate</td>
+      <td>0</td>
+      <td>10</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyScheduler</td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>NotifyObserver</td>
+      <td>0</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>::::::</td>
+      <td>0</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>::::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::::::</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>::::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::::</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>::::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>::::::</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>::::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::::TableHeader::::::::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::::TableHeader::::::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::::TableHeader::::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::::TableHeader::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::::::::::::::::</td>
+      <td>0</td>
+      <td>21</td>
+    </tr>
+    
+    <tr>
+      <td>::::::::::::::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::::::::::::</td>
+      <td>0</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>::::::::::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::::::::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::::::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::Notify::</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::Notify</td>
+      <td>0</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::::::Remove::::::::::::::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::::::Remove::::::::::::</td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>::::::Remove::::::::::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::::::Remove::::::::</td>
+      <td>0</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>::::::Remove::::::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::::::Remove::::</td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>::::::Remove::</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::::::Remove</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::::</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>0</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>::::</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>::</td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>::Remove::</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>::Remove</td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+  </table>
+
+
+<h2>Analyzed Files</h2>
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb'>app/controllers/notify_events_controller.rb</a></h3>
+        <h4>Class : NotifyEventsController</h4>
+        <h5>Total complexity : 58</h5>
+        <h5>Total lines : 241</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyEventsController#update
+              </td>
+              <td>
+                13
+              </td>
+              <td>
+                54
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyEventsController#create
+              </td>
+              <td>
+                12
+              </td>
+              <td>
+                52
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyEventsController#edit
+              </td>
+              <td>
+                11
+              </td>
+              <td>
+                43
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyEventsController#show_property_mapping_content
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyEventsController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyEventsController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyEventsController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyEventsController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyEventsController#options_for_parameters_mapping
+              </td>
+              <td>
+                2
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyEventsController#show_property_by_resource
+              </td>
+              <td>
+                2
+              </td>
+              <td>
+                5
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyEventsController#show_property_by_resource_value
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resource_types_controller.rb'>app/controllers/resource_types_controller.rb</a></h3>
+        <h4>Class : ResourceTypesController</h4>
+        <h5>Total complexity : 50</h5>
+        <h5>Total lines : 162</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceTypesController#update
+              </td>
+              <td>
+                15
+              </td>
+              <td>
+                40
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceTypesController#create
+              </td>
+              <td>
+                10
+              </td>
+              <td>
+                26
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceTypesController#destroy
+              </td>
+              <td>
+                8
+              </td>
+              <td>
+                13
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceTypesController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceTypesController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceTypesController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                5
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceTypesController#description
+              </td>
+              <td>
+                2
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceTypesController#get_resource_types
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceTypesController#get_resource_type
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceTypesController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceTypesController#get_restype_fields
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceTypesController#update_fields
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceTypesController#all_types
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resources_controller.rb'>app/controllers/resources_controller.rb</a></h3>
+        <h4>Class : ResourcesController</h4>
+        <h5>Total complexity : 44</h5>
+        <h5>Total lines : 146</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourcesController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourcesController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                13
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourcesController#show
+              </td>
+              <td>
+                5
+              </td>
+              <td>
+                16
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourcesController#resource_info
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                19
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourcesController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourcesController#edit
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                5
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourcesController#new
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourcesController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourcesController#update_resources
+              </td>
+              <td>
+                2
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourcesController#get_resource_types
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourcesController#get_resource
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourcesController#add_event_resources
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourcesController#some_records
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb'>app/controllers/events_controller.rb</a></h3>
+        <h4>Class : EventsController</h4>
+        <h5>Total complexity : 41</h5>
+        <h5>Total lines : 157</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                EventsController#update
+              </td>
+              <td>
+                12
+              </td>
+              <td>
+                39
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventsController#create
+              </td>
+              <td>
+                12
+              </td>
+              <td>
+                29
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventsController#destroy
+              </td>
+              <td>
+                5
+              </td>
+              <td>
+                10
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventsController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                10
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventsController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventsController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventsController#find_event
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventsController#event_based_on
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventsController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/menus_controller.rb'>app/controllers/menus_controller.rb</a></h3>
+        <h4>Class : MenusController</h4>
+        <h5>Total complexity : 31</h5>
+        <h5>Total lines : 105</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                MenusController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MenusController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MenusController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MenusController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                10
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MenusController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MenusController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MenusController#render_form_for_menu
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MenusController#render_menu
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MenusController#delete_menu_item
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MenusController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/table_headers_controller.rb'>app/controllers/table_headers_controller.rb</a></h3>
+        <h4>Class : TableHeadersController</h4>
+        <h5>Total complexity : 31</h5>
+        <h5>Total lines : 87</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                TableHeadersController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableHeadersController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                13
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableHeadersController#new
+              </td>
+              <td>
+                6
+              </td>
+              <td>
+                22
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableHeadersController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableHeadersController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableHeadersController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableHeadersController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_observer_properties_controller.rb'>app/controllers/notify_observer_properties_controller.rb</a></h3>
+        <h4>Class : NotifyObserverPropertiesController</h4>
+        <h5>Total complexity : 30</h5>
+        <h5>Total lines : 92</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserverPropertiesController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserverPropertiesController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                13
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserverPropertiesController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserverPropertiesController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserverPropertiesController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserverPropertiesController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserverPropertiesController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserverPropertiesController#get_notify_template_mappings
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserverPropertiesController#get_notify_observer_properties
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resource_values_controller.rb'>app/controllers/resource_values_controller.rb</a></h3>
+        <h4>Class : ResourceValuesController</h4>
+        <h5>Total complexity : 30</h5>
+        <h5>Total lines : 91</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceValuesController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceValuesController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceValuesController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceValuesController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceValuesController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceValuesController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceValuesController#remove_values
+              </td>
+              <td>
+                2
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceValuesController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/event_resources_controller.rb'>app/controllers/event_resources_controller.rb</a></h3>
+        <h4>Class : EventResourcesController</h4>
+        <h5>Total complexity : 29</h5>
+        <h5>Total lines : 88</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                EventResourcesController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventResourcesController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventResourcesController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventResourcesController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventResourcesController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventResourcesController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventResourcesController#remove_event_resource
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventResourcesController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/table_templates_controller.rb'>app/controllers/table_templates_controller.rb</a></h3>
+        <h4>Class : TableTemplatesController</h4>
+        <h5>Total complexity : 29</h5>
+        <h5>Total lines : 65</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                TableTemplatesController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                11
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableTemplatesController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                11
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableTemplatesController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableTemplatesController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableTemplatesController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableTemplatesController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableTemplatesController#edit
+              </td>
+              <td>
+                2
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/field_types_controller.rb'>app/controllers/field_types_controller.rb</a></h3>
+        <h4>Class : FieldTypesController</h4>
+        <h5>Total complexity : 29</h5>
+        <h5>Total lines : 86</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldTypesController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldTypesController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldTypesController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldTypesController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldTypesController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldTypesController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldTypesController#get_all_types
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldTypesController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_observers_controller.rb'>app/controllers/notify_observers_controller.rb</a></h3>
+        <h4>Class : NotifyObserversController</h4>
+        <h5>Total complexity : 29</h5>
+        <h5>Total lines : 87</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserversController#create
+              </td>
+              <td>
+                8
+              </td>
+              <td>
+                18
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserversController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserversController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserversController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserversController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserversController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyObserversController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/validators_controller.rb'>app/controllers/validators_controller.rb</a></h3>
+        <h4>Class : ValidatorsController</h4>
+        <h5>Total complexity : 29</h5>
+        <h5>Total lines : 89</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                ValidatorsController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ValidatorsController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ValidatorsController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ValidatorsController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ValidatorsController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ValidatorsController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ValidatorsController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ValidatorsController#all_types
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/table_filters_controller.rb'>app/controllers/table_filters_controller.rb</a></h3>
+        <h4>Class : TableFiltersController</h4>
+        <h5>Total complexity : 28</h5>
+        <h5>Total lines : 82</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                TableFiltersController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableFiltersController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableFiltersController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableFiltersController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableFiltersController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableFiltersController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableFiltersController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/field_validations_controller.rb'>app/controllers/field_validations_controller.rb</a></h3>
+        <h4>Class : FieldValidationsController</h4>
+        <h5>Total complexity : 28</h5>
+        <h5>Total lines : 82</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldValidationsController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldValidationsController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldValidationsController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldValidationsController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldValidationsController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldValidationsController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldValidationsController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/table_cell_items_controller.rb'>app/controllers/table_cell_items_controller.rb</a></h3>
+        <h4>Class : TableCellItemsController</h4>
+        <h5>Total complexity : 28</h5>
+        <h5>Total lines : 82</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                TableCellItemsController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableCellItemsController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableCellItemsController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableCellItemsController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableCellItemsController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableCellItemsController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                TableCellItemsController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_templates_controller.rb'>app/controllers/notify_templates_controller.rb</a></h3>
+        <h4>Class : NotifyTemplatesController</h4>
+        <h5>Total complexity : 28</h5>
+        <h5>Total lines : 82</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyTemplatesController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyTemplatesController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyTemplatesController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyTemplatesController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyTemplatesController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyTemplatesController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyTemplatesController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/fields_controller.rb'>app/controllers/fields_controller.rb</a></h3>
+        <h4>Class : FieldsController</h4>
+        <h5>Total complexity : 28</h5>
+        <h5>Total lines : 82</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldsController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldsController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldsController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldsController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldsController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldsController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldsController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_schedulers_controller.rb'>app/controllers/notify_schedulers_controller.rb</a></h3>
+        <h4>Class : NotifySchedulersController</h4>
+        <h5>Total complexity : 28</h5>
+        <h5>Total lines : 82</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifySchedulersController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifySchedulersController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifySchedulersController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifySchedulersController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifySchedulersController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifySchedulersController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifySchedulersController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/bookmarks_controller.rb'>app/controllers/bookmarks_controller.rb</a></h3>
+        <h4>Class : BookmarksController</h4>
+        <h5>Total complexity : 28</h5>
+        <h5>Total lines : 84</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                BookmarksController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                BookmarksController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                BookmarksController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                BookmarksController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                BookmarksController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                BookmarksController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                BookmarksController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/permissions_controller.rb'>app/controllers/permissions_controller.rb</a></h3>
+        <h4>Class : PermissionsController</h4>
+        <h5>Total complexity : 28</h5>
+        <h5>Total lines : 82</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                PermissionsController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                PermissionsController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                PermissionsController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                PermissionsController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                PermissionsController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                PermissionsController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                PermissionsController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/recurrences_controller.rb'>app/controllers/recurrences_controller.rb</a></h3>
+        <h4>Class : RecurrencesController</h4>
+        <h5>Total complexity : 28</h5>
+        <h5>Total lines : 82</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                RecurrencesController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RecurrencesController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RecurrencesController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RecurrencesController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RecurrencesController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RecurrencesController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RecurrencesController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/recipients_controller.rb'>app/controllers/recipients_controller.rb</a></h3>
+        <h4>Class : RecipientsController</h4>
+        <h5>Total complexity : 28</h5>
+        <h5>Total lines : 82</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                RecipientsController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RecipientsController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RecipientsController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RecipientsController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RecipientsController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RecipientsController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RecipientsController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/event_properties_controller.rb'>app/controllers/event_properties_controller.rb</a></h3>
+        <h4>Class : EventPropertiesController</h4>
+        <h5>Total complexity : 28</h5>
+        <h5>Total lines : 82</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                EventPropertiesController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventPropertiesController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventPropertiesController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventPropertiesController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventPropertiesController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventPropertiesController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventPropertiesController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/event_types_controller.rb'>app/controllers/event_types_controller.rb</a></h3>
+        <h4>Class : EventTypesController</h4>
+        <h5>Total complexity : 28</h5>
+        <h5>Total lines : 82</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                EventTypesController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventTypesController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventTypesController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventTypesController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventTypesController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventTypesController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventTypesController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/roles_controller.rb'>app/controllers/roles_controller.rb</a></h3>
+        <h4>Class : RolesController</h4>
+        <h5>Total complexity : 28</h5>
+        <h5>Total lines : 82</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#create
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                9
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/users_controller.rb'>app/controllers/users_controller.rb</a></h3>
+        <h4>Class : UsersController</h4>
+        <h5>Total complexity : 23</h5>
+        <h5>Total lines : 110</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#update
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                14
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#destroy
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#new
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#show
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#index
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#create
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                30
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#edit
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#get_recipients
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/event.rb'>app/models/event.rb</a></h3>
+        <h4>Class : Event</h4>
+        <h5>Total complexity : 16</h5>
+        <h5>Total lines : 74</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                Event#children_time_validation
+              </td>
+              <td>
+                10
+              </td>
+              <td>
+                26
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Event#date_validation
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Event#destroy_children_event_and_children_event_resources
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Event#prev_event
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Event#next_event
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/resource_type.rb'>app/models/resource_type.rb</a></h3>
+        <h4>Class : ResourceType</h4>
+        <h5>Total complexity : 14</h5>
+        <h5>Total lines : 59</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceType#check_description
+              </td>
+              <td>
+                6
+              </td>
+              <td>
+                15
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceType#all_field_names
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                15
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceType#all_field_ids
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                9
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/resource.rb'>app/models/resource.rb</a></h3>
+        <h4>Class : Resource</h4>
+        <h5>Total complexity : 13</h5>
+        <h5>Total lines : 66</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                Resource#eval_description
+              </td>
+              <td>
+                5
+              </td>
+              <td>
+                16
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Resource#all_value_ids
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                9
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Resource#self.resources_by_event
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Resource#self.resource_fields_with_values_by_resource
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Resource#get_permission_roles
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/lib/event_module.rb'>lib/event_module.rb</a></h3>
+        <h4>Class : EventModule</h4>
+        <h5>Total complexity : 10</h5>
+        <h5>Total lines : 48</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                EventModule#update_children_event
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                14
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventModule#create_children_event
+              </td>
+              <td>
+                3
+              </td>
+              <td>
+                11
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventModule#get_repetition
+              </td>
+              <td>
+                2
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventModule#get_duration
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/ability.rb'>app/models/ability.rb</a></h3>
+        <h4>Class : Ability</h4>
+        <h5>Total complexity : 9</h5>
+        <h5>Total lines : 46</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                Ability#initialize
+              </td>
+              <td>
+                7
+              </td>
+              <td>
+                33
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Ability#init_user
+              </td>
+              <td>
+                2
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/resource_value.rb'>app/models/resource_value.rb</a></h3>
+        <h4>Class : ResourceValue</h4>
+        <h5>Total complexity : 8</h5>
+        <h5>Total lines : 35</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceValue#evaluate_validator
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ResourceValue#custom_validation
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/permission_roles_controller.rb'>app/controllers/permission_roles_controller.rb</a></h3>
+        <h4>Class : PermissionRolesController</h4>
+        <h5>Total complexity : 6</h5>
+        <h5>Total lines : 19</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                PermissionRolesController#index
+              </td>
+              <td>
+                4
+              </td>
+              <td>
+                9
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                PermissionRolesController#create
+              </td>
+              <td>
+                2
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+  
+      
+  
+      
+  
+      
+  
+
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/application_controller.rb'>app/controllers/application_controller.rb</a></h3>
+        <h4>Class : ApplicationController</h4>
+        <h5>Total complexity : 4</h5>
+        <h5>Total lines : 33</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                ApplicationController#configure_permitted_parameters
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ApplicationController#guest_menu
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/user.rb'>app/models/user.rb</a></h3>
+        <h4>Class : User</h4>
+        <h5>Total complexity : 3</h5>
+        <h5>Total lines : 70</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                User#initialize
+              </td>
+              <td>
+                2
+              </td>
+              <td>
+                5
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                User#default_values
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/role.rb'>app/models/role.rb</a></h3>
+        <h4>Class : Role</h4>
+        <h5>Total complexity : 2</h5>
+        <h5>Total lines : 24</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                Role#beginer?
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Role#admin?
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/field_type.rb'>app/models/field_type.rb</a></h3>
+        <h4>Class : FieldType</h4>
+        <h5>Total complexity : 2</h5>
+        <h5>Total lines : 16</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                FieldType#check_for_fields
+              </td>
+              <td>
+                2
+              </td>
+              <td>
+                5
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/eventpropertiesentity.rb'>app/models/eventpropertiesentity.rb</a></h3>
+        <h4>Class : EventPropertiesEntity</h4>
+        <h5>Total complexity : 2</h5>
+        <h5>Total lines : 10</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                EventPropertiesEntity#to_s
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                EventPropertiesEntity#intialize
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/recurrence.rb'>app/models/recurrence.rb</a></h3>
+        <h4>Class : Recurrence</h4>
+        <h5>Total complexity : 2</h5>
+        <h5>Total lines : 17</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                Recurrence#repetition=
+              </td>
+              <td>
+                2
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/notify_event.rb'>app/models/notify_event.rb</a></h3>
+        <h4>Class : NotifyEvent</h4>
+        <h5>Total complexity : 2</h5>
+        <h5>Total lines : 20</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyEvent#with_observer?
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyEvent#choice
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+
+  
+      
+  
+      
+  
+
+  
+      
+  
+      
+  
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/users_helper.rb'>app/helpers/users_helper.rb</a></h3>
+        <h4>Class : UsersHelper</h4>
+        <h5>Total complexity : 2</h5>
+        <h5>Total lines : 13</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersHelper#show_field_error
+              </td>
+              <td>
+                2
+              </td>
+              <td>
+                9
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/application_helper.rb'>app/helpers/application_helper.rb</a></h3>
+        <h4>Class : ApplicationHelper</h4>
+        <h5>Total complexity : 2</h5>
+        <h5>Total lines : 13</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                ApplicationHelper#show_field_error
+              </td>
+              <td>
+                2
+              </td>
+              <td>
+                9
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+      
+  
+      
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+      
+  
+      
+  
+
+  
+      
+  
+      
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+      
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+      
+  
+      
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+      
+  
+      
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/mailers/notify_event_mailer.rb'>app/mailers/notify_event_mailer.rb</a></h3>
+        <h4>Class : NotifyEventMailer</h4>
+        <h5>Total complexity : 1</h5>
+        <h5>Total lines : 12</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                NotifyEventMailer#notify_event_email
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/mailers/user_mailer.rb'>app/mailers/user_mailer.rb</a></h3>
+        <h4>Class : UserMailer</h4>
+        <h5>Total complexity : 1</h5>
+        <h5>Total lines : 9</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                UserMailer#welcome_email
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                5
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+        <h3><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/welcome_controller.rb'>app/controllers/welcome_controller.rb</a></h3>
+        <h4>Class : WelcomeController</h4>
+        <h5>Total complexity : 1</h5>
+        <h5>Total lines : 4</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                WelcomeController#index
+              </td>
+              <td>
+                1
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table>
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+      
+  
+      
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+
+<p>Generated on 2016-04-04 13:33:58 +0300</p>
+
+    </div>
+
+    
+    <script language="javascript" src="bluff_graph.js" type="text/javascript"></script>
+  </body>
+</html>

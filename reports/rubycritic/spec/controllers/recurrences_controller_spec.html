@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-f circled-text circle ">F</span>
+  <h2 class="file-name">RecurrencesControllerSpec</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-23 18:10:02 +0200'>2016-03-23 18:10:02 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      230 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      7 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      95 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">require &#39;spec_helper&#39;
+
+describe RecurrencesController , type: :controller, authenticated: true do
+  context &#39;GET index&#39; do
+
+    it &#39;recurrences should include recurrence&#39; do
+      recurrence1 = create(:recurrence)
+      recurrence2 = create(:recurrence)
+      get :index
+      expect(assigns(:recurrences)).to eq([recurrence1, recurrence2])
+    end
+
+    it &#39;render index page&#39; do
+      get :index
+      expect(response).to render_template(:index)
+    end
+
+  end
+
+  context &#39;GET show&#39; do
+
+    it &#39;recurrence equal recurrence&#39; do
+      recurrence = create(:recurrence)
+      get :show, id: recurrence
+      expect(assigns(:recurrence)).to eq(recurrence)
+    end
+
+    it &#39;render show page&#39; do 
+      get :show, id: create(:recurrence)
+      expect(response).to render_template(:show)
+    end
+
+  end
+
+  context &quot;GET new&quot; do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 3 nodes                        <a href="event_resources_controller_spec.html#L35" class="js-smell-location">0</a>                  <a href="permissions_controller_spec.html#L38" class="js-smell-location">1</a>                  <a href="recurrences_controller_spec.html#L35" class="js-smell-location">2</a>                  </span>  </li></ul>
+
+    it &#39;recurrence should be a new Recurrence&#39; do
+      get :new
+      expect(assigns(:recurrence)).to be_a_new(Recurrence)
+    end
+
+    it &#39;recurrence should not be a new Recurrence&#39; do
+      get :new
+      expect(assigns(:recurrences)).to_not be_a_new(Recurrence)
+    end
+
+    it &#39;render new page&#39; do
+      get :new
+      expect(response).to render_template(:new)
+    end
+
+    it &#39;not render new page&#39; do
+      get :new
+      expect(response).to_not render_template(:news)
+    end
+
+  end
+
+  context &quot;GET edit&quot; do
+
+    it &#39;recurrence equal recurrence&#39; do
+      recurrence = create(:recurrence)
+      get :edit, id: recurrence
+      expect(assigns(:recurrence)).to eq(recurrence)
+    end
+
+    it &#39;render edit page&#39; do
+      get :edit, id: create(:recurrence)
+      expect(response).to render_template(:edit)
+    end
+
+  end
+
+  context &quot;POST create&quot; do
+
+    it &#39;create new Recurrence&#39; do
+      expect{
+        post :create, recurrence: attributes_for(:recurrence)
+      }.to change(Recurrence,:count).by(1)
+    end
+
+    it &#39;redirect to the new Recurrence&#39; do
+      post :create, recurrence: attributes_for(:recurrence)
+      response.should redirect_to Recurrence.last
+    end
+
+    it &#39;does not create new Recurrence&#39; do
+      expect{
+        post :create, recurrence: attributes_for(:invalid_recurrence)
+      }.to_not change(Recurrence,:count)
+    end
+
+    it &#39;render recurrence_new_path&#39; do
+      post :create, recurrence: attributes_for(:invalid_recurrence)
+      response.should render_template :new
+    end
+
+  end
+
+  context &#39;PUT update&#39; do
+
+    it &quot;recurrence not equal recurrence&quot; do
+      recurrence1 = create(:recurrence)
+      recurrence2 = create(:recurrence, repetition: &quot;4&quot;)
+      put :update, id: recurrence1
+      expect(assigns(recurrence1)).to_not eq (recurrence2)
+    end
+
+    it &quot;changes recurrence&#39;s attributes&quot; do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="event_types_controller_spec.html#L113" class="js-smell-location">0</a>                  <a href="recurrences_controller_spec.html#L109" class="js-smell-location">1</a>                  </span>  </li></ul>
+      recurrence = create(:recurrence)
+      put :update, id: recurrence, recurrence: attributes_for(:recurrence,
+        repetition: &#39;4&#39;)
+      recurrence.reload
+      recurrence.repetition.should eq(&#39;4&#39;)
+    end
+
+    it &#39;redirects to the updated recurrence&#39; do<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="event_types_controller_spec.html#L120" class="js-smell-location">0</a>                  <a href="recurrences_controller_spec.html#L117" class="js-smell-location">1</a>                  </span>  </li></ul>
+      put :update, id: create(:recurrence), recurrence: attributes_for(:recurrence, repetition: &quot;4&quot;)
+      response.should redirect_to :recurrence
+    end
+
+    it &#39;render recurrence_edit_path when invalid_recurrence&#39; do
+      put :update, id: create(:recurrence), recurrence: attributes_for(:invalid_recurrence)
+      response.should render_template :edit
+    end
+
+  end
+
+  context &quot;DELETE destroy&quot; do
+
+    it &#39;deletes recurrence&#39; do
+      recurrence = create(:recurrence)
+      expect{
+        delete :destroy, id: recurrence
+      }.to change(Recurrence,:count).by(-1)
+    end
+
+    it &#39;redirects to recurrences_url&#39; do
+      delete :destroy, id: create(:recurrence)
+      response.should redirect_to recurrences_url
+    end
+  end
+
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

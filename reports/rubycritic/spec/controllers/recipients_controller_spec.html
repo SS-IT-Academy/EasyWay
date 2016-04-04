@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-f circled-text circle ">F</span>
+  <h2 class="file-name">RecipientsControllerSpec</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-23 18:10:02 +0200'>2016-03-23 18:10:02 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      266 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      2 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      254 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">
+require &#39;spec_helper&#39;
+
+describe RecipientsController , type: :controller, authenticated: true do
+  describe &#39;GET index&#39; do
+    it &quot;responds successfully with an HTTP 200 status code&quot; do
+      get :index
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+
+    it &quot;GET #index&quot; do
+      recipient1 = create(:recipient)
+      recipient2 = create(:recipient)
+      get :index
+      expect(assigns(:recipients)).to match_array([recipient1,recipient2])
+    end
+
+    it &quot;renders the index template&quot; do
+      get :index
+      expect(response).to render_template(&quot;index&quot;)
+    end
+  end
+
+  describe &quot;GET #show&quot; do
+    it &quot;assigns the requested recipient to @recipient&quot; do
+      recipient1 = create(:recipient)
+      get :show, id: recipient1.id
+      expect(assigns(:recipient)).to eq(recipient1)
+    end
+
+    it &quot;renders the #show view&quot; do
+      get :show, id: create(:recipient)
+      response.should render_template :show
+    end
+  end
+
+  describe &quot;GET #new&quot; do
+    it &quot;assigns a new recipient as @recipient&quot; do
+      get :new
+      assigns(:recipient).should be_a_new(Recipient)
+    end
+  end
+
+  describe &quot;GET #edit&quot; do
+    it &quot;assigns the requested recipient as @recipient&quot; do
+      recipient = create(:recipient)
+      get :edit, id: recipient.id
+      assigns(:recipient).should eq(recipient)
+    end
+
+    it &quot;renders the #edit view&quot; do
+      get :edit, id: create(:recipient)
+      response.should render_template :edit
+    end
+  end
+
+  describe &quot;POST create&quot; do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="notify_events_controller_spec.html#L58" class="js-smell-location">0</a>                  <a href="recipients_controller_spec.html#L59" class="js-smell-location">1</a>                  </span>  </li></ul>
+    context &quot;with valid attributes&quot; do
+      it &quot;creates a new Recipient&quot; do
+        recipient = create(:recipient)
+        mapping = create(:mapping)
+        template = create(:notify_template)
+
+          expect{
+            post :create, recipient: 
+            attributes_for(:recipient)}.
+            to change(Recipient, :count).by(1)
+      end
+
+      it &quot;redirects to the new recipient&quot; do
+        recipient = create(:recipient)
+        mapping = create(:mapping)
+        template = create(:notify_template)
+        post :create, recipient: attributes_for(:recipient)
+        response.should redirect_to Recipient.last
+      end
+
+      # it &quot;assigns a newly created recipient as @recipient&quot; do
+      #   post :create, recipient:
+      #   assigns(:recipient).should be_a_new(Recipient)
+      #   assigns(:recipient).should be_persisted
+      # end
+
+      # it &quot;redirects to the created recipient&quot; do
+      #     post :create, recipient:
+      #     response.should redirect_to(Recipient.last)
+      # end
+    end
+
+    context &quot;with valid attributes&quot; do
+      it &quot;does not save the new recipient&quot; do
+        recipient = create(:recipient)
+        mapping = create(:mapping)
+        template = create(:notify_template)
+        expect{
+          post :create, recipient: attributes_for(:recipient, group_number: nil)
+        }.to_not change(Recipient, :count)
+      end
+
+      it &quot;re-renders the new method&quot; do
+        recipient = create(:recipient)
+        mapping = create(:mapping)
+        template = create(:notify_template)
+        post :create, recipient: attributes_for(:recipient, group_number: nil)
+        response.should render_template :new
+      end
+    end
+  end
+
+
+  describe &#39;PUT update&#39; do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="notify_schedulers_controller_spec.html#L100" class="js-smell-location">0</a>                  <a href="recipients_controller_spec.html#L113" class="js-smell-location">1</a>                  </span>  </li></ul>
+    before :each do
+      @recipient = create(:recipient, group_number: 777)
+    end
+
+    context &quot;valid attributes&quot; do
+      it &quot;located the requested @recipient&quot; do
+        put :update, id: @recipient, recipient: attributes_for(:recipient)
+        assigns(:recipient).should eq(@recipient)
+      end
+
+      it &quot;changes @recipient&#39;s attributes&quot; do
+        put :update, id: @recipient,
+        recipient: attributes_for(:recipient, group_number: 777)
+        @recipient.reload
+        @recipient.group_number.should eq(777)
+      end
+
+      it &quot;redirects to the updated recipient&quot; do
+        put :update, id: @recipient, recipient: attributes_for(:recipient)
+        response.should redirect_to @recipient
+      end
+    end
+
+    context &quot;invalid attributes&quot; do
+      it &quot;locates the request @recipient&quot; do
+        put :update, id: @recipient, recipient: attributes_for(:recipient, group_number: nil)
+        assigns(:recipient).should eq(@recipient)
+      end
+
+      it &quot;does not changes @recipient&#39;s attributes&quot; do
+          put :update, id: @recipient,
+          recipient: attributes_for(:recipient, group_number: nil)
+          @recipient.reload
+          @recipient.group_number.should eq(777)
+      end
+
+      it &quot;re-renders the edit method&quot; do
+          put :update, id: @recipient, recipient: attributes_for(:recipient, group_number: nil)
+          response.should render_template :edit
+      end
+    end
+
+  end
+
+  describe &#39;DELETE destroy&#39; do
+    before :each do
+      @recipient = create(:recipient)
+    end
+
+    it &quot;deletes the recipient&quot; do
+    expect{
+      delete :destroy, id: @recipient
+      }.to change(Recipient, :count).by(-1)
+    end
+
+    it &quot;redirects to recipient#index&quot; do
+      delete :destroy, id: @recipient
+      response.should redirect_to recipients_url
+    end
+  end
+
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

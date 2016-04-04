@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-d circled-text circle ">D</span>
+  <h2 class="file-name">ResourceTypeSpec</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-21 20:16:13 +0200'>2016-03-21 20:16:13 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      147 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      6 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      48 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">require &#39;spec_helper&#39;
+
+describe ResourceType do
+  let(:resource_type) { create(:resource_type) }  
+
+  subject { resource_type }
+
+  it { should respond_to(:name) }
+  it { should respond_to(:fields) }
+  it { should respond_to(:resources) }
+  it { should respond_to(:permission_roles) }
+  it { should respond_to(:fields_resource_values) }
+
+  it { should be_valid }
+
+  describe &quot;with blank name&quot; do
+    before { resource_type.name = &quot; &quot; }
+    it { should_not be_valid }
+  end
+
+  describe &quot;when name is already taken&quot; do
+    it &quot;should raise error&quot; do
+      expect do
+        ResourceType.create!(name: resource_type.name)
+      end.to raise_error ActiveRecord::RecordInvalid
+    end
+  end
+
+  describe &quot;fields association&quot; do
+    it &quot;should destroy associated fields&quot; do
+      fields = resource_type.fields
+      resource_type.destroy
+      fields.should be_empty
+    end
+  end
+
+  describe &quot;resources association&quot; do
+    context &quot;when resources are present&quot; do
+      before { resource_type.resources.create(description: &quot;my description&quot;) }
+
+      it &quot;should not destroy resource_type&quot; do
+        expect do
+          resource_type.destroy
+        end.to raise_error(ActiveRecord::DeleteRestrictionError)
+      end
+    end
+  end
+
+  describe &quot;#all_field_ids&quot; do
+    it &quot;should return array with all ids without resource_type_reference_id&quot; do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) describe(#all_field_ids)::it#should return array with all ids without resource_type_reference_id has a flog score of 25          </span>  </li></ul>
+      3.times do |i|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Identical code found in 3 nodes                        <a href="resource_type_spec.html#L51" class="js-smell-location">0</a>                  <a href="resource_type_spec.html#L66" class="js-smell-location">1</a>                  <a href="resource_type_spec.html#L82" class="js-smell-location">2</a>                  </span>  </li></ul>
+        resource_type.fields.create field_type_id: i + 1, name: &quot;some#{i}&quot;
+      end
+      resource_type2 = create :resource_type
+      resource_type2.fields.create(
+        name: &quot;City&quot;,
+        field_type_id: 7, # complex
+        resource_type_reference_id: resource_type.id
+      )
+      resource_type2.all_field_ids.should == [1, 2, 3]
+    end
+  end
+
+  describe &quot;#all_field_names&quot; do
+    it &quot;should return array with all names without resource_type_reference_id&quot; do
+      3.times do |i|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Identical code found in 3 nodes                        <a href="resource_type_spec.html#L51" class="js-smell-location">0</a>                  <a href="resource_type_spec.html#L66" class="js-smell-location">1</a>                  <a href="resource_type_spec.html#L82" class="js-smell-location">2</a>                  </span>  </li></ul>
+        resource_type.fields.create field_type_id: i + 1, name: &quot;some#{i}&quot;
+      end
+      resource_type2 = create :resource_type
+      resource_type2.fields.create(
+        name: &quot;City&quot;,
+        field_type_id: 7, # complex
+        resource_type_reference_id: resource_type.id
+      )
+      resource_type2.all_field_names.should == %w{City.some0 City.some1 City.some2}
+    end
+  end
+
+  describe &quot;#check_description&quot; do
+    context &quot;when description is valid&quot; do
+      it &quot;should not raise error&quot; do
+        3.times do |i|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Identical code found in 3 nodes                        <a href="resource_type_spec.html#L51" class="js-smell-location">0</a>                  <a href="resource_type_spec.html#L66" class="js-smell-location">1</a>                  <a href="resource_type_spec.html#L82" class="js-smell-location">2</a>                  </span>  </li></ul>
+          resource_type.fields.create field_type_id: i + 1, name: &quot;some#{i}&quot;
+        end
+        expect do
+          ResourceType.create!(
+            name: &quot;Resource name&quot;,
+            description: &quot;My $${some2} and $${some1} fields&quot;
+          )
+        end.not_to raise_error
+      end
+    end
+
+    context &quot;when description is not valid&quot; do
+      it &quot;should raise error&quot; do
+        expect do
+          rt = ResourceType.create!(name: &quot;Resource name&quot;)
+          3.times do |i|
+            rt.fields.create field_type_id: i + 1, name: &quot;some#{i}&quot;
+          end
+          rt.description = &quot;My $${other_field} field&quot;
+          rt.save!
+        end.to raise_error ActiveRecord::RecordInvalid
+      end
+    end
+  end
+
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

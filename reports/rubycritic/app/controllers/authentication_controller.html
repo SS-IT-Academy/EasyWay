@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-a circled-text circle ">A</span>
+  <h2 class="file-name">AuthenticationController</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-21 20:16:13 +0200'>2016-03-21 20:16:13 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      0 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      7 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class AuthenticationController &lt; ApplicationController
+  # def sign_in
+  #   @user = User.new
+  # end
+
+  # def signed_out
+  #   # clear the authentication token when the user manually signs out
+  #   user = User.find_by_id(session[:user_id])
+  #   if user
+  #     update_authentication_token(user, nil)
+  #     user.save
+  #     session[:user_id] = nil
+  #     flash[:notice] = &quot;You have been signed out.&quot;
+  #  else
+  #     redirect_to :sign_in
+  #   end
+  # end
+  
+  # def account_settings
+  #   @user = current_user
+  # end
+
+  # def login
+    
+  #   username_or_email = params[:user][:username]
+  #   password = params[:user][:password]
+    
+  #   if username_or_email.rindex(&#39;@&#39;)
+  #     email=username_or_email
+  #     user = User.authenticate_by_email(email, password)
+  #   else
+  #     username=username_or_email
+  #     user = User.authenticate_by_username(username, password)
+  #   end
+    
+  #   if user
+  #     session[:user_id] = user.id
+  #     flash[:notice] = &#39;Welcome.&#39;
+  #     redirect_to :root
+  #   else
+  #     flash.now[:error] = &#39;Unknown user. Please check your username and password.&#39;
+  #     render :action =&gt; &quot;sign_in&quot;
+  #   end
+  # end
+
+  # def update_authentication_token(user, remember_me)
+  #   if remember_me == 1
+  #   # create an authentication token if the user has clicked on remember me
+  #     auth_token = SecureRandom.urlsafe_base64
+  #     user.authentication_token = auth_token
+  #     cookies.permanent[:auth_token] = auth_token
+  #   else # nil or 0
+  #     # if not, clear the token, as the user doesn&#39;t want to be remembered.
+  #     user.authentication_token = nil
+  #     cookies.permanent[:auth_token] = nil
+  #   end
+  # end
+
+  # def set_account_info
+  #   #@user = User.find(params[:id])
+ 
+  #   old_user = current_user
+
+  #   # verify the current password by creating a new user record.
+  #   @user = User.authenticate_by_email(old_user.email, params[:user][:password])
+
+  #   # verify
+  #   if @user.nil?
+  #     @user = current_user
+  #     @user.errors[:password] = &quot;Password is incorrect.&quot;
+  #     render :action =&gt; &quot;account_settings&quot;
+  #   else
+  #   # update the user with any new username and email
+  #     @user.update(params[:user])
+  #   # Set the old email and username, which is validated only if it has changed.
+  #     @user.previous_email = old_user.email
+  #     @user.previous_username = old_user.username
+
+  #   if @user.valid?
+  #     # If there is a new_password value, then we need to update the password.
+  #     @user.password = @user.new_password unless @user.new_password.nil? || @user.new_password.empty?
+  #     @user.save
+  #     flash[:notice] = &#39;Account settings have been changed.&#39;
+  #     redirect_to :root
+  #   else
+  #     render :action =&gt; &quot;account_settings&quot;
+  #     end
+  #   end
+  # end
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

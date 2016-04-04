@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-b circled-text circle ">B</span>
+  <h2 class="file-name">Resource</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-21 20:16:13 +0200'>2016-03-21 20:16:13 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      62 complexity
+    </div>
+    <div class="file-stat">
+      12.4 complexity per method
+    </div>
+    <div class="file-stat">
+      23 churn
+    </div>
+    <div class="file-stat">
+      5 methods
+    </div>
+    <div class="file-stat">
+      29 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class Resource &lt; ActiveRecord::Base
+  attr_accessible :description, :resource_type_id, :resource_values_attributes
+  
+  belongs_to :resource_type
+  has_many :resource_values, :dependent =&gt; :destroy,  :inverse_of =&gt; :resource
+  has_many :event_resources
+  has_many :events, :through =&gt; :event_resources
+  has_many :permission_roles, as: :permissionable
+
+  act_as_permissionable_child ResourceType
+  
+  validates :resource_type_id, :presence =&gt; true
+  validates_associated_bubbling :resource_values
+  accepts_nested_attributes_for :resource_values
+  
+  scope :by_resource_type, lambda { |resource_type_id| where(&quot;resource_type_id = ?&quot;, resource_type_id) }
+
+  def all_value_ids(value_ids=[])<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="resource.html#L18" class="js-smell-location">0</a>                  <a href="resource_type.html#L16" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell old">    <span class="description">(FeatureEnvy) Resource#all_value_ids refers to value more than self          </span>  </li>  <li class="smell old">    <span class="description">(FeatureEnvy) Resource#all_value_ids refers to value_ids more than self          </span>  </li></ul>
+    value_ids.pop if value_ids.any?
+    self.resource_values.each do |value|
+      value_ids &lt;&lt; value.id
+      if value.resource_reference_id
+        Resource.find(value.resource_reference_id).all_value_ids(value_ids)
+      end
+    end
+    value_ids 
+  end
+
+  def get_permission_roles
+    permission_roles.unscoped.where(permissionable_id: self.id).where(permissionable_type: resource_type.name)
+  end
+
+  def eval_description
+    rt = ResourceType.find(self.resource_type_id)
+    field_names = rt.all_field_names
+    description = rt.description ? rt.description : &quot;&quot;
+    field_ids   = rt.all_field_ids
+    
+    field_ids.each_index do |i|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UncommunicativeVariableName) Resource#eval_description has the variable name 'i'          </span>  </li></ul>
+      self.all_value_ids.each do |value|
+        rv = ResourceValue.find(value)
+        if field_ids[i] == rv.field_id
+          description.gsub!(&quot;$${#{field_names[i]}}&quot;, rv.value)
+        end
+      end
+    end
+    self.update_attribute :description, description
+    description
+  end
+
+  def self.resource_fields_with_values_by_resource(resource_id)
+    find(resource_id).resource_type
+      .fields_resource_values
+      .select(&quot;resource_values.id&quot;)      
+      .select(&quot;fields.name&quot;)
+      .select(&quot;resource_values.resource_reference_id&quot;)
+      .where(&quot;resource_id=?&quot;, resource_id)
+  end
+
+  def self.resources_by_event(event_id)
+    select(&quot;resource_types.name&quot;)
+        .select(&quot;resources.id&quot;)
+        .select(&quot;resources.description&quot;)
+        .joins(:resource_type, :event_resources)
+        .where(&quot;event_id=?&quot;, event_id)
+  end  
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-f circled-text circle ">F</span>
+  <h2 class="file-name">TableFiltersControllerSpec</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-23 18:10:02 +0200'>2016-03-23 18:10:02 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      206 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      4 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      332 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">require &#39;spec_helper&#39;
+
+describe TableFiltersController , type: :controller, authenticated: true do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="table_cell_items_controller_spec.html#L3" class="js-smell-location">0</a>                  <a href="table_filters_controller_spec.html#L3" class="js-smell-location">1</a>                  </span>  </li></ul>
+  context &quot;GET index&quot; do
+
+    it &quot;table_filters should include table_filter&quot; do
+      table_filter1 = create(:table_filter)
+      table_filter2 = create(:table_filter)
+      get :index
+      expect(assigns(:table_filters)).to eq([table_filter1,table_filter2])
+    end
+
+    it &quot;expected response from index page&quot; do
+      get :index
+      expect(response).to render_template(:index)
+    end
+
+  end
+  
+  context &quot;GET show&quot; do
+
+    it &quot;table_filter should be equal table_filter&quot; do
+      table_filter = create(:table_filter)
+      get :show, id: table_filter
+      expect(assigns(:table_filter)).to eq(table_filter)
+    end
+
+    it &quot;expected response from show page&quot; do
+      get :show, id: create(:table_filter)
+      expect(response).to render_template(:show)
+    end
+
+  end
+  
+  context &quot;GET edit&quot; do
+
+    it &#39;table_filter equal table_filter&#39; do
+      table_filter = create(:table_filter)
+      get :edit, id: table_filter
+      expect(assigns(:table_filter)).to eq(table_filter)
+    end
+
+    it &#39;render edit page&#39; do
+      get :edit, id: create(:table_filter)
+      expect(response).to render_template(:edit)
+    end
+
+  end
+  
+  
+  context &quot;POST create&quot; do
+
+    it &quot;expected creating new TableFilter&quot; do
+      expect{
+        post :create, table_filter: attributes_for(:table_filter)
+      }.to change(TableFilter,:count).by(1)
+    end
+
+    it &quot;redirects to the new TableFilter&quot; do
+      post :create, table_filter: attributes_for(:table_filter)
+      response.should redirect_to TableFilter.last
+    end
+
+    it &quot;does not create new TableFilter&quot; do
+      expect{
+        post :create, table_filter: attributes_for(:invalid_table_filter)
+      }.to_not change(TableFilter,:count)
+    end
+
+    it &quot;render new action page&quot; do
+      post :create, table_filter: attributes_for(:invalid_table_filter)
+      response.should render_template :new
+    end
+
+  end
+  
+  
+  context &quot;PUT update&quot; do
+
+    it &quot;table_filter should be equal table_filter&quot; do
+      table_filter = create(:table_filter)
+      put :update, id: table_filter
+      assigns(:table_filter).should eq(table_filter)
+    end
+
+    it &quot;table_filter should not be equal table_filter&quot; do
+      table_filter1 = create(:table_filter)
+      table_filter2 = create(:table_filter)
+      put :update, id: table_filter1
+      expect(assigns(:table_filter1)).to_not eq (table_filter2)
+    end
+
+    it &quot;changes table_filter&#39;s attributes&quot; do
+      table_filter = create(:table_filter)
+      put :update, id: table_filter, table_filter: attributes_for(:table_filter,
+        resource_id: 3,
+        table_template_id: 4
+      )
+      table_filter.reload
+      table_filter.resource_id.should eq(3)
+      table_filter.table_template_id.should eq(4)
+    end
+
+    it &quot;redirects to the updated table_filter&quot; do
+      put :update, id: create(:table_filter), table_filter: attributes_for(:table_filter, table_template_id: 8)
+      response.should redirect_to :table_filter
+    end
+
+    it &#39;render table_filter_edit_path when invalid_table_filter&#39; do
+      put :update, id: create(:table_filter), table_filter: attributes_for(:invalid_table_filter)
+      response.should render_template :edit
+    end
+
+  end
+
+
+  context &quot;DELETE destroy&quot; do
+
+    it &quot;deletes table_filter&quot; do 
+      table_filter = create(:table_filter)
+      expect{
+        delete :destroy, id: table_filter
+      }.to change(TableFilter,:count).by(-1)
+    end
+
+    it &quot;redirects to table_filter_url&quot; do
+      delete :destroy, id: create(:table_filter)
+      response.should redirect_to table_filters_url
+    end
+
+  end
+  
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

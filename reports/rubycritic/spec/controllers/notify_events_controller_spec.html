@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-f circled-text circle ">F</span>
+  <h2 class="file-name">NotifyEventsControllerSpec</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-23 18:10:02 +0200'>2016-03-23 18:10:02 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      265 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      5 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      117 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">require &#39;spec_helper&#39;
+
+describe NotifyEventsController , type: :controller, authenticated: true do
+  describe &#39;GET index&#39; do
+    it &quot;responds successfully with an HTTP 200 status code&quot; do
+      get :index
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+
+    it &quot;GET #index&quot; do
+      notify_event1 = create(:notify_event)
+      notify_event2 = create(:notify_event)
+      get :index
+      expect(assigns(:notify_events)).to match_array([notify_event1,notify_event2])
+    end
+
+    it &quot;renders the index template&quot; do
+      get :index
+      expect(response).to render_template(&quot;index&quot;)
+    end
+  end
+
+  describe &quot;GET #show&quot; do
+    it &quot;assigns the requested notify_event to @notify_event&quot; do
+      notify_event1 = create(:notify_event)
+      get :show, id: notify_event1.event_id
+      expect(assigns(:notify_event)).to eq(notify_event1)
+    end
+
+    it &quot;renders the #show view&quot; do
+      get :show, id: create(:notify_event)
+      response.should render_template :show
+    end
+  end
+
+  describe &quot;GET #new&quot; do
+    it &quot;assigns a new notify_event as @notify_event&quot; do
+      get :new
+      assigns(:notify_event).should be_a_new(NotifyEvent)
+    end
+  end
+
+  describe &quot;GET #edit&quot; do
+    it &quot;assigns the requested notify_event as @notify_event&quot; do
+      notify_event = create(:notify_event)
+      get :edit, id: notify_event.event_id
+      assigns(:notify_event).should eq(notify_event)
+    end
+
+    it &quot;renders the #edit view&quot; do
+      get :edit, id: create(:notify_event)
+      response.should render_template :edit
+    end
+  end
+
+  describe &quot;POST create&quot; do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="notify_events_controller_spec.html#L58" class="js-smell-location">0</a>                  <a href="recipients_controller_spec.html#L59" class="js-smell-location">1</a>                  </span>  </li></ul>
+    context &quot;with valid attributes&quot; do
+      it &quot;creates a new NotifyEvent&quot; do
+        recipient = create(:recipient)
+        mapping = create(:mapping)
+        template = create(:notify_template)
+
+          expect{
+            post :create, notify_event: 
+            attributes_for(:notify_event)}.
+            to change(NotifyEvent, :count).by(1)
+      end
+
+      it &quot;redirects to the new notify_event&quot; do
+        recipient = create(:recipient)
+        mapping = create(:mapping)
+        template = create(:notify_template)
+        post :create, notify_event: attributes_for(:notify_event)
+        response.should redirect_to NotifyEvent.last
+      end
+
+      # it &quot;assigns a newly created notify_event as @notify_event&quot; do
+      #   post :create, notify_event:
+      #   assigns(:notify_event).should be_a_new(NotifyEvent)
+      #   assigns(:notify_event).should be_persisted
+      # end
+
+      # it &quot;redirects to the created notify_event&quot; do
+      #     post :create, notify_event:
+      #     response.should redirect_to(NotifyEvent.last)
+      # end
+    end
+
+    context &quot;with valid attributes&quot; do
+      it &quot;does not save the new notify_event&quot; do
+        recipient = create(:recipient)
+        mapping = create(:mapping)
+        template = create(:notify_template)
+        expect{
+          post :create, notify_event: attributes_for(:notify_event, name: nil)
+        }.to_not change(NotifyEvent, :count)
+      end
+
+      it &quot;re-renders the new method&quot; do
+        recipient = create(:recipient)
+        mapping = create(:mapping)
+        template = create(:notify_template)
+        post :create, notify_event: attributes_for(:notify_event, name: nil)
+        response.should render_template :new
+      end
+    end
+  end
+
+
+  describe &#39;PUT update&#39; do
+    before :each do
+      @notify_event = create(:notify_event, name: &quot;some name&quot;)
+    end
+
+    context &quot;valid attributes&quot; do
+      it &quot;located the requested @notify_event&quot; do
+        put :update, id: @notify_event, notify_event: attributes_for(:notify_event)
+        assigns(:notify_event).should eq(@notify_event)
+      end
+
+      it &quot;changes @notify_event&#39;s attributes&quot; do
+        put :update, id: @notify_event,
+        notify_event: attributes_for(:notify_event, name: &quot;some name&quot;)
+        @notify_event.reload
+        @notify_event.name.should eq(&quot;some name&quot;)
+      end
+
+      it &quot;redirects to the updated notify_event&quot; do
+        put :update, id: @notify_event, notify_event: attributes_for(:notify_event)
+        response.should redirect_to @notify_event
+      end
+    end
+
+    context &quot;invalid attributes&quot; do
+      it &quot;locates the request @notify_event&quot; do
+        put :update, id: @notify_event, notify_event: attributes_for(:notify_event, name: nil)
+        assigns(:notify_event).should eq(@notify_event)
+      end
+
+      it &quot;does not changes @notify_event&#39;s attributes&quot; do
+          put :update, id: @notify_event,
+          notify_event: attributes_for(:notify_event, name: nil)
+          @notify_event.reload
+          @notify_event.name.should eq(&quot;some name&quot;)
+      end
+
+      it &quot;re-renders the edit method&quot; do
+          put :update, id: @notify_event, notify_event: attributes_for(:notify_event, name: nil)
+          response.should render_template :edit
+      end
+    end
+
+  end
+
+  describe &#39;DELETE destroy&#39; do
+    before :each do
+      @notify_event = create(:notify_event)
+    end
+
+    it &quot;deletes the notify_event&quot; do
+    expect{
+      delete :destroy, id: @notify_event
+      }.to change(NotifyEvent, :count).by(-1)
+    end
+
+    it &quot;redirects to notify_event#index&quot; do
+      delete :destroy, id: @notify_event
+      response.should redirect_to notify_events_url
+    end
+  end
+
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

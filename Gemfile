@@ -72,6 +72,11 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'jasmine'
+
+  gem 'metric_fu'
+  gem "rubycritic", :require => false
+  gem "debride", :require => false
+  gem 'heckle'
 end
 
 group :production do

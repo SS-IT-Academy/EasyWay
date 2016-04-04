@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe UsersController do
-  
+describe UsersController , type: :controller, authenticated: true do
   context 'GET index' do
 
     it "assigns Users" do

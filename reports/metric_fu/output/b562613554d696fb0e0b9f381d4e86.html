@@ -1,0 +1,867 @@
+<html>
+  <head>
+    <style>
+      table { background: #fff; color: #000; }
+.ruby .normal { color: #000; }
+.ruby .comment { color: #005; font-style: italic; }
+.ruby .keyword { color: #A44; font-weight: bold; }
+.ruby .method { color: #44f; }
+.ruby .class { color: #b1713d; }
+.ruby .module { color: #050; }
+.ruby .punct { color: #668; font-weight: bold; }
+.ruby .symbol { color: #00f; }
+.ruby .string { color: #4a4; }
+.ruby .char { color: #F07; }
+.ruby .ident { color: #000; }
+.ruby .constant { color: #b1713d; }
+.ruby .regex { color: #B66; background: #FEF; }
+.ruby .number { color: #F99; }
+.ruby .attribute { color: #f84; }
+.ruby .global { color: #7FB; }
+.ruby .expr { color: #227; }
+.ruby .escape { color: #277; }
+    </style>
+    <title>Analyzed File Report</title>
+  </head>
+  <body>
+    <table cellpadding='0' cellspacing='0' class='ruby'>
+      
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>&lt;<span class="string"><span class="delimiter">%=</span><span class="content"> form_for @resource, :html </span><span class="delimiter">=</span></span>&gt;{<span class="symbol">:class</span>=&gt;<span class="string"><span class="delimiter">&quot;</span><span class="content">form-horizontal</span><span class="delimiter">&quot;</span></span>} <span class="keyword">do</span> |f| <span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span>  &lt;<span class="string"><span class="delimiter">% </span><span class="content">if</span><span class="delimiter"> </span></span><span class="instance-variable">@resource</span>.errors.any? <span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>    &lt;div id=<span class="string"><span class="delimiter">&quot;</span><span class="content">error_explanation</span><span class="delimiter">&quot;</span></span>, <span class="keyword">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">control-group</span><span class="delimiter">&quot;</span></span>&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>      &lt;h2&gt;&lt;<span class="string"><span class="delimiter">%=</span><span class="content"> pluralize(@resource.errors.count, &quot;error&quot;) %&gt; prohibited this resource from being saved:&lt;/h2&gt;</span></span>
+<span class="line-numbers"><a href="#n6" name="n6">6</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>      &lt;ul&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n8" name="n8">8</a></span>      &lt;<span class="string"><span class="delimiter">% </span><span class="content">@resource.errors.full_messages.each</span><span class="delimiter"> </span></span><span class="keyword">do</span> |msg| <span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        &lt;li&gt;&lt;<span class="string"><span class="delimiter">%=</span><span class="content"> msg %&gt;&lt;/li&gt;</span></span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>      &lt;<span class="string"><span class="delimiter">% </span><span class="content">end</span><span class="delimiter"> </span></span>%&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>      &lt;<span class="regexp"><span class="delimiter">/</span><span class="content">ul&gt;</span></span>
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span><span class="regexp"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>    &lt;<span class="regexp"><span class="delimiter">/</span><span class="content">div&gt;</span></span>
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span><span class="regexp"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>  &lt;<span class="string"><span class="delimiter">% </span><span class="content">end</span><span class="delimiter"> </span></span>%&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>  &lt;div <span class="keyword">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">control-group</span><span class="delimiter">&quot;</span></span>&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>    &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> f.label :description, :class</span><span class="delimiter">=</span></span>&gt;<span class="string"><span class="delimiter">&quot;</span><span class="content">control-label</span><span class="delimiter">&quot;</span></span>%&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>    &lt;div <span class="keyword">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">controls</span><span class="delimiter">&quot;</span></span>&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n17" name="n17">17</a></span>       &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> f.text_field :description, :disabled </span><span class="delimiter">=</span></span>&gt; <span class="predefined-constant">true</span> <span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n18" name="n18">18</a></span>    &lt;<span class="regexp"><span class="delimiter">/</span><span class="content">div&gt;</span></span>
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span><span class="regexp"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n19" name="n19">19</a></span>  &lt;<span class="regexp"><span class="delimiter">/</span><span class="content">div&gt;</span></span>
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span><span class="regexp"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>  &lt;<span class="string"><span class="delimiter">% </span><span class="content">if</span><span class="delimiter"> </span></span>!<span class="instance-variable">@resource</span>.resource_values.blank? <span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n21" name="n21">21</a></span>          &lt;<span class="string"><span class="delimiter">% </span><span class="content">@resource.resource_type.fields.each_with_index</span><span class="delimiter"> </span></span><span class="keyword">do</span> |field,i|<span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n22" name="n22">22</a></span>            &lt;div <span class="keyword">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">control-group</span><span class="delimiter">&quot;</span></span>&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n23" name="n23">23</a></span>              &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> hidden_field_tag &quot;values[][field_id]&quot;, field.id%&gt;</span></span>
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n24" name="n24">24</a></span>              &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> label_tag &quot;values[][value]&quot;,field.name, :class</span><span class="delimiter">=</span></span>&gt;<span class="string"><span class="delimiter">&quot;</span><span class="content">control-label</span><span class="delimiter">&quot;</span></span>%&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n25" name="n25">25</a></span>          &lt;div <span class="keyword">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">controls</span><span class="delimiter">&quot;</span></span>&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n26" name="n26">26</a></span>                     &lt;<span class="string"><span class="delimiter">% </span><span class="content">if</span><span class="delimiter"> </span></span><span class="instance-variable">@resource</span>.resource_values[i]%&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n27" name="n27">27</a></span>                        &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> hidden_field_tag &quot;values[][id]&quot;, @resource.resource_values[i].id%&gt;</span></span>
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n28" name="n28">28</a></span>                        &lt;<span class="string"><span class="delimiter">% </span><span class="content">@value</span><span class="delimiter"> </span></span>= <span class="instance-variable">@resource</span>.resource_values[i].value <span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n29" name="n29">29</a></span>                        &lt;<span class="string"><span class="delimiter">% </span><span class="content">@reference</span><span class="delimiter"> </span></span>= <span class="instance-variable">@resource</span>.resource_values[i].resource_reference_id <span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                      &lt;<span class="string"><span class="delimiter">% </span><span class="content">else</span><span class="delimiter"> </span></span>%&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n31" name="n31">31</a></span>                        &lt;<span class="string"><span class="delimiter">% </span><span class="content">@value</span><span class="delimiter"> </span></span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> %&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n32" name="n32">32</a></span>                        &lt;<span class="string"><span class="delimiter">% </span><span class="content">@reference</span><span class="delimiter"> </span></span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> %&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>remove trailing whitespace &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n33" name="n33">33</a></span>                      &lt;<span class="string"><span class="delimiter">% </span><span class="content">end</span><span class="delimiter"> </span></span>%&gt;    
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n34" name="n34">34</a></span>            &lt;<span class="string"><span class="delimiter">% </span><span class="content">if</span><span class="delimiter"> </span></span>field.resource_type_reference_id%&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n35" name="n35">35</a></span>              &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> select_tag &quot;values[][resource_reference_id]&quot;,  options_from_collection_for_select(Resource.where(&quot;resource_type_id </span><span class="delimiter">=</span></span> ?<span class="string"><span class="delimiter">&quot;</span><span class="content">,field.resource_type_reference_id), </span><span class="delimiter">&quot;</span></span>id<span class="string"><span class="delimiter">&quot;</span><span class="content">,</span><span class="delimiter">&quot;</span></span>description<span class="string"><span class="delimiter">&quot;</span><span class="content">, @reference),{:include_blank =&gt; 'Select'} %&gt;</span></span>
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n36" name="n36">36</a></span>            &lt;<span class="string"><span class="delimiter">% </span><span class="content">else</span><span class="delimiter"> </span></span>%&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n37" name="n37">37</a></span>              &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> text_field_tag &quot;values[][value]&quot;, @value%&gt;</span></span>
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n38" name="n38">38</a></span>            &lt;<span class="string"><span class="delimiter">% </span><span class="content">end</span><span class="delimiter"> </span></span>%&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n39" name="n39">39</a></span>          &lt;<span class="regexp"><span class="delimiter">/</span><span class="content">div&gt;</span></span>
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span><span class="regexp"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>      &lt;<span class="regexp"><span class="delimiter">/</span><span class="content">div&gt;</span></span>
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span><span class="regexp"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n41" name="n41">41</a></span>          &lt;<span class="string"><span class="delimiter">% </span><span class="content">end</span><span class="delimiter"> </span></span>%&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n42" name="n42">42</a></span>  &lt;<span class="string"><span class="delimiter">% </span><span class="content">end</span><span class="delimiter"> </span></span>%&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n43" name="n43">43</a></span>  
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n44" name="n44">44</a></span>  &lt;div id=<span class="string"><span class="delimiter">&quot;</span><span class="content">fieldsDiv</span><span class="delimiter">&quot;</span></span> <span class="keyword">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">control-group</span><span class="delimiter">&quot;</span></span>&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n45" name="n45">45</a></span>  &lt;<span class="regexp"><span class="delimiter">/</span><span class="content">div&gt;</span></span>
+<span class="line-numbers"><a href="#n46" name="n46">46</a></span><span class="regexp"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n46" name="n46">46</a></span>  &lt;div <span class="keyword">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">actions</span><span class="delimiter">&quot;</span></span>&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n47" name="n47">47</a></span>    &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> f.submit%&gt; </span></span>
+<span class="line-numbers"><a href="#n48" name="n48">48</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n48" name="n48">48</a></span>  &lt;<span class="regexp"><span class="delimiter">/</span><span class="content">div&gt;</span></span>
+<span class="line-numbers"><a href="#n49" name="n49">49</a></span><span class="regexp"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n49" name="n49">49</a></span>&lt;<span class="string"><span class="delimiter">% </span><span class="content">end</span><span class="delimiter"> </span></span>%&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+    </table>
+  </body>
+</html>

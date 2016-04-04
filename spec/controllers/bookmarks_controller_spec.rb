@@ -1,8 +1,7 @@
 require 'spec_helper'
 
-describe BookmarksController do
-
-context 'GET index' do
+describe BookmarksController, type: :controller, authenticated: true do
+  context 'GET index' do
 
     it "assigns bookmarks" do
       bookmark1 = create(:bookmark)
@@ -100,54 +99,54 @@ context 'GET index' do
 
   end
 
-describe 'PUT update' do
-  
-  before :each do
-    @bookmark = create(:bookmark, url: "urla", title: "some title")
-  end
-
-  context "valid attributes" do 
-
-    it "located the requested @bookmark" do 
-      put :update, id: @bookmark, bookmark: attributes_for(:bookmark) 
-      assigns(:bookmark).should eq(@bookmark)
-    end
-
-    it "changes @bookmark's attributes" do 
-      put :update, id: @bookmark, bookmark: attributes_for(:bookmark, url: "urla", title: "new(updated) title") 
-      @bookmark.reload 
-      @bookmark.url.should eq("urla") 
-      @bookmark.title.should eq("new(updated) title")
-    end
-
-    it "redirects to the updated bookmark" do
-      put :update, id: @bookmark, bookmark: attributes_for(:bookmark) 
-      response.should redirect_to @bookmark
-    end
-
-  end
-
-  context "invalid attributes" do
-
-    it "locates the requested @bookmark" do
-      put :update, id: @bookmark, bookmark: attributes_for(:invalid_bookmark) 
-      assigns(:bookmark).should eq(@bookmark) 
-    end
-
-    it "does not change @bookmark's attributes" do
-      put :update, id: @bookmark, bookmark: attributes_for(:bookmark, url: "urla", title: nil) 
-      @bookmark.reload 
-      @bookmark.url.should eq("urla") 
-      @bookmark.title.should eq("some title") 
-    end
+  describe 'PUT update' do
     
-    it "re-renders the edit method" do
-      put :update, id: @bookmark, bookmark: attributes_for(:invalid_bookmark)
-      response.should render_template :edit 
+    before :each do
+      @bookmark = create(:bookmark, url: "urla", title: "some title")
+    end
+
+    context "valid attributes" do 
+
+      it "located the requested @bookmark" do 
+        put :update, id: @bookmark, bookmark: attributes_for(:bookmark) 
+        assigns(:bookmark).should eq(@bookmark)
+      end
+
+      it "changes @bookmark's attributes" do 
+        put :update, id: @bookmark, bookmark: attributes_for(:bookmark, url: "urla", title: "new(updated) title") 
+        @bookmark.reload 
+        @bookmark.url.should eq("urla") 
+        @bookmark.title.should eq("new(updated) title")
+      end
+
+      it "redirects to the updated bookmark" do
+        put :update, id: @bookmark, bookmark: attributes_for(:bookmark) 
+        response.should redirect_to @bookmark
+      end
+
+    end
+
+    context "invalid attributes" do
+
+      it "locates the requested @bookmark" do
+        put :update, id: @bookmark, bookmark: attributes_for(:invalid_bookmark) 
+        assigns(:bookmark).should eq(@bookmark) 
+      end
+
+      it "does not change @bookmark's attributes" do
+        put :update, id: @bookmark, bookmark: attributes_for(:bookmark, url: "urla", title: nil) 
+        @bookmark.reload 
+        @bookmark.url.should eq("urla") 
+        @bookmark.title.should eq("some title") 
+      end
+      
+      it "re-renders the edit method" do
+        put :update, id: @bookmark, bookmark: attributes_for(:invalid_bookmark)
+        response.should render_template :edit 
+      end
+
     end
 
   end
-
-end
 
 end

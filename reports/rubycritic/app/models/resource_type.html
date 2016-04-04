@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-b circled-text circle ">B</span>
+  <h2 class="file-name">ResourceType</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-21 20:16:13 +0200'>2016-03-21 20:16:13 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      51 complexity
+    </div>
+    <div class="file-stat">
+      17.0 complexity per method
+    </div>
+    <div class="file-stat">
+      19 churn
+    </div>
+    <div class="file-stat">
+      3 methods
+    </div>
+    <div class="file-stat">
+      29 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class ResourceType &lt; ActiveRecord::Base  
+  attr_accessible :name, :description
+  
+  has_many :fields, :dependent =&gt; :destroy
+  has_many :resources, :dependent =&gt; :restrict 
+  has_many :resource_values, :through =&gt; :resources 
+  has_many :fields_resource_values, 
+  			   :through =&gt; :fields, 
+  			   :source =&gt; :resource_values,
+  			   :class_name =&gt; ResourceValue
+  has_many :permission_roles, as: :permissionable
+
+  validates :name, presence: true, uniqueness: true
+  validate :check_description
+
+  def all_field_ids(field_ids=[])<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="resource.html#L18" class="js-smell-location">0</a>                  <a href="resource_type.html#L16" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell old">    <span class="description">(FeatureEnvy) ResourceType#all_field_ids refers to field more than self          </span>  </li>  <li class="smell old">    <span class="description">(FeatureEnvy) ResourceType#all_field_ids refers to field_ids more than self          </span>  </li></ul>
+    field_ids.pop if field_ids.any?
+    self.fields.each do |field|
+      field_ids &lt;&lt; field.id
+      if field.resource_type_reference_id
+        ResourceType.find(field.resource_type_reference_id).all_field_ids(field_ids)
+      end
+    end
+    field_ids 
+  end
+
+  def all_field_names(field_names=[])<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) ResourceType#all_field_names refers to field_names more than self          </span>  </li></ul>
+    if field_names.empty?
+      tail = &quot;&quot;
+    else
+      tail = field_names.last + &#39;.&#39;
+      field_names.pop
+    end
+    # tail = field_names.empty? ? &quot;&quot; : field_names.last + &#39;.&#39;
+    self.fields.each do |field|
+      field_names &lt;&lt; tail + field.name
+      if field.resource_type_reference_id
+        ResourceType.find(field.resource_type_reference_id).all_field_names(field_names)
+      end
+    end
+    field_names
+  end
+
+  def check_description
+    if self.fields.any?
+      if description
+        user_field_names = description.scan(/\$\$\{[a-zA-Z0-9._]+}/).map { |name| name.delete(&quot;${}&quot;) }
+      else
+        update_attribute :description, &quot;&quot;
+        return true
+      end
+      user_field_names.each do |name|
+        unless self.all_field_names.include? name
+          return errors[:base] &lt;&lt; &quot;Undefined name: #{name}&quot;
+        end
+      end
+    end
+    true
+  end
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

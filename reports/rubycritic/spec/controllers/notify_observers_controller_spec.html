@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-f circled-text circle ">F</span>
+  <h2 class="file-name">NotifyObserversControllerSpec</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-23 18:10:02 +0200'>2016-03-23 18:10:02 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      242 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      4 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      402 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">
+require &#39;spec_helper&#39;
+
+describe NotifyObserversController , type: :controller, authenticated: true do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="notify_observer_properties_controller_spec.html#L4" class="js-smell-location">0</a>                  <a href="notify_observers_controller_spec.html#L4" class="js-smell-location">1</a>                  </span>  </li></ul>
+  describe &#39;GET index&#39; do
+    it &quot;responds successfully with an HTTP 200 status code&quot; do
+      get :index
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+
+    it &quot;GET #index&quot; do
+      notify_observer1 = create(:notify_observer)
+      notify_observer2 = create(:notify_observer)
+      get :index
+      expect(assigns(:notify_observers)).to match_array([notify_observer1,notify_observer2])
+    end
+
+    it &quot;renders the index template&quot; do
+      get :index
+      expect(response).to render_template(&quot;index&quot;)
+    end
+  end
+
+  describe &quot;GET #show&quot; do
+    it &quot;assigns the requested notify_observer to @notify_observer&quot; do
+      notify_observer1 = create(:notify_observer)
+      get :show, id: notify_observer1.id
+      expect(assigns(:notify_observer)).to eq(notify_observer1)
+    end
+
+    it &quot;renders the #show view&quot; do
+      get :show, id: create(:notify_observer)
+      response.should render_template :show
+    end
+  end
+
+  describe &quot;GET #new&quot; do
+    it &quot;assigns a new notify_observer as @notify_observer&quot; do
+      get :new
+      assigns(:notify_observer).should be_a_new(NotifyObserver)
+    end
+  end
+
+  describe &quot;GET #edit&quot; do
+    it &quot;assigns the requested notify_observer as @notify_observer&quot; do
+      notify_observer = create(:notify_observer)
+      get :edit, id: notify_observer.id
+      assigns(:notify_observer).should eq(notify_observer)
+    end
+
+    it &quot;renders the #edit view&quot; do
+      get :edit, id: create(:notify_observer)
+      response.should render_template :edit
+    end
+  end
+
+  describe &quot;POST create&quot; do
+    context &quot;with valid attributes&quot; do
+      it &quot;creates a new Notifyobserver&quot; do
+          expect{
+            post :create, notify_observer: 
+            attributes_for(:notify_observer)}.
+            to change(NotifyObserver, :count).by(1)
+      end
+
+      it &quot;redirects to the new notify_observer&quot; do
+        post :create, notify_observer: attributes_for(:notify_observer)
+        response.should redirect_to NotifyObserver.last
+      end
+
+      # it &quot;assigns a newly created notify_observer as @notify_observer&quot; do
+      #   post :create, notify_observer:
+      #   assigns(:notify_observer).should be_a(Notifyobserver)
+      #   assigns(:notify_observer).should be_persisted
+      # end
+
+      # it &quot;redirects to the created notify_observer&quot; do
+      #     post :create, notify_observer:
+      #     response.should redirect_to(Notifyobserver.last)
+      # end
+    end
+
+    context &quot;with valid attributes&quot; do
+      it &quot;does not save the new notify_observer&quot; do
+        expect{
+          post :create, notify_observer: attributes_for(:notify_observer, name: nil)
+        }.to_not change(NotifyObserver, :count)
+      end
+
+      it &quot;re-renders the new method&quot; do
+        post :create, notify_observer: attributes_for(:notify_observer, name: nil)
+        response.should render_template :new
+      end
+    end
+  end
+
+
+  describe &#39;PUT update&#39; do
+    before :each do
+      @notify_observer = create(:notify_observer, name: &quot;some name&quot;)
+    end
+
+    context &quot;valid attributes&quot; do
+      it &quot;located the requested @notify_observer&quot; do
+        put :update, id: @notify_observer, notify_observer: attributes_for(:notify_observer)
+        assigns(:notify_observer).should eq(@notify_observer)
+      end
+
+      it &quot;changes @notify_observer&#39;s attributes&quot; do
+        put :update, id: @notify_observer,
+        notify_observer: attributes_for(:notify_observer, name: &quot;some name&quot;)
+        @notify_observer.reload
+        @notify_observer.name.should eq(&quot;some name&quot;)
+      end
+
+      it &quot;redirects to the updated notify_observer&quot; do
+        put :update, id: @notify_observer, notify_observer: attributes_for(:notify_observer)
+        response.should redirect_to @notify_observer
+      end
+    end
+
+    context &quot;invalid attributes&quot; do
+      it &quot;locates the request @notify_observer&quot; do
+        put :update, id: @notify_observer, notify_observer: attributes_for(:notify_observer, name: nil)
+        assigns(:notify_observer).should eq(@notify_observer)
+      end
+
+      it &quot;does not changes @notify_observer&#39;s attributes&quot; do
+          put :update, id: @notify_observer,
+          notify_observer: attributes_for(:notify_observer, name: nil)
+          @notify_observer.reload
+          @notify_observer.name.should eq(&quot;some name&quot;)
+      end
+
+      it &quot;re-renders the edit method&quot; do
+          put :update, id: @notify_observer, notify_observer: attributes_for(:notify_observer, name: nil)
+          response.should render_template :edit
+      end
+    end
+
+  end
+
+  describe &#39;DELETE destroy&#39; do
+    before :each do
+      @notify_observer = create(:notify_observer)
+    end
+
+    it &quot;deletes the notify_observer&quot; do
+    expect{
+      delete :destroy, id: @notify_observer
+      }.to change(NotifyObserver, :count).by(-1)
+    end
+
+    it &quot;redirects to notify_observer#index&quot; do
+      delete :destroy, id: @notify_observer
+      response.should redirect_to notify_observers_url
+    end
+  end
+
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

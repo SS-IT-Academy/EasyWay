@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-a circled-text circle ">A</span>
+  <h2 class="file-name">AddDeviseToUsers</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2014-02-07 11:17:44 +0200'>2014-02-07 11:17:44 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      21 complexity
+    </div>
+    <div class="file-stat">
+      10.5 complexity per method
+    </div>
+    <div class="file-stat">
+      1 churn
+    </div>
+    <div class="file-stat">
+      2 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class AddDeviseToUsers &lt; ActiveRecord::Migration
+  def self.up
+    create_table(:users) do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UncommunicativeVariableName) AddDeviseToUsers#self.up has the variable name 't'          </span>  </li></ul>
+      ## Database authenticatable
+      t.string :email,              :null =&gt; false, :default =&gt; &quot;&quot;
+      t.string :encrypted_password, :null =&gt; false, :default =&gt; &quot;&quot;
+
+      ## Recoverable
+      t.string   :reset_password_token
+      t.datetime :reset_password_sent_at
+
+      ## Rememberable
+      t.datetime :remember_created_at
+
+      ## Trackable
+      t.integer  :sign_in_count, :default =&gt; 0, :null =&gt; false
+      t.datetime :current_sign_in_at
+      t.datetime :last_sign_in_at
+      t.string   :current_sign_in_ip
+      t.string   :last_sign_in_ip
+
+      # Confirmable
+      t.string   :confirmation_token
+      t.datetime :confirmed_at
+      t.datetime :confirmation_sent_at
+      # t.string   :unconfirmed_email # Only if using reconfirmable
+
+      ## Lockable
+      # t.integer  :failed_attempts, :default =&gt; 0, :null =&gt; false # Only if lock strategy is :failed_attempts
+      # t.string   :unlock_token # Only if unlock strategy is :email or :both
+      # t.datetime :locked_at
+
+
+      # Uncomment below if timestamps were not included in your original model.
+      # t.timestamps
+    end
+
+    add_index :users, :email,                :unique =&gt; true
+    add_index :users, :reset_password_token, :unique =&gt; true
+     add_index :users, :confirmation_token,   :unique =&gt; true
+    # add_index :users, :unlock_token,         :unique =&gt; true
+  end
+
+  def self.down
+    # By default, we don&#39;t want to make any assumption about how to roll back a migration when your
+    # model already existed. Please edit below which fields you would like to remove in this migration.
+    raise ActiveRecord::IrreversibleMigration
+  end
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe TableCellItemsController do
-
+describe TableCellItemsController , type: :controller, authenticated: true do
   context "GET index" do
 
     it "table_cell_item should include table_cell_items" do

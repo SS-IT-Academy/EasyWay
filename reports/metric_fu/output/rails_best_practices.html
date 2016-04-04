@@ -1,0 +1,3345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='en' http-equiv='Content-Language' />
+    <title>metrics</title>
+    <style>
+    /*
+Copyright (c) 2008, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.5.2
+*/
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;font-variant:normal;}sup {vertical-align:text-top;}sub {vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}
+
+    /* --------------------------------------------------------------
+
+   buttons.css
+   * Gives you some great CSS-only buttons.
+
+   Created by Kevin Hale [particletree.com]
+   * particletree.com/features/rediscovering-the-button-element
+
+   See Readme.txt in this folder for instructions.
+
+-------------------------------------------------------------- */
+
+button {
+  display:block;
+  float:left;
+  margin:0 0.583em 0.667em 0;
+  padding:5px 10px 5px 7px;   /* Links */
+
+  border:1px solid #dedede;
+  border-top:1px solid #eee;
+  border-left:1px solid #eee;
+
+  background-color:#f5f5f5;
+  font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+  font-size:100%;
+  line-height:130%;
+  text-decoration:none;
+  font-weight:bold;
+  color:#565656;
+  cursor:pointer;
+}
+button {
+  width:auto;
+  overflow:visible;
+  padding:4px 10px 3px 7px;   /* IE6 */
+}
+button[type] {
+  padding:4px 10px 4px 7px;   /* Firefox */
+  line-height:17px;           /* Safari */
+}
+*:first-child+html button[type] {
+  padding:4px 10px 3px 7px;   /* IE7 */
+}
+button img {
+  margin:0 3px -3px 0 !important;
+  padding:0;
+  border:none;
+  width:16px;
+  height:16px;
+  float:none;
+}
+
+
+/* Button colors
+-------------------------------------------------------------- */
+
+/* Standard */
+button:hover {
+  background-color:#dff4ff;
+  border:1px solid #c2e1ef;
+  color:#336699;
+}
+
+/* Positive */
+body .positive {
+  color:#529214;
+}
+button.positive:hover {
+  background-color:#E6EFC2;
+  border:1px solid #C6D880;
+  color:#529214;
+}
+
+/* Negative */
+body .negative {
+  color:#d12f19;
+}
+button.negative:hover {
+  background:#fbe3e4;
+  border:1px solid #fbc2c4;
+  color:#d12f19;
+}
+
+    html {
+  background-color: #e0e0e0; }
+
+body {
+  font-size: 100%;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: #333333; }
+
+a {
+  color: #ed1556;
+  text-decoration: none; }
+  a:hover {
+    color: #ffffff;
+    background-color: #ed1556; }
+
+#header, #content, #footer {
+  margin: 0 auto;
+  background: #eeeeee;
+  padding: 0 2em;
+  z-index: 0;
+  position: relative;
+  font-size: 1em; }
+
+#header {
+  background: #ffffff; }
+  #header h1 {
+    font-weight: bold;
+    font-size: 1.5em; }
+  #header address.watermark {
+    position: absolute;
+    font-weight: bold;
+    right: 3em;
+    top: 0;
+    font-size: .75em;
+    color: #cccccc; }
+    #header address.watermark a {
+      color: #cccccc;
+      font-weight: bold;
+      font-size: 2em; }
+      #header address.watermark a:hover {
+        background: transparent;
+        color: #aaaaaa; }
+
+#content {
+  padding-top: 1em;
+  padding-bottom: 2em; }
+  #content strong {
+    font-weight: bold; }
+  #content em {
+    font-style: italic; }
+  #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+    color: #4e4e4e; }
+  #content h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: .75em;
+    padding: .25em 0;
+    line-height: 1.2;
+    border-bottom: 1px solid #c0c0c0; }
+  #content h2 {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 1em 0 .2em; }
+  #content h3 {
+    font-weight: bold;
+    font-size: 1.25em;
+    margin: .25em 0; }
+  #content h4, #content h5, #content h6 {
+    font-weight: bold;
+    margin-top: .5em; }
+  #content code, #content pre, #content textarea, #content input {
+    font-family: Monaco, Deja Vu Sans Mono, Inconsolata, Consolas, monospace; }
+  #content form p {
+    margin-top: 1em;
+    position: relative; }
+    #content form p.checkbox label {
+      margin-top: 0 !important; }
+  #content form input.text, #content form textarea {
+    width: 30em;
+    padding: .2em .4em;
+    color: #4e4e4e; }
+  #content form input.text {
+    height: 1.4em; }
+  #content form label {
+    float: left;
+    display: block;
+    margin-top: .5em;
+    width: 8em;
+    margin-right: .75em; }
+  #content form .with_errors label {
+    background: red;
+    color: white;
+    position: relative;
+    top: -.7em; }
+  #content form .with_errors.required label {
+    position: static;
+    margin-right: .25em;
+    padding: 0 .2em; }
+  #content form .with_errors input, #content form .with_errors textarea {
+    border: 2px solid #f22;
+    background: #fee;
+    color: #222222; }
+  #content form .required label {
+    float: none;
+    display: block;
+    width: auto;
+    position: relative;
+    font-weight: bold;
+    margin-top: 1em;
+    text-indent: -.65em; }
+    #content form .required label:before {
+      content: "* ";
+      color: #ed1556; }
+  #content form .required input.text {
+    width: 25.6em;
+    font-size: 24px;
+    font-weight: bold; }
+  #content form .normal {
+    margin-top: 2em; }
+  #content form h2.notifier label {
+    float: none;
+    width: auto;
+    margin-right: 0; }
+    #content form h2.notifier label .warning {
+      font-size: .5em;
+      font-weight: normal;
+      color: #999999; }
+  #content form fieldset {
+    padding-bottom: 1em;
+    margin-left: 1.35em;
+    border-bottom: 1px solid #c0c0c0;
+    margin-bottom: 1em; }
+    #content form fieldset h3 {
+      margin-top: 1em;
+      margin-bottom: 0; }
+    #content form fieldset p.normal {
+      margin-top: 1em; }
+    #content form fieldset p label {
+      width: 6.7em; }
+  #content form p.submit {
+    margin-top: 2em; }
+    #content form p.submit:after {
+      display: block;
+      clear: both;
+      float: none;
+      content: ".";
+      text-indent: -9999em;
+      text-align: left; }
+    #content form p.submit.destroy button,     #content form p.submit.manual-build button {
+      float: none;
+      display: inline; }
+    #content form p.submit.manual-build button {
+      margin-right: 0; }
+  #content #build form, #content #last_build form {
+    font-size: .75em; }
+    #content #build form p.submit,     #content #last_build form p.submit {
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      right: .5em;
+      top: 1.25em; }
+  #content .blank_slate p,   #content .error p {
+    position: relative;
+    top: .3em; }
+  #content .blank_slate h1,   #content .error h1 {
+    border-width: 0;
+    margin: 0;
+    padding: 0; }
+    #content .blank_slate h1 button,     #content .error h1 button {
+      float: none;
+      border: 0 none;
+      background: transparent;
+      display: inline;
+      color: #ed1556;
+      padding: 0.25em 0;
+      margin: 0; }
+      #content .blank_slate h1 button:hover,       #content .error h1 button:hover {
+        background: #ed1556;
+        color: #ffffff; }
+  #content .error dt {
+    margin-top: 1.4em;
+    margin-bottom: .3em;
+    font-size: 1.75em;
+    font-family: Georgia, Times New Roman, serif; }
+  #content .error dd {
+    line-height: 1.4; }
+  #content .error .backtrace {
+    margin: 1em 0;
+    overflow: scroll;
+    height: 30em;
+    border: 1px solid #c0c0c0;
+    line-height: 1.6; }
+  #content #projects {
+    margin: 1em 0 2em;
+    border-top: 1px solid #c0c0c0; }
+    #content #projects li {
+      position: relative;
+      border-bottom: 1px solid #c0c0c0; }
+      #content #projects li.odd {
+        background: #e6e6e6; }
+      #content #projects li.building {
+        background: transparent url(/spinner.gif) no-repeat scroll right; }
+      #content #projects li a {
+        font-size: 2em;
+        padding: .25em;
+        line-height: 1.2;
+        font-weight: bold;
+        display: block; }
+        #content #projects li a.success {
+          color: #337022; }
+        #content #projects li a.failed {
+          color: #ff1100; }
+      #content #projects li .meta {
+        position: absolute;
+        right: .6em;
+        top: 1.5em;
+        font-size: 0.8em;
+        color: #999999;
+        text-align: right; }
+      #content #projects li.building .meta {
+        right: 1.6em; }
+      #content #projects li.success .meta {
+        color: #337022; }
+      #content #projects li.failed .meta {
+        color: #ff1100; }
+  #content #previous_builds li a {
+    display: block;
+    padding: .25em;
+    margin-bottom: .25em;
+    border-width: 1px;
+    border-style: solid; }
+    #content #previous_builds li a strong {
+      font-size: 1.3em; }
+    #content #previous_builds li a .attribution {
+      font-size: .9em; }
+  #content #projects li.success a,   #content #previous_builds li.success a {
+    background-color: #bbf8aa;
+    border-color: #99d688;
+    color: #337022; }
+    #content #projects li.success a .attribution,     #content #previous_builds li.success a .attribution {
+      color: #77b466; }
+    #content #projects li.success a:hover,     #content #previous_builds li.success a:hover {
+      background-color: #ddffcc; }
+  #content #projects li.failed a,   #content #previous_builds li.failed a {
+    background-color: #ffbbaa;
+    border-color: #dd9988;
+    color: #ff1100; }
+    #content #projects li.failed a .attribution,     #content #previous_builds li.failed a .attribution {
+      color: #bb7766; }
+    #content #projects li.failed a:hover,     #content #previous_builds li.failed a:hover {
+      background-color: #ffddcc; }
+  #content #build, #content #last_build {
+    position: relative; }
+    #content #build h1, #content #build blockquote,     #content #last_build h1, #content #last_build blockquote {
+      border-width: 0 1px;
+      border-style: solid; }
+    #content #build h1,     #content #last_build h1 {
+      border-top-width: 1px; }
+    #content #build blockquote,     #content #last_build blockquote {
+      bottom-bottom-width: 1px;
+      line-height: 1.4; }
+    #content #build.success h1, #content #build.success blockquote,     #content #last_build.success h1, #content #last_build.success blockquote {
+      background-color: #bbf8aa;
+      border-color: #99d688 #ccffbb #ccffbb #99d688; }
+    #content #build.success h1,     #content #last_build.success h1 {
+      color: #337022; }
+    #content #build.success .meta,     #content #last_build.success .meta {
+      color: #77b466; }
+    #content #build.failed h1, #content #build.failed blockquote,     #content #last_build.failed h1, #content #last_build.failed blockquote {
+      background-color: #ffbbaa;
+      border-color: #dd9988 #ffccbb #ffccbb #dd9988; }
+    #content #build.failed h1,     #content #last_build.failed h1 {
+      color: #ff1100; }
+    #content #build.failed .meta,     #content #last_build.failed .meta {
+      color: #bb7766; }
+    #content #build h1,     #content #last_build h1 {
+      margin-top: .5em;
+      margin-bottom: 0;
+      padding: .25em;
+      color: #337022; }
+    #content #build blockquote,     #content #last_build blockquote {
+      padding: .75em;
+      margin-bottom: 2em; }
+      #content #build blockquote .meta,       #content #last_build blockquote .meta {
+        margin-top: 1em;
+        display: block;
+        font-size: .9em; }
+    #content #build pre.output,     #content #last_build pre.output {
+      background: #111;
+      color: #fff;
+      padding: .5em;
+      overflow: auto;
+      max-height: 50em;
+      font-size: .825em; }
+      #content #build pre.output .color30,       #content #last_build pre.output .color30 {
+        color: #333; }
+      #content #build pre.output .color31,       #content #last_build pre.output .color31 {
+        color: #e33; }
+      #content #build pre.output .color32,       #content #last_build pre.output .color32 {
+        color: #3e3; }
+      #content #build pre.output .color33,       #content #last_build pre.output .color33 {
+        color: #ee3; }
+      #content #build pre.output .color34,       #content #last_build pre.output .color34 {
+        color: #33e; }
+      #content #build pre.output .color35,       #content #last_build pre.output .color35 {
+        color: #e3e; }
+      #content #build pre.output .color36,       #content #last_build pre.output .color36 {
+        color: #3ee; }
+      #content #build pre.output .color37,       #content #last_build pre.output .color37 {
+        color: #fff; }
+  #content #push_path {
+    display: block;
+    margin-top: 1em;
+    margin-left: 2em; }
+  #content div#graph {
+    width: 100%;
+    height: 600px; }
+
+a.success {
+  color: #bbf8aa; }
+  a.success:hover {
+    background-color: #bbf8aa;
+    color: white; }
+a.failed {
+  color: #ffbbaa; }
+  a.failed:hover {
+    background-color: #ffbbaa;
+    color: white; }
+
+#footer {
+  padding: 1.5em 2.5em;
+  border-top: 1px solid #ccc;
+  font-size: .8em;
+  color: #666;
+  text-align: right; }
+  #footer strong {
+    font-weight: bold; }
+
+    table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  border: 1px solid #666;
+  background: #fff;
+  margin-bottom: 20px;
+}
+
+table tr.light {
+   background: #fff;
+}
+
+table tr.dark {
+  background: #f9f9f9;
+}
+
+table tr:hover {
+  background: #FFFFC0;
+}
+
+table td, table th {
+  padding: 4px;
+  font-size: 11px;
+}
+table th {
+  text-align: center;
+  color: #337022;
+  background: #DDFFCC;
+  font-weight: bold;
+  border: #99D688 1px solid;
+}
+
+table td {
+  border: #d0d0d0 1px solid;
+}
+
+table td.score {
+  text-align: right;
+}
+
+.warning {
+  background: yellow;
+}
+
+    .bluff-tooltip {
+  background: #fff;
+  border: 1px solid #d1edf5;
+  padding: 8px 8px 6px;
+}
+.bluff-tooltip .color {
+  display: block;
+  height: 4px;
+  width: 30px;
+  margin: 0 0 4px;
+  overflow: hidden;
+}
+.bluff-tooltip .data {
+  font-weight: bold;
+}
+    </style>
+    <link REL="SHORTCUT ICON" HREF="/favicon.ico">
+    <script language="javascript" src="utils.js" type="text/javascript"></script>
+    <script language="javascript" src="js-class.js" type="text/javascript"></script>
+    <script language="javascript" src="bluff-min.js" type="text/javascript"></script>
+    <script language="javascript" src="excanvas.js" type="text/javascript"></script>
+    <script language="javascript" src="standalone-framework.js" type="text/javascript"></script>
+    <script language="javascript" src="highcharts.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id='header'>
+      <h1><a href="/">metrics</a> | <a href="index.html">easyway</a></h1>
+      <address class='watermark'>
+        built with
+        <a href='https://github.com/metricfu/metric_fu'>MetricFu</a>
+      </address>
+    </div>
+    <div id='content'>
+      <h3>Rails Best Practices Results</h3>
+
+<p><a href="http://github.com/railsbp/rails_best_practices">rails_best_practices</a> is a code metric tool for rails projects.</p>
+
+<div id="graph_container"></div>
+<script language="javascript" src="rails_best_practices.js?1459766038" type="text/javascript"></script>
+
+<table>
+  <tr>
+    <th>File Path</th>
+    <th>Warning</th>
+  </tr>
+  
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:35</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (event_resources => [resource_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:35</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (event_resources => [event_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:48</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (events => [event_types_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:48</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (events => [recurrence_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:48</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (events => [parent_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:65</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (field_validations => [validator_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:65</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (field_validations => [field_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:72</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (fields => [field_type_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:72</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (fields => [resource_type_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:81</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (mappings => [notify_observer_property_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:81</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (mappings => [notify_template_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:81</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (mappings => [resource_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:90</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (menus => [role_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:90</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (menus => [user_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:90</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (menus => [bookmark_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:105</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (notify_events => [notify_template_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:105</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (notify_events => [event_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:105</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (notify_events => [notify_observer_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:115</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (notify_observer_properties => [notify_observer_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:144</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (permission_roles => [permissions_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:144</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (permission_roles => [roles_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:144</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (permission_roles => [permissionable_id, permissionable_type])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:157</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (recipients => [notify_event_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:157</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (recipients => [user_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:180</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (resource_values => [field_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:180</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (resource_values => [resource_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:189</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (resources => [resource_type_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:202</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (table_cell_items => [table_template_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:202</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (table_cell_items => [resource_type_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:209</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (table_filters => [table_template_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:209</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (table_filters => [resource_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:219</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (table_headers => [resource_type_id])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:219</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (table_headers => [table_template_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:236</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (users => [invited_by_id, invited_by_type])</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/schema.rb'>/home/dmytro/workplace/prototype/easyway/db/schema.rb:270</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/>always add db index (validators => [field_type_id])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/ability.rb'>/home/dmytro/workplace/prototype/easyway/app/models/ability.rb:31</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/>law of demeter</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resources_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/resources_controller.rb:118</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/>law of demeter</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/show.html.erb:25</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/>law of demeter</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/index.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/index.html.erb:22</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/>law of demeter</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/validators/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/validators/show.html.erb:8</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/>law of demeter</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_resources_filter.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_resources_filter.html.erb:16</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/>law of demeter</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_types/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_types/show.html.erb:14</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/>law of demeter</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/show.html.erb:8</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/>law of demeter</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/index.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/index.html.erb:20</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/>law of demeter</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:59</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/>law of demeter</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:74</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/>law of demeter</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/fields/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/fields/show.html.erb:10</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/move-code-into-controller/>move code into controller</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/fields/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/fields/show.html.erb:15</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/move-code-into-controller/>move code into controller</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/fields/index.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/fields/index.html.erb:16</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/move-code-into-controller/>move code into controller</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/fields/index.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/fields/index.html.erb:17</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/move-code-into-controller/>move code into controller</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/show.html.erb:24</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/move-code-into-controller/>move code into controller</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/show.html.erb:27</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/move-code-into-controller/>move code into controller</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/show.html.erb:27</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/move-code-into-controller/>move code into controller</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/show.html.erb:28</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/move-code-into-controller/>move code into controller</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/show.html.erb:35</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/move-code-into-controller/>move code into controller</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/index.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/index.html.erb:25</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/move-code-into-controller/>move code into controller</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:47</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/move-code-into-helper/>move code into helper (array_count >= 3)</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:61</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/move-code-into-helper/>move code into helper (array_count >= 3)</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/field_types_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/field_types_controller.rb:75</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/14/move-finder-to-named_scope/>move finder to named_scope</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb:56</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/move-model-logic-into-the-model/>move model logic into model (@event use_count > 4)</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb:56</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/move-model-logic-into-the-model/>move model logic into model (format use_count > 4)</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb:89</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/move-model-logic-into-the-model/>move model logic into model (@event use_count > 4)</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb:89</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/move-model-logic-into-the-model/>move model logic into model (@resource use_count > 4)</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_observers_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_observers_controller.rb:41</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/move-model-logic-into-the-model/>move model logic into model (@notify_observer use_count > 4)</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/users_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/users_controller.rb:84</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/move-model-logic-into-the-model/>move model logic into model (@user use_count > 4)</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb:40</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/move-model-logic-into-the-model/>move model logic into model (@notify_event use_count > 4)</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb:40</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/move-model-logic-into-the-model/>move model logic into model (el use_count > 4)</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb:87</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/move-model-logic-into-the-model/>move model logic into model (success use_count > 4)</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb:87</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/move-model-logic-into-the-model/>move model logic into model (m use_count > 4)</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb:143</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/move-model-logic-into-the-model/>move model logic into model (@notify_event use_count > 4)</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb:143</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/move-model-logic-into-the-model/>move model logic into model (m use_count > 4)</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resource_types_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/resource_types_controller.rb:95</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/move-model-logic-into-the-model/>move model logic into model (@field use_count > 4)</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/roles_controller_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/roles_controller_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/recipients_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/recipients_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/notify_templates_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/notify_templates_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/notify_events_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/notify_events_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/bookmarks_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/bookmarks_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/notify_schedulers_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/notify_schedulers_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/recurrences_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/recurrences_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/table_templates_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/table_templates_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/menus_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/menus_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/event_resources_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/event_resources_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/table_filters_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/table_filters_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/field_types_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/field_types_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/field_validations_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/field_validations_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/table_cell_items_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/table_cell_items_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/notify_observers_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/notify_observers_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/validators_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/validators_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/fields_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/fields_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/event_properties_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/event_properties_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/event_types_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/event_types_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/resource_values_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/resource_values_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/permission_roles_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/permission_roles_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/resource_types_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/resource_types_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/manage_menu_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/manage_menu_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/events_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/events_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/resources_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/resources_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/table_headers_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/table_headers_helper.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/>remove empty helpers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_observer_properties_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_observer_properties_controller.rb:13</a></td>
+      <td><a href =>remove unused methods (NotifyObserverPropertiesController#get_notify_observer_properties)</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resource_types_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/resource_types_controller.rb:43</a></td>
+      <td><a href =>remove unused methods (ResourceTypesController#get_restype_fields)</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/permission_role.rb'>/home/dmytro/workplace/prototype/easyway/app/models/permission_role.rb:7</a></td>
+      <td><a href =>remove unused methods (PermissionRole#with_role)</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/notify_event.rb'>/home/dmytro/workplace/prototype/easyway/app/models/notify_event.rb:13</a></td>
+      <td><a href =>remove unused methods (NotifyEvent#choice)</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/eventpropertiesentity.rb'>/home/dmytro/workplace/prototype/easyway/app/models/eventpropertiesentity.rb:3</a></td>
+      <td><a href =>remove unused methods (EventPropertiesEntity#intialize)</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/role.rb'>/home/dmytro/workplace/prototype/easyway/app/models/role.rb:15</a></td>
+      <td><a href =>remove unused methods (Role#admin?)</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/role.rb'>/home/dmytro/workplace/prototype/easyway/app/models/role.rb:19</a></td>
+      <td><a href =>remove unused methods (Role#beginer?)</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb:87</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/replace-complex-creation-with-factory-method/>replace complex creation with factory method (m attribute_assignment_count > 2)</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb:143</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/21/replace-complex-creation-with-factory-method/>replace complex creation with factory method (m attribute_assignment_count > 2)</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb:14</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb:15</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb:16</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb:23</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_menu.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_menu.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_menu.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_menu.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_menu.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_menu.html.erb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_menu.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_menu.html.erb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_menu.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_menu.html.erb:18</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_menu.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_menu.html.erb:18</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_manage_menu.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_manage_menu.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_manage_menu.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_manage_menu.html.erb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_manage_menu.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_manage_menu.html.erb:18</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb:14</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb:15</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb:19</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/event_resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/event_resources/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/event_resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/event_resources/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/event_resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/event_resources/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/event_resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/event_resources/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/users/_editform.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/users/_editform.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/users/_editform.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/users/_editform.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/users/_editform.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/users/_editform.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/users/_editform.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/users/_editform.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb:20</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb:20</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb:32</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/recurrences/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/recurrences/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/recurrences/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/recurrences/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/recurrences/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/recurrences/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/recurrences/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/recurrences/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/fields/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/fields/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/fields/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/fields/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/fields/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/fields/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/fields/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/fields/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_schedulers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_schedulers/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_schedulers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_schedulers/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_schedulers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_schedulers/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_schedulers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_schedulers/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/field_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/field_types/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/field_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/field_types/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/field_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/field_types/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/field_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/field_types/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_filters/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_filters/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_filters/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_filters/_form.html.erb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_filters/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_filters/_form.html.erb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_filters/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_filters/_form.html.erb:8</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_filters/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_filters/_form.html.erb:18</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:9</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:28</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:84</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:89</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:100</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:102</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:105</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:126</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:132</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:150</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:158</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:174</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:174</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_notify_event_property_mapping_for_update.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_notify_event_property_mapping_for_update.html.erb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_notify_event_property_mapping_for_update.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_notify_event_property_mapping_for_update.html.erb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_notify_event_property_mapping_for_update.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_notify_event_property_mapping_for_update.html.erb:8</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/event_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/event_types/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/event_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/event_types/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/event_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/event_types/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/event_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/event_types/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_observers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_observers/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_observers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_observers/_form.html.erb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_observers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_observers/_form.html.erb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_observers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_observers/_form.html.erb:8</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/permissions/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/permissions/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/permissions/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/permissions/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/permissions/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/permissions/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/permissions/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/permissions/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_resources_filter.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_resources_filter.html.erb:11</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:18</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:18</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:21</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:22</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:27</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:28</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:29</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:30</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:36</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:38</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:48</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb:8</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb:20</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb:21</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb:26</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb:27</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb:28</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb:29</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb:35</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb:37</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb:15</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb:15</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb:19</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb:20</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/event_properties/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/event_properties/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/event_properties/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/event_properties/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/event_properties/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/event_properties/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/event_properties/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/event_properties/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/bookmarks/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/bookmarks/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/bookmarks/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/bookmarks/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/bookmarks/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/bookmarks/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/bookmarks/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/bookmarks/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_values/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_values/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_values/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_values/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_values/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_values/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_values/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_values/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_templates/_values.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_templates/_values.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_templates/_values.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_templates/_values.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_templates/_values.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_templates/_values.html.erb:15</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_templates/_values.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_templates/_values.html.erb:17</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_templates/_values.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_templates/_values.html.erb:19</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_templates/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_templates/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_templates/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_templates/_form.html.erb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_templates/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_templates/_form.html.erb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_templates/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_templates/_form.html.erb:8</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_templates/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_templates/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_templates/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_templates/_form.html.erb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_templates/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_templates/_form.html.erb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_templates/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_templates/_form.html.erb:8</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_observer_properties/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_observer_properties/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_observer_properties/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_observer_properties/_form.html.erb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_observer_properties/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_observer_properties/_form.html.erb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_observer_properties/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_observer_properties/_form.html.erb:8</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/permission_roles/_index.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/permission_roles/_index.html.erb:20</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/permission_roles/_index.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/permission_roles/_index.html.erb:24</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/permission_roles/_index.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/permission_roles/_index.html.erb:29</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/recipients/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/recipients/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/recipients/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/recipients/_form.html.erb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/recipients/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/recipients/_form.html.erb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/recipients/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/recipients/_form.html.erb:8</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb:23</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb:24</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb:33</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb:37</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb:69</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:21</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:37</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:59</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:74</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:81</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:92</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:95</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:98</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:98</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:102</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:103</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:108</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/roles/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/roles/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/roles/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/roles/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/roles/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/roles/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/roles/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/roles/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/field_validations/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/field_validations/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/field_validations/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/field_validations/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/field_validations/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/field_validations/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/field_validations/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/field_validations/_form.html.erb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_cell_items/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_cell_items/_form.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_cell_items/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_cell_items/_form.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_cell_items/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_cell_items/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_cell_items/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_cell_items/_form.html.erb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_cell_items/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_cell_items/_form.html.erb:14</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/>replace instance variable with local variable</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/config/routes.rb'>/home/dmytro/workplace/prototype/easyway/config/routes.rb:72</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2011/08/19/restrict-auto-generated-routes/>restrict auto-generated routes permission_roles (only: [:create, :index])</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_templates_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_templates_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_templates_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_templates_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb:81</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb:124</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_observers_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_observers_controller.rb:55</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_observers_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_observers_controller.rb:71</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/table_headers_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/table_headers_controller.rb:73</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_observer_properties_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_observer_properties_controller.rb:60</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_observer_properties_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_observer_properties_controller.rb:76</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/table_filters_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/table_filters_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/table_filters_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/table_filters_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/table_templates_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/table_templates_controller.rb:41</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/table_templates_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/table_templates_controller.rb:53</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/field_validations_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/field_validations_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/field_validations_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/field_validations_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/event_resources_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/event_resources_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/event_resources_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/event_resources_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/field_types_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/field_types_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/field_types_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/field_types_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resources_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/resources_controller.rb:55</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resources_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/resources_controller.rb:64</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resources_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/resources_controller.rb:80</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resources_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/resources_controller.rb:96</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/event_types_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/event_types_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/event_types_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/event_types_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/recurrences_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/recurrences_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/recurrences_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/recurrences_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/users_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/users_controller.rb:94</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resource_values_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/resource_values_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resource_values_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/resource_values_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/menus_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/menus_controller.rb:56</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/menus_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/menus_controller.rb:72</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/permissions_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/permissions_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/permissions_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/permissions_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_schedulers_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_schedulers_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_schedulers_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_schedulers_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/fields_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/fields_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/fields_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/fields_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/event_properties_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/event_properties_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/event_properties_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/event_properties_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/bookmarks_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/bookmarks_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/bookmarks_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/bookmarks_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb:193</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/validators_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/validators_controller.rb:57</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/validators_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/validators_controller.rb:73</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/recipients_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/recipients_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/recipients_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/recipients_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/roles_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/roles_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/roles_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/roles_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resource_types_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/resource_types_controller.rb:79</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resource_types_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/resource_types_controller.rb:131</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/table_cell_items_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/table_cell_items_controller.rb:50</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/table_cell_items_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/table_cell_items_controller.rb:66</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/12/simplify-render-in-controllers/>simplify render in controllers</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb:87</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/19/use-model-association/>use model association (for m)</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb:143</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/07/19/use-model-association/>use model association (for m)</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/mailers/notify_event_mailer.rb'>/home/dmytro/workplace/prototype/easyway/app/mailers/notify_event_mailer.rb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/08/05/use-multipart-alternative-as-content_type-of-email/>use multipart/alternative as content_type of email</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/Gemfile'>/home/dmytro/workplace/prototype/easyway/Gemfile:25</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/event_resource.rb'>/home/dmytro/workplace/prototype/easyway/app/models/event_resource.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/notify_observer_property.rb'>/home/dmytro/workplace/prototype/easyway/app/models/notify_observer_property.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/field_validation.rb'>/home/dmytro/workplace/prototype/easyway/app/models/field_validation.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/user.rb'>/home/dmytro/workplace/prototype/easyway/app/models/user.rb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/table_header.rb'>/home/dmytro/workplace/prototype/easyway/app/models/table_header.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/recurrence.rb'>/home/dmytro/workplace/prototype/easyway/app/models/recurrence.rb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/menu.rb'>/home/dmytro/workplace/prototype/easyway/app/models/menu.rb:7</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/table_cell_item.rb'>/home/dmytro/workplace/prototype/easyway/app/models/table_cell_item.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/mapping.rb'>/home/dmytro/workplace/prototype/easyway/app/models/mapping.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/notify_event.rb'>/home/dmytro/workplace/prototype/easyway/app/models/notify_event.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/table_template.rb'>/home/dmytro/workplace/prototype/easyway/app/models/table_template.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/table_filter.rb'>/home/dmytro/workplace/prototype/easyway/app/models/table_filter.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/ability.rb'>/home/dmytro/workplace/prototype/easyway/app/models/ability.rb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/eventpropertiesentity.rb'>/home/dmytro/workplace/prototype/easyway/app/models/eventpropertiesentity.rb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/notify_template.rb'>/home/dmytro/workplace/prototype/easyway/app/models/notify_template.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/notify_observer.rb'>/home/dmytro/workplace/prototype/easyway/app/models/notify_observer.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/resource_type.rb'>/home/dmytro/workplace/prototype/easyway/app/models/resource_type.rb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/resource.rb'>/home/dmytro/workplace/prototype/easyway/app/models/resource.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/resource_value.rb'>/home/dmytro/workplace/prototype/easyway/app/models/resource_value.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/field_type.rb'>/home/dmytro/workplace/prototype/easyway/app/models/field_type.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/recipient.rb'>/home/dmytro/workplace/prototype/easyway/app/models/recipient.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/field.rb'>/home/dmytro/workplace/prototype/easyway/app/models/field.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/event.rb'>/home/dmytro/workplace/prototype/easyway/app/models/event.rb:8</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/role.rb'>/home/dmytro/workplace/prototype/easyway/app/models/role.rb:14</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/models/event_type.rb'>/home/dmytro/workplace/prototype/easyway/app/models/event_type.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/mailers/notify_event_mailer.rb'>/home/dmytro/workplace/prototype/easyway/app/mailers/notify_event_mailer.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/mailers/user_mailer.rb'>/home/dmytro/workplace/prototype/easyway/app/mailers/user_mailer.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/helpers/permission_roles_helper.rb'>/home/dmytro/workplace/prototype/easyway/app/helpers/permission_roles_helper.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/migrate/20130624123657_create_fields.rb'>/home/dmytro/workplace/prototype/easyway/db/migrate/20130624123657_create_fields.rb:8</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/migrate/20130624121321_create_menus.rb'>/home/dmytro/workplace/prototype/easyway/db/migrate/20130624121321_create_menus.rb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/db/migrate/20130625190446_add_ancestry_to_menus.rb'>/home/dmytro/workplace/prototype/easyway/db/migrate/20130625190446_add_ancestry_to_menus.rb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/lib/event_module.rb'>/home/dmytro/workplace/prototype/easyway/lib/event_module.rb:26</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/config/routes.rb'>/home/dmytro/workplace/prototype/easyway/config/routes.rb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/config/application.rb'>/home/dmytro/workplace/prototype/easyway/config/application.rb:35</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/config/environments/development.rb'>/home/dmytro/workplace/prototype/easyway/config/environments/development.rb:42</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/config/initializers/devise.rb'>/home/dmytro/workplace/prototype/easyway/config/initializers/devise.rb:33</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/config/initializers/associated_bubbling_validator.rb'>/home/dmytro/workplace/prototype/easyway/config/initializers/associated_bubbling_validator.rb:12</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/config/initializers/constants.rb'>/home/dmytro/workplace/prototype/easyway/config/initializers/constants.rb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/config/initializers/wrap_parameters.rb'>/home/dmytro/workplace/prototype/easyway/config/initializers/wrap_parameters.rb:9</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/events_controller.rb:55</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_observers_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_observers_controller.rb:12</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/table_headers_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/table_headers_controller.rb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_observer_properties_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_observer_properties_controller.rb:12</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/table_templates_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/table_templates_controller.rb:28</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/event_resources_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/event_resources_controller.rb:83</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resources_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/resources_controller.rb:20</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notifier.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notifier.rb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/users_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/users_controller.rb:13</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resource_values_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/resource_values_controller.rb:83</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/welcome_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/welcome_controller.rb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/manage_menu_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/manage_menu_controller.rb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/menus_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/menus_controller.rb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/authentication_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/authentication_controller.rb:18</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/permissions_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/permissions_controller.rb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/application_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/application_controller.rb:16</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/bookmarks_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/bookmarks_controller.rb:83</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/notify_events_controller.rb:32</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/controllers/resource_types_controller.rb'>/home/dmytro/workplace/prototype/easyway/app/controllers/resource_types_controller.rb:13</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/devise/registrations/new.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/devise/registrations/new.html.erb:8</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/index.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/index.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_form.html.erb:33</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_menu.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_menu.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_manage_menu.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_manage_menu.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/menus/_formRoles.html.erb:15</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/layouts/application.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/layouts/application.html.erb:11</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/event_resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/event_resources/_form.html.erb:28</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/users/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/users/show.html.erb:23</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/users/_editform.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/users/_editform.html.erb:13</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/validators/_form.html.erb:20</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/recurrences/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/recurrences/_form.html.erb:12</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/fields/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/fields/_form.html.erb:24</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_filters/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_filters/_form.html.erb:16</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_property_by_resource_value.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_property_by_resource_value.html.erb:1</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/show.html.erb:37</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_form.html.erb:4</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_events/_notify_event_property_mapping_for_update.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_events/_notify_event_property_mapping_for_update.html.erb:13</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/authentication/sign_in.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/authentication/sign_in.html.erb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_observers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_observers/_form.html.erb:25</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/show.html.erb:20</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form.html.erb:19</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resources/_form_edit.html.erb:33</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_headers/new.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_headers/new.html.erb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_headers/_form.html.erb:22</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_templates/index.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_templates/index.html.erb:19</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_templates/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_templates/_form.html.erb:19</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_templates/edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_templates/edit.html.erb:30</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/table_templates/test.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/table_templates/test.html.erb:17</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_templates/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_templates/show.html.erb:20</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_templates/edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_templates/edit.html.erb:5</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_observer_properties/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_observer_properties/_form.html.erb:21</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/notify_observer_properties/edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/notify_observer_properties/edit.html.erb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/permission_roles/index.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/permission_roles/index.html.erb:42</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/permission_roles/_index.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/permission_roles/_index.html.erb:2</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/recipients/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/recipients/show.html.erb:20</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/recipients/edit.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/recipients/edit.html.erb:6</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_types/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_types/show.html.erb:55</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/resource_types/_form.html.erb:18</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/new.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/new.html.erb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/show.html.erb:44</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/events/_form.html.erb:12</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='light'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/roles/show.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/roles/show.html.erb:21</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+    <tr class='dark'>
+      <td><a href='file:///home/dmytro/workplace/prototype/easyway/app/views/home/index.html.erb'>/home/dmytro/workplace/prototype/easyway/app/views/home/index.html.erb:3</a></td>
+      <td><a href =http://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/>remove trailing whitespace</a></td>
+    </tr>
+    
+  
+</table>
+
+<p>Generated on 2016-04-04 13:33:58 +0300</p>
+
+    </div>
+
+    
+    <script language="javascript" src="bluff_graph.js" type="text/javascript"></script>
+  </body>
+</html>

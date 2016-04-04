@@ -1,34 +1,34 @@
 require "spec_helper"
 
-describe ResourceValuesController do
+describe ResourceValuesController, type: :controller do
   describe "routing" do
 
     it "routes to #index" do
-      get("/resource_values").should route_to("resource_values#index")
+      expect(:get => "/resource_values").to route_to(controller: "resource_values", action: "index")      
     end
 
     it "routes to #new" do
-      get("/resource_values/new").should route_to("resource_values#new")
+      expect(:get => "/resource_values/new").to route_to(controller: "resource_values", action: "new")      
     end
 
     it "routes to #show" do
-      get("/resource_values/1").should route_to("resource_values#show", :id => "1")
+      expect(:get => "/resource_values/1").to route_to(controller: "resource_values", action: "show", id: '1')      
     end
 
     it "routes to #edit" do
-      get("/resource_values/1/edit").should route_to("resource_values#edit", :id => "1")
+      expect(:get => "/resource_values/1/edit").to route_to(controller: "resource_values", action: "edit", id: '1')      
     end
 
     it "routes to #create" do
-      post("/resource_values").should route_to("resource_values#create")
+      expect(:post => "/resource_values").to route_to(controller: "resource_values", action: "create")      
     end
 
     it "routes to #update" do
-      put("/resource_values/1").should route_to("resource_values#update", :id => "1")
+      expect(:put => "/resource_values/1").to route_to(controller: "resource_values", action: "update", id: '1')      
     end
 
     it "routes to #destroy" do
-      delete("/resource_values/1").should route_to("resource_values#destroy", :id => "1")
+      expect(:delete => "/resource_values/1").to route_to(controller: "resource_values", action: "destroy", id: '1')      
     end
 
   end

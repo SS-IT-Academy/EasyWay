@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<h1>Reports</h1>
+<table id="report" class="display data_table" width="100%" cellspacing="0">
+  <thead>
+    <tr>
+        <th>Responsable</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Show</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+        <th>Responsable</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Show</th>
+        <th>Edit</th>
+        <th>Delete</th>
+   </tr>
+  </tfoot>
+  <tbody>
+       <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.responsable %></td>
+        <td><%= report.title %></td>
+        <td><%= report.description.html_safe %></td>
+        <td><%= link_to 'Show', admin_report_path(report) %></td>
+        <td><%= link_to 'Edit', edit_admin_report_path(report) %></td>
+        <td><%= link_to 'Delete', admin_report_path(report), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'New Report', new_admin_report_path %>

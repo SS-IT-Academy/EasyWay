@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../overview.html" class="project-nav-item">Overview</a>
+        <a href="../code_index.html" class="project-nav-item">Code</a>
+        <a href="../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-f circled-text circle ">F</span>
+  <h2 class="file-name">Schema</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-22 14:53:41 +0200'>2016-03-22 14:53:41 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      249 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      60 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      614 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code"># encoding: UTF-8
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you&#39;ll amass, the slower it&#39;ll run and the greater likelihood for issues).
+#
+# It&#39;s strongly recommended to check this file into your version control system.
+
+ActiveRecord::Schema.define(:version =&gt; 20140324135200) do
+
+  create_table &quot;abilities&quot;, :force =&gt; true do |t|
+    t.datetime &quot;created_at&quot;, :null =&gt; false
+    t.datetime &quot;updated_at&quot;, :null =&gt; false
+  end
+
+  create_table &quot;bookmarks&quot;, :force =&gt; true do |t|
+    t.string   &quot;url&quot;
+    t.string   &quot;title&quot;
+    t.datetime &quot;created_at&quot;,  :null =&gt; false
+    t.datetime &quot;updated_at&quot;,  :null =&gt; false
+    t.text     &quot;description&quot;
+  end
+
+  create_table &quot;event_properties&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 6 nodes                        <a href="schema.html#L29" class="js-smell-location">0</a>                  <a href="schema.html#L42" class="js-smell-location">1</a>                  <a href="schema.html#L59" class="js-smell-location">2</a>                  <a href="schema.html#L122" class="js-smell-location">3</a>                  <a href="schema.html#L151" class="js-smell-location">4</a>                  <a href="schema.html#L196" class="js-smell-location">5</a>                  </span>  </li></ul>
+    t.string   &quot;name&quot;
+    t.datetime &quot;created_at&quot;, :null =&gt; false
+    t.datetime &quot;updated_at&quot;, :null =&gt; false
+  end
+
+  create_table &quot;event_resources&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 6 nodes                        <a href="schema.html#L35" class="js-smell-location">0</a>                  <a href="schema.html#L65" class="js-smell-location">1</a>                  <a href="schema.html#L115" class="js-smell-location">2</a>                  <a href="schema.html#L189" class="js-smell-location">3</a>                  <a href="schema.html#L202" class="js-smell-location">4</a>                  <a href="schema.html#L229" class="js-smell-location">5</a>                  </span>  </li></ul>
+    t.integer  &quot;resource_id&quot;
+    t.integer  &quot;event_id&quot;
+    t.datetime &quot;created_at&quot;,  :null =&gt; false
+    t.datetime &quot;updated_at&quot;,  :null =&gt; false
+  end
+
+  create_table &quot;event_types&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 6 nodes                        <a href="schema.html#L29" class="js-smell-location">0</a>                  <a href="schema.html#L42" class="js-smell-location">1</a>                  <a href="schema.html#L59" class="js-smell-location">2</a>                  <a href="schema.html#L122" class="js-smell-location">3</a>                  <a href="schema.html#L151" class="js-smell-location">4</a>                  <a href="schema.html#L196" class="js-smell-location">5</a>                  </span>  </li></ul>
+    t.string   &quot;name&quot;
+    t.datetime &quot;created_at&quot;, :null =&gt; false
+    t.datetime &quot;updated_at&quot;, :null =&gt; false
+  end
+
+  create_table &quot;events&quot;, :force =&gt; true do |t|
+    t.string   &quot;name&quot;
+    t.integer  &quot;event_types_id&quot;
+    t.datetime &quot;start_at&quot;
+    t.integer  &quot;recurrence_id&quot;
+    t.datetime &quot;created_at&quot;,     :null =&gt; false
+    t.datetime &quot;updated_at&quot;,     :null =&gt; false
+    t.integer  &quot;parent_id&quot;
+    t.datetime &quot;end_at&quot;
+  end
+
+  create_table &quot;field_types&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 6 nodes                        <a href="schema.html#L29" class="js-smell-location">0</a>                  <a href="schema.html#L42" class="js-smell-location">1</a>                  <a href="schema.html#L59" class="js-smell-location">2</a>                  <a href="schema.html#L122" class="js-smell-location">3</a>                  <a href="schema.html#L151" class="js-smell-location">4</a>                  <a href="schema.html#L196" class="js-smell-location">5</a>                  </span>  </li></ul>
+    t.string   &quot;name&quot;
+    t.datetime &quot;created_at&quot;, :null =&gt; false
+    t.datetime &quot;updated_at&quot;, :null =&gt; false
+  end
+
+  create_table &quot;field_validations&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 6 nodes                        <a href="schema.html#L35" class="js-smell-location">0</a>                  <a href="schema.html#L65" class="js-smell-location">1</a>                  <a href="schema.html#L115" class="js-smell-location">2</a>                  <a href="schema.html#L189" class="js-smell-location">3</a>                  <a href="schema.html#L202" class="js-smell-location">4</a>                  <a href="schema.html#L229" class="js-smell-location">5</a>                  </span>  </li></ul>
+    t.integer  &quot;validator_id&quot;
+    t.integer  &quot;field_id&quot;
+    t.datetime &quot;created_at&quot;,   :null =&gt; false
+    t.datetime &quot;updated_at&quot;,   :null =&gt; false
+  end
+
+  create_table &quot;fields&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="schema.html#L72" class="js-smell-location">0</a>                  <a href="schema.html#L180" class="js-smell-location">1</a>                  </span>  </li></ul>
+    t.string   &quot;name&quot;
+    t.integer  &quot;field_type_id&quot;
+    t.integer  &quot;resource_type_id&quot;
+    t.integer  &quot;resource_type_reference_id&quot;
+    t.datetime &quot;created_at&quot;,                 :null =&gt; false
+    t.datetime &quot;updated_at&quot;,                 :null =&gt; false
+  end
+
+  create_table &quot;mappings&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="schema.html#L81" class="js-smell-location">0</a>                  <a href="schema.html#L270" class="js-smell-location">1</a>                  </span>  </li></ul>
+    t.integer  &quot;notify_observer_property_id&quot;
+    t.string   &quot;template_parameter&quot;
+    t.integer  &quot;notify_template_id&quot;
+    t.datetime &quot;created_at&quot;,                  :null =&gt; false
+    t.datetime &quot;updated_at&quot;,                  :null =&gt; false
+    t.string   &quot;resource_id&quot;
+  end
+
+  create_table &quot;menus&quot;, :force =&gt; true do |t|
+    t.integer  &quot;parent_id&quot;
+    t.integer  &quot;role_id&quot;
+    t.integer  &quot;user_id&quot;
+    t.string   &quot;text&quot;
+    t.string   &quot;target&quot;
+    t.datetime &quot;created_at&quot;,  :null =&gt; false
+    t.datetime &quot;updated_at&quot;,  :null =&gt; false
+    t.string   &quot;ancestry&quot;
+    t.integer  &quot;bookmark_id&quot;
+    t.integer  &quot;position&quot;
+  end
+
+  add_index &quot;menus&quot;, [&quot;ancestry&quot;], :name =&gt; &quot;index_menus_on_ancestry&quot;
+
+  create_table &quot;notify_events&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 3 nodes                        <a href="schema.html#L105" class="js-smell-location">0</a>                  <a href="schema.html#L209" class="js-smell-location">1</a>                  <a href="schema.html#L219" class="js-smell-location">2</a>                  </span>  </li></ul>
+    t.string   &quot;name&quot;
+    t.integer  &quot;notify_template_id&quot;
+    t.integer  &quot;event_id&quot;
+    t.integer  &quot;notify_observer_id&quot;
+    t.string   &quot;recipients&quot;
+    t.datetime &quot;created_at&quot;,         :null =&gt; false
+    t.datetime &quot;updated_at&quot;,         :null =&gt; false
+  end
+
+  create_table &quot;notify_observer_properties&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 6 nodes                        <a href="schema.html#L35" class="js-smell-location">0</a>                  <a href="schema.html#L65" class="js-smell-location">1</a>                  <a href="schema.html#L115" class="js-smell-location">2</a>                  <a href="schema.html#L189" class="js-smell-location">3</a>                  <a href="schema.html#L202" class="js-smell-location">4</a>                  <a href="schema.html#L229" class="js-smell-location">5</a>                  </span>  </li></ul>
+    t.string   &quot;name&quot;
+    t.integer  &quot;notify_observer_id&quot;
+    t.datetime &quot;created_at&quot;,         :null =&gt; false
+    t.datetime &quot;updated_at&quot;,         :null =&gt; false
+  end
+
+  create_table &quot;notify_observers&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 6 nodes                        <a href="schema.html#L29" class="js-smell-location">0</a>                  <a href="schema.html#L42" class="js-smell-location">1</a>                  <a href="schema.html#L59" class="js-smell-location">2</a>                  <a href="schema.html#L122" class="js-smell-location">3</a>                  <a href="schema.html#L151" class="js-smell-location">4</a>                  <a href="schema.html#L196" class="js-smell-location">5</a>                  </span>  </li></ul>
+    t.string   &quot;name&quot;
+    t.datetime &quot;created_at&quot;, :null =&gt; false
+    t.datetime &quot;updated_at&quot;, :null =&gt; false
+  end
+
+  create_table &quot;notify_schedulers&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 3 nodes                        <a href="schema.html#L128" class="js-smell-location">0</a>                  <a href="schema.html#L136" class="js-smell-location">1</a>                  <a href="schema.html#L157" class="js-smell-location">2</a>                  </span>  </li></ul>
+    t.integer  &quot;period&quot;
+    t.time     &quot;start_at&quot;
+    t.time     &quot;end_at&quot;
+    t.datetime &quot;created_at&quot;, :null =&gt; false
+    t.datetime &quot;updated_at&quot;, :null =&gt; false
+  end
+
+  create_table &quot;notify_templates&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 3 nodes                        <a href="schema.html#L128" class="js-smell-location">0</a>                  <a href="schema.html#L136" class="js-smell-location">1</a>                  <a href="schema.html#L157" class="js-smell-location">2</a>                  </span>  </li></ul>
+    t.string   &quot;notify_template_name&quot;
+    t.text     &quot;body&quot;
+    t.text     &quot;desc&quot;
+    t.datetime &quot;created_at&quot;,           :null =&gt; false
+    t.datetime &quot;updated_at&quot;,           :null =&gt; false
+  end
+
+  create_table &quot;permission_roles&quot;, :force =&gt; true do |t|
+    t.integer &quot;permissions_id&quot;
+    t.integer &quot;roles_id&quot;
+    t.integer &quot;permissionable_id&quot;
+    t.string  &quot;permissionable_type&quot;
+  end
+
+  create_table &quot;permissions&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 6 nodes                        <a href="schema.html#L29" class="js-smell-location">0</a>                  <a href="schema.html#L42" class="js-smell-location">1</a>                  <a href="schema.html#L59" class="js-smell-location">2</a>                  <a href="schema.html#L122" class="js-smell-location">3</a>                  <a href="schema.html#L151" class="js-smell-location">4</a>                  <a href="schema.html#L196" class="js-smell-location">5</a>                  </span>  </li></ul>
+    t.string   &quot;name&quot;
+    t.datetime &quot;created_at&quot;, :null =&gt; false
+    t.datetime &quot;updated_at&quot;, :null =&gt; false
+  end
+
+  create_table &quot;recipients&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 3 nodes                        <a href="schema.html#L128" class="js-smell-location">0</a>                  <a href="schema.html#L136" class="js-smell-location">1</a>                  <a href="schema.html#L157" class="js-smell-location">2</a>                  </span>  </li></ul>
+    t.integer  &quot;notify_event_id&quot;
+    t.integer  &quot;user_id&quot;
+    t.integer  &quot;group_number&quot;
+    t.datetime &quot;created_at&quot;,      :null =&gt; false
+    t.datetime &quot;updated_at&quot;,      :null =&gt; false
+  end
+
+  create_table &quot;recurrences&quot;, :force =&gt; true do |t|
+    t.datetime &quot;created_at&quot;,      :null =&gt; false
+    t.datetime &quot;updated_at&quot;,      :null =&gt; false
+    t.string   &quot;repetition&quot;
+    t.integer  &quot;hour_duration&quot;
+    t.integer  &quot;minute_duration&quot;
+  end
+
+  create_table &quot;resource_types&quot;, :force =&gt; true do |t|
+    t.string   &quot;name&quot;
+    t.datetime &quot;created_at&quot;,  :null =&gt; false
+    t.datetime &quot;updated_at&quot;,  :null =&gt; false
+    t.text     &quot;description&quot;
+  end
+
+  create_table &quot;resource_values&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="schema.html#L72" class="js-smell-location">0</a>                  <a href="schema.html#L180" class="js-smell-location">1</a>                  </span>  </li></ul>
+    t.integer  &quot;field_id&quot;
+    t.integer  &quot;resource_id&quot;
+    t.integer  &quot;resource_reference_id&quot;
+    t.string   &quot;value&quot;
+    t.datetime &quot;created_at&quot;,            :null =&gt; false
+    t.datetime &quot;updated_at&quot;,            :null =&gt; false
+  end
+
+  create_table &quot;resources&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 6 nodes                        <a href="schema.html#L35" class="js-smell-location">0</a>                  <a href="schema.html#L65" class="js-smell-location">1</a>                  <a href="schema.html#L115" class="js-smell-location">2</a>                  <a href="schema.html#L189" class="js-smell-location">3</a>                  <a href="schema.html#L202" class="js-smell-location">4</a>                  <a href="schema.html#L229" class="js-smell-location">5</a>                  </span>  </li></ul>
+    t.string   &quot;description&quot;
+    t.integer  &quot;resource_type_id&quot;
+    t.datetime &quot;created_at&quot;,       :null =&gt; false
+    t.datetime &quot;updated_at&quot;,       :null =&gt; false
+  end
+
+  create_table &quot;roles&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 6 nodes                        <a href="schema.html#L29" class="js-smell-location">0</a>                  <a href="schema.html#L42" class="js-smell-location">1</a>                  <a href="schema.html#L59" class="js-smell-location">2</a>                  <a href="schema.html#L122" class="js-smell-location">3</a>                  <a href="schema.html#L151" class="js-smell-location">4</a>                  <a href="schema.html#L196" class="js-smell-location">5</a>                  </span>  </li></ul>
+    t.string   &quot;name&quot;
+    t.datetime &quot;created_at&quot;, :null =&gt; false
+    t.datetime &quot;updated_at&quot;, :null =&gt; false
+  end
+
+  create_table &quot;table_cell_items&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 6 nodes                        <a href="schema.html#L35" class="js-smell-location">0</a>                  <a href="schema.html#L65" class="js-smell-location">1</a>                  <a href="schema.html#L115" class="js-smell-location">2</a>                  <a href="schema.html#L189" class="js-smell-location">3</a>                  <a href="schema.html#L202" class="js-smell-location">4</a>                  <a href="schema.html#L229" class="js-smell-location">5</a>                  </span>  </li></ul>
+    t.integer  &quot;table_template_id&quot;
+    t.integer  &quot;resource_type_id&quot;
+    t.datetime &quot;created_at&quot;,        :null =&gt; false
+    t.datetime &quot;updated_at&quot;,        :null =&gt; false
+  end
+
+  create_table &quot;table_filters&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 3 nodes                        <a href="schema.html#L105" class="js-smell-location">0</a>                  <a href="schema.html#L209" class="js-smell-location">1</a>                  <a href="schema.html#L219" class="js-smell-location">2</a>                  </span>  </li></ul>
+    t.integer  &quot;table_template_id&quot;
+    t.integer  &quot;resource_id&quot;
+    t.integer  &quot;position_num&quot;
+    t.string   &quot;position_float&quot;
+    t.string   &quot;delimiter&quot;
+    t.datetime &quot;created_at&quot;,        :null =&gt; false
+    t.datetime &quot;updated_at&quot;,        :null =&gt; false
+  end
+
+  create_table &quot;table_headers&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 3 nodes                        <a href="schema.html#L105" class="js-smell-location">0</a>                  <a href="schema.html#L209" class="js-smell-location">1</a>                  <a href="schema.html#L219" class="js-smell-location">2</a>                  </span>  </li></ul>
+    t.integer  &quot;resource_type_id&quot;
+    t.integer  &quot;table_template_id&quot;
+    t.string   &quot;orientation&quot;
+    t.integer  &quot;position_num&quot;
+    t.integer  &quot;parent_id&quot;
+    t.datetime &quot;created_at&quot;,        :null =&gt; false
+    t.datetime &quot;updated_at&quot;,        :null =&gt; false
+  end
+
+  create_table &quot;table_templates&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 6 nodes                        <a href="schema.html#L35" class="js-smell-location">0</a>                  <a href="schema.html#L65" class="js-smell-location">1</a>                  <a href="schema.html#L115" class="js-smell-location">2</a>                  <a href="schema.html#L189" class="js-smell-location">3</a>                  <a href="schema.html#L202" class="js-smell-location">4</a>                  <a href="schema.html#L229" class="js-smell-location">5</a>                  </span>  </li></ul>
+    t.string   &quot;name&quot;
+    t.text     &quot;cell_body&quot;
+    t.datetime &quot;created_at&quot;, :null =&gt; false
+    t.datetime &quot;updated_at&quot;, :null =&gt; false
+  end
+
+  create_table &quot;users&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) create_table#users has a flog score of 32          </span>  </li></ul>
+    t.string   &quot;email&quot;,                  :default =&gt; &quot;&quot;, :null =&gt; false
+    t.string   &quot;encrypted_password&quot;,     :default =&gt; &quot;&quot;
+    t.string   &quot;reset_password_token&quot;
+    t.datetime &quot;reset_password_sent_at&quot;
+    t.datetime &quot;remember_created_at&quot;
+    t.integer  &quot;sign_in_count&quot;,          :default =&gt; 0,  :null =&gt; false
+    t.datetime &quot;current_sign_in_at&quot;
+    t.datetime &quot;last_sign_in_at&quot;
+    t.string   &quot;current_sign_in_ip&quot;
+    t.string   &quot;last_sign_in_ip&quot;
+    t.string   &quot;confirmation_token&quot;
+    t.datetime &quot;confirmed_at&quot;
+    t.datetime &quot;confirmation_sent_at&quot;
+    t.integer  &quot;roleid&quot;
+    t.string   &quot;username&quot;
+    t.string   &quot;unconfirmed_email&quot;
+    t.string   &quot;invitation_token&quot;
+    t.datetime &quot;invitation_created_at&quot;
+    t.datetime &quot;invitation_sent_at&quot;
+    t.datetime &quot;invitation_accepted_at&quot;
+    t.integer  &quot;invitation_limit&quot;
+    t.integer  &quot;invited_by_id&quot;
+    t.string   &quot;invited_by_type&quot;
+    t.integer  &quot;invitations_count&quot;,      :default =&gt; 0
+  end
+
+  add_index &quot;users&quot;, [&quot;confirmation_token&quot;], :name =&gt; &quot;index_users_on_confirmation_token&quot;, :unique =&gt; true
+  add_index &quot;users&quot;, [&quot;email&quot;], :name =&gt; &quot;index_users_on_email&quot;, :unique =&gt; true
+  add_index &quot;users&quot;, [&quot;invitation_token&quot;], :name =&gt; &quot;index_users_on_invitation_token&quot;, :unique =&gt; true
+  add_index &quot;users&quot;, [&quot;invitations_count&quot;], :name =&gt; &quot;index_users_on_invitations_count&quot;
+  add_index &quot;users&quot;, [&quot;invited_by_id&quot;], :name =&gt; &quot;index_users_on_invited_by_id&quot;
+  add_index &quot;users&quot;, [&quot;reset_password_token&quot;], :name =&gt; &quot;index_users_on_reset_password_token&quot;, :unique =&gt; true
+
+  create_table &quot;validators&quot;, :force =&gt; true do |t|<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="schema.html#L81" class="js-smell-location">0</a>                  <a href="schema.html#L270" class="js-smell-location">1</a>                  </span>  </li></ul>
+    t.string   &quot;name&quot;
+    t.string   &quot;body&quot;
+    t.integer  &quot;field_type_id&quot;
+    t.datetime &quot;created_at&quot;,    :null =&gt; false
+    t.datetime &quot;updated_at&quot;,    :null =&gt; false
+    t.string   &quot;message&quot;
+  end
+
+end
+</code>
+
+    <script src='../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../assets/javascripts/application.js'></script>
+  </body>
+</html>

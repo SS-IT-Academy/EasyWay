@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-d circled-text circle ">D</span>
+  <h2 class="file-name">EventResourcesControllerSpec</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-23 18:10:02 +0200'>2016-03-23 18:10:02 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      248 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      8 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      50 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">require &#39;spec_helper&#39;
+
+describe EventResourcesController , type: :controller, authenticated: true do
+  context &quot;GET index&quot; do
+
+    it &quot;event_resources should include event_resource&quot; do
+      event_resource1 = create(:event_resource)
+      event_resource2 = create(:event_resource)
+      get :index
+      expect(assigns(:event_resources)).to eq([event_resource1,event_resource2])
+    end
+
+    it &quot;expected response from index page&quot; do
+      get :index
+      expect(response).to render_template(:index)
+    end
+
+  end
+
+  context &quot;GET show&quot; do
+
+    it &quot;event_resource should be equal event_resource&quot; do
+      event_resource = create(:event_resource)
+      get :show, id: event_resource
+      expect(assigns(:event_resource)).to eq(event_resource)
+    end
+
+    it &quot;expected response from show page&quot; do
+      get :show, id: create(:event_resource)
+      expect(response).to render_template(:show)
+    end
+
+  end
+
+  context &quot;GET new&quot; do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 3 nodes                        <a href="event_resources_controller_spec.html#L35" class="js-smell-location">0</a>                  <a href="permissions_controller_spec.html#L38" class="js-smell-location">1</a>                  <a href="recurrences_controller_spec.html#L35" class="js-smell-location">2</a>                  </span>  </li></ul>
+
+    it &quot;event_resource should not be a new EventResource&quot; do
+      get :new
+      expect(assigns(:event_resources)).to_not be_a_new(EventResource)
+    end
+
+    it &quot;event_resource should be a new EventResource&quot; do
+      get :new
+      expect(assigns(:event_resource)).to be_a_new(EventResource)
+    end
+
+    it &quot;unexpected response from new page&quot; do
+      get :new
+      expect(response).to_not render_template(:news)
+    end
+
+    it &quot;expected response from new page&quot; do
+      get :new
+      expect(response).to render_template(:new)
+    end
+
+  end
+
+  context &quot;GET edit&quot; do
+
+    it &#39;event_resource equal event_resource&#39; do
+      event_resource = create(:event_resource)
+      get :edit, id: event_resource
+      expect(assigns(:event_resource)).to eq(event_resource)
+    end
+
+    it &#39;render edit page&#39; do
+      get :edit, id: create(:event_resource)
+      expect(response).to render_template(:edit)
+    end
+
+  end
+
+  context &quot;POST create&quot; do
+
+    it &quot;expected creating new EventResource&quot; do
+      expect{
+        post :create, event_resource: attributes_for(:event_resource)
+      }.to change(EventResource,:count).by(1)
+    end
+
+    it &quot;redirects to the new EventResource&quot; do
+      post :create, event_resource: attributes_for(:event_resource)
+      response.should redirect_to EventResource.last
+    end
+
+    it &quot;does not create new EventResource&quot; do
+      expect{
+        post :create, event_resource: attributes_for(:invalid_event_resource)
+      }.to_not change(EventResource,:count)
+    end
+
+    it &quot;render new action page&quot; do
+      post :create, event_resource: attributes_for(:invalid_event_resource)
+      response.should render_template :new
+    end
+
+  end
+
+  context &quot;PUT update&quot; do
+
+    it &quot;event_resource should be equal event_resource&quot; do
+      event_resource = create(:event_resource)
+      put :update, id: event_resource
+      assigns(:event_resource).should eq(event_resource)
+    end
+
+    it &quot;event_resource should not be equal event_resource&quot; do
+      event_resource1 = create(:event_resource)
+      event_resource2 = create(:event_resource)
+      put :update, id: event_resource1
+      expect(assigns(:event_resource1)).to_not eq (event_resource2)
+    end
+
+    it &quot;changes event_resource&#39;s attributes&quot; do
+      event_resource = create(:event_resource)
+      put :update, id: event_resource, event_resource: attributes_for(:event_resource,
+        resource_id: 3,
+        event_id: 4
+      )
+      event_resource.reload
+      event_resource.resource_id.should eq(3)
+      event_resource.event_id.should eq(4)
+    end
+
+    it &quot;redirects to the updated event_resource&quot; do
+      put :update, id: create(:event_resource), event_resource: attributes_for(:event_resource, event_id: 8)
+      response.should redirect_to :event_resource
+    end
+
+    it &#39;render event_resource_edit_path when invalid_event_resource&#39; do
+      put :update, id: create(:event_resource), event_resource: attributes_for(:invalid_event_resource)
+      response.should render_template :edit
+    end
+
+  end
+
+  context &quot;DELETE destroy&quot; do
+
+    it &quot;deletes event_resource&quot; do 
+      event_resource = create(:event_resource)
+      expect{
+        delete :destroy, id: event_resource
+      }.to change(EventResource,:count).by(-1)
+    end
+
+    it &quot;redirects to event_resource_url&quot; do
+      delete :destroy, id: create(:event_resource)
+      response.should redirect_to event_resources_url
+    end
+
+  end
+
+  context &#39;remove_event_resource&#39; do
+
+    # it &#39;delete event_resource&#39; do
+    #   event_resource = create(:event_resource)
+    #   expect{
+    #     delete :remove_event_resource, id: event_resource
+    #   }.to change(Event,:count).by(-1)
+    # end
+
+    # it &#39;redirects to json&#39; do
+    #   delete :remove_event_resource, id: create(:event_resource)
+    #   response.should render_template.to_json
+    # end
+
+  end
+
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

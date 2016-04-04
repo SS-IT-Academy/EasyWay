@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe EventResourcesController do
-
+describe EventResourcesController , type: :controller, authenticated: true do
   context "GET index" do
 
     it "event_resources should include event_resource" do

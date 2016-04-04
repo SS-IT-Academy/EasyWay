@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-d circled-text circle ">D</span>
+  <h2 class="file-name">EventsControllerSpec</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-23 18:10:02 +0200'>2016-03-23 18:10:02 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      311 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      13 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      44 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code"># require &#39;simplecov&#39;
+# SimpleCov.start
+require &#39;spec_helper&#39;
+
+describe EventsController do
+  include RSpec::Rails::ControllerExampleGroup
+
+  context &#39;GET index&#39; do
+
+    it &quot;assigns events&quot; do
+      event1 = create(:event)
+      event2 = create(:event)
+      get :index
+      assigns(:events) == [event1,event2]
+    end
+
+    it &quot;render index page&quot; do
+      get :index
+      expect(response).to render_template(:index)
+    end
+
+  end 
+
+  context &#39;GET show&#39; do
+
+    it &#39;assigns event&#39; do
+      event = create(:event)
+      get :show, id: event
+      expect(assigns(:event)).to eq(event)
+    end
+
+    it &#39;render show page&#39; do
+      get :show, id: create(:event)
+      expect(response).to render_template(:show)
+    end
+
+  end
+
+  context &quot;GET new&quot; do
+
+    it &quot;event should not be a new Event&quot; do
+      get :new
+      expect(assigns(:events)).to_not be_a_new(Event)
+    end
+
+    it &#39;event should be a new Event&#39; do
+      recurrence1 = create(:recurrence)
+      recurrence2 = create(:recurrence)
+      get :new, id: create(:event)
+      expect(assigns(:event)).to be_a_new(Event)
+    end
+
+    it &#39;expected response from new page&#39; do
+      get :new, id: create(:event)
+      expect(response).to render_template(&#39;new&#39;)
+    end
+
+    it &quot;unexpected response from new page&quot; do
+      get :new
+      expect(response).to_not render_template(:news)
+    end
+
+  end
+
+  context &quot;GET edit&quot; do
+
+    it &#39;assigns event&#39; do
+      event = create(:event)
+      get :edit, id: event
+      expect(assigns(:event)).to eq(event)
+    end
+
+    it &#39;render edit page&#39; do
+      get :edit, id: create(:event)
+      expect(response).to render_template(&#39;edit&#39;)
+    end
+
+  end
+
+  context &quot;POST create&quot; do
+
+    let(:valid_attributes) do <ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">(DuplicateCode) Identical code found in 2 nodes                        <a href="events_controller_spec.html#L82" class="js-smell-location">0</a>                  <a href="events_controller_spec.html#L127" class="js-smell-location">1</a>                  </span>  </li></ul>
+      { 
+        :name =&gt; &quot;Event&quot;, 
+        :start_at =&gt; Time.now + 1.day, 
+        :end_at =&gt; Time.now + 2.day, 
+        :recurrence_id =&gt; 1,
+        :event_types_id =&gt; 1 
+      }
+    end
+    
+    it &#39;created new Event&#39; do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) context(POST create)::it#created new Event has a flog score of 49          </span>  </li></ul>
+      event = create(:event)
+      resource1 = create(:resource)
+      resource2 = create(:resource)
+      res_list = Resource.all
+      event_resource_attr = {event_id: event.id, resource_id: res_list.first.id}
+      event_resource = EventResource.create(event_resource_attr)
+      resources_params = {resources: [{id: event_resource.id, value: res_list.first.id}, {value: res_list[1].id}]}
+      end_at = Time.now + 3.day
+      Event.count.should eq(1)
+      post :create, {id: event.id, event: valid_attributes.merge(end_at: end_at)}.merge(resources_params)
+      event.end_at = end_at
+      Event.count.should eq(2) 
+    end
+
+    it &quot;redirects to the new event&quot; do
+      post :create, event: attributes_for(:event)
+      response.should redirect_to Event.last
+    end
+
+    it &#39;does not create new event&#39; do
+      expect{
+        post :create, event: attributes_for(:invalid_event)
+        }.to_not change(Event,:count)
+    end
+
+    it &#39;render events_new_path&#39; do
+      post :create, event: attributes_for(:invalid_event)
+      response.should render_template :new
+    end
+
+  end
+
+  describe &quot;PUT update&quot; do
+
+    let(:valid_attributes) do <ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">(DuplicateCode) Identical code found in 2 nodes                        <a href="events_controller_spec.html#L82" class="js-smell-location">0</a>                  <a href="events_controller_spec.html#L127" class="js-smell-location">1</a>                  </span>  </li></ul>
+      { 
+        :name =&gt; &quot;Event&quot;, 
+        :start_at =&gt; Time.now + 1.day, 
+        :end_at =&gt; Time.now + 2.day, 
+        :recurrence_id =&gt; 1,
+        :event_types_id =&gt; 1 
+      }
+    end
+
+    it &quot;assigns the requested event as @event&quot; do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) describe(PUT update)::it#assigns the requested event as @event has a flog score of 52          </span>  </li></ul>
+      
+      event = create(:event)
+      resource1 = create(:resource)
+      resource2 = create(:resource)
+      res_list = Resource.all
+      event_resource_attr = {event_id: event.id, resource_id: res_list.first.id}
+      event_resource = EventResource.create(event_resource_attr)
+      resources_params = {resources: [{id: event_resource.id, value: res_list.first.id}, {id: event_resource.id, value: res_list[1].id}]}
+      end_at = Time.now + 3.day
+      Event.count.should eq(1)
+      put :update, {id: event.id, event: valid_attributes.merge(end_at: end_at)}.merge(resources_params)
+      expect(assigns(:event)).to eq(event)
+
+    end
+
+    it &#39;render events_edit_path when invalid_event&#39; do
+      put :update, id: create(:event), event: attributes_for(:invalid_event)
+      response.should render_template :edit
+    end
+
+  end
+
+  context &quot;DELETE destroy&quot; do
+
+    it &quot;deletes event&quot; do 
+      event = create(:event)
+      expect{
+        delete :destroy, id: event
+      }.to change(Event,:count).by(-1)
+    end
+
+    it &quot;redirects to events_url&quot; do
+      delete :destroy, id: create(:event)
+      response.should redirect_to events_url
+    end
+
+  end
+
+  context &#39;event based on&#39; do
+   
+  end
+
+
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

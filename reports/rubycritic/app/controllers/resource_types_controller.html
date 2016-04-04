@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-f circled-text circle ">F</span>
+  <h2 class="file-name">ResourceTypesController</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-21 20:16:13 +0200'>2016-03-21 20:16:13 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      200 complexity
+    </div>
+    <div class="file-stat">
+      15.4 complexity per method
+    </div>
+    <div class="file-stat">
+      19 churn
+    </div>
+    <div class="file-stat">
+      13 methods
+    </div>
+    <div class="file-stat">
+      52 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class ResourceTypesController &lt; ApplicationController
+  before_filter :get_resource_type,  only: [:show, :edit, :update, :destroy, :description]
+  before_filter :get_resource_types, only: [:index, :all_types, :edit]
+
+  # GET /resource_types
+  # GET /resource_types.json
+  def index
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @resource_types }
+    end
+  end
+  
+  def all_types
+    render :json =&gt; @resource_types.to_json
+  end
+  # GET /resource_types/1
+  # GET /resource_types/1.json
+  def show
+    @resource_fields = Field.where(&quot;resource_type_id = ?&quot;, params[:id])
+    
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @resource_type }
+    end
+  end
+
+  # GET /resource_types/new
+  # GET /resource_types/new.json
+  def new<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 43 nodes                        <a href="bookmarks_controller.html#L4" class="js-smell-location">0</a>                  <a href="bookmarks_controller.html#L26" class="js-smell-location">1</a>                  <a href="event_properties_controller.html#L4" class="js-smell-location">2</a>                  <a href="event_properties_controller.html#L26" class="js-smell-location">3</a>                  <a href="event_resources_controller.html#L4" class="js-smell-location">4</a>                  <a href="event_resources_controller.html#L26" class="js-smell-location">5</a>                  <a href="event_types_controller.html#L4" class="js-smell-location">6</a>                  <a href="event_types_controller.html#L26" class="js-smell-location">7</a>                  <a href="field_types_controller.html#L4" class="js-smell-location">8</a>                  <a href="field_types_controller.html#L26" class="js-smell-location">9</a>                  <a href="field_validations_controller.html#L4" class="js-smell-location">10</a>                  <a href="field_validations_controller.html#L26" class="js-smell-location">11</a>                  <a href="fields_controller.html#L4" class="js-smell-location">12</a>                  <a href="fields_controller.html#L26" class="js-smell-location">13</a>                  <a href="menus_controller.html#L4" class="js-smell-location">14</a>                  <a href="notify_events_controller.html#L7" class="js-smell-location">15</a>                  <a href="notify_observer_properties_controller.html#L4" class="js-smell-location">16</a>                  <a href="notify_observer_properties_controller.html#L35" class="js-smell-location">17</a>                  <a href="notify_observers_controller.html#L4" class="js-smell-location">18</a>                  <a href="notify_observers_controller.html#L26" class="js-smell-location">19</a>                  <a href="notify_schedulers_controller.html#L4" class="js-smell-location">20</a>                  <a href="notify_schedulers_controller.html#L26" class="js-smell-location">21</a>                  <a href="notify_templates_controller.html#L4" class="js-smell-location">22</a>                  <a href="notify_templates_controller.html#L26" class="js-smell-location">23</a>                  <a href="permissions_controller.html#L4" class="js-smell-location">24</a>                  <a href="permissions_controller.html#L26" class="js-smell-location">25</a>                  <a href="recipients_controller.html#L4" class="js-smell-location">26</a>                  <a href="recipients_controller.html#L26" class="js-smell-location">27</a>                  <a href="recurrences_controller.html#L4" class="js-smell-location">28</a>                  <a href="recurrences_controller.html#L26" class="js-smell-location">29</a>                  <a href="resource_types_controller.html#L30" class="js-smell-location">30</a>                  <a href="resource_values_controller.html#L4" class="js-smell-location">31</a>                  <a href="resource_values_controller.html#L26" class="js-smell-location">32</a>                  <a href="resources_controller.html#L8" class="js-smell-location">33</a>                  <a href="roles_controller.html#L2" class="js-smell-location">34</a>                  <a href="roles_controller.html#L26" class="js-smell-location">35</a>                  <a href="table_cell_items_controller.html#L4" class="js-smell-location">36</a>                  <a href="table_filters_controller.html#L4" class="js-smell-location">37</a>                  <a href="table_headers_controller.html#L3" class="js-smell-location">38</a>                  <a href="table_templates_controller.html#L2" class="js-smell-location">39</a>                  <a href="table_templates_controller.html#L18" class="js-smell-location">40</a>                  <a href="users_controller.html#L32" class="js-smell-location">41</a>                  <a href="validators_controller.html#L10" class="js-smell-location">42</a>                  </span>  </li></ul>
+    @resource_type = ResourceType.new
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @resource_type }
+    end
+  end
+  
+  def update_fields
+    @fields = Field.where(&quot;resource_type_id = ?&quot;, params[:resource_type_id])
+    render :json =&gt; @fields.to_json
+  end
+  
+  def get_restype_fields
+    @restype_fields = Field.where(&quot;resource_type_id = ?&quot;, params[:resource_type_id])
+    render :json =&gt; @restype_fields.to_json
+  end
+  
+  # GET /resource_types/1/edit
+  def edit
+    @resource_fields = Field.where(&quot;resource_type_id = ?&quot;, params[:id])
+    @field_types = FieldType.all
+    @validators = Validator.all
+  end
+
+  # POST /resource_types
+  # POST /resource_types.jsojoins(:field_type)n
+  def create<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) ResourceTypesController#create has a flog score of 51          </span>  </li></ul>
+    puts &quot;#&quot; * 40, params[:fields], &quot;#&quot; * 40<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) ResourceTypesController#create calls params[:fields] 3 times                        <a href="resource_types_controller.html#L58" class="js-smell-location">0</a>                  <a href="resource_types_controller.html#L62" class="js-smell-location">1</a>                  <a href="resource_types_controller.html#L63" class="js-smell-location">2</a>                  </span>  </li></ul>
+    @resource_type = ResourceType.new(params[:resource_type])
+    respond_to do |format|
+      if @resource_type.save
+        if params[:fields]<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) ResourceTypesController#create calls params[:fields] 3 times                        <a href="resource_types_controller.html#L58" class="js-smell-location">0</a>                  <a href="resource_types_controller.html#L62" class="js-smell-location">1</a>                  <a href="resource_types_controller.html#L63" class="js-smell-location">2</a>                  </span>  </li></ul>
+          params[:fields].each do |param|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) ResourceTypesController#create calls params[:fields] 3 times                        <a href="resource_types_controller.html#L58" class="js-smell-location">0</a>                  <a href="resource_types_controller.html#L62" class="js-smell-location">1</a>                  <a href="resource_types_controller.html#L63" class="js-smell-location">2</a>                  </span>  </li></ul>
+            @field = Field.new(
+              :name                       =&gt; param[:name], 
+              :field_type_id              =&gt; param[:field_type_id],
+              :resource_type_id           =&gt; @resource_type.id, 
+              :resource_type_reference_id =&gt; param[:resource_type_reference_id]
+            )
+            param[:validator_ids].each do |index|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(NestedIterators) ResourceTypesController#create contains iterators nested 3 deep          </span>  </li></ul>
+              @field.field_validations.build(validator_id: index)
+            end
+            @field.save
+          end
+        end
+        format.html { redirect_to @resource_type, notice: &#39;Resource type was successfully created.&#39; }
+        format.json { render json: @resource_type, status: :created, location: @resource_type }
+      else
+        format.html { render action: &quot;new&quot; }
+        format.json { render json: @resource_type.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def description
+    if @resource_type.update_attributes(params[:resource_type])
+      redirect_to resource_types_url, notice: &#39;Description was successfully updated.&#39;   
+    else
+      render &#39;show&#39;
+    end 
+  end
+
+  # PUT /resouresource_type_reference_idrce_types/1
+  # PUT /resource_types/1.json
+  def update<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(VeryHighComplexity) ResourceTypesController#update has a flog score of 80          </span>  </li></ul>
+    respond_to do |format|
+      if @resource_type.update_attributes(params[:resource_type])
+        if params[:fields]
+          params[:fields].each do |param|
+            if param[:id]
+              @field = Field.find(param[:id])
+              @field.update_attributes(
+                :name                       =&gt; param[:name], 
+                :field_type_id              =&gt; param[:field_type_id],
+                :resource_type_id           =&gt; params[:id],
+                :resource_type_reference_id =&gt; param[:resource_type_reference_id]
+              )<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Identical code found in 2 nodes                        <a href="resource_types_controller.html#L107" class="js-smell-location">0</a>                  <a href="resource_types_controller.html#L114" class="js-smell-location">1</a>                  </span>  </li></ul>
+            else
+              @field = Field.create(
+                :name             =&gt; param[:name],
+                :field_type_id    =&gt; param[:field_type_id],
+                :resource_type_id =&gt; params[:id],
+                :resource_type_reference_id =&gt; param[:resource_type_reference_id]
+              )<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Identical code found in 2 nodes                        <a href="resource_types_controller.html#L107" class="js-smell-location">0</a>                  <a href="resource_types_controller.html#L114" class="js-smell-location">1</a>                  </span>  </li></ul>
+            end
+            if @field.field_validations.any?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) ResourceTypesController#update calls @field.field_validations 3 times                        <a href="resource_types_controller.html#L116" class="js-smell-location">0</a>                  <a href="resource_types_controller.html#L117" class="js-smell-location">1</a>                  <a href="resource_types_controller.html#L122" class="js-smell-location">2</a>                  </span>  </li></ul>
+              @field.field_validations.each { |v| v.destroy }<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) ResourceTypesController#update calls @field.field_validations 3 times                        <a href="resource_types_controller.html#L116" class="js-smell-location">0</a>                  <a href="resource_types_controller.html#L117" class="js-smell-location">1</a>                  <a href="resource_types_controller.html#L122" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell old">    <span class="description">(UncommunicativeVariableName) ResourceTypesController#update has the variable name 'v'          </span>  </li></ul>
+            end
+            if param[:validator_ids]<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(NestedIterators) ResourceTypesController#update contains iterators nested 3 deep          </span>  </li></ul>
+              param[:validator_ids].each do |index|
+                next if index == &quot;multiselect-all&quot;
+                @field.field_validations.build(validator_id: index.to_i)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) ResourceTypesController#update calls @field.field_validations 3 times                        <a href="resource_types_controller.html#L116" class="js-smell-location">0</a>                  <a href="resource_types_controller.html#L117" class="js-smell-location">1</a>                  <a href="resource_types_controller.html#L122" class="js-smell-location">2</a>                  </span>  </li></ul>
+              end
+            end            
+            @field.save
+          end
+        end  
+        format.html { redirect_to @resource_type, notice: &#39;Resource type was successfully updated.&#39; }
+        format.json { head :no_content }
+      else
+        format.html { render action: &quot;edit&quot; }
+        format.json { render json: @resource_type.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /resource_types/1
+  # DELETE /resource_types/1.json
+  def destroy
+    begin
+      if @resource_type.destroy
+        respond_to do |format|
+          format.html { redirect_to resource_types_url }
+          format.json { head :no_content }
+        end
+      end  
+    rescue
+      respond_to do |format|
+        format.html { redirect_to &quot;index&quot;, notice: &quot;Resource_type cann&#39;t delete.&quot; }
+      end
+    end
+  end
+
+  private 
+
+  def get_resource_type
+    @resource_type = ResourceType.find(params[:id])    
+  end
+
+  def get_resource_types
+    @resource_types = ResourceType.all   
+  end
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

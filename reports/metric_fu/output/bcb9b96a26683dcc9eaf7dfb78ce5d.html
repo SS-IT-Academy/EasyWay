@@ -1,0 +1,302 @@
+<html>
+  <head>
+    <style>
+      table { background: #fff; color: #000; }
+.ruby .normal { color: #000; }
+.ruby .comment { color: #005; font-style: italic; }
+.ruby .keyword { color: #A44; font-weight: bold; }
+.ruby .method { color: #44f; }
+.ruby .class { color: #b1713d; }
+.ruby .module { color: #050; }
+.ruby .punct { color: #668; font-weight: bold; }
+.ruby .symbol { color: #00f; }
+.ruby .string { color: #4a4; }
+.ruby .char { color: #F07; }
+.ruby .ident { color: #000; }
+.ruby .constant { color: #b1713d; }
+.ruby .regex { color: #B66; background: #FEF; }
+.ruby .number { color: #F99; }
+.ruby .attribute { color: #f84; }
+.ruby .global { color: #7FB; }
+.ruby .expr { color: #227; }
+.ruby .escape { color: #277; }
+    </style>
+    <title>Analyzed File Report</title>
+  </head>
+  <body>
+    <table cellpadding='0' cellspacing='0' class='ruby'>
+      
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>  &lt;tr&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n2" name="n2">2</a></span>    &lt;td&gt;&lt;<span class="string"><span class="delimiter">%=</span><span class="content"> hidden_field_tag &quot;notify_event[mappings_attributes][][template_parameter]&quot;, parameter %&gt;&lt;%</span><span class="delimiter">=</span></span> parameter <span class="string"><span class="delimiter">%&gt;</span><span class="content">&lt;/td</span><span class="delimiter">&gt;</span></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span>    &lt;td&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n4" name="n4">4</a></span>
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n5" name="n5">5</a></span>    &lt;<span class="string"><span class="delimiter">% </span><span class="content">if</span><span class="delimiter"> </span></span><span class="instance-variable">@notify_event</span>.with_observer? <span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n6" name="n6">6</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n6" name="n6">6</a></span>      &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> select_tag(&quot;notify_event[mappings_attributes][][notify_observer_property_id][][properties]&quot;, options_for_select(options, @selec[parameter_counter]), :onchange </span><span class="delimiter">=</span></span>&gt; <span class="string"><span class="delimiter">'</span><span class="content">updatePropertyOfSelect(this, true)</span><span class="delimiter">'</span></span>, <span class="symbol">:include_blank</span> =&gt; <span class="predefined-constant">true</span>) %&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n7" name="n7">7</a></span>    &lt;%<span class="keyword">else</span><span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n8" name="n8">8</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>replace instance variable with local variable &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n8" name="n8">8</a></span>    &lt;%option_values = <span class="instance-variable">@selec</span>[parameter_counter].split(<span class="string"><span class="delimiter">'</span><span class="content">,</span><span class="delimiter">'</span></span>)%&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n9" name="n9">9</a></span>      &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> select_tag(&quot;notify_event[mappings_attributes][][notify_observer_property_id][][properties]&quot;, options_for_select(options.shift, option_values.shift), :onchange </span><span class="delimiter">=</span></span>&gt; <span class="string"><span class="delimiter">'</span><span class="content">updatePropertyOfSelect(this, true)</span><span class="delimiter">'</span></span>, <span class="symbol">:include_blank</span> =&gt; <span class="predefined-constant">true</span>) %&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>      &lt;%option_values.each <span class="keyword">do</span> |option_value|<span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n11" name="n11">11</a></span>        &lt;<span class="string"><span class="delimiter">%=</span><span class="content"> select_tag(&quot;notify_event[mappings_attributes][][notify_observer_property_id][][properties]&quot;, options_for_select(options.shift, option_value), :onchange </span><span class="delimiter">=</span></span>&gt; <span class="string"><span class="delimiter">'</span><span class="content">updatePropertyOfSelect(this)</span><span class="delimiter">'</span></span>, <span class="symbol">:include_blank</span> =&gt; <span class="predefined-constant">true</span>) %&gt;
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n12" name="n12">12</a></span>      &lt;%<span class="keyword">end</span><span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+             <ul>
+               
+                 <li>remove trailing whitespace &raquo; rails_best_practices</li>
+               
+            </ul>
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n13" name="n13">13</a></span>      
+</pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n14" name="n14">14</a></span>    &lt;%<span class="keyword">end</span><span class="string"><span class="delimiter">%&gt;</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span><span class="string"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n15" name="n15">15</a></span>    &lt;<span class="regexp"><span class="delimiter">/</span><span class="content">td&gt;</span></span>
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span><span class="regexp"><span class="content"></span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+        
+        <tr>
+          <td valign='top'>
+           
+              &nbsp;
+          
+          </td>
+          <td valign='top'>
+            <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n16" name="n16">16</a></span>  &lt;<span class="regexp"><span class="delimiter">/</span><span class="content">tr&gt;</span></span></pre></div>
+</div>
+
+          </td>
+         </tr>
+         
+    </table>
+  </body>
+</html>

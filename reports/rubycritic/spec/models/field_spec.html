@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-a circled-text circle ">A</span>
+  <h2 class="file-name">FieldSpec</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-23 18:10:02 +0200'>2016-03-23 18:10:02 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      65 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      7 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">require &#39;spec_helper&#39;
+
+describe Field do
+  let(:field_type) { create(:field_type) }
+  let(:resource_type) { create(:resource_type) }
+  let(:field) { create(:field, field_type_id: field_type.id, resource_type_id: resource_type.id) }
+
+  subject { field }
+
+  it { should respond_to(:field_type_id) }
+  it { should respond_to(:name) }
+  it { should respond_to(:resource_type_id) }
+  it { should respond_to(:resource_type_reference_id) }
+  it { should respond_to(:resource_values) }
+  it { should respond_to(:validators) }
+  it { should respond_to(:field_validations) }
+  it (:field_type) { should == field_type }
+  it (:resource_type) { should == resource_type }
+
+  it { should be_valid }
+
+  describe &quot;when resource_type_id is not present&quot; do
+    before { field.resource_type_id = nil }
+    it { should_not be_valid }
+  end
+
+  describe &quot;when field_type_id is not present&quot; do
+    before { field.field_type_id = nil }
+    it { should_not be_valid }
+  end
+  
+  describe &quot;when name is not present&quot; do
+    before { field.name = nil }
+    it { should_not be_valid }
+  end
+
+  describe &quot;resource values association&quot; do
+    it &quot;should destroy associated resource values&quot; do
+      resource_values = field.resource_values
+      field.destroy
+      resource_values.should be_empty
+    end
+  end
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

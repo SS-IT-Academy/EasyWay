@@ -1,12 +1,8 @@
 EasyW::Application.routes.draw do
-
   
   devise_for :users
   
   resources :users
-
-  
-
 
   #START TIMETABLE
   resources :table_headers

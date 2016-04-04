@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe RecurrencesController do
-
+describe RecurrencesController , type: :controller, authenticated: true do
   context 'GET index' do
 
     it 'recurrences should include recurrence' do

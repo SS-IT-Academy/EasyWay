@@ -1,34 +1,34 @@
 require "spec_helper"
 
-describe FieldTypesController do
+describe FieldTypesController, type: :controller do
   describe "routing" do
 
     it "routes to #index" do
-      get("/field_types").should route_to("field_types#index")
+      expect(:get => "/field_types").to route_to(controller: "field_types", action: "index")      
     end
 
     it "routes to #new" do
-      get("/field_types/new").should route_to("field_types#new")
+      expect(:get => "/field_types/new").to route_to(controller: "field_types", action: "new")      
     end
 
     it "routes to #show" do
-      get("/field_types/1").should route_to("field_types#show", :id => "1")
+      expect(:get => "/field_types/1").to route_to(controller: "field_types", action: "show", id: '1')      
     end
 
     it "routes to #edit" do
-      get("/field_types/1/edit").should route_to("field_types#edit", :id => "1")
+      expect(:get => "/field_types/1/edit").to route_to(controller: "field_types", action: "edit", id: '1')      
     end
 
     it "routes to #create" do
-      post("/field_types").should route_to("field_types#create")
+      expect(:post => "/field_types").to route_to(controller: "field_types", action: "create")      
     end
 
     it "routes to #update" do
-      put("/field_types/1").should route_to("field_types#update", :id => "1")
+      expect(:put => "/field_types/1").to route_to(controller: "field_types", action: "update", id: '1')      
     end
 
     it "routes to #destroy" do
-      delete("/field_types/1").should route_to("field_types#destroy", :id => "1")
+      expect(:delete => "/field_types/1").to route_to(controller: "field_types", action: "destroy", id: '1')      
     end
 
   end

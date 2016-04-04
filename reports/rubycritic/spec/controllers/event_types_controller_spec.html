@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-d circled-text circle ">D</span>
+  <h2 class="file-name">EventTypesControllerSpec</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-23 18:10:02 +0200'>2016-03-23 18:10:02 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      249 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      5 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      45 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">require &#39;spec_helper&#39;
+
+describe EventTypesController , type: :controller, authenticated: true do
+  context &quot;GET index&quot; do
+
+    it &quot;event_type should include event_type&quot; do
+      event_type1 = create(:event_type)
+      event_type2 = create(:event_type)
+      get :index
+      expect(assigns(:event_types)).to eq([event_type1,event_type2])
+    end
+
+    it &quot;expected response from index page&quot; do
+      get :index
+      expect(response).to render_template(:index)
+    end
+
+  end
+
+  context &quot;GET show&quot; do
+
+    it &quot;event_type should be equal event_type&quot; do
+      event_type = create(:event_type)
+      get :show, id: event_type
+      expect(assigns(:event_type)).to eq(event_type)
+    end
+
+    it &quot;expected response from show page&quot; do
+      get :show, id: create(:event_type)
+      expect(response).to render_template(:show)
+    end
+
+  end
+
+  context &quot;GET new&quot; do
+
+    it &quot;event_type should not be a new EventType&quot; do
+      get :new
+      expect(assigns(:event_types)).to_not be_a_new(EventType)
+    end
+
+    it &quot;event_type should be a new EventType&quot; do
+      get :new
+      expect(assigns(:event_type)).to be_a_new(EventType)
+    end
+
+    it &quot;unexpected response from new page&quot; do
+      get :new
+      expect(response).to_not render_template(:news)
+    end
+
+    it &quot;expected response from new page&quot; do
+      get :new
+      expect(response).to render_template(:new)
+    end
+
+    context &quot;GET edit&quot; do
+
+      it &#39;event_type equal event_type&#39; do
+        event_type = create(:event_type)
+        get :edit, id: event_type
+        expect(assigns(:event_type)).to eq(event_type)
+      end
+
+      it &#39;render edit page&#39; do
+        get :edit, id: create(:event_type)
+        expect(response).to render_template(:edit)
+      end
+
+    end
+
+    context &quot;POST create&quot; do
+
+      it &quot;expected creating new EventType&quot; do
+        expect{
+          post :create, event_type: attributes_for(:event_type)
+        }.to change(EventType,:count).by(1)
+      end
+
+      it &quot;redirect to the new EventType&quot; do
+        post :create, event_type: attributes_for(:event_type)
+        response.should redirect_to EventType.last
+      end
+
+      it &quot;does not create new EventType&quot; do
+        expect{
+          post :create, event_type: attributes_for(:invalid_event_type)
+        }.to_not change(EventType,:count)
+      end
+
+      it &quot;render new action page&quot; do
+        post :create, event_type: attributes_for(:invalid_event_type)
+        response.should render_template :new
+      end
+
+    end
+
+    context &quot;PUT update&quot; do
+
+      it &quot;event_type should be equal event_type&quot; do
+        event_type = create(:event_type)
+        put :update, id: event_type
+        assigns(:event_type).should eq(event_type)
+      end
+
+      it &quot;event_type should not be equal event_type&quot; do
+        event_type1 = create(:event_type)
+        event_type2 = create(:event_type)
+        put :update, id: event_type1
+        expect(assigns(:event_type1)).to_not eq (event_type2)
+      end
+
+      it &quot;changes event_type&#39;s attributes&quot; do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="event_types_controller_spec.html#L113" class="js-smell-location">0</a>                  <a href="recurrences_controller_spec.html#L109" class="js-smell-location">1</a>                  </span>  </li></ul>
+        event_type = create(:event_type)
+        put :update, id: event_type, event_type: attributes_for(:event_type, name: &quot;some name&quot; )
+        event_type.reload
+        event_type.name.should eq(&quot;some name&quot;)
+      end
+
+      it &quot;redirects to the updated event_type&quot; do<ul class="nocode smells js-smells">  <li class="smell ">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="event_types_controller_spec.html#L120" class="js-smell-location">0</a>                  <a href="recurrences_controller_spec.html#L117" class="js-smell-location">1</a>                  </span>  </li></ul>
+        put :update, id: create(:event_type), event_type: attributes_for(:event_type, name: &quot;some name&quot;)
+        response.should redirect_to :event_type
+      end
+
+      it &#39;render event_type_edit_path when invalid_event_type&#39; do
+        put :update, id: create(:event_type), event_type: attributes_for(:invalid_event_type)
+        response.should render_template :edit
+      end
+
+    end
+
+    context &quot;DELETE destroy&quot; do
+
+      it &quot;deletes event_type&quot; do 
+        event_type = create(:event_type)
+        expect{
+          delete :destroy, id: event_type
+        }.to change(EventType,:count).by(-1)
+      end
+
+      it &quot;redirects to event_type_url&quot; do
+        delete :destroy, id: create(:event_type)
+        response.should redirect_to event_types_url
+      end
+
+    end
+
+  end
+
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

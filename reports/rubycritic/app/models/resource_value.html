@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-a circled-text circle ">A</span>
+  <h2 class="file-name">ResourceValue</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-23 18:10:02 +0200'>2016-03-23 18:10:02 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      54 complexity
+    </div>
+    <div class="file-stat">
+      27.0 complexity per method
+    </div>
+    <div class="file-stat">
+      16 churn
+    </div>
+    <div class="file-stat">
+      2 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class ResourceValue &lt; ActiveRecord::Base
+  attr_accessible :field_id, :resource_id, :value, :resource_reference_id
+  
+  belongs_to :resource
+  belongs_to :field
+  # has_one :resource_type, :through =&gt; :resource,
+  #    :foreign_key =&gt; &quot;resource_reference_id&quot;
+  delegate :resource_type, :to =&gt; :resource, :allow_nil =&gt; true
+  validates :field_id, :resource, :presence =&gt; true
+  validate :custom_validation
+
+  def custom_validation
+    field = Field.where(id:field_id)
+    validators = field.try(:validators)
+    validators.each do |v|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UncommunicativeVariableName) ResourceValue#custom_validation has the variable name 'v'          </span>  </li></ul>
+      evaluate_validator(v, value) if v.is_a?(Validator)
+    end unless validators.blank?
+    true
+  end
+
+  private 
+
+  def evaluate_validator(validator, value)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) ResourceValue#evaluate_validator has a flog score of 44          </span>  </li></ul>
+    puts validator.body.gsub(&quot;@@&quot;, value)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) ResourceValue#evaluate_validator calls validator.body 3 times                        <a href="resource_value.html#L24" class="js-smell-location">0</a>                  <a href="resource_value.html#L25" class="js-smell-location">1</a>                  <a href="resource_value.html#L27" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell old">    <span class="description">(DuplicateMethodCall) ResourceValue#evaluate_validator calls validator.body.gsub("@@", value) 3 times                        <a href="resource_value.html#L24" class="js-smell-location">0</a>                  <a href="resource_value.html#L25" class="js-smell-location">1</a>                  <a href="resource_value.html#L27" class="js-smell-location">2</a>                  </span>  </li></ul>
+    puts eval(validator.body.gsub(&quot;@@&quot;, value))<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) ResourceValue#evaluate_validator calls validator.body 3 times                        <a href="resource_value.html#L24" class="js-smell-location">0</a>                  <a href="resource_value.html#L25" class="js-smell-location">1</a>                  <a href="resource_value.html#L27" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell old">    <span class="description">(DuplicateMethodCall) ResourceValue#evaluate_validator calls validator.body.gsub("@@", value) 3 times                        <a href="resource_value.html#L24" class="js-smell-location">0</a>                  <a href="resource_value.html#L25" class="js-smell-location">1</a>                  <a href="resource_value.html#L27" class="js-smell-location">2</a>                  </span>  </li></ul>
+    begin
+      result = eval(validator.body.gsub(&quot;@@&quot;, value))<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) ResourceValue#evaluate_validator calls validator.body 3 times                        <a href="resource_value.html#L24" class="js-smell-location">0</a>                  <a href="resource_value.html#L25" class="js-smell-location">1</a>                  <a href="resource_value.html#L27" class="js-smell-location">2</a>                  </span>  </li>  <li class="smell old">    <span class="description">(DuplicateMethodCall) ResourceValue#evaluate_validator calls validator.body.gsub("@@", value) 3 times                        <a href="resource_value.html#L24" class="js-smell-location">0</a>                  <a href="resource_value.html#L25" class="js-smell-location">1</a>                  <a href="resource_value.html#L27" class="js-smell-location">2</a>                  </span>  </li></ul>
+      unless [TrueClass, FalseClass].include?(result.class) 
+        raise Exception.new(&quot;Validator result class should be boolean, but is #{result.class}&quot;) 
+      end
+      errors[:base] &lt;&lt; validator.message unless result
+    rescue =&gt; e
+      errors[:base] &lt;&lt; &quot;Validator &#39;#{validator.name}&#39; with id #{validator.id} has bad syntax. Error: #{e.message}&quot;<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(UncommunicativeVariableName) ResourceValue#evaluate_validator has the variable name 'e'          </span>  </li></ul>
+    end
+  end  
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

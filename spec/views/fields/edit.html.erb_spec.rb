@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "fields/edit" do
+describe "fields/edit", type: :view do
   before(:each) do
     @field = assign(:field, stub_model(Field,
       :name => "MyString",

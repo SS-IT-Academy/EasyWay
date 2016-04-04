@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "resource_values/show" do
+describe "resource_values/show", type: :view do
   before(:each) do
     @resource_value = assign(:resource_value, stub_model(ResourceValue,
       :field_id => 1,

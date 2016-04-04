@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-d circled-text circle ">D</span>
+  <h2 class="file-name">EventsController</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-21 20:16:13 +0200'>2016-03-21 20:16:13 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      197 complexity
+    </div>
+    <div class="file-stat">
+      21.9 complexity per method
+    </div>
+    <div class="file-stat">
+      36 churn
+    </div>
+    <div class="file-stat">
+      9 methods
+    </div>
+    <div class="file-stat">
+      44 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class EventsController &lt; ApplicationController<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(TooManyInstanceVariables) EventsController has at least 11 instance variables          </span>  </li></ul>
+
+  before_filter :find_event, only:[:show, :edit, :update, :destroy]
+
+  # GET /events
+  # GET /events.json
+  def index
+    @parent_events = Event.where(parent_id: nil)
+    @parent_events = @parent_events.paginate(:page =&gt; params[:page], :per_page =&gt; 5)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @events }
+    end
+  end
+
+  # GET /events/1
+  # GET /events/1.json
+  def show
+    @child_events = Event.where(parent_id: @event.id)
+    @child_events = @child_events.paginate(:page =&gt; params[:page], :per_page =&gt; 5)
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @event }
+    end
+  end
+
+  # GET /events/new
+  # GET /events/new.json
+  def new
+    @event = Event.new
+    @events = Event.all
+    @event_types = EventType.all
+    @recurrences = Recurrence.all
+    @event.recurrence = Recurrence.new
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @event }
+    end
+  end
+
+  # GET /events/1/edit
+  def edit
+    @events = Event.all
+    @event_types = EventType.all
+    @resources = Resource.all
+    @recurrences = Recurrence.all
+    @event_resources = EventResource.where(&quot;event_id = ?&quot;, @event.id)
+    @event_resources_without_first = EventResource.where(&quot;event_id = ?&quot;, @event.id)
+    @event_resources_without_first.shift
+  end
+
+  # POST /events
+  # POST /events.json  
+  def create<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) EventsController#create has a flog score of 57          </span>  </li></ul>
+    @event = Event.new(params[:event])
+
+    duration = @event.get_duration params    
+    @event.create_children_event(duration)
+
+    respond_to do |format|
+      if @event.save
+        if params[:resources]
+          params[:resources].each do |param|
+            @resource = EventResource.new({:resource_id =&gt; param[:value], :event_id =&gt; @event.id})
+            @resource.save
+
+            @event.children.each do |child|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(NestedIterators) EventsController#create contains iterators nested 3 deep          </span>  </li></ul>
+              @resources = EventResource.new({:resource_id =&gt; param[:value], :event_id =&gt; child.id})
+              @resources.save
+            end
+          end
+        format.html { redirect_to @event, notice: &#39;Event was successfully created.&#39; }<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) EventsController#create calls format.html 3 times                        <a href="events_controller.html#L74" class="js-smell-location">0</a>                  <a href="events_controller.html#L77" class="js-smell-location">1</a>                  <a href="events_controller.html#L81" class="js-smell-location">2</a>                  </span>  </li></ul>
+        format.json { render json: @event, status: :created, location: @event }<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) EventsController#create calls format.json 3 times                        <a href="events_controller.html#L75" class="js-smell-location">0</a>                  <a href="events_controller.html#L78" class="js-smell-location">1</a>                  <a href="events_controller.html#L82" class="js-smell-location">2</a>                  </span>  </li></ul>
+        else
+          format.html { redirect_to @event }<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) EventsController#create calls format.html 3 times                        <a href="events_controller.html#L74" class="js-smell-location">0</a>                  <a href="events_controller.html#L77" class="js-smell-location">1</a>                  <a href="events_controller.html#L81" class="js-smell-location">2</a>                  </span>  </li></ul>
+          format.json { render json: @event.errors, status: :unprocessable_entity }<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) EventsController#create calls format.json 3 times                        <a href="events_controller.html#L75" class="js-smell-location">0</a>                  <a href="events_controller.html#L78" class="js-smell-location">1</a>                  <a href="events_controller.html#L82" class="js-smell-location">2</a>                  </span>  </li></ul>
+        end
+      else
+        format.html { render action: &quot;new&quot; }<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) EventsController#create calls format.html 3 times                        <a href="events_controller.html#L74" class="js-smell-location">0</a>                  <a href="events_controller.html#L77" class="js-smell-location">1</a>                  <a href="events_controller.html#L81" class="js-smell-location">2</a>                  </span>  </li></ul>
+        format.json { render json: @event.errors, status: :unprocessable_entity }<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) EventsController#create calls format.json 3 times                        <a href="events_controller.html#L75" class="js-smell-location">0</a>                  <a href="events_controller.html#L78" class="js-smell-location">1</a>                  <a href="events_controller.html#L82" class="js-smell-location">2</a>                  </span>  </li></ul>
+      end
+    end
+  end
+
+  # PUT /events/1
+  # PUT /events/1.json
+  def update<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(VeryHighComplexity) EventsController#update has a flog score of 72          </span>  </li></ul>
+    
+    if @event.parent_id.nil?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(NilCheck) EventsController#update performs a nil-check.          </span>  </li></ul>
+      duration = @event.get_duration params
+    end  
+
+    respond_to do |format|
+      if @event.update_attributes(params[:event])
+
+        @event.update_children_event(duration)
+
+        params[:resources].each do |param|
+          if param[:id]
+
+            @resource = EventResource.find(param[:id])
+            @resource.update_attributes({:resource_id =&gt; param[:value], :event_id =&gt; @event.id})  <ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) EventsController#update calls @event.id 4 times                        <a href="events_controller.html#L104" class="js-smell-location">0</a>                  <a href="events_controller.html#L106" class="js-smell-location">1</a>                  <a href="events_controller.html#L112" class="js-smell-location">2</a>                  <a href="events_controller.html#L115" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell old">    <span class="description">(DuplicateMethodCall) EventsController#update calls param[:value] 4 times                        <a href="events_controller.html#L104" class="js-smell-location">0</a>                  <a href="events_controller.html#L107" class="js-smell-location">1</a>                  <a href="events_controller.html#L112" class="js-smell-location">2</a>                  <a href="events_controller.html#L116" class="js-smell-location">3</a>                  </span>  </li></ul>
+
+            Event.where(&#39;parent_id = ?&#39;, @event.id).each do |child|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Identical code found in 2 nodes                        <a href="events_controller.html#L106" class="js-smell-location">0</a>                  <a href="events_controller.html#L115" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell old">    <span class="description">(DuplicateMethodCall) EventsController#update calls @event.id 4 times                        <a href="events_controller.html#L104" class="js-smell-location">0</a>                  <a href="events_controller.html#L106" class="js-smell-location">1</a>                  <a href="events_controller.html#L112" class="js-smell-location">2</a>                  <a href="events_controller.html#L115" class="js-smell-location">3</a>                  </span>  </li></ul>
+              @resources = EventResource.new({:resource_id =&gt; param[:value], :event_id =&gt; child.id})<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) EventsController#update calls param[:value] 4 times                        <a href="events_controller.html#L104" class="js-smell-location">0</a>                  <a href="events_controller.html#L107" class="js-smell-location">1</a>                  <a href="events_controller.html#L112" class="js-smell-location">2</a>                  <a href="events_controller.html#L116" class="js-smell-location">3</a>                  </span>  </li></ul>
+              @resources.save
+            end
+            
+          else
+            @resource = EventResource.new({:resource_id =&gt; param[:value], :event_id =&gt; @event.id})<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) EventsController#update calls @event.id 4 times                        <a href="events_controller.html#L104" class="js-smell-location">0</a>                  <a href="events_controller.html#L106" class="js-smell-location">1</a>                  <a href="events_controller.html#L112" class="js-smell-location">2</a>                  <a href="events_controller.html#L115" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell old">    <span class="description">(DuplicateMethodCall) EventsController#update calls param[:value] 4 times                        <a href="events_controller.html#L104" class="js-smell-location">0</a>                  <a href="events_controller.html#L107" class="js-smell-location">1</a>                  <a href="events_controller.html#L112" class="js-smell-location">2</a>                  <a href="events_controller.html#L116" class="js-smell-location">3</a>                  </span>  </li></ul>
+            @resource.save
+
+            Event.where(&#39;parent_id = ?&#39;, @event.id).each do |child|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Identical code found in 2 nodes                        <a href="events_controller.html#L106" class="js-smell-location">0</a>                  <a href="events_controller.html#L115" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell old">    <span class="description">(DuplicateMethodCall) EventsController#update calls @event.id 4 times                        <a href="events_controller.html#L104" class="js-smell-location">0</a>                  <a href="events_controller.html#L106" class="js-smell-location">1</a>                  <a href="events_controller.html#L112" class="js-smell-location">2</a>                  <a href="events_controller.html#L115" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell old">    <span class="description">(NestedIterators) EventsController#update contains iterators nested 3 deep          </span>  </li></ul>
+              @resources = EventResource.new({:resource_id =&gt; param[:value], :event_id =&gt; child.id})<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) EventsController#update calls param[:value] 4 times                        <a href="events_controller.html#L104" class="js-smell-location">0</a>                  <a href="events_controller.html#L107" class="js-smell-location">1</a>                  <a href="events_controller.html#L112" class="js-smell-location">2</a>                  <a href="events_controller.html#L116" class="js-smell-location">3</a>                  </span>  </li></ul>
+              @resources.save
+            end
+          end
+        end
+        format.html { redirect_to @event, notice: &#39;Event was successfully updated.&#39; }
+        format.json { head :no_content }
+      else
+        format.html { render action: &quot;edit&quot; }
+        format.json { render json: @resource.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /events/1
+  # DELETE /events/1.json
+  def destroy
+    @event.children.each do |child|
+      child.event_resources.destroy_all
+    end
+    @event.destroy
+
+    respond_to do |format|
+      format.html { redirect_to events_url }
+      format.json { head :no_content }
+    end
+  end
+  
+  def event_based_on
+    @event = Event.find(params[:id])
+    @event_resources = @event.resources
+    @event_all = {
+      :event =&gt; @event,
+      :resources =&gt; @event_resources
+    }
+    render :json =&gt; @event_all.to_json
+  end
+
+  private
+    def find_event
+      @event = Event.find(params[:id])
+    end
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

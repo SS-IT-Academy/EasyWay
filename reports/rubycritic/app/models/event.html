@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-c circled-text circle ">C</span>
+  <h2 class="file-name">Event</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-23 18:10:02 +0200'>2016-03-23 18:10:02 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      82 complexity
+    </div>
+    <div class="file-stat">
+      16.4 complexity per method
+    </div>
+    <div class="file-stat">
+      29 churn
+    </div>
+    <div class="file-stat">
+      5 methods
+    </div>
+    <div class="file-stat">
+      64 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">class Event &lt; ActiveRecord::Base
+
+  include EventModule
+
+  before_update :destroy_children_event_and_children_event_resources
+
+  attr_accessible :recurrence_attributes, :name, :event_types_id, :recurrence_id, :start_at, :end_at, :parent_id
+  
+  belongs_to :parent, :class_name =&gt; &quot;Event&quot;
+  has_many   :children, :class_name =&gt; &quot;Event&quot;, :foreign_key=&gt; &quot;parent_id&quot;, :dependent =&gt; :delete_all
+  
+  has_many :event_resources, :dependent =&gt; :delete_all
+  has_many :resources, :through =&gt; :event_resources
+  belongs_to :event_type
+  belongs_to :recurrence, :dependent =&gt; :destroy
+
+  accepts_nested_attributes_for :recurrence
+  
+  validates :name, :start_at, :end_at, :event_types_id, :presence =&gt; true
+  validate :date_validation
+  validate :children_time_validation, :on =&gt; :update
+
+  def next_event
+    Event.where(&#39;id &gt; ?&#39;, self.id).first
+  end
+
+  def prev_event
+    Event.where(&#39;id &lt; ?&#39;, self.id).last
+  end
+  
+  private
+    def destroy_children_event_and_children_event_resources
+      EventResource.where(:event_id =&gt; self.children).delete_all
+      Event.where(&#39;parent_id = ?&#39;, self.id).delete_all
+    end
+
+    def date_validation
+      if start_at &lt; Time.now
+        errors.add(:start_at, &quot;can&#39;t be less than time is now&quot; )
+      end
+
+      if start_at &gt; end_at
+        errors.add(:end_at, &quot;can&#39;t be less than time is now&quot; )
+      end
+    end
+
+    def children_time_validation<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) Event#children_time_validation has a flog score of 56          </span>  </li></ul>
+      unless self.parent_id.nil?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(NilCheck) Event#children_time_validation performs a nil-check.          </span>  </li></ul>
+        unless self.prev_event.parent_id.nil?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 4 nodes                        <a href="event.html#L49" class="js-smell-location">0</a>                  <a href="event.html#L55" class="js-smell-location">1</a>                  <a href="event.html#L61" class="js-smell-location">2</a>                  <a href="event.html#L67" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell old">    <span class="description">(DuplicateMethodCall) Event#children_time_validation calls self.prev_event 4 times                        <a href="event.html#L49" class="js-smell-location">0</a>                  <a href="event.html#L50" class="js-smell-location">1</a>                  <a href="event.html#L61" class="js-smell-location">2</a>                  <a href="event.html#L62" class="js-smell-location">3</a>                  </span>  </li></ul>
+          if self.start_at &lt; self.prev_event.end_at <ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) Event#children_time_validation calls self.prev_event 4 times                        <a href="event.html#L49" class="js-smell-location">0</a>                  <a href="event.html#L50" class="js-smell-location">1</a>                  <a href="event.html#L61" class="js-smell-location">2</a>                  <a href="event.html#L62" class="js-smell-location">3</a>                  </span>  </li></ul>
+            errors.add(:start_at, &quot;can&#39;t be less than the end of the previous event&quot; )
+          end
+        end
+
+        unless self.next_event.parent_id.nil?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 4 nodes                        <a href="event.html#L49" class="js-smell-location">0</a>                  <a href="event.html#L55" class="js-smell-location">1</a>                  <a href="event.html#L61" class="js-smell-location">2</a>                  <a href="event.html#L67" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell old">    <span class="description">(DuplicateMethodCall) Event#children_time_validation calls self.next_event 3 times                        <a href="event.html#L55" class="js-smell-location">0</a>                  <a href="event.html#L56" class="js-smell-location">1</a>                  <a href="event.html#L67" class="js-smell-location">2</a>                  </span>  </li></ul>
+          if self.end_at &gt; self.next_event.start_at<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) Event#children_time_validation calls self.next_event 3 times                        <a href="event.html#L55" class="js-smell-location">0</a>                  <a href="event.html#L56" class="js-smell-location">1</a>                  <a href="event.html#L67" class="js-smell-location">2</a>                  </span>  </li></ul>
+            errors.add(:end_at, &quot;can&#39;t be greater than the start of the next event&quot; )
+          end
+        end
+
+        if self.prev_event.parent_id.nil?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 4 nodes                        <a href="event.html#L49" class="js-smell-location">0</a>                  <a href="event.html#L55" class="js-smell-location">1</a>                  <a href="event.html#L61" class="js-smell-location">2</a>                  <a href="event.html#L67" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell old">    <span class="description">(DuplicateMethodCall) Event#children_time_validation calls self.prev_event 4 times                        <a href="event.html#L49" class="js-smell-location">0</a>                  <a href="event.html#L50" class="js-smell-location">1</a>                  <a href="event.html#L61" class="js-smell-location">2</a>                  <a href="event.html#L62" class="js-smell-location">3</a>                  </span>  </li></ul>
+          if self.start_at &lt; self.prev_event.start_at<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateMethodCall) Event#children_time_validation calls self.prev_event 4 times                        <a href="event.html#L49" class="js-smell-location">0</a>                  <a href="event.html#L50" class="js-smell-location">1</a>                  <a href="event.html#L61" class="js-smell-location">2</a>                  <a href="event.html#L62" class="js-smell-location">3</a>                  </span>  </li></ul>
+            errors.add(:start_at, &quot;can&#39;t be less than parent event start&quot;)
+          end
+        end
+
+        if self.next_event.parent_id.nil?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 4 nodes                        <a href="event.html#L49" class="js-smell-location">0</a>                  <a href="event.html#L55" class="js-smell-location">1</a>                  <a href="event.html#L61" class="js-smell-location">2</a>                  <a href="event.html#L67" class="js-smell-location">3</a>                  </span>  </li>  <li class="smell old">    <span class="description">(DuplicateMethodCall) Event#children_time_validation calls self.next_event 3 times                        <a href="event.html#L55" class="js-smell-location">0</a>                  <a href="event.html#L56" class="js-smell-location">1</a>                  <a href="event.html#L67" class="js-smell-location">2</a>                  </span>  </li></ul>
+          if self.end_at &gt; self.parent.end_at
+            errors.add(:end_at, &quot;can&#39;t be greater than parent event end&quot;)
+          end
+        end
+      end
+    end
+
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

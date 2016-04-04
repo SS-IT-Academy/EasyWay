@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "field_types/index" do
+describe "field_types/index", type: :view do
   before(:each) do
     assign(:field_types, [
       stub_model(FieldType,

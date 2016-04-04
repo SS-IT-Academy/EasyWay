@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "notify_templates/index" do
+describe "notify_templates/index", type: :view do
   before(:each) do
     assign(:notify_templates, [
       stub_model(NotifyTemplate,

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../../overview.html" class="project-nav-item">Overview</a>
+        <a href="../../code_index.html" class="project-nav-item">Code</a>
+        <a href="../../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-c circled-text circle ">C</span>
+  <h2 class="file-name">ResourceSpec</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-21 20:16:13 +0200'>2016-03-21 20:16:13 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      121 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      7 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      62 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">require &#39;spec_helper&#39;
+
+describe Resource do
+  let(:resource) { create :resource }
+  
+  subject { resource }
+
+  it { should respond_to(:description) }
+  it { should respond_to(:resource_type_id) }
+  it { should respond_to(:resource_type) }
+  it { should respond_to(:resource_values) }
+  it { should respond_to(:event_resources) }
+  it { should respond_to(:permission_roles) }
+
+  it { should be_valid }
+
+  describe &quot;when resource_type_id is not present&quot; do
+    before { resource.resource_type_id = nil }
+    it { should_not be_valid }
+  end
+
+  describe &quot;resource values association&quot; do
+    it &quot;should destroy associated resource values&quot; do
+      resource_values = resource.resource_values
+      resource.destroy
+      resource_values.should be_empty
+    end
+  end
+
+  describe &quot;#all_value_ids&quot; do
+    it &quot;should return array with all ids without resource_reference_id&quot; do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) describe(#all_value_ids)::it#should return array with all ids without resource_reference_id has a flog score of 28          </span>  </li></ul>
+      3.times do |i|
+        create :field
+        resource.resource_values.create field_id: i + 1, value: &quot;some#{i}&quot;
+      end
+      create :field
+      resource2 = create :resource
+      resource2.resource_values.create field_id: 4, resource_reference_id: resource.id
+      resource2.all_value_ids.should == [1, 2, 3]
+    end
+  end
+
+  describe &quot;#eval_description&quot; do
+    it &quot;makes description match to the pattern&quot; do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) describe(#eval_description)::it#makes description match to the pattern has a flog score of 29          </span>  </li></ul>
+      resource_type = create :resource_type
+      resource2 = create :resource, resource_type_id: resource_type.id
+      3.times do |i|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Identical code found in 2 nodes                        <a href="resource_spec.html#L47" class="js-smell-location">0</a>                  <a href="resource_spec.html#L60" class="js-smell-location">1</a>                  </span>  </li></ul>
+        resource_type.fields.create field_type_id: i + 1, name: &quot;some#{i}&quot;
+        resource2.resource_values.create field_id: resource_type.fields[i].id, value: &quot;value#{i}&quot;
+      end
+      resource_type.update_attribute :description, &quot;$${some0} description&quot;
+      resource2.eval_description.should == &quot;value0 description&quot;
+    end
+  end 
+
+  describe &quot;.resource_fields_with_values_by_resource&quot; do
+    it &quot;returns resource values array with resource reference id&quot; do<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(HighComplexity) describe(.resource_fields_with_values_by_resource)::it#returns resource values array with resource reference id has a flog score of 32          </span>  </li></ul>
+      resource_type = create :resource_type
+      resource2 = create :resource, resource_type_id: resource_type.id
+      3.times do |i|<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Identical code found in 2 nodes                        <a href="resource_spec.html#L47" class="js-smell-location">0</a>                  <a href="resource_spec.html#L60" class="js-smell-location">1</a>                  </span>  </li></ul>
+        resource_type.fields.create field_type_id: i + 1, name: &quot;some#{i}&quot;
+        resource2.resource_values.create field_id: resource_type.fields[i].id, value: &quot;value#{i}&quot;
+      end
+      Resource.resource_fields_with_values_by_resource(resource2.id).class.should == ActiveRecord::Relation
+    end
+  end
+
+  describe &quot;.resources_by_event&quot; do
+    it &quot;returns resource values array with resource reference id&quot; do
+      event = create :event, start_at: &quot;10:10&quot;, end_at: &quot;12:00&quot;
+      # p Resource.resources_by_event(event.id)
+    end
+  end
+end
+</code>
+
+    <script src='../../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+  </body>
+</html>

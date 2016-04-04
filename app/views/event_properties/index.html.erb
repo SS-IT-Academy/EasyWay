@@ -1,0 +1,23 @@
+<h1>Listing event_properties</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @event_properties.each do |event_property| %>
+  <tr>
+    <td><%= event_property.name %></td>
+    <td><%= link_to 'Show', event_property %></td>
+    <td><%= link_to 'Edit', edit_event_property_path(event_property) %></td>
+    <td><%= link_to 'Destroy', event_property, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Event property', new_event_property_path %>

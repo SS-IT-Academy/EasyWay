@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe TableHeadersController do
-
+describe TableHeadersController , type: :controller, authenticated: true do
   context "GET index" do
     
   end

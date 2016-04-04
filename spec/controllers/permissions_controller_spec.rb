@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe PermissionsController do
-
+	include RSpec::Rails::ControllerExampleGroup
 
 	context 'GET index' do
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "notify_events/edit" do
+describe "notify_events/edit", type: :view do
   before(:each) do
     @notify_event = assign(:notify_event, stub_model(NotifyEvent,
       :event_id => 1,

@@ -1,0 +1,2 @@
+module NotifyObserversHelper
+end

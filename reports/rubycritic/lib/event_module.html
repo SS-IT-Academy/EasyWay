@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../overview.html" class="project-nav-item">Overview</a>
+        <a href="../code_index.html" class="project-nav-item">Code</a>
+        <a href="../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-b circled-text circle ">B</span>
+  <h2 class="file-name">EventModule</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-23 18:10:02 +0200'>2016-03-23 18:10:02 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      64 complexity
+    </div>
+    <div class="file-stat">
+      16.0 complexity per method
+    </div>
+    <div class="file-stat">
+      7 churn
+    </div>
+    <div class="file-stat">
+      4 methods
+    </div>
+    <div class="file-stat">
+      58 duplication
+    </div>
+  </div>
+
+  
+    <button id="js-toggle-smells" class="smells-toggle-button button">Toggle Smells</button>
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">module EventModule
+
+  include IceCube
+
+  def get_duration(params)<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(FeatureEnvy) EventModule#get_duration refers to params more than self          </span>  </li></ul>
+    hours_duration = params[:event][:recurrence_attributes][:hour_duration].to_i
+    minutes_duration = params[:event][:recurrence_attributes][:minute_duration].to_i
+    duration = hours_duration.hour + minutes_duration.minutes
+  end
+
+  def get_repetition
+    unless self.recurrence.repetition.nil?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(NilCheck) EventModule#get_repetition performs a nil-check.          </span>  </li></ul>
+      schedule = Schedule.new(self.start_at.to_time)
+      rule = RecurringSelect.dirty_hash_to_rule(self.recurrence.repetition)
+      schedule.add_recurrence_rule rule.until(self.end_at.to_time)
+      schedule.all_occurrences
+    end
+  end
+
+  def create_children_event(duration)
+    unless self.recurrence.repetition.nil?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="event_module.html#L21" class="js-smell-location">0</a>                  <a href="event_module.html#L36" class="js-smell-location">1</a>                  </span>  </li>  <li class="smell old">    <span class="description">(NilCheck) EventModule#create_children_event performs a nil-check.          </span>  </li></ul>
+      all_repetition = self.get_repetition
+      all_repetition.each_with_index do |occurrence, index| self.children.build(
+        name: self.name,
+        event_types_id: self.event_types_id,
+        start_at: occurrence, 
+        end_at: occurrence + duration
+      )  
+      end
+    end
+  end
+
+  def update_children_event(duration)
+    validator = 0
+    unless self.recurrence_id.nil?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(NilCheck) EventModule#update_children_event performs a nil-check.          </span>  </li></ul>
+      unless self.recurrence.repetition.nil?<ul class="nocode smells js-smells">  <li class="smell old">    <span class="description">(DuplicateCode) Similar code found in 2 nodes                        <a href="event_module.html#L21" class="js-smell-location">0</a>                  <a href="event_module.html#L36" class="js-smell-location">1</a>                  </span>  </li></ul>
+        all_repetition = self.get_repetition        
+        all_repetition.each_with_index do |occurrence, index| self.children.create(
+          name: self.name,
+          event_types_id: self.event_types_id,
+          start_at: occurrence, 
+          end_at: occurrence + duration
+        )                  
+        end
+      end
+    end
+  end
+  
+end
+</code>
+
+    <script src='../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../assets/javascripts/application.js'></script>
+  </body>
+</html>

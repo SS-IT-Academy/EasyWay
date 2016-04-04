@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RubyCritic</title>
+    <link href="../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="project-header group">
+      <h1 class="logo"><a href="../overview.html" class="logo-link">RubyCritic</a></h1>
+      <nav class="project-nav">
+        <a href="../overview.html" class="project-nav-item">Overview</a>
+        <a href="../code_index.html" class="project-nav-item">Code</a>
+        <a href="../smells_index.html" class="project-nav-item">Smells</a>
+      </nav>
+    </header>
+    <div class="file-header group">
+  <span class="rating-a circled-text circle ">A</span>
+  <h2 class="file-name">Routes</h2>
+
+  <span class="file-committed-at">
+    
+      Updated <time class='js-timeago' datetime='2016-03-23 18:10:02 +0200'>2016-03-23 18:10:02 +0200</time>
+    
+  </span>
+
+  <div class="file-stats group">
+    <div class="file-stat">
+      4 complexity
+    </div>
+    <div class="file-stat">
+      N/A complexity per method
+    </div>
+    <div class="file-stat">
+      48 churn
+    </div>
+    <div class="file-stat">
+      0 methods
+    </div>
+    <div class="file-stat">
+      0 duplication
+    </div>
+  </div>
+
+  
+</div>
+
+<code class="prettyprint linenums lang-ruby file-code js-file-code">EasyW::Application.routes.draw do
+  
+  devise_for :users
+  
+  resources :users
+
+  #START TIMETABLE
+  resources :table_headers
+  
+  resources :table_filters
+  
+  resources :table_templates
+  
+  resources :table_cell_items
+  
+  match &quot;/get_restype_fields&quot; =&gt; &quot;ResourceTypes#update_fields&quot;
+  #END TIMETABLE
+  
+  resources :resources
+
+  resources :resource_values
+
+  resources :resource_types do
+    member do
+      post &#39;description&#39;
+    end
+  end
+
+  resources :fields
+
+  resources :field_types
+
+  resources :field_validations
+
+  resources :validators
+
+  get &quot;manage_menu/index&quot;
+
+ 
+  root :to =&gt; &quot;home#index&quot;
+  
+  resources :events
+
+  resources :recurrences
+
+  resources :event_resources
+
+  resources :event_types
+
+  resources :menus
+
+  resources :bookmarks
+
+  resources :permission_resources
+
+  resources :notify_events
+
+  resources :permissions
+
+  resources :notify_schedulers
+
+  resources :recipients
+
+  resources :notify_observer_properties
+
+  resources :notify_observers
+
+  resources :notify_templates
+
+  resources :roles
+
+  resources :permission_roles
+  
+
+  resources :resources, :has_many =&gt; :permission_roles
+  resources :resource_types, :has_many =&gt; :permission_roles
+  match &quot;/new_popup&quot; =&gt; &quot;Menus#new_popup&quot;
+
+  match &quot;/update_fields&quot; =&gt; &quot;ResourceTypes#update_fields&quot;
+  match &quot;/update_resources&quot; =&gt; &quot;Resources#update_resources&quot;
+  
+  match &quot;/update_permroles_fields&quot; =&gt; &quot;PermissionRoles#update_permroles_fields&quot;
+  match &quot;/get_validators&quot; =&gt; &quot;Validators#all_types&quot;
+  match &quot;/get_field_types&quot; =&gt; &quot;FieldTypes#get_all_types&quot;
+  match &quot;/get_resource_types&quot; =&gt; &quot;ResourceTypes#all_types&quot;
+  match &quot;/remove_resource_fields&quot; =&gt; &quot;ResourceValues#remove_values&quot;
+  match &quot;/get_resources&quot; =&gt; &quot;Resources#some_records&quot;
+  #match &quot;/get_recipients&quot; =&gt; &quot;Users#get_recipients&quot;
+  get &quot;get_recipients&quot; =&gt; &quot;users#get_recipients&quot;
+  
+  match &quot;/delete_menu_item&quot; =&gt; &quot;Menus#delete_menu_item&quot;
+  match &quot;/render_menu&quot; =&gt; &quot;Menus#render_menu&quot;
+  match &quot;/render_form_for_menu&quot; =&gt; &quot;Menus#render_form_for_menu&quot;
+  match &quot;/get_notify_template_mappings&quot; =&gt; &quot;NotifyObserverProperties#get_notify_template_mappings&quot;
+    
+
+  match &quot;/add_event_resources&quot; =&gt; &quot;Resources#add_event_resources&quot;
+  
+  match &quot;/event_based_on&quot; =&gt; &quot;Events#event_based_on&quot;
+  match &quot;/delete_menu_item&quot; =&gt; &quot;Menus#delete_menu_item&quot;
+  match &quot;/remove_event_resource&quot; =&gt; &quot;EventResources#remove_event_resource&quot;
+  match &quot;/resource_info&quot; =&gt; &quot;Resources#resource_info&quot;
+  match &quot;/get_notify_template_mappings&quot; =&gt; &quot;NotifyObserverProperties#get_notify_template_mappings&quot;
+  match &quot;/show_property_mapping_content&quot; =&gt; &quot;NotifyEvents#show_property_mapping_content&quot; 
+  match &quot;/show_property&quot; =&gt; &quot;NotifyEvents#show_property&quot; 
+  match &quot;/show_property_c&quot; =&gt; &quot;NotifyEvents#show_property_c&quot; 
+  match &quot;/show_property_by_resource&quot; =&gt; &quot;NotifyEvents#show_property_by_resource&quot;
+  match &quot;/show_property_by_resource_value&quot; =&gt; &quot;NotifyEvents#show_property_by_resource_value&quot; 
+  # match &#39;:controller(/:action(/:id))&#39;, :via =&gt; [:get, :post]
+
+  
+  get &quot;signed_out&quot; =&gt; &quot;authentication#signed_out&quot;
+  get &quot;forgot_password&quot; =&gt; &quot;authentication#forgot_password&quot;
+  get &quot;password_sent&quot; =&gt; &quot;authentication#password_sent&quot;
+
+  get &quot;sign_in&quot; =&gt; &quot;authentication#sign_in&quot;
+  post &quot;sign_in&quot; =&gt; &quot;authentication#login&quot;
+
+  get &quot;account_settings&quot; =&gt; &quot;authentication#account_settings&quot;
+  put &quot;account_settings&quot; =&gt; &quot;authentication#set_account_info&quot;
+
+  get &quot;forgot_password&quot; =&gt; &quot;authentication#forgot_password&quot;
+  put &quot;forgot_password&quot; =&gt; &quot;authentication#send_password_reset_instructions&quot;
+
+  get &quot;password_reset&quot; =&gt; &quot;authentication#password_reset&quot;
+  put &quot;password_reset&quot; =&gt; &quot;authentication#new_password&quot;
+
+  
+  # The priority is based upon order of creation:
+  # first created -&gt; highest priority.
+
+  # Sample of regular route:
+  #   match &#39;products/:id&#39; =&gt; &#39;catalog#view&#39;
+  # Keep in mind you can assign values other than :controller and :action
+
+  # Sample of named route:
+  #   match &#39;products/:id/purchase&#39; =&gt; &#39;catalog#purchase&#39;, :as =&gt; :purchase
+  # This route can be invoked with purchase_url(:id =&gt; product.id)
+
+  # Sample resource route (maps HTTP verbs to controller actions automatically):
+  #   resources :products
+
+  # Sample resource route with options:
+  #   resources :products do
+  #     member do
+  #       get &#39;short&#39;
+  #       post &#39;toggle&#39;
+  #     end
+  #
+  #     collection do
+  #       get &#39;sold&#39;
+  #     end
+  #   end
+
+  # Sample resource route with sub-resources:
+  #   resources :products do
+  #     resources :comments, :sales
+  #     resource :seller
+  #   end
+
+  # Sample resource route with more complex sub-resources
+  #   resources :products do
+  #     resources :comments
+  #     resources :sales do
+  #       get &#39;recent&#39;, :on =&gt; :collection
+  #     end
+  #   end
+
+  # Sample resource route within a namespace:
+  #   namespace :admin do
+  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # (app/controllers/admin/products_controller.rb)
+  #     resources :products
+  #   end
+
+  # You can have the root of your site routed with &quot;root&quot;
+  # just remember to delete public/index.html.
+  #  root :to =&gt; &#39;welcome#index&#39;
+
+  # See how all your routes lay out with &quot;rake routes&quot;
+
+  # This is a legacy wild controller route that&#39;s not recommended for RESTful applications.
+  # Note: This route will make all actions in every controller accessible via GET requests.
+  # match &#39;:controller(/:action(/:id))(.:format)&#39;
+end
+</code>
+
+    <script src='../assets/javascripts/jquery-2.1.0.js'></script>
+    <script src='../assets/javascripts/jquery.tablesorter-2.0.js'></script>
+    <script src='../assets/javascripts/jquery.floatThead-v1.2.7.js'></script>
+    <script src='../assets/javascripts/jquery.timeago-v1.4.1.js'></script>
+    <script src='../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../assets/javascripts/jquery.scrollTo-1.4.11.js'></script>
+    <script src='../assets/javascripts/prettify-4-Mar-2013.js'></script>
+    <script src='../assets/javascripts/application.js'></script>
+  </body>
+</html>

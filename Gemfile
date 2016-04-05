@@ -14,9 +14,9 @@ gem 'cancan'
 
 gem 'ancestry'
 
-gem 'bcrypt-ruby', :require=>'bcrypt'
+gem 'bcrypt-ruby', require: 'bcrypt'
 
-gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'recaptcha', require: 'recaptcha/rails'
 # Gems used only for assets and not required
 # in production environments by default.
 gem 'jquery-rails'
@@ -29,11 +29,11 @@ gem 'simplecov'
 
 gem 'safe_attributes'
 
-gem 'recurring_select',   '~> 1.1.0'
+gem 'recurring_select',   '>= 1.1.0'
 
 gem 'ice_cube'
 
-gem 'will_paginate', '~> 3.0.5'
+gem 'will_paginate', '>= 3.0.5'
 
 gem 'devise'
 gem 'devise_invitable'
@@ -52,14 +52,14 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', platforms: :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
 
 group :development, :test do
   gem 'minitest'
-  gem 'test-unit', '~> 3.0'
+  gem 'test-unit', '>= 3.0'
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'database_cleaner'
@@ -74,13 +74,19 @@ group :development, :test do
   gem 'jasmine'
 
   gem 'metric_fu'
-  gem "rubycritic", :require => false
-  gem "debride", :require => false
-  gem 'heckle'
+  gem 'rubycritic', require: false
+  gem 'debride', require: false
+  gem 'addressable', '~>2.3.0'
 
-  gem 'pronto'
+  gem 'pronto', '~> 0.5.0'
   gem 'pronto-rubocop', require: false
   gem 'pronto-flay', require: false
+  #gem 'pronto-brakeman'
+  gem 'pronto-poper'
+  gem 'pronto-rails_best_practices'
+  gem 'pronto-rails_schema'
+  #gem 'pronto-reek'
+  gem 'ci_reporter'
 end
 
 group :production do

@@ -77,6 +77,10 @@ group :development, :test do
   gem "rubycritic", :require => false
   gem "debride", :require => false
   gem 'heckle'
+
+  gem 'pronto'
+  gem 'pronto-rubocop', require: false
+  gem 'pronto-flay', require: false
 end
 
 group :production do

@@ -154,7 +154,7 @@ describe NotifyTemplatesController do
 
     it "redirects to notify_template#index" do
       delete :destroy, id: @notify_template
-      response.should redirect_to notify_templates_url
+      response.should redirect_to notify_templates_url(:only_path => true)
     end
   end
 

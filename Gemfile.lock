@@ -395,6 +395,7 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
     slop (3.6.0)
+    spork (1.0.0rc4)
     sprockets (2.2.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -502,6 +503,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   shoulda-matchers
   simplecov
+  spork (~> 1.0rc)
   strong_parameters
   test-unit (>= 3.0)
   therubyracer

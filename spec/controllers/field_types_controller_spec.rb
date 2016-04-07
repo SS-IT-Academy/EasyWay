@@ -140,19 +140,19 @@ describe FieldTypesController , type: :controller, authenticated: true do# This 
     end
   end
 
-  # describe "DELETE destroy" do
-  #   it "destroys the requested field_type" do
-  #     field_type = FactoryGirl.create :field_type
-  #     expect {
-  #       delete :destroy, {:id => field_type.id}, valid_session
-  #     }.to change(FieldType, :count).by(-1)
-  #   end
+  describe "DELETE destroy" do
+    it "destroys the requested field_type" do
+      field_type = FactoryGirl.create :field_type
+      expect {
+        delete :destroy, {:id => field_type.id}, valid_session
+      }.to change(FieldType, :count).by(-1)
+    end
 
-  #   it "redirects to the field_types list" do
-  #     field_type = FactoryGirl.create :field_type
-  #     delete :destroy, {:id => field_type.id}, valid_session
-  #     response.should redirect_to(field_types_url)
-  #   end
-  # end
+    it "redirects to the field_types list" do
+      field_type = FactoryGirl.create :field_type
+      delete :destroy, {:id => field_type.id}, valid_session
+      response.should redirect_to(field_types_url(:only_path => true))
+    end
+  end
 
 end

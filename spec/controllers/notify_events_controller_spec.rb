@@ -167,7 +167,7 @@ describe NotifyEventsController , type: :controller, authenticated: true do
 
     it "redirects to notify_event#index" do
       delete :destroy, id: @notify_event
-      response.should redirect_to notify_events_url
+      response.should redirect_to notify_events_url(:only_path => true)
     end
   end
 

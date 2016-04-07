@@ -127,7 +127,7 @@ describe PermissionsController do
 
 		# it 'redirects to permissions url' do
 		# 	delete :destroy, id: permission
-		# 	response.should redirect_to permissions_url
+		# 	response.should redirect_to permissions_url(:only_path => true)
 		# end
 
 	end

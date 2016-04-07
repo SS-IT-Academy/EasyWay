@@ -124,7 +124,7 @@ describe TableCellItemsController , type: :controller, authenticated: true do
         
     it "redirects to table_cell_item_url" do
       delete :destroy, id: create(:table_cell_item)
-      response.should redirect_to table_cell_items_url
+      response.should redirect_to table_cell_items_url(:only_path => true)
     end
 
   end

@@ -125,7 +125,7 @@ describe TableFiltersController , type: :controller, authenticated: true do
 
     it "redirects to table_filter_url" do
       delete :destroy, id: create(:table_filter)
-      response.should redirect_to table_filters_url
+      response.should redirect_to table_filters_url(:only_path => true)
     end
 
   end

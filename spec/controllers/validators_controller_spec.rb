@@ -155,7 +155,7 @@ describe ValidatorsController , type: :controller, authenticated: true do# This 
     it "redirects to the validators list" do
       validator = Validator.create! valid_attributes
       delete :destroy, {:id => validator.to_param}, valid_session
-      response.should redirect_to(validators_url)
+      response.should redirect_to(validators_url(:only_path => true))
     end
   end
 

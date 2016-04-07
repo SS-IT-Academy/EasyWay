@@ -168,7 +168,7 @@ describe RecipientsController , type: :controller, authenticated: true do
 
     it "redirects to recipient#index" do
       delete :destroy, id: @recipient
-      response.should redirect_to recipients_url
+      response.should redirect_to recipients_url(:only_path => true)
     end
   end
 

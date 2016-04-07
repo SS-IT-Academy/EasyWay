@@ -155,7 +155,7 @@ describe NotifySchedulersController , type: :controller, authenticated: true do
 
     it "redirects to notify_scheduler#index" do
       delete :destroy, id: @notify_scheduler
-      response.should redirect_to notify_schedulers_url
+      response.should redirect_to notify_schedulers_url(:only_path => true)
     end
   end
 

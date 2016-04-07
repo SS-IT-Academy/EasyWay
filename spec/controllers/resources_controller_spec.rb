@@ -152,7 +152,7 @@ describe ResourcesController , type: :controller, authenticated: true do# This s
     it "redirects to the resources list" do
       resource = Resource.create! valid_attributes
       delete :destroy, {:id => resource.to_param}, valid_session
-      response.should redirect_to(resources_url)
+      response.should redirect_to(resources_url(:only_path => true))
     end
   end
 

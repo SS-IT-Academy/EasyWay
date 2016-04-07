@@ -137,7 +137,7 @@ describe RecurrencesController , type: :controller, authenticated: true do
 
     it 'redirects to recurrences_url' do
       delete :destroy, id: create(:recurrence)
-      response.should redirect_to recurrences_url
+      response.should redirect_to recurrences_url(:only_path => true)
     end
   end
 

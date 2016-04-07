@@ -168,7 +168,7 @@ describe EventsController do
 
     it "redirects to events_url" do
       delete :destroy, id: create(:event)
-      response.should redirect_to events_url
+      response.should redirect_to events_url(:only_path => true)
     end
 
   end

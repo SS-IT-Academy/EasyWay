@@ -151,7 +151,7 @@ describe ResourceTypesController , type: :controller, authenticated: true do# Th
     it "redirects to the resource_types list" do
       resource_type = ResourceType.create! valid_attributes
       delete :destroy, {:id => resource_type.to_param}, valid_session
-      response.should redirect_to(resource_types_url)
+      response.should redirect_to(resource_types_url(:only_path => true))
     end
   end
 

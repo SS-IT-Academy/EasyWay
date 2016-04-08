@@ -35,11 +35,11 @@ class Event < ActiveRecord::Base
     end
 
     def date_validation
-      if start_at < Time.now
+      if start_at && start_at < Time.now
         errors.add(:start_at, "can't be less than time is now" )
       end
 
-      if start_at > end_at
+      if start_at && start_at > end_at
         errors.add(:end_at, "can't be less than time is now" )
       end
     end

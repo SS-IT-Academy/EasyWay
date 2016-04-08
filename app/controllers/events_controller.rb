@@ -56,11 +56,11 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
 
-    duration = @event.get_duration params    
+    duration = @event.get_duration params  
+    @event.recurrence ||= Recurrence.find(@event.recurrence_id.to_i) if @event.recurrence_id
     @event.create_children_event(duration)
-
     respond_to do |format|
-      if @event.save
+      if @event.save     
         if params[:resources]
           params[:resources].each do |param|
             @resource = EventResource.new({:resource_id => param[:value], :event_id => @event.id})

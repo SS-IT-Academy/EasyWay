@@ -25,7 +25,7 @@ describe NotifyEventsController , type: :controller, authenticated: true do
   describe "GET #show" do
     it "assigns the requested notify_event to @notify_event" do
       notify_event1 = create(:notify_event)
-      get :show, id: notify_event1.event_id
+      get :show, id: notify_event1.id
       expect(assigns(:notify_event)).to eq(notify_event1)
     end
 
@@ -45,7 +45,7 @@ describe NotifyEventsController , type: :controller, authenticated: true do
   describe "GET #edit" do
     it "assigns the requested notify_event as @notify_event" do
       notify_event = create(:notify_event)
-      get :edit, id: notify_event.event_id
+      get :edit, id: notify_event.id
       assigns(:notify_event).should eq(notify_event)
     end
 
@@ -64,7 +64,7 @@ describe NotifyEventsController , type: :controller, authenticated: true do
 
           expect{
             post :create, notify_event: 
-            attributes_for(:notify_event)}.
+            attributes_for(:notify_event, notify_template_id: template.id)}.
             to change(NotifyEvent, :count).by(1)
       end
 
@@ -72,7 +72,7 @@ describe NotifyEventsController , type: :controller, authenticated: true do
         recipient = create(:recipient)
         mapping = create(:mapping)
         template = create(:notify_template)
-        post :create, notify_event: attributes_for(:notify_event)
+        post :create, notify_event: attributes_for(:notify_event, notify_template_id: template.id)
         response.should redirect_to NotifyEvent.last
       end
 
@@ -91,10 +91,10 @@ describe NotifyEventsController , type: :controller, authenticated: true do
     context "with valid attributes" do
       it "does not save the new notify_event" do
         recipient = create(:recipient)
-        mapping = create(:mapping)
-        template = create(:notify_template)
+        mapping   = create(:mapping)
+        template  = create(:notify_template)
         expect{
-          post :create, notify_event: attributes_for(:notify_event, name: nil)
+          post :create, notify_event: attributes_for(:notify_event, name: nil, notify_template_id: template.id)
         }.to_not change(NotifyEvent, :count)
       end
 
@@ -102,7 +102,7 @@ describe NotifyEventsController , type: :controller, authenticated: true do
         recipient = create(:recipient)
         mapping = create(:mapping)
         template = create(:notify_template)
-        post :create, notify_event: attributes_for(:notify_event, name: nil)
+        post :create, notify_event: attributes_for(:notify_event, name: nil, notify_template_id: template.id)
         response.should render_template :new
       end
     end
@@ -112,42 +112,43 @@ describe NotifyEventsController , type: :controller, authenticated: true do
   describe 'PUT update' do
     before :each do
       @notify_event = create(:notify_event, name: "some name")
+      @template = create(:notify_template)
     end
 
     context "valid attributes" do
       it "located the requested @notify_event" do
-        put :update, id: @notify_event, notify_event: attributes_for(:notify_event)
+        put :update, id: @notify_event, notify_event: attributes_for(:notify_event, notify_template_id: @template.id)
         assigns(:notify_event).should eq(@notify_event)
       end
 
       it "changes @notify_event's attributes" do
         put :update, id: @notify_event,
-        notify_event: attributes_for(:notify_event, name: "some name")
+        notify_event: attributes_for(:notify_event, name: "some name", notify_template_id: @template.id)
         @notify_event.reload
         @notify_event.name.should eq("some name")
       end
 
       it "redirects to the updated notify_event" do
-        put :update, id: @notify_event, notify_event: attributes_for(:notify_event)
+        put :update, id: @notify_event, notify_event: attributes_for(:notify_event, notify_template_id: @template.id)
         response.should redirect_to @notify_event
       end
     end
 
     context "invalid attributes" do
       it "locates the request @notify_event" do
-        put :update, id: @notify_event, notify_event: attributes_for(:notify_event, name: nil)
+        put :update, id: @notify_event, notify_event: attributes_for(:notify_event, name: nil, notify_template_id: @template.id)
         assigns(:notify_event).should eq(@notify_event)
       end
 
       it "does not changes @notify_event's attributes" do
           put :update, id: @notify_event,
-          notify_event: attributes_for(:notify_event, name: nil)
+          notify_event: attributes_for(:notify_event, name: nil, notify_template_id: @template.id)
           @notify_event.reload
           @notify_event.name.should eq("some name")
       end
 
       it "re-renders the edit method" do
-          put :update, id: @notify_event, notify_event: attributes_for(:notify_event, name: nil)
+          put :update, id: @notify_event, notify_event: attributes_for(:notify_event, name: nil, notify_template_id: @template.id)
           response.should render_template :edit
       end
     end

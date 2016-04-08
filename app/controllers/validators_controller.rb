@@ -3,7 +3,6 @@ class ValidatorsController < ApplicationController
   # GET /validators.json
   def all_types
     @validators = Validator.where("field_type_id IS NULL OR field_type_id = ?", params["field_type_id"].to_i)
-    puts "#" * 40, params["field_type_id"].class, "#" * 40
     render :json => @validators.to_json
   end
 

@@ -83,13 +83,13 @@ describe EventsController do
       { 
         :name => "Event", 
         :start_at => Time.now + 1.day, 
-        :end_at => Time.now + 2.day, 
-        :recurrence_id => 1,
+        :end_at => Time.now + 1.day + 1.hour, 
+        :recurrence_id => create(:recurrence).id,
         :event_types_id => 1 
       }
     end
     
-    it 'created new Event' do
+    it 'created new Event, 2 events parent and child' do
       event = create(:event)
       resource1 = create(:resource)
       resource2 = create(:resource)
@@ -101,22 +101,22 @@ describe EventsController do
       Event.count.should eq(1)
       post :create, {id: event.id, event: valid_attributes.merge(end_at: end_at)}.merge(resources_params)
       event.end_at = end_at
-      Event.count.should eq(2) 
+      Event.count.should eq(3) # main and child
     end
 
     it "redirects to the new event" do
-      post :create, event: attributes_for(:event)
-      response.should redirect_to Event.last
+      post :create, event: attributes_for(:event, :recurrence_id => create(:recurrence).id)
+      response.should redirect_to Event.where(parent_id: nil).last
     end
 
     it 'does not create new event' do
       expect{
-        post :create, event: attributes_for(:invalid_event)
+        post :create, event: attributes_for(:invalid_event, :recurrence_id => create(:recurrence).id)
         }.to_not change(Event,:count)
     end
 
     it 'render events_new_path' do
-      post :create, event: attributes_for(:invalid_event)
+      post :create, event: attributes_for(:invalid_event, :recurrence_id => create(:recurrence).id)
       response.should render_template :new
     end
 
@@ -128,8 +128,8 @@ describe EventsController do
       { 
         :name => "Event", 
         :start_at => Time.now + 1.day, 
-        :end_at => Time.now + 2.day, 
-        :recurrence_id => 1,
+        :end_at => Time.now + 1.day + 1.hour, 
+        :recurrence_id => create(:recurrence).id,
         :event_types_id => 1 
       }
     end

@@ -87,7 +87,6 @@ class NotifyEventsController < ApplicationController
   def create
     #raise params.inspect
     recipients = params[:notify_event].delete(:recipients_attributes) || []
-    puts recipients.inspect
     mappings = params[:notify_event].delete(:mappings_attributes) || []
     success = false
 
@@ -97,7 +96,6 @@ class NotifyEventsController < ApplicationController
     ActiveRecord::Base.transaction do
       @notify_event = NotifyEvent.new(params[:notify_event])
       success = @notify_event.save
-      puts "success.inspect:"+success.inspect
       
       recipients.each do |recipient|
         r = Recipient.new(recipient)
@@ -145,7 +143,6 @@ class NotifyEventsController < ApplicationController
     # ap @notify_event, options = {:index => false, :multiline => true}
     #raise params.inspect
     recipients = params["notify_event"].delete("recipients_attributes")
-    puts recipients.inspect
     mappings = params["notify_event"].delete("mappings_attributes")
 
     @notify_event = NotifyEvent.find(params["id"])
@@ -166,7 +163,7 @@ class NotifyEventsController < ApplicationController
       r.group_number = recipient["group_number"]
       r.notify_event = @notify_event
       r.save
-    end
+    end if recipients
 
     template_ = NotifyTemplate.find(params["notify_event"]["notify_template_id"])
     mappings.each do |mapping|
@@ -183,7 +180,7 @@ class NotifyEventsController < ApplicationController
       m.template_parameter = mapping["template_parameter"]
       m.notify_template = template_
       m.save
-    end 
+    end if mappings
 
     respond_to do |format|
       if @notify_event.update_attributes(params[:notify_event])

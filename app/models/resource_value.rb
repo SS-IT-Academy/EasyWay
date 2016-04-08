@@ -21,8 +21,6 @@ class ResourceValue < ActiveRecord::Base
   private 
 
   def evaluate_validator(validator, value)
-    puts validator.body.gsub("@@", value)
-    puts eval(validator.body.gsub("@@", value))
     begin
       result = eval(validator.body.gsub("@@", value))
       unless [TrueClass, FalseClass].include?(result.class) 

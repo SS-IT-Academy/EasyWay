@@ -94,7 +94,7 @@ describe BookmarksController, type: :controller, authenticated: true do
     it "redirects to the bookmarks list" do
       bookmark = create(:bookmark)
       delete :destroy, id: bookmark
-      response.should redirect_to(bookmarks_url)
+      response.should redirect_to(bookmarks_url(:only_path => true))
     end
 
   end

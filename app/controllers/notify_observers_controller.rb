@@ -45,7 +45,7 @@ class NotifyObserversController < ApplicationController
       
     for property in @properties
       @notify_observer.notify_observer_properties.create(:name => property)
-    end
+    end if @properties
     
     respond_to do |format|
       if @notify_observer.save

@@ -55,7 +55,6 @@ class ResourceTypesController < ApplicationController
   # POST /resource_types
   # POST /resource_types.jsojoins(:field_type)n
   def create
-    puts "#" * 40, params[:fields], "#" * 40
     @resource_type = ResourceType.new(params[:resource_type])
     respond_to do |format|
       if @resource_type.save

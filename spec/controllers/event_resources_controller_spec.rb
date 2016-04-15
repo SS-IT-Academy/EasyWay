@@ -146,7 +146,7 @@ describe EventResourcesController , type: :controller, authenticated: true do
 
     it "redirects to event_resource_url" do
       delete :destroy, id: create(:event_resource)
-      response.should redirect_to event_resources_url
+      response.should redirect_to '/event_resources'
     end
 
   end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe EventTypesController , type: :controller, authenticated: true do
+describe EventTypesController, type: :controller, authenticated: true do
   context "GET index" do
 
     it "event_type should include event_type" do
@@ -140,7 +140,7 @@ describe EventTypesController , type: :controller, authenticated: true do
 
       it "redirects to event_type_url" do
         delete :destroy, id: create(:event_type)
-        response.should redirect_to event_types_url
+        response.should redirect_to "/event_types"
       end
 
     end

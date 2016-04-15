@@ -151,7 +151,7 @@ describe FieldValidationsController , type: :controller, authenticated: true do#
     it "redirects to the field_validations list" do
       field_validation = FieldValidation.create! valid_attributes
       delete :destroy, {:id => field_validation.to_param}, valid_session
-      response.should redirect_to(field_validations_url)
+      response.should redirect_to(field_validations_url(:only_path => true))
     end
   end
 

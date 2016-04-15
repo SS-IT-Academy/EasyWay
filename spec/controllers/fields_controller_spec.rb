@@ -157,7 +157,7 @@ describe FieldsController , type: :controller, authenticated: true do# let(:reso
     it "redirects to the fields list" do
       #field = Field.create! valid_attributes
       delete :destroy, {:id => field.id}, valid_session
-      response.should redirect_to(fields_url)
+      response.should redirect_to(fields_url(:only_path => true))
     end
   end
 

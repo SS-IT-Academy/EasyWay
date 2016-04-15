@@ -97,7 +97,7 @@ context "DELETE destroy" do
     it "redirects to the menus list" do
       menu = create(:menu)
       delete :destroy, id: menu
-      response.should redirect_to(menus_url)
+      response.should redirect_to(menus_url(:only_path => true))
     end
 
   end

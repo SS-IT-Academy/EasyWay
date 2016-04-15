@@ -155,7 +155,7 @@ describe NotifyObserversController , type: :controller, authenticated: true do
 
     it "redirects to notify_observer#index" do
       delete :destroy, id: @notify_observer
-      response.should redirect_to notify_observers_url
+      response.should redirect_to notify_observers_url(:only_path => true)
     end
   end
 

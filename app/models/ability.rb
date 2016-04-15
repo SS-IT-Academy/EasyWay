@@ -2,8 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user = init_user(user)
-    
+    user = init_user(user)  
     if user.role.id == 1
       can :manage, :all
     else
@@ -31,17 +30,14 @@ class Ability
     if user.role.name == "beginer"
       can :read, User
        can :update_resources, Resource
-      
-
     end
   end
 
   def init_user(user)
     if user.blank?
-      guest = Role.find_by_name(Role::GUEST)
       user = User.new
-      user.role = guest
     end
+    user.role = Role.find_by_name(Role::GUEST) || Role.create!(:name => Role::GUEST) if user.role.blank?
     user 
   end  
 end

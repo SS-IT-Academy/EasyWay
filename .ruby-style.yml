@@ -19,7 +19,7 @@ Style/AccessModifierIndentation:
   - indent
 Style/AlignHash:
   Description: Align the elements of a hash literal if they span more than one line.
-  Enabled: true
+  Enabled: false
   EnforcedHashRocketStyle: key
   EnforcedColonStyle: key
   EnforcedLastArgumentHashStyle: always_inspect
@@ -347,12 +347,12 @@ Style/SingleLineBlockParams:
 Style/SingleLineMethods:
   Description: Avoid single-line methods.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-single-line-methods
-  Enabled: false
+  Enabled: true
   AllowIfMethodIsEmpty: true
 Style/StringLiterals:
   Description: Checks if uses of quotes match the configured preference.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#consistent-string-literals
-  Enabled: true
+  Enabled: false
   EnforcedStyle: double_quotes
   SupportedStyles:
   - single_quotes
@@ -360,7 +360,7 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   Description: Checks if uses of quotes inside expressions in interpolated strings
     match the configured preference.
-  Enabled: true
+  Enabled: false
   EnforcedStyle: single_quotes
   SupportedStyles:
   - single_quotes

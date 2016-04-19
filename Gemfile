@@ -87,8 +87,10 @@ group :development, :test do
   gem 'pronto-rails_schema'
   #gem 'pronto-reek'
   gem 'ci_reporter'
-  gem 'spork', github: 'sporkrb/spork'
-  gem 'spork-rails'
+  gem 'ci_reporter_rspec'
+#  gem 'spork', github: 'sporkrb/spork'
+#  gem 'spork-rails'
+  gem 'spring' 
 end
 
 group :production do

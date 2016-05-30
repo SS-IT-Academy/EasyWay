@@ -57,7 +57,13 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development, :test do
+group :development do
+  gem 'watchr'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
+group :test do
   gem 'minitest'
   gem 'test-unit', '>= 3.0'
   gem 'factory_girl_rails'
@@ -67,17 +73,17 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-activemodel-mocks'
   gem 'rspec-collection_matchers'
-  gem 'watchr'
   gem 'shoulda-matchers'
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'jasmine'
+  gem 'ci_reporter', :git => 'git://github.com/nicksieger/ci_reporter.git'
+  gem 'ci_reporter_rspec'
+end  
 
+group :development, :test do  
   gem 'metric_fu'
   gem 'rubycritic', require: false
-  gem 'debride', require: false
   gem 'addressable', '~>2.3.0'
-
+  gem 'debride', require: false
   gem 'pronto', '~> 0.5.0'
   gem 'pronto-rubocop', require: false
   gem 'pronto-flay', require: false
@@ -85,9 +91,8 @@ group :development, :test do
   gem 'pronto-poper'
   gem 'pronto-rails_best_practices'
   gem 'pronto-rails_schema'
+  
   #gem 'pronto-reek'
-  gem 'ci_reporter'
-  gem 'ci_reporter_rspec'
 #  gem 'spork', github: 'sporkrb/spork'
 #  gem 'spork-rails'
   gem 'spring' 

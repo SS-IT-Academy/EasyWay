@@ -24,7 +24,7 @@ module EventModule
       all_repetition = self.get_repetition
       all_repetition.each_with_index do |occurrence, index| self.children.build(
         name: "#{self.name} #{index+1}",
-        event_types_id: self.event_types_id,
+        event_type_id: self.event_type_id,
         start_at: occurrence, 
         end_at: occurrence + duration
       )  
@@ -39,7 +39,7 @@ module EventModule
         all_repetition = self.get_repetition        
         all_repetition.each_with_index do |occurrence, index| self.children.create(
           name: self.name,
-          event_types_id: self.event_types_id,
+          event_type_id: self.event_type_id,
           start_at: occurrence, 
           end_at: occurrence + duration
         )                  

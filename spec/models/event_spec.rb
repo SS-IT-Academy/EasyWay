@@ -6,11 +6,11 @@ describe Event do
 
 		context "checks association" do
 
-			it { should have_many(:event_resources).dependent(:destroy) }
+			it { should have_many(:event_resources).dependent(:delete_all) }
 			it { should have_many(:resources).through(:event_resources) }
 			it { should belong_to(:event_type) }
 			it { should belong_to(:recurrence) }
-			it { should have_many(:children).dependent(:destroy) }
+			it { should have_many(:children).dependent(:delete_all) }
 			it { should belong_to(:parent) }
 
 		end
@@ -20,7 +20,7 @@ describe Event do
 			it { should validate_presence_of(:name) }
 			it { should validate_presence_of(:start_at) }
 			it { should validate_presence_of(:end_at) }
-			it { should validate_presence_of(:event_types_id) }
+			it { should validate_presence_of(:event_type_id) }
 
 		end
 
@@ -30,7 +30,7 @@ describe Event do
 			it { should allow_mass_assignment_of(:name) }
 			it { should allow_mass_assignment_of(:end_at) }
 			it { should allow_mass_assignment_of(:start_at) }
-			it { should allow_mass_assignment_of(:event_types_id) }
+			it { should allow_mass_assignment_of(:event_type_id) }
 			it { should allow_mass_assignment_of(:recurrence_id) }
 
 		end

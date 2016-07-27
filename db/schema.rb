@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140324135200) do
+ActiveRecord::Schema.define(:version => 20160727135200) do
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -47,14 +47,16 @@ ActiveRecord::Schema.define(:version => 20140324135200) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
-    t.integer  "event_types_id"
+    t.integer  "event_type_id"
     t.datetime "start_at"
     t.integer  "recurrence_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "parent_id"
     t.datetime "end_at"
   end
+
+  add_index "events", ["event_type_id"], :name => "index_events_on_event_type_id"
 
   create_table "field_types", :force => true do |t|
     t.string   "name"

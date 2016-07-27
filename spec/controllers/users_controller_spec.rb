@@ -1,8 +1,7 @@
 require 'spec_helper'
 
-describe UsersController , type: :controller, authenticated: true do
+describe UsersController, type: :controller, authenticated: true do
   context 'GET index' do
-
     it "assigns Users" do
       user1 = create(:user)
       user2 = create(:user)
@@ -17,7 +16,6 @@ describe UsersController , type: :controller, authenticated: true do
       get :index
       expect(response).to render_template(:index)
     end
-
   end
 
   context "GET get_recipients" do
@@ -29,10 +27,7 @@ describe UsersController , type: :controller, authenticated: true do
     end
   end
 
-
-
   context 'GET show' do
-
     it 'assigns user' do
       user1 = create(:user)
       get :show, id: user1
@@ -46,71 +41,64 @@ describe UsersController , type: :controller, authenticated: true do
   end
  
   context "GET new" do
-
     it "assigns a new User to @user " do
       get :new
       expect(assigns(:user)).to be_a_new(User)
     end
     
-     it 'expected response from new page' do
-       get :new, id: create(:user)
-       expect(response).to render_template(:new)
-     end
+    it 'expected response from new page' do
+      get :new, id: create(:user)
+      expect(response).to render_template(:new)
+    end
   end
 
   context "GET edit" do
-  
-   
   end
 
-describe 'PUT update' do
-  
-  before :each do
-    @user = create(:user)
-  end
-
-  context "valid attributes" do 
-
-    it "located the requested @user" do 
-      put :update, id: @user, user: attributes_for(:user) 
-      assigns(:user).should eq(@user)
+  describe 'PUT update' do
+    before :each do
+      @user = create(:user)
     end
 
-    it "changes @user's attributes" do 
-      put :update, id: @user, user: attributes_for(:user, username: "updated username") 
-      @user.reload 
-      @user.username.should eq("updated username") 
+    context "valid attributes" do 
+      it "located the requested @user" do 
+        put :update, id: @user, user: attributes_for(:user) 
+        assigns(:user).should eq(@user)
+      end
+
+      it "changes @user's attributes" do 
+        put :update, id: @user, user: attributes_for(:user, username: "updated username") 
+        @user.reload 
+        @user.username.should eq("updated username") 
+      end
+
+      it "redirects to the updated user" do
+        put :update, id: @user, user: attributes_for(:user) 
+        response.should redirect_to @user
+      end
     end
 
-    it "redirects to the updated user" do
-      put :update, id: @user, user: attributes_for(:user) 
-      response.should redirect_to @user
-    end
-  end
+    context "invalid attributes" do
+      it "locates the requested @user" do
+        put :update, id: @user, user: attributes_for(:invalid_user) 
+        assigns(:user).should eq(@user) 
+      end
 
-  context "invalid attributes" do
-
-    it "locates the requested @user" do
-      put :update, id: @user, user: attributes_for(:invalid_user) 
-      assigns(:user).should eq(@user) 
-    end
-
-    it "does not change @user's attributes" do
-      @user2 = create(:user, username: "vasya_user")
-      put :update, id: @user2, user: attributes_for(:invalid_user) 
-      @user2.reload 
-      @user2.username.should eq("vasya_user")
-    end
-    
-    it "re-renders the edit method" do
-      put :update, id: @user, user: attributes_for(:invalid_user)
-      response.should render_template :edit 
+      it "does not change @user's attributes" do
+        @user2 = create(:user, username: "vasya_user")
+        put :update, id: @user2, user: attributes_for(:invalid_user) 
+        @user2.reload 
+        @user2.username.should eq("vasya_user")
+      end
+      
+      it "re-renders the edit method" do
+        put :update, id: @user, user: attributes_for(:invalid_user)
+        response.should render_template :edit 
+      end
     end
   end
-end
 
   context "DELETE destroy" do
-
     it "destroys user" do
       user1 = create(:user)
       expect {
@@ -124,5 +112,4 @@ end
       response.should redirect_to(users_path)
     end
   end
-
 end

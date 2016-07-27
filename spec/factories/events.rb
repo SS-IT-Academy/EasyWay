@@ -2,7 +2,7 @@ FactoryGirl.define do
 
   factory :event do
     name "Event"
-    event_types_id 1
+    event_type_id 1
     start_at Time.now + 1.day
     end_at Time.now + 2.day
     recurrence_id 1
@@ -16,7 +16,7 @@ FactoryGirl.define do
 
   factory :invalid_event, parent: :event do
     name ""
-    event_types_id ""
+    event_type_id ""
     start_at ""
     end_at ""
     recurrence_id 1

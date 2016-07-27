@@ -85,7 +85,7 @@ describe EventsController do
         :start_at => Time.now + 1.day, 
         :end_at => Time.now + 1.day + 1.hour, 
         :recurrence_id => create(:recurrence).id,
-        :event_types_id => 1 
+        :event_type_id => 1 
       }
     end
     
@@ -130,7 +130,7 @@ describe EventsController do
         :start_at => Time.now + 1.day, 
         :end_at => Time.now + 1.day + 1.hour, 
         :recurrence_id => create(:recurrence).id,
-        :event_types_id => 1 
+        :event_type_id => 1 
       }
     end
 

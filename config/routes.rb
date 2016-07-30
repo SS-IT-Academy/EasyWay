@@ -20,10 +20,12 @@ EasyW::Application.routes.draw do
 
   resources :resource_values
 
+  post "/resource_types/description" => 'ResourceTypes#description'
+
   resources :resource_types do
-    member do
-      post 'description'
-    end
+#    member do
+#      post 'description'
+#    end
   end
 
   resources :fields

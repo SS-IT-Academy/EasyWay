@@ -15,9 +15,8 @@ describe "resource_values/new", type: :view do
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form[action=?][method=?]", resource_values_path, "post" do
-      assert_select "input#resource_value_field_id[name=?]", "resource_value[field_id]"
-      assert_select "input#resource_value_resource_id[name=?]", "resource_value[resource_id]"
-      assert_select "input#resource_value_resource_reference_id[name=?]", "resource_value[resource_reference_id]"
+      assert_select "select#resource_value_field_id[name=?]", "resource_value[field_id]"
+      assert_select "select#resource_value_resource_id[name=?]", "resource_value[resource_id]"
       assert_select "input#resource_value_value[name=?]", "resource_value[value]"
     end
   end

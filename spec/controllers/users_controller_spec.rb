@@ -3,6 +3,8 @@ require 'spec_helper'
 describe UsersController, type: :controller, authenticated: true do
   context 'GET index' do
     it "assigns Users" do
+      User.delete_all
+      Role.delete_all
       user1 = create(:user)
       user2 = create(:user)
       role1 = create(:role)
@@ -20,6 +22,7 @@ describe UsersController, type: :controller, authenticated: true do
 
   context "GET get_recipients" do
     it "assigns recipients" do
+      User.delete_all
       user1 = create(:user)
       user2 = create(:user)
       get :get_recipients

@@ -15,10 +15,10 @@ describe "notify_events/new", type: :view do
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form[action=?][method=?]", notify_events_path, "post" do
-      assert_select "input#notify_event_event_id[name=?]", "notify_event[event_id]"
+      assert_select "select#notify_event_event_id[name=?]", "notify_event[event_id]"
       assert_select "input#notify_event_name[name=?]", "notify_event[name]"
-      assert_select "input#notify_event_observer_id[name=?]", "notify_event[observer_id]"
-      assert_select "input#notify_event_template_id[name=?]", "notify_event[template_id]"
+      assert_select "select#notify_event_notify_observer_id[name=?]", "notify_event[notify_observer_id]"
+      assert_select "select#notify_event_notify_template_id[name=?]", "notify_event[notify_template_id]"
     end
   end
 end

@@ -10,11 +10,10 @@ FactoryGirl.define do
 :rule_type: IceCube::MonthlyRule
 :interval: 1
 REPETITION
-	)
-	end
+	  )
 
-  factory :recurrence_with_repetition do
-    repetition YAML.load(<<-REPETITION
+    factory :recurrence_with_2_repetitions do
+      repetition YAML.load(<<-REPETITION
 ---
 :validations:
 :day_of_month:
@@ -23,11 +22,30 @@ REPETITION
 :rule_type: IceCube::MonthlyRule
 :interval: 1
 REPETITION
-  )
-  end
+      )
+    end
 
-	factory :invalid_recurrence, parent: :recurrence do
-		repetition ""
-	end
+    factory :recurrence_with_repetitions do
+      transient do
+        count 2
+      end
 
+      before(:create) do |recurrence, evaluator|
+        recurrence.repetition = YAML.load(<<-REPETITION
+---
+:validations:
+:day_of_month:
+#{evaluator.count.times.map{|ind| "- #{1 + ind}"}.join("\n")}
+:rule_type: IceCube::MonthlyRule
+:interval: 1
+REPETITION
+        )
+
+      end
+    end
+
+  	factory :invalid_recurrence, parent: :recurrence do
+  		repetition ""
+  	end
+  end  
 end

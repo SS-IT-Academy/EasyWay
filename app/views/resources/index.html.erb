@@ -16,13 +16,13 @@
     <th></th>
     <th></th>
   </tr>
-
+<%= @resources.inspect %>
 <% @resources.each do |resource| %>
   <% if can?(:read, resource) %>
     <tr>
       <td><%= resource.id %></td>
       <td><%= resource.description %></td>
-      <td><%= ResourceType.find(resource.resource_type_id).name %></td>
+      <td><%= resource.resource_type.name %></td>
       <td><%= link_to 'Show', resource,:class=>"btn btn-info" %></td>
       <td>
         <% if can?(:edit, resource) %>

@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @user = User.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render template: 'users/invitations/new' } # new.html.erb
       format.json { render :json => @user }
     end
   end
@@ -42,6 +42,7 @@ class UsersController < ApplicationController
   def edit
     @roles = Role.all
     @user = User.find(params[:id])
+    render template: 'users/invitations/edit'
   end
 
 

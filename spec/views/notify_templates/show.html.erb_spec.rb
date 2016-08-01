@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "notify_templates/show", type: :view do
   before(:each) do
     @notify_template = assign(:notify_template, stub_model(NotifyTemplate,
-      :template_name => "Template Name",
+      :notify_template_name => "Template Name",
       :body => "Body",
       :desc => "Desc"
     ))

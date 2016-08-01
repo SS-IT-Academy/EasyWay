@@ -29,12 +29,11 @@
 </p>
 <p><strong>Example:</strong> "My name is <i>$${name_of_field}</i>"<p>
 
-<div class="boxforforms">
-<%= form_for @resource_type, :html => { :class => "form-horizontal" },
-    :url => { :action => :description }, :method => :post do |f| %>
+<div class='boxforforms'>
+<%= form_for @resource_type, html: { class: 'form-horizontal' }, url: resource_types_description_path, method: :post do |f| %>
   <% if @resource_type.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@resource_type.errors.count, "error") %> prohibited this resource type from being saved:</h2>
+    <div id='error_explanation'>
+      <h2><%= pluralize(@resource_type.errors.count, 'error') %> prohibited this resource type from being saved:</h2>
 
       <ul>
       <% @resource_type.errors.full_messages.each do |msg| %>
@@ -44,14 +43,14 @@
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label :description, :class=>"control-label" %>
-    <div class="controls">
+  <div class='control-group'>
+    <%= f.label :description, class: 'control-label' %>
+    <div class='controls'>
       <%= f.text_field :description %>
     </div>
   </div>
-  <div class="actions">
-    <%= f.submit "Update description", :class => "btn btn-primary" %>
+  <div class='actions'>
+    <%= f.submit "Update description", class: 'btn btn-primary' %>
   </div> 
 <% end %>
 </div>

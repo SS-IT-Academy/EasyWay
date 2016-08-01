@@ -402,6 +402,11 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    simplecov-json (0.2)
+      json
+      simplecov
+    simplecov-rcov (0.2.3)
+      simplecov (>= 0.4.1)
     slop (3.6.0)
     spring (1.7.1)
     sprockets (2.2.3)
@@ -512,6 +517,8 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   shoulda-matchers
   simplecov
+  simplecov-json
+  simplecov-rcov
   spring
   strong_parameters
   test-unit (>= 3.0)

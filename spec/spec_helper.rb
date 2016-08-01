@@ -1,5 +1,6 @@
 require 'rubygems'
 #require 'spork'
+
 $: << File.dirname(File.dirname(__FILE__))
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
@@ -13,6 +14,16 @@ $: << File.dirname(File.dirname(__FILE__))
   require 'rspec/rails'
   require 'rspec/autorun'
   require 'spec/support/controller_helpers'
+  require 'simplecov'
+  require 'simplecov-json'
+  require 'simplecov-rcov'
+
+  SimpleCov.formatters = [
+    SimpleCov::Formatter::HTMLFormatter,
+    SimpleCov::Formatter::JSONFormatter,
+    SimpleCov::Formatter::RcovFormatter
+  ]
+  SimpleCov.start
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.

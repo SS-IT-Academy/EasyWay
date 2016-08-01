@@ -25,7 +25,7 @@ gem 'jquery-ui-rails'
 gem 'thin' 
 gem 'nested_form'
 gem 'railties'
-gem 'simplecov'
+#gem 'simplecov'
 
 gem 'safe_attributes'
 
@@ -75,6 +75,9 @@ group :test do
   gem 'rspec-collection_matchers'
   gem 'shoulda-matchers'
   gem 'jasmine'
+  gem 'simplecov'
+  gem 'simplecov-json'
+  gem 'simplecov-rcov'
   gem 'ci_reporter', :git => 'git://github.com/nicksieger/ci_reporter.git'
   gem 'ci_reporter_rspec'
 end  

@@ -29,14 +29,14 @@ describe Resource do
 
   describe "#all_value_ids" do
     it "should return array with all ids without resource_reference_id" do
+      resource_values = []
       3.times do |i|
-        create :field
-        resource.resource_values.create field_id: i + 1, value: "some#{i}"
+        rv = resource.resource_values.create field_id: create(:field).id, value: "some#{i}"
+        resource_values << rv.id
       end
-      create :field
       resource2 = create :resource
-      resource2.resource_values.create field_id: 4, resource_reference_id: resource.id
-      resource2.all_value_ids.should == [1, 2, 3]
+      resource2.resource_values.create field_id: create(:field).id, resource_reference_id: resource.id
+      resource2.all_value_ids.should == resource_values
     end
   end
 
@@ -67,8 +67,10 @@ describe Resource do
 
   describe ".resources_by_event" do
     it "returns resource values array with resource reference id" do
-      event = create :event, start_at: "10:10", end_at: "12:00"
-      # p Resource.resources_by_event(event.id)
+      event = create :event, start_at: 1.hour.from_now, end_at: 3.hours.from_now
+      event.event_resources << create(:event_resource, resource_id: resource.id)
+      event.save!
+      Resource.resources_by_event(event.id).map(&:id).should eq [resource.id]
     end
   end
 end

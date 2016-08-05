@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe EventResourcesController , type: :controller, authenticated: true do
-  context "GET index" do
+  render_views
 
+  context "GET index" do
     it "event_resources should include event_resource" do
       event_resource1 = create(:event_resource)
       event_resource2 = create(:event_resource)
@@ -14,11 +15,9 @@ describe EventResourcesController , type: :controller, authenticated: true do
       get :index
       expect(response).to render_template(:index)
     end
-
   end
 
   context "GET show" do
-
     it "event_resource should be equal event_resource" do
       event_resource = create(:event_resource)
       get :show, id: event_resource
@@ -29,11 +28,9 @@ describe EventResourcesController , type: :controller, authenticated: true do
       get :show, id: create(:event_resource)
       expect(response).to render_template(:show)
     end
-
   end
 
   context "GET new" do
-
     it "event_resource should not be a new EventResource" do
       get :new
       expect(assigns(:event_resources)).to_not be_a_new(EventResource)
@@ -53,11 +50,9 @@ describe EventResourcesController , type: :controller, authenticated: true do
       get :new
       expect(response).to render_template(:new)
     end
-
   end
 
   context "GET edit" do
-
     it 'event_resource equal event_resource' do
       event_resource = create(:event_resource)
       get :edit, id: event_resource
@@ -68,11 +63,9 @@ describe EventResourcesController , type: :controller, authenticated: true do
       get :edit, id: create(:event_resource)
       expect(response).to render_template(:edit)
     end
-
   end
 
   context "POST create" do
-
     it "expected creating new EventResource" do
       expect{
         post :create, event_resource: attributes_for(:event_resource)
@@ -94,11 +87,9 @@ describe EventResourcesController , type: :controller, authenticated: true do
       post :create, event_resource: attributes_for(:invalid_event_resource)
       response.should render_template :new
     end
-
   end
 
   context "PUT update" do
-
     it "event_resource should be equal event_resource" do
       event_resource = create(:event_resource)
       put :update, id: event_resource
@@ -132,11 +123,9 @@ describe EventResourcesController , type: :controller, authenticated: true do
       put :update, id: create(:event_resource), event_resource: attributes_for(:invalid_event_resource)
       response.should render_template :edit
     end
-
   end
 
   context "DELETE destroy" do
-
     it "deletes event_resource" do 
       event_resource = create(:event_resource)
       expect{
@@ -148,11 +137,9 @@ describe EventResourcesController , type: :controller, authenticated: true do
       delete :destroy, id: create(:event_resource)
       response.should redirect_to '/event_resources'
     end
-
   end
 
   context 'remove_event_resource' do
-
     # it 'delete event_resource' do
     #   event_resource = create(:event_resource)
     #   expect{
@@ -164,7 +151,5 @@ describe EventResourcesController , type: :controller, authenticated: true do
     #   delete :remove_event_resource, id: create(:event_resource)
     #   response.should render_template.to_json
     # end
-
   end
-
 end

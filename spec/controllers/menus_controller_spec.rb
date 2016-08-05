@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe MenusController , type: :controller, authenticated: true do
-  context 'GET index' do
+describe MenusController, type: :controller, authenticated: true do
+  render_views
 
+  context 'GET index' do
     it "assigns Menus" do
       menu1 = create(:menu)
       menu2 = create(:menu)
@@ -17,7 +18,6 @@ describe MenusController , type: :controller, authenticated: true do
   end 
 
   context "GET show" do
-
     it 'assigns menu' do
       menu = create(:menu)
       get :show, id: menu
@@ -31,7 +31,6 @@ describe MenusController , type: :controller, authenticated: true do
   end
 
   context "GET edit" do
-
     it 'expect edit page' do
       menu = create(:menu)
       get :edit,  id: menu
@@ -46,7 +45,6 @@ describe MenusController , type: :controller, authenticated: true do
   end
 
   context "POST create" do
-    
     it 'created new Menu' do
       expect{
         post :create, menu: attributes_for(:menu)
@@ -59,34 +57,31 @@ describe MenusController , type: :controller, authenticated: true do
     end
   end
 
-describe 'PUT update' do
-  
-  before :each do
-    @menu = create(:menu, position: "1")
+  describe 'PUT update' do
+    before :each do
+      @menu = create(:menu, position: "1")
+    end
+
+    context "valid attributes" do 
+      it "located the requested @menu" do 
+        put :update, id: @menu, menu: attributes_for(:menu) 
+        assigns(:menu).should eq(@menu)
+      end
+
+      it "changes @menu's attributes" do 
+        put :update, id: @menu, menu: attributes_for(:menu, position: "2") 
+        @menu.reload 
+        @menu.position.should eq(2) 
+      end
+
+      it "redirects to the updated menu" do
+        put :update, id: @menu, menu: attributes_for(:menu) 
+        response.should redirect_to @menu
+      end
+    end
   end
 
-  context "valid attributes" do 
-
-    it "located the requested @menu" do 
-      put :update, id: @menu, menu: attributes_for(:menu) 
-      assigns(:menu).should eq(@menu)
-    end
-
-    it "changes @menu's attributes" do 
-      put :update, id: @menu, menu: attributes_for(:menu, position: "2") 
-      @menu.reload 
-      @menu.position.should eq(2) 
-    end
-
-    it "redirects to the updated menu" do
-      put :update, id: @menu, menu: attributes_for(:menu) 
-      response.should redirect_to @menu
-    end
-  end
-end
-
-context "DELETE destroy" do
-
+  context "DELETE destroy" do
     it "destroys the requested menu" do
       menu = create(:menu)
       expect {
@@ -99,10 +94,5 @@ context "DELETE destroy" do
       delete :destroy, id: menu
       response.should redirect_to(menus_url(:only_path => true))
     end
-
   end
-
-
-
-
 end

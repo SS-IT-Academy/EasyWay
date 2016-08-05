@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe UsersController, type: :controller, authenticated: true do
+  render_views
+
   context 'GET index' do
     it "assigns Users" do
       User.delete_all
@@ -106,7 +108,7 @@ describe UsersController, type: :controller, authenticated: true do
       user1 = create(:user)
       expect {
         delete :destroy, id: user1
-        }.to change(User, :count).by(-1)
+      }.to change(User, :count).by(-1)
     end
 
     it "redirects to the users#index" do

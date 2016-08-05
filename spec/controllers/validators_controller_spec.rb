@@ -18,7 +18,9 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe ValidatorsController , type: :controller, authenticated: true do# This should return the minimal set of attributes required to create a valid
+describe ValidatorsController, type: :controller, authenticated: true do
+  render_views
+  # This should return the minimal set of attributes required to create a valid
   # Validator. As you add validations to Validator, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) { { 
@@ -158,5 +160,4 @@ describe ValidatorsController , type: :controller, authenticated: true do# This 
       response.should redirect_to(validators_url(:only_path => true))
     end
   end
-
 end

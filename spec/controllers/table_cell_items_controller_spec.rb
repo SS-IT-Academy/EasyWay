@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe TableCellItemsController , type: :controller, authenticated: true do
-  context "GET index" do
+describe TableCellItemsController, type: :controller, authenticated: true do
+  render_views
 
+  context "GET index" do
     it "table_cell_item should include table_cell_items" do
       table_cell_item1 = create(:table_cell_item)
       table_cell_item2 = create(:table_cell_item)
@@ -14,28 +15,22 @@ describe TableCellItemsController , type: :controller, authenticated: true do
       get :index
       expect(response).to render_template(:index)
     end
-
   end
   
   context "GET show" do
-
     it "table_cell_item should be equal table_cell_item" do
       table_cell_item = create(:table_cell_item)
-
       get :show, id: table_cell_item
       expect(assigns(:table_cell_item)).to eq(table_cell_item)
-
     end
     
     it "expected response from show page" do
       get :show, id: create(:table_cell_item)
       expect(response).to render_template(:show)
     end
-    
   end
   
   context "GET edit" do
-
     it 'table_cell_item equal table_cell_item' do
       table_cell_item = create(:table_cell_item)
       get :edit, id: table_cell_item
@@ -46,11 +41,9 @@ describe TableCellItemsController , type: :controller, authenticated: true do
       get :edit, id: create(:table_cell_item)
       expect(response).to render_template(:edit)
     end
-    
   end
   
   context "POST create" do
-    
     it "expected creating new TableCellItem" do
       expect{
         post :create, table_cell_item: attributes_for(:table_cell_item)
@@ -72,11 +65,9 @@ describe TableCellItemsController , type: :controller, authenticated: true do
       post :create, table_cell_item: attributes_for(:invalid_table_cell_item)
       response.should render_template :new
     end
-      
   end
 
-  context "PUT update" do
-        
+  context "PUT update" do 
     it "table_cell_item should be equal table_cell_item" do
       table_cell_item = create(:table_cell_item)
       put :update, id: table_cell_item
@@ -110,11 +101,9 @@ describe TableCellItemsController , type: :controller, authenticated: true do
       put :update, id: create(:table_cell_item), table_cell_item: attributes_for(:invalid_table_cell_item)
       response.should render_template :edit
     end
-    
   end
   
   context "DELETE destroy" do
-
     it "deletes table_cell_item" do 
       table_cell_item = create(:table_cell_item)
       expect{
@@ -126,7 +115,5 @@ describe TableCellItemsController , type: :controller, authenticated: true do
       delete :destroy, id: create(:table_cell_item)
       response.should redirect_to table_cell_items_url(:only_path => true)
     end
-
   end
-  
 end

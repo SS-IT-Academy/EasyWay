@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe "EventResources", type: :controller, authenticated: true do
+  render_views
+
   describe "GET /event_resources" do
     it "works! (now write some real specs)" do
       @controller = EventResourcesController.new	

@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe RecurrencesController , type: :controller, authenticated: true do
-  context 'GET index' do
+describe RecurrencesController, type: :controller, authenticated: true do
+  render_views
 
+  context 'GET index' do
     it 'recurrences should include recurrence' do
       recurrence1 = create(:recurrence)
       recurrence2 = create(:recurrence)
@@ -14,11 +15,9 @@ describe RecurrencesController , type: :controller, authenticated: true do
       get :index
       expect(response).to render_template(:index)
     end
-
   end
 
   context 'GET show' do
-
     it 'recurrence equal recurrence' do
       recurrence = create(:recurrence)
       get :show, id: recurrence
@@ -29,11 +28,9 @@ describe RecurrencesController , type: :controller, authenticated: true do
       get :show, id: create(:recurrence)
       expect(response).to render_template(:show)
     end
-
   end
 
   context "GET new" do
-
     it 'recurrence should be a new Recurrence' do
       get :new
       expect(assigns(:recurrence)).to be_a_new(Recurrence)
@@ -53,11 +50,9 @@ describe RecurrencesController , type: :controller, authenticated: true do
       get :new
       expect(response).to_not render_template(:news)
     end
-
   end
 
   context "GET edit" do
-
     it 'recurrence equal recurrence' do
       recurrence = create(:recurrence)
       get :edit, id: recurrence
@@ -68,11 +63,9 @@ describe RecurrencesController , type: :controller, authenticated: true do
       get :edit, id: create(:recurrence)
       expect(response).to render_template(:edit)
     end
-
   end
 
   context "POST create" do
-
     it 'create new Recurrence' do
       expect{
         post :create, recurrence: attributes_for(:recurrence)
@@ -95,11 +88,9 @@ describe RecurrencesController , type: :controller, authenticated: true do
       post :create, recurrence: attributes_for(:invalid_recurrence)  
       response.should render_template :new
     end
-
   end
 
   context 'PUT update' do
-
     it "recurrence not equal recurrence" do
       recurrence1 = create(:recurrence)
       recurrence2 = create(:recurrence_with_repetitions, count: 4)
@@ -135,7 +126,6 @@ describe RecurrencesController , type: :controller, authenticated: true do
   end
 
   context "DELETE destroy" do
-
     it 'deletes recurrence' do
       recurrence = create(:recurrence)
       expect{
@@ -148,5 +138,4 @@ describe RecurrencesController , type: :controller, authenticated: true do
       response.should redirect_to recurrences_url(:only_path => true)
     end
   end
-
 end

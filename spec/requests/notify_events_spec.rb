@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "NotifyEvents", type: :controller, authenticated: true do
   include RSpec::Rails::ControllerExampleGroup
+  render_views
   	
   describe "GET /notify_events" do
     it "works! (now write some real specs)" do

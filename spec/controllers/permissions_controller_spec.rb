@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe PermissionsController do
+describe PermissionsController, type: :controller, authenticated: true  do
 	include RSpec::Rails::ControllerExampleGroup
+  render_views
 
 	context 'GET index' do
-
 		it 'permissions should include all permission' do
 			permission1 = create(:permission)
 			permission2 = create(:permission, name: 4)
@@ -16,13 +16,11 @@ describe PermissionsController do
 			get :index
 			expect(response).to render_template :index
 		end
-
 	end
 
 	let(:permission) {create(:permission)}
 
 	context 'GET show' do
-
 		it 'permission equal permission' do
 			get :show, id: permission
 			expect(assigns(:permission)).to eq(permission)
@@ -32,11 +30,9 @@ describe PermissionsController do
       get :show, id: permission
       expect(response).to render_template(:show)
     end
-
 	end
 
 	context 'GET new' do
-
 		it 'should be a new Permission' do
 			get :new
 			expect(assigns(:permission)).to be_a_new(Permission)
@@ -56,11 +52,9 @@ describe PermissionsController do
 			get :new
 			expect(response).to_not render_template(:newed)
 		end
-
 	end
 
 	context 'GET edit' do
-
 		it 'permission equal permission' do
 			get :edit, id: permission
 			expect(assigns(:permission)).to eq(permission)
@@ -75,11 +69,9 @@ describe PermissionsController do
       get :edit, id: permission
       expect(response).to render_template(:edit)
     end
-
 	end
 
 	context 'POST create' do
-
 		it 'create new Permission' do
 			expect{
 				post :create, permission: attributes_for(:permission)
@@ -95,30 +87,26 @@ describe PermissionsController do
     #   post :create, permission: attributes_for(:permission, name: nil)
     #   response.should render_template(:new)
     # end
-
 	end
 
 	context 'PUT update' do
-
 		it 'permission equal permission' do
 			put :update, id: permission, permission: attributes_for(:permission, name: 8)
 			expect(assigns(:permission)).to eq(permission)
 		end
 
 		it "redirects to the updated permission" do
-       put :update, id: create(:permission), permission: attributes_for(:permission, name: 7)
-       response.should redirect_to :permission
-     end
+      put :update, id: create(:permission), permission: attributes_for(:permission, name: 7)
+      response.should redirect_to :permission
+    end
 
      # it 'render permissions_path when invalid permission' do
      #    put :update, id: permission, event_type: attributes_for(:permission, name: nil)
      #    response.should render_template :edit
      #  end
-
 	end
 
 	context 'DELETE destroy' do
-
 		# it 'deletes permission' do
 		# 	expect{
 		# 		delete :destroy, id: permission
@@ -129,9 +117,5 @@ describe PermissionsController do
 		# 	delete :destroy, id: permission
 		# 	response.should redirect_to permissions_url(:only_path => true)
 		# end
-
 	end
-
-
-
 end

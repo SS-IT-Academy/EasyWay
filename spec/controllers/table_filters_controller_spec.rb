@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe TableFiltersController , type: :controller, authenticated: true do
-  context "GET index" do
+describe TableFiltersController, type: :controller, authenticated: true do
+  render_views
 
+  context "GET index" do
     it "table_filters should include table_filter" do
       table_filter1 = create(:table_filter)
       table_filter2 = create(:table_filter)
@@ -14,11 +15,9 @@ describe TableFiltersController , type: :controller, authenticated: true do
       get :index
       expect(response).to render_template(:index)
     end
-
   end
   
   context "GET show" do
-
     it "table_filter should be equal table_filter" do
       table_filter = create(:table_filter)
       get :show, id: table_filter
@@ -29,11 +28,9 @@ describe TableFiltersController , type: :controller, authenticated: true do
       get :show, id: create(:table_filter)
       expect(response).to render_template(:show)
     end
-
   end
   
   context "GET edit" do
-
     it 'table_filter equal table_filter' do
       table_filter = create(:table_filter)
       get :edit, id: table_filter
@@ -44,12 +41,9 @@ describe TableFiltersController , type: :controller, authenticated: true do
       get :edit, id: create(:table_filter)
       expect(response).to render_template(:edit)
     end
-
   end
   
-  
   context "POST create" do
-
     it "expected creating new TableFilter" do
       expect{
         post :create, table_filter: attributes_for(:table_filter)
@@ -71,12 +65,10 @@ describe TableFiltersController , type: :controller, authenticated: true do
       post :create, table_filter: attributes_for(:invalid_table_filter)
       response.should render_template :new
     end
-
   end
   
   
   context "PUT update" do
-
     it "table_filter should be equal table_filter" do
       table_filter = create(:table_filter)
       put :update, id: table_filter
@@ -110,12 +102,9 @@ describe TableFiltersController , type: :controller, authenticated: true do
       put :update, id: create(:table_filter), table_filter: attributes_for(:invalid_table_filter)
       response.should render_template :edit
     end
-
   end
 
-
   context "DELETE destroy" do
-
     it "deletes table_filter" do 
       table_filter = create(:table_filter)
       expect{
@@ -127,7 +116,5 @@ describe TableFiltersController , type: :controller, authenticated: true do
       delete :destroy, id: create(:table_filter)
       response.should redirect_to table_filters_url(:only_path => true)
     end
-
   end
-  
 end

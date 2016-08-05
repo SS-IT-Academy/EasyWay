@@ -1,13 +1,14 @@
 require 'spec_helper'
 
-describe NotifyEventsController , type: :controller, authenticated: true do
+describe NotifyEventsController, type: :controller, authenticated: true do
+  render_views
+
   describe 'GET index' do
     it "responds successfully with an HTTP 200 status code" do
       get :index
       expect(response).to be_success
       expect(response.status).to eq(200)
     end
-
 
     it "GET #index" do
       notify_event1 = create(:notify_event)
@@ -62,10 +63,10 @@ describe NotifyEventsController , type: :controller, authenticated: true do
         mapping = create(:mapping)
         template = create(:notify_template)
 
-          expect{
-            post :create, notify_event: 
-            attributes_for(:notify_event, notify_template_id: template.id)}.
-            to change(NotifyEvent, :count).by(1)
+        expect {
+          post :create, notify_event: 
+          attributes_for(:notify_event, notify_template_id: template.id)
+        }.to change(NotifyEvent, :count).by(1)
       end
 
       it "redirects to the new notify_event" do
@@ -141,18 +142,17 @@ describe NotifyEventsController , type: :controller, authenticated: true do
       end
 
       it "does not changes @notify_event's attributes" do
-          put :update, id: @notify_event,
-          notify_event: attributes_for(:notify_event, name: nil, notify_template_id: @template.id)
-          @notify_event.reload
-          @notify_event.name.should eq("some name")
+        put :update, id: @notify_event,
+        notify_event: attributes_for(:notify_event, name: nil, notify_template_id: @template.id)
+        @notify_event.reload
+        @notify_event.name.should eq("some name")
       end
 
       it "re-renders the edit method" do
-          put :update, id: @notify_event, notify_event: attributes_for(:notify_event, name: nil, notify_template_id: @template.id)
-          response.should render_template :edit
+        put :update, id: @notify_event, notify_event: attributes_for(:notify_event, name: nil, notify_template_id: @template.id)
+        response.should render_template :edit
       end
     end
-
   end
 
   describe 'DELETE destroy' do
@@ -161,8 +161,8 @@ describe NotifyEventsController , type: :controller, authenticated: true do
     end
 
     it "deletes the notify_event" do
-    expect{
-      delete :destroy, id: @notify_event
+      expect {
+        delete :destroy, id: @notify_event
       }.to change(NotifyEvent, :count).by(-1)
     end
 
@@ -171,5 +171,4 @@ describe NotifyEventsController , type: :controller, authenticated: true do
       response.should redirect_to notify_events_url(:only_path => true)
     end
   end
-
 end

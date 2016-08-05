@@ -1,14 +1,15 @@
 
 require 'spec_helper'
 
-describe NotifyObserverPropertiesController , type: :controller, authenticated: true do
+describe NotifyObserverPropertiesController, type: :controller, authenticated: true do
+  render_views
+
   describe 'GET index' do
     it "responds successfully with an HTTP 200 status code" do
       get :index
       expect(response).to be_success
       expect(response.status).to eq(200)
     end
-
 
     it "GET #index" do
       notify_observer_property1 = create(:notify_observer_property)
@@ -59,10 +60,10 @@ describe NotifyObserverPropertiesController , type: :controller, authenticated: 
   describe "POST create" do
     context "with valid attributes" do
       it "creates a new Notifyobserver_property" do
-          expect{
-            post :create, notify_observer_property: 
-            attributes_for(:notify_observer_property)}.
-            to change(NotifyObserverProperty, :count).by(1)
+        expect {
+          post :create, notify_observer_property: 
+          attributes_for(:notify_observer_property)
+        }.to change(NotifyObserverProperty, :count).by(1)
       end
 
       it "redirects to the new notify_observer_property" do
@@ -128,18 +129,17 @@ describe NotifyObserverPropertiesController , type: :controller, authenticated: 
       end
 
       it "does not changes @notify_observer_property's attributes" do
-          put :update, id: @notify_observer_property,
-          notify_observer_property: attributes_for(:notify_observer_property, name: nil)
-          @notify_observer_property.reload
-          @notify_observer_property.name.should eq("some name")
+        put :update, id: @notify_observer_property,
+        notify_observer_property: attributes_for(:notify_observer_property, name: nil)
+        @notify_observer_property.reload
+        @notify_observer_property.name.should eq("some name")
       end
 
       it "re-renders the edit method" do
-          put :update, id: @notify_observer_property, notify_observer_property: attributes_for(:notify_observer_property, name: nil)
-          response.should render_template :edit
+        put :update, id: @notify_observer_property, notify_observer_property: attributes_for(:notify_observer_property, name: nil)
+        response.should render_template :edit
       end
     end
-
   end
 
   describe 'DELETE destroy' do
@@ -148,8 +148,8 @@ describe NotifyObserverPropertiesController , type: :controller, authenticated: 
     end
 
     it "deletes the notify_observer_property" do
-    expect{
-      delete :destroy, id: @notify_observer_property
+      expect{
+        delete :destroy, id: @notify_observer_property
       }.to change(NotifyObserverProperty, :count).by(-1)
     end
 
@@ -158,5 +158,4 @@ describe NotifyObserverPropertiesController , type: :controller, authenticated: 
       response.should redirect_to notify_observer_properties_url(:only_path => true)
     end
   end
-
 end

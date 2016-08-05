@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe EventTypesController, type: :controller, authenticated: true do
-  context "GET index" do
+  render_views
 
+  context "GET index" do
     it "event_type should include event_type" do
       event_type1 = create(:event_type)
       event_type2 = create(:event_type)
@@ -14,11 +15,9 @@ describe EventTypesController, type: :controller, authenticated: true do
       get :index
       expect(response).to render_template(:index)
     end
-
   end
 
   context "GET show" do
-
     it "event_type should be equal event_type" do
       event_type = create(:event_type)
       get :show, id: event_type
@@ -29,11 +28,9 @@ describe EventTypesController, type: :controller, authenticated: true do
       get :show, id: create(:event_type)
       expect(response).to render_template(:show)
     end
-
   end
 
   context "GET new" do
-
     it "event_type should not be a new EventType" do
       get :new
       expect(assigns(:event_types)).to_not be_a_new(EventType)
@@ -55,7 +52,6 @@ describe EventTypesController, type: :controller, authenticated: true do
     end
 
     context "GET edit" do
-
       it 'event_type equal event_type' do
         event_type = create(:event_type)
         get :edit, id: event_type
@@ -66,11 +62,9 @@ describe EventTypesController, type: :controller, authenticated: true do
         get :edit, id: create(:event_type)
         expect(response).to render_template(:edit)
       end
-
     end
 
     context "POST create" do
-
       it "expected creating new EventType" do
         expect{
           post :create, event_type: attributes_for(:event_type)
@@ -92,11 +86,9 @@ describe EventTypesController, type: :controller, authenticated: true do
         post :create, event_type: attributes_for(:invalid_event_type)
         response.should render_template :new
       end
-
     end
 
     context "PUT update" do
-
       it "event_type should be equal event_type" do
         event_type = create(:event_type)
         put :update, id: event_type
@@ -126,11 +118,9 @@ describe EventTypesController, type: :controller, authenticated: true do
         put :update, id: create(:event_type), event_type: attributes_for(:invalid_event_type)
         response.should render_template :edit
       end
-
     end
 
     context "DELETE destroy" do
-
       it "deletes event_type" do 
         event_type = create(:event_type)
         expect{
@@ -142,9 +132,6 @@ describe EventTypesController, type: :controller, authenticated: true do
         delete :destroy, id: create(:event_type)
         response.should redirect_to "/event_types"
       end
-
     end
-
   end
-
 end

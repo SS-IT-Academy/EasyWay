@@ -17,10 +17,9 @@ require 'spec_helper'
 # is no simpler way to get a handle on the object needed for the example.
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
-
-
-
-describe FieldsController , type: :controller, authenticated: true do# let(:resource_type) { FactoryGirl.create :resource_type }
+describe FieldsController, type: :controller, authenticated: true do
+  render_views
+  # let(:resource_type) { FactoryGirl.create :resource_type }
   # let(:field_type) { FactoryGirl.create :field_type }
   # This should return the minimal set of attributes required to create a valid
   # Field. As you add validations to Field, be sure to

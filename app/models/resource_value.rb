@@ -10,8 +10,7 @@ class ResourceValue < ActiveRecord::Base
   validate :custom_validation
 
   def custom_validation
-    field = Field.where(id:field_id)
-    validators = field.try(:validators)
+    validators = Validator.joins(:fields).where(fields:{ id: field_id }).all
     validators.each do |v|
       evaluate_validator(v, value) if v.is_a?(Validator)
     end unless validators.blank?

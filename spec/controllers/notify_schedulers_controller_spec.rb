@@ -57,16 +57,17 @@ describe NotifySchedulersController, type: :controller, authenticated: true do
   end
 
   describe "POST create" do
+    let(:attributes) { { period: 1, start_at: 1.day.from_now, end_at: 2.days.from_now } }
+
     context "with valid attributes" do
       it "creates a new NotifyScheduler" do
         expect {
-          post :create, notify_scheduler: 
-          attributes_for(:notify_scheduler)
+          post :create, notify_scheduler: attributes
         }.to change(NotifyScheduler, :count).by(1)
       end
 
       it "redirects to the new notify_scheduler" do
-        post :create, notify_scheduler: attributes_for(:notify_scheduler)
+        post :create, notify_scheduler: attributes
         response.should redirect_to NotifyScheduler.last
       end
 
@@ -101,21 +102,25 @@ describe NotifySchedulersController, type: :controller, authenticated: true do
       @notify_scheduler = create(:notify_scheduler, period: 25)
     end
 
+    let(:attributes) { { period: 1, start_at: 1.day.from_now, end_at: 2.days.from_now } }
+
     context "valid attributes" do
       it "located the requested @notify_scheduler" do
-        put :update, id: @notify_scheduler, notify_scheduler: attributes_for(:notify_scheduler)
-        assigns(:notify_scheduler).should eq(@notify_scheduler)
+        put :update, id: @notify_scheduler, notify_scheduler: attributes
+        assigns(:notify_scheduler).period.should eq attributes[:period]
+        assigns(:notify_scheduler).start_at.should be_the_same_time_as attributes[:start_at].to_time
+        assigns(:notify_scheduler).end_at.should be_the_same_time_as attributes[:end_at].to_time
       end
 
       it "changes @notify_scheduler's attributes" do
         put :update, id: @notify_scheduler,
-        notify_scheduler: attributes_for(:notify_scheduler, period: 25)
+        notify_scheduler: attributes_for(:notify_scheduler, period: 30)
         @notify_scheduler.reload
-        @notify_scheduler.period.should eq(25)
+        @notify_scheduler.period.should eq(30)
       end
 
       it "redirects to the updated notify_scheduler" do
-        put :update, id: @notify_scheduler, notify_scheduler: attributes_for(:notify_scheduler)
+        put :update, id: @notify_scheduler, notify_scheduler: attributes
         response.should redirect_to @notify_scheduler
       end
     end

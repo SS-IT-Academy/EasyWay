@@ -40,7 +40,7 @@ class NotifySchedulersController < ApplicationController
   # POST /notify_schedulers
   # POST /notify_schedulers.json
   def create
-    @notify_scheduler = NotifyScheduler.new(params[:notify_scheduler])
+    @notify_scheduler = NotifyScheduler.new(notify_scheduler_params)
 
     respond_to do |format|
       if @notify_scheduler.save
@@ -59,7 +59,7 @@ class NotifySchedulersController < ApplicationController
     @notify_scheduler = NotifyScheduler.find(params[:id])
 
     respond_to do |format|
-      if @notify_scheduler.update_attributes(params[:notify_scheduler])
+      if @notify_scheduler.update_attributes(notify_scheduler_params)
         format.html { redirect_to @notify_scheduler, notice: 'Notify scheduler was successfully updated.' }
         format.json { head :no_content }
       else
@@ -80,4 +80,13 @@ class NotifySchedulersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  private
+
+  def notify_scheduler_params
+    hash = params[:notify_scheduler]
+    hash.keys.select{|k| k =~ /_at/}.each {|key| hash[key] = hash[key].to_time}
+    hash
+  end  
+
 end

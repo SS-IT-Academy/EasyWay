@@ -1,6 +1,8 @@
 class ValidatorsController < ApplicationController
   # GET /validators
   # GET /validators.json
+  before_filter :set_field_types, only: [:new, :create, :edit, :update]
+  
   def all_types
     @validators = Validator.where("field_type_id IS NULL OR field_type_id = ?", params["field_type_id"].to_i)
     render :json => @validators.to_json
@@ -30,7 +32,7 @@ class ValidatorsController < ApplicationController
   # GET /validators/new.json
   def new
     @validator = Validator.new
-    @field_types = FieldType.all
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @validator }
@@ -40,7 +42,6 @@ class ValidatorsController < ApplicationController
   # GET /validators/1/edit
   def edit
     @validator = Validator.find(params[:id])
-    @field_types = FieldType.all
   end
 
   # POST /validators
@@ -86,4 +87,10 @@ class ValidatorsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def set_field_types
+    @field_types = FieldType.all
+  end  
 end

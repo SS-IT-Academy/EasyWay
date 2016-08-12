@@ -12,7 +12,7 @@ FactoryGirl.define do
     end
 
     after(:create) do |notify_event, evaluator|
-      notify_event.recipients = create_list(:recipient, evaluator.recipients_count, notify_event: notify_event)
+      notify_event.recipients = create_list(:recipient, evaluator.recipients_count, notify_event: notify_event) if evaluator.recipients_count > 0
     end
   end
 end

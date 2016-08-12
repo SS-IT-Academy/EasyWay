@@ -11,8 +11,8 @@ describe RecipientsController, type: :controller, authenticated: true do
     end
 
     it "GET #index" do
-      recipient1 = create(:recipient)
-      recipient2 = create(:recipient)
+      recipient1 = create(:recipient, notify_event: create(:notify_event, recipients_count: 0))
+      recipient2 = create(:recipient, notify_event: create(:notify_event, recipients_count: 0))
       get :index
       expect(assigns(:recipients)).to match_array([recipient1,recipient2])
     end
@@ -57,6 +57,11 @@ describe RecipientsController, type: :controller, authenticated: true do
   end
 
   describe "POST create" do
+    let(:attributes){ {
+      notify_event_id: create(:notify_event, recipients_count: 0).id,
+      user_id: create(:user).id,
+      group_number: 1
+    } }
     context "with valid attributes" do
       it "creates a new Recipient" do
         recipient = create(:recipient)
@@ -64,7 +69,7 @@ describe RecipientsController, type: :controller, authenticated: true do
         template = create(:notify_template)
 
         expect{
-          post :create, recipient: attributes_for(:recipient)
+          post :create, recipient: attributes
         }.to change(Recipient, :count).by(1)
       end
 
@@ -72,7 +77,7 @@ describe RecipientsController, type: :controller, authenticated: true do
         recipient = create(:recipient)
         mapping = create(:mapping)
         template = create(:notify_template)
-        post :create, recipient: attributes_for(:recipient)
+        post :create, recipient: attributes
         response.should redirect_to Recipient.last
       end
 

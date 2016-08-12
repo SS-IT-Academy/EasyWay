@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :validator do
     name "MyString"
     body "MyString"
-    field_type_id 1
+    field_type
     message "Error message"
   end
 end

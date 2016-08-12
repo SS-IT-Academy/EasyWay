@@ -26,7 +26,8 @@ describe ValidatorsController, type: :controller, authenticated: true do
   let(:valid_attributes) { { 
     name: "MyString",
     body: "!@@",
-    message: "Error Message!"
+    message: "Error Message!",
+    field_type_id: create(:field_type).id
   } }
 
   # This should return the minimal set of values that should be in the session

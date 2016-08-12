@@ -48,8 +48,9 @@ describe ResourceType do
 
   describe "#all_field_ids" do
     it "should return array with all ids without resource_type_reference_id" do
+      fields = []
       3.times do |i|
-        resource_type.fields.create field_type_id: i + 1, name: "some#{i}"
+        fields << (resource_type.fields.create field_type_id: i + 1, name: "some#{i}").id
       end
       resource_type2 = create :resource_type
       resource_type2.fields.create(
@@ -57,7 +58,7 @@ describe ResourceType do
         field_type_id: 7, # complex
         resource_type_reference_id: resource_type.id
       )
-      resource_type2.all_field_ids.should == [1, 2, 3]
+      resource_type2.all_field_ids.should == fields
     end
   end
 

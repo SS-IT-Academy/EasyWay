@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe "Bookmarks", type: :controller, authenticated: true do
+  render_views
+
   describe "GET /bookmarks" do
     it "works! (now write some real specs)" do
       @controller = BookmarksController.new	

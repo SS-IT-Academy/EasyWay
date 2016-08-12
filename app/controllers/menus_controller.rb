@@ -26,8 +26,7 @@ class MenusController < ApplicationController
   def new
     @bookmark= Bookmark.all
     @menu = Menu.new
-    
-    @params = request.params
+    @menu.parent_id = params[:id] if params[:id]
       
     respond_to do |format|
       format.html # new.html.erb

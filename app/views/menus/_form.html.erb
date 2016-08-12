@@ -11,11 +11,11 @@
     </form>
   <% end %>
 <div class="boxforforms">
-  <%= f.hidden_field(:parent_id, :value=>@params[:id]) %>
-   <%if @params[:role_id]%>
-     <%= f.hidden_field(:role, :value=>@params[:role_id]) %>
+  <%= f.hidden_field(:parent_id, value: @menu.parent_id) %>
+   <% if @menu.role_id %>
+     <%= f.hidden_field(:role, value: @menu.role_id) %>
    <%else%>
-     <%= f.hidden_field(:user_id, :value=>current_user.id) %>
+     <%= f.hidden_field(:user_id, value: current_user.id) %>
    <%end%>
    <div class="control-group">
      <%= f.label :title,:class =>"control-label"%>

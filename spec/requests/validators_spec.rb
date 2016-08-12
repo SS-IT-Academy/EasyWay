@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe "Validators", type: :controller, authenticated: true do	
+  render_views
+
   describe "validators" do	  
     it "works! (now write some real specs)" do
 	  @controller = ValidatorsController.new

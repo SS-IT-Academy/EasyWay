@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "ResourceValues", type: :controller, authenticated: true do
   include RSpec::Rails::ControllerExampleGroup
+  render_views
   	
   describe "GET /resource_values" do
     it "works! (now write some real specs)" do

@@ -18,9 +18,9 @@ class User < ActiveRecord::Base
 #   validates_confirmation_of :password
 #   validates_presence_of :password, :on => :create
 #   validates_presence_of :email
-#   validates_presence_of :username, :on => :create
+   validates_presence_of :username, :on => :create
 #   validates_uniqueness_of :email
-#   validates_uniqueness_of :username
+   validates_uniqueness_of :username
   def default_values
     self.roleid ||= 1
   end

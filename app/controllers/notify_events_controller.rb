@@ -28,7 +28,6 @@ class NotifyEventsController < ApplicationController
   # GET /notify_events/new.json
   def new
     @notify_event = NotifyEvent.new
-    ap @notify_event
      
     respond_to do |format|
       format.html # new.html.erb
@@ -41,7 +40,6 @@ class NotifyEventsController < ApplicationController
     @notify_event = NotifyEvent.find(params[:id])
     @mapping = Mapping.where("notify_template_id=?", @notify_event.notify_template_id)
     @recipients = Recipient.where("notify_event_id=?", @notify_event.id)
-    ap @recipients
 
     @parameters = @mapping.collect{ |el| el.template_parameter}
     if @notify_event.with_observer?
@@ -71,8 +69,6 @@ class NotifyEventsController < ApplicationController
         end
       end
       @options = @alloptions
-      # ap @options, options = {:index => false, :multiline  => false}
-      # print @selec.inspect
       # @all_options = [@options]
       # ResourceValue.find(params[:id].to_i).resource_reference_id
       # @selec.split(",").each do |el|
@@ -139,9 +135,6 @@ class NotifyEventsController < ApplicationController
   # PUT /notify_events/1
   # PUT /notify_events/1.json
   def update
-    
-    # ap @notify_event, options = {:index => false, :multiline => true}
-    #raise params.inspect
     recipients = params["notify_event"].delete("recipients_attributes")
     mappings = params["notify_event"].delete("mappings_attributes")
 
@@ -208,7 +201,6 @@ class NotifyEventsController < ApplicationController
 
   #TODO: move to model
   def show_property_mapping_content
-    ap @notify_event
     template = NotifyTemplate.find(params[:notify_template_id].to_i)
     parameters = template.body.scan(/\$\$\{([0-9a-zA-Z_-]+)\}/).flatten
     if params[:notify_observer_id] != ""

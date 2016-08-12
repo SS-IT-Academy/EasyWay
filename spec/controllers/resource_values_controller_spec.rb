@@ -19,6 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ResourceValuesController, type: :controller, authenticated: true do
+  render_views
   # This should return the minimal set of attributes required to create a valid
   # ResourceValue. As you add validations to ResourceValue, be sure to
   # adjust the attributes here as well.
@@ -156,5 +157,4 @@ describe ResourceValuesController, type: :controller, authenticated: true do
       response.should redirect_to(resource_values_url(:only_path => true))
     end
   end
-
 end

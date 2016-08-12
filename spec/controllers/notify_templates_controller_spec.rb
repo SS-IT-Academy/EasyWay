@@ -1,6 +1,8 @@
 require 'spec_helper'
-describe NotifyTemplatesController do
+
+describe NotifyTemplatesController, type: :controller, authenticated: true do
   include RSpec::Rails::ControllerExampleGroup  
+  render_views
   
   describe 'GET index' do
     it "responds successfully with an HTTP 200 status code" do
@@ -127,18 +129,17 @@ describe NotifyTemplatesController do
       end
 
       it "does not changes @notify_template's attributes" do
-          put :update, id: @notify_template,
-          notify_template: attributes_for(:notify_template, notify_template_name: nil)
-          @notify_template.reload
-          @notify_template.notify_template_name.should eq("some notify_template_name")
+        put :update, id: @notify_template,
+        notify_template: attributes_for(:notify_template, notify_template_name: nil)
+        @notify_template.reload
+        @notify_template.notify_template_name.should eq("some notify_template_name")
       end
 
       it "re-renders the edit method" do
-          put :update, id: @notify_template, notify_template: attributes_for(:notify_template, notify_template_name: nil)
-          response.should render_template :edit
+        put :update, id: @notify_template, notify_template: attributes_for(:notify_template, notify_template_name: nil)
+        response.should render_template :edit
       end
     end
-
   end
 
   describe 'DELETE destroy' do
@@ -147,8 +148,8 @@ describe NotifyTemplatesController do
     end
 
     it "deletes the notify_template" do
-    expect{
-      delete :destroy, id: @notify_template
+      expect{
+        delete :destroy, id: @notify_template
       }.to change(NotifyTemplate, :count).by(-1)
     end
 
@@ -157,5 +158,4 @@ describe NotifyTemplatesController do
       response.should redirect_to notify_templates_url(:only_path => true)
     end
   end
-
 end

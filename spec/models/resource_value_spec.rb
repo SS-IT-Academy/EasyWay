@@ -19,15 +19,15 @@ describe ResourceValue do
 
   describe "#custom_validation" do
     it "should raise error" do
-      validator = Validator.create(
+      validator = create(:validator,
         name: "More than 1", 
         body: "@@ > 1", 
         message: "It is less or equal to one!"
       )
-      rt = ResourceType.create name: "new resource type"
-      resource = Resource.create resource_type_id: rt.id
-      field = Field.create field_type_id: 1, name: "new field", resource_type_id: rt.id
-      FieldValidation.create field_id: field.id, validator_id: validator.id
+      rt = create(:resource_type, name: "new resource type")
+      resource = create(:resource, resource_type_id: rt.id)
+      field = create(:field, field_type_id: 1, name: "new field", resource_type_id: rt.id)
+      create(:field_validation, field_id: field.id, validator_id: validator.id)
       expect do
         rv = ResourceValue.create!(
           resource_id: resource.id,

@@ -1,14 +1,14 @@
-
 require 'spec_helper'
 
-describe NotifySchedulersController , type: :controller, authenticated: true do
+describe NotifySchedulersController, type: :controller, authenticated: true do
+  render_views
+
   describe 'GET index' do
     it "responds successfully with an HTTP 200 status code" do
       get :index
       expect(response).to be_success
       expect(response.status).to eq(200)
     end
-
 
     it "GET #index" do
       notify_scheduler1 = create(:notify_scheduler)
@@ -57,16 +57,17 @@ describe NotifySchedulersController , type: :controller, authenticated: true do
   end
 
   describe "POST create" do
+    let(:attributes) { { period: 1, start_at: 1.day.from_now, end_at: 2.days.from_now } }
+
     context "with valid attributes" do
       it "creates a new NotifyScheduler" do
-          expect{
-            post :create, notify_scheduler: 
-            attributes_for(:notify_scheduler)}.
-            to change(NotifyScheduler, :count).by(1)
+        expect {
+          post :create, notify_scheduler: attributes
+        }.to change(NotifyScheduler, :count).by(1)
       end
 
       it "redirects to the new notify_scheduler" do
-        post :create, notify_scheduler: attributes_for(:notify_scheduler)
+        post :create, notify_scheduler: attributes
         response.should redirect_to NotifyScheduler.last
       end
 
@@ -96,27 +97,30 @@ describe NotifySchedulersController , type: :controller, authenticated: true do
     end
   end
 
-
   describe 'PUT update' do
     before :each do
       @notify_scheduler = create(:notify_scheduler, period: 25)
     end
 
+    let(:attributes) { { period: 1, start_at: 1.day.from_now, end_at: 2.days.from_now } }
+
     context "valid attributes" do
       it "located the requested @notify_scheduler" do
-        put :update, id: @notify_scheduler, notify_scheduler: attributes_for(:notify_scheduler)
-        assigns(:notify_scheduler).should eq(@notify_scheduler)
+        put :update, id: @notify_scheduler, notify_scheduler: attributes
+        assigns(:notify_scheduler).period.should eq attributes[:period]
+        assigns(:notify_scheduler).start_at.should be_the_same_time_as attributes[:start_at].to_time
+        assigns(:notify_scheduler).end_at.should be_the_same_time_as attributes[:end_at].to_time
       end
 
       it "changes @notify_scheduler's attributes" do
         put :update, id: @notify_scheduler,
-        notify_scheduler: attributes_for(:notify_scheduler, period: 25)
+        notify_scheduler: attributes_for(:notify_scheduler, period: 30)
         @notify_scheduler.reload
-        @notify_scheduler.period.should eq(25)
+        @notify_scheduler.period.should eq(30)
       end
 
       it "redirects to the updated notify_scheduler" do
-        put :update, id: @notify_scheduler, notify_scheduler: attributes_for(:notify_scheduler)
+        put :update, id: @notify_scheduler, notify_scheduler: attributes
         response.should redirect_to @notify_scheduler
       end
     end
@@ -128,18 +132,17 @@ describe NotifySchedulersController , type: :controller, authenticated: true do
       end
 
       it "does not changes @notify_scheduler's attributes" do
-          put :update, id: @notify_scheduler,
-          notify_scheduler: attributes_for(:notify_scheduler, period: nil)
-          @notify_scheduler.reload
-          @notify_scheduler.period.should eq(25)
+        put :update, id: @notify_scheduler,
+        notify_scheduler: attributes_for(:notify_scheduler, period: nil)
+        @notify_scheduler.reload
+        @notify_scheduler.period.should eq(25)
       end
 
       it "re-renders the edit method" do
-          put :update, id: @notify_scheduler, notify_scheduler: attributes_for(:notify_scheduler, period: nil)
-          response.should render_template :edit
+        put :update, id: @notify_scheduler, notify_scheduler: attributes_for(:notify_scheduler, period: nil)
+        response.should render_template :edit
       end
     end
-
   end
 
   describe 'DELETE destroy' do
@@ -148,8 +151,8 @@ describe NotifySchedulersController , type: :controller, authenticated: true do
     end
 
     it "deletes the notify_scheduler" do
-    expect{
-      delete :destroy, id: @notify_scheduler
+      expect{
+        delete :destroy, id: @notify_scheduler
       }.to change(NotifyScheduler, :count).by(-1)
     end
 
@@ -158,5 +161,4 @@ describe NotifySchedulersController , type: :controller, authenticated: true do
       response.should redirect_to notify_schedulers_url(:only_path => true)
     end
   end
-
 end

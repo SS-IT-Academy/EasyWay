@@ -1,14 +1,15 @@
 
 require 'spec_helper'
 
-describe NotifyObserversController , type: :controller, authenticated: true do
+describe NotifyObserversController, type: :controller, authenticated: true do
+  render_views
+
   describe 'GET index' do
     it "responds successfully with an HTTP 200 status code" do
       get :index
       expect(response).to be_success
       expect(response.status).to eq(200)
     end
-
 
     it "GET #index" do
       notify_observer1 = create(:notify_observer)
@@ -59,10 +60,10 @@ describe NotifyObserversController , type: :controller, authenticated: true do
   describe "POST create" do
     context "with valid attributes" do
       it "creates a new Notifyobserver" do
-          expect{
-            post :create, notify_observer: 
-            attributes_for(:notify_observer)}.
-            to change(NotifyObserver, :count).by(1)
+        expect{
+          post :create, notify_observer: 
+          attributes_for(:notify_observer)
+        }.to change(NotifyObserver, :count).by(1)
       end
 
       it "redirects to the new notify_observer" do
@@ -96,7 +97,6 @@ describe NotifyObserversController , type: :controller, authenticated: true do
     end
   end
 
-
   describe 'PUT update' do
     before :each do
       @notify_observer = create(:notify_observer, name: "some name")
@@ -128,18 +128,17 @@ describe NotifyObserversController , type: :controller, authenticated: true do
       end
 
       it "does not changes @notify_observer's attributes" do
-          put :update, id: @notify_observer,
-          notify_observer: attributes_for(:notify_observer, name: nil)
-          @notify_observer.reload
-          @notify_observer.name.should eq("some name")
+        put :update, id: @notify_observer,
+        notify_observer: attributes_for(:notify_observer, name: nil)
+        @notify_observer.reload
+        @notify_observer.name.should eq("some name")
       end
 
       it "re-renders the edit method" do
-          put :update, id: @notify_observer, notify_observer: attributes_for(:notify_observer, name: nil)
-          response.should render_template :edit
+        put :update, id: @notify_observer, notify_observer: attributes_for(:notify_observer, name: nil)
+        response.should render_template :edit
       end
     end
-
   end
 
   describe 'DELETE destroy' do
@@ -148,8 +147,8 @@ describe NotifyObserversController , type: :controller, authenticated: true do
     end
 
     it "deletes the notify_observer" do
-    expect{
-      delete :destroy, id: @notify_observer
+      expect{
+        delete :destroy, id: @notify_observer
       }.to change(NotifyObserver, :count).by(-1)
     end
 
@@ -158,5 +157,4 @@ describe NotifyObserversController , type: :controller, authenticated: true do
       response.should redirect_to notify_observers_url(:only_path => true)
     end
   end
-
 end

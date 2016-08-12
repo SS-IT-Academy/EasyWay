@@ -2,7 +2,7 @@ class FieldsController < ApplicationController
   # GET /fields
   # GET /fields.json
   def index
-    @fields = Field.egear_load(:field_type, :resource_type).all
+    @fields = Field.eager_load(:field_type, :resource_type).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class FieldsController < ApplicationController
   # GET /fields/1
   # GET /fields/1.json
   def show
-    @field = Field.egear_load(:field_type, :resource_type).find(params[:id])
+    @field = Field.eager_load(:field_type, :resource_type).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

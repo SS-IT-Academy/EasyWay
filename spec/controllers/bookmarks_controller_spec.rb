@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe BookmarksController, type: :controller, authenticated: true do
-  context 'GET index' do
+  render_views
 
+  context 'GET index' do
     it "assigns bookmarks" do
       bookmark1 = create(:bookmark)
       bookmark2 = create(:bookmark)
@@ -14,11 +15,9 @@ describe BookmarksController, type: :controller, authenticated: true do
       get :index
       expect(response).to render_template(:index)
     end
-
   end 
 
   context 'GET show' do
-
     it 'assigns bookmark' do
       bookmark = create(:bookmark)
       get :show, id: bookmark
@@ -29,11 +28,9 @@ describe BookmarksController, type: :controller, authenticated: true do
       get :show, id: create(:bookmark)
       expect(response).to render_template(:show)
     end
-
   end
 
   context "GET new" do
-
     it "bookmark should be a new Bookmark" do
       get :new
       expect(assigns(:bookmark)).to be_a_new(Bookmark)
@@ -46,17 +43,14 @@ describe BookmarksController, type: :controller, authenticated: true do
   end
     
   context "GET edit" do
-  
     it 'expect edit page' do
       bookmark = create(:bookmark)
       get :edit,  id: bookmark
       expect(response).to render_template('edit')
     end
-
   end
 
   context "POST create" do
-    
     it 'created new Bookmark' do
       expect{
         post :create, bookmark: attributes_for(:bookmark)
@@ -78,12 +72,10 @@ describe BookmarksController, type: :controller, authenticated: true do
       post :create, bookmark: attributes_for(:invalid_bookmark)
       response.should render_template :new
     end
-
   end
 
 
   context "DELETE destroy" do
-
     it "destroys the requested bookmark" do
       bookmark = create(:bookmark)
       expect {
@@ -96,17 +88,14 @@ describe BookmarksController, type: :controller, authenticated: true do
       delete :destroy, id: bookmark
       response.should redirect_to(bookmarks_url(:only_path => true))
     end
-
   end
 
   describe 'PUT update' do
-    
     before :each do
       @bookmark = create(:bookmark, url: "urla", title: "some title")
     end
 
     context "valid attributes" do 
-
       it "located the requested @bookmark" do 
         put :update, id: @bookmark, bookmark: attributes_for(:bookmark) 
         assigns(:bookmark).should eq(@bookmark)
@@ -123,11 +112,9 @@ describe BookmarksController, type: :controller, authenticated: true do
         put :update, id: @bookmark, bookmark: attributes_for(:bookmark) 
         response.should redirect_to @bookmark
       end
-
     end
 
     context "invalid attributes" do
-
       it "locates the requested @bookmark" do
         put :update, id: @bookmark, bookmark: attributes_for(:invalid_bookmark) 
         assigns(:bookmark).should eq(@bookmark) 
@@ -144,9 +131,6 @@ describe BookmarksController, type: :controller, authenticated: true do
         put :update, id: @bookmark, bookmark: attributes_for(:invalid_bookmark)
         response.should render_template :edit 
       end
-
     end
-
   end
-
 end

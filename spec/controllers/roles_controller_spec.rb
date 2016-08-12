@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe RolesController , type: :controller, authenticated: true do
-  context 'GET index' do
+describe RolesController, type: :controller, authenticated: true do
+  render_views
 
+  context 'GET index' do
     it "assigns Roles" do
       role1 = create(:role)
       role2 = create(:role)
@@ -18,7 +19,6 @@ describe RolesController , type: :controller, authenticated: true do
 
 
   context 'GET show' do
-
     it 'assigns role' do
       role1 = create(:role)
       get :show, id: role1
@@ -32,20 +32,18 @@ describe RolesController , type: :controller, authenticated: true do
   end
 
   context "GET new" do
-
     it "assigns a new Role to @role " do
       get :new
       expect(assigns(:role)).to be_a_new(Role)
     end
     
-     it 'expected response from new page' do
-       get :new, id: create(:role)
-       expect(response).to render_template(:new)
-     end
+    it 'expected response from new page' do
+      get :new, id: create(:role)
+      expect(response).to render_template(:new)
+    end
   end
 
   context "GET edit" do
-  
     it 'expect edit page' do
       role1 = create(:role)
       get :edit,  id: role1
@@ -60,7 +58,6 @@ describe RolesController , type: :controller, authenticated: true do
   end
 
   context "POST create" do
-    
     it 'save the new role in the database' do
       expect{
         post :create, role: attributes_for(:role)
@@ -85,12 +82,11 @@ describe RolesController , type: :controller, authenticated: true do
   end
 
   context "DELETE destroy" do
-
     it "destroys the role" do
       role1 = create(:role)
       expect {
         delete :destroy, id: role1
-        }.to change(Role, :count).by(-1)
+      }.to change(Role, :count).by(-1)
     end
 
     it "redirects to the roles#index" do
@@ -100,56 +96,46 @@ describe RolesController , type: :controller, authenticated: true do
     end
   end
 
+  describe 'PUT update' do
+    before :each do
+      @role = create(:role)
+    end
 
-describe 'PUT update' do
-  
-  before :each do
-    @role = create(:role)
+    context "valid attributes" do 
+      it "located the requested @role" do 
+        put :update, id: @role, role: attributes_for(:role) 
+        assigns(:role).should eq(@role)
+      end
+
+      it "changes @role's attributes" do 
+        put :update, id: @role, role: attributes_for(:role, name: "updated role") 
+        @role.reload 
+        @role.name.should eq("updated role") 
+      end
+
+      it "redirects to the updated role" do
+        put :update, id: @role, role: attributes_for(:role) 
+        response.should redirect_to @role
+      end
+    end
+
+    context "invalid attributes" do
+      it "locates the requested @role" do
+        put :update, id: @role, role: attributes_for(:invalid_role) 
+        assigns(:role).should eq(@role) 
+      end
+
+      it "does not change @role's attributes" do
+        @role2 = create(:role, name: "vasya_role")
+        put :update, id: @role2, role: attributes_for(:role, name: nil) 
+        @role2.reload 
+        @role2.name.should eq("vasya_role")
+      end
+      
+      it "re-renders the edit method" do
+        put :update, id: @role, role: attributes_for(:invalid_role)
+        response.should render_template :edit 
+      end
+    end
   end
-
-  context "valid attributes" do 
-
-    it "located the requested @role" do 
-      put :update, id: @role, role: attributes_for(:role) 
-      assigns(:role).should eq(@role)
-    end
-
-    it "changes @role's attributes" do 
-      put :update, id: @role, role: attributes_for(:role, name: "updated role") 
-      @role.reload 
-      @role.name.should eq("updated role") 
-    end
-
-    it "redirects to the updated role" do
-      put :update, id: @role, role: attributes_for(:role) 
-      response.should redirect_to @role
-    end
-
-  end
-
-  context "invalid attributes" do
-
-    it "locates the requested @role" do
-      put :update, id: @role, role: attributes_for(:invalid_role) 
-      assigns(:role).should eq(@role) 
-    end
-
-    it "does not change @role's attributes" do
-      @role2 = create(:role, name: "vasya_role")
-      put :update, id: @role2, role: attributes_for(:role, name: nil) 
-      @role2.reload 
-      @role2.name.should eq("vasya_role")
-    end
-    
-    it "re-renders the edit method" do
-      put :update, id: @role, role: attributes_for(:invalid_role)
-      response.should render_template :edit 
-    end
-
-  end
-
-end
-
-
-
 end

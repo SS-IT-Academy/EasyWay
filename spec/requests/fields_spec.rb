@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe "Fields", type: :controller, authenticated: true do
+  render_views
+
   describe "GET /fields" do
     it "works! (now write some real specs)" do
       @controller = FieldsController.new	

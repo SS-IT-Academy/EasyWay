@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "Events", type: :controller, authenticated: true  do
   include RSpec::Rails::ControllerExampleGroup
+  render_views
+
   describe "GET /events" do
     it "works! (now write some real specs)" do
       @controller = EventsController.new	

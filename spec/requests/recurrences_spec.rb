@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe "Recurrences", type: :controller, authenticated: true do
+  render_views
+
   describe "GET /recurrences" do
     it "works! (now write some real specs)" do
       @controller = RecurrencesController.new	

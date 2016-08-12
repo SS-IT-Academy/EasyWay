@@ -18,8 +18,6 @@ class ApplicationController < ActionController::Base
     @Menu_items = Menu.order("ancestry desc")
   end
  
-
-
   protected
 
   def configure_permitted_parameters

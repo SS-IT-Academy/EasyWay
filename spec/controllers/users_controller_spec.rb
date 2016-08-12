@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe UsersController, type: :controller, authenticated: true do
+  render_views
+
   context 'GET index' do
     it "assigns Users" do
       User.delete_all
@@ -43,17 +45,17 @@ describe UsersController, type: :controller, authenticated: true do
     end
   end
  
-  context "GET new" do
-    it "assigns a new User to @user " do
-      get :new
-      expect(assigns(:user)).to be_a_new(User)
-    end
+  # context "GET new" do
+  #   it "assigns a new User to @user" do
+  #     get :new
+  #     expect(assigns(:user)).to be_a_new(User)
+  #   end
     
-    it 'expected response from new page' do
-      get :new, id: create(:user)
-      expect(response).to render_template(:new)
-    end
-  end
+  #   it 'expected response from new page' do
+  #     get :new, id: create(:user)
+  #     expect(response).to render_template(:new)
+  #   end
+  # end
 
   context "GET edit" do
   end
@@ -106,7 +108,7 @@ describe UsersController, type: :controller, authenticated: true do
       user1 = create(:user)
       expect {
         delete :destroy, id: user1
-        }.to change(User, :count).by(-1)
+      }.to change(User, :count).by(-1)
     end
 
     it "redirects to the users#index" do

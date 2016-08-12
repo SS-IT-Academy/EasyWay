@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe NotifyTemplate do
   it "is invalid without a template_name" do
-    expect(NotifyTemplate.new(:template_name => nil)).to have(1).errors_on(:name)
+    expect(NotifyTemplate.new(:notify_template_name => nil)).to have(1).errors_on(:notify_template_name)
     end
      
     it "is invalid without a body" do

@@ -97,12 +97,12 @@
         <div id="marginforforms">
           <div class="form-inline">
             <%= label_tag(:name, "Group number", :class => "form-inline") %>
-            <%= text_field_tag "notify_event[recipients_attributes][][group_number]", @recipients[0].group_number %>
+            <%= text_field_tag "notify_event[recipients_attributes][][group_number]", @recipients && @recipients[0].group_number %>
             <%= label_tag(:user, "Select user") %>
-            <%= select_tag("notify_event[recipients_attributes][][user_id]", options_from_collection_for_select(User.all, :id, :username, @recipients[0].user_id), :include_blank => true) %>
+            <%= select_tag("notify_event[recipients_attributes][][user_id]", options_from_collection_for_select(User.all, :id, :username, @recipients && @recipients[0].user_id), :include_blank => true) %>
             <a href="#" class="btn btn-primary" style="display: none">Remove</a>
           </div>
-           <%@recipients[1..-1].each do |recipient|%>
+           <% @recipients[1..-1].each do |recipient|%>
             <div class="form-inline">
               <%= label_tag(:name, "Group number", :class => "form-inline") %>
               <%= text_field_tag "notify_event[recipients_attributes][][group_number]", recipient.group_number %>
@@ -110,7 +110,7 @@
               <%= select_tag("notify_event[recipients_attributes][][user_id]", options_from_collection_for_select(User.all, :id, :username, recipient.user_id), :include_blank => true) %>
               <a href='#' class="btn btn-danger" onClick='remove_field_recipient(this)'>Remove</a>
             </div>
-          <%end%> 
+          <% end if @recipients%> 
         </div>
 
         <div class="control-group">
@@ -123,7 +123,7 @@
 
 
       <!-- for update checkbox and select is down-->
-      <%if @notify_event.event_id!=nil%>
+      <% if @notify_event.event_id %>
 
         <div class="control-group">
           <%= label_tag(:event, "Event", :class=>"control-label") %>

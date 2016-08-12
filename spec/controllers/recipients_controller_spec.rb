@@ -1,7 +1,8 @@
-
 require 'spec_helper'
 
-describe RecipientsController , type: :controller, authenticated: true do
+describe RecipientsController, type: :controller, authenticated: true do
+  render_views
+
   describe 'GET index' do
     it "responds successfully with an HTTP 200 status code" do
       get :index
@@ -9,10 +10,9 @@ describe RecipientsController , type: :controller, authenticated: true do
       expect(response.status).to eq(200)
     end
 
-
     it "GET #index" do
-      recipient1 = create(:recipient)
-      recipient2 = create(:recipient)
+      recipient1 = create(:recipient, notify_event: create(:notify_event, recipients_count: 0))
+      recipient2 = create(:recipient, notify_event: create(:notify_event, recipients_count: 0))
       get :index
       expect(assigns(:recipients)).to match_array([recipient1,recipient2])
     end
@@ -57,23 +57,27 @@ describe RecipientsController , type: :controller, authenticated: true do
   end
 
   describe "POST create" do
+    let(:attributes){ {
+      notify_event_id: create(:notify_event, recipients_count: 0).id,
+      user_id: create(:user).id,
+      group_number: 1
+    } }
     context "with valid attributes" do
       it "creates a new Recipient" do
         recipient = create(:recipient)
         mapping = create(:mapping)
         template = create(:notify_template)
 
-          expect{
-            post :create, recipient: 
-            attributes_for(:recipient)}.
-            to change(Recipient, :count).by(1)
+        expect{
+          post :create, recipient: attributes
+        }.to change(Recipient, :count).by(1)
       end
 
       it "redirects to the new recipient" do
         recipient = create(:recipient)
         mapping = create(:mapping)
         template = create(:notify_template)
-        post :create, recipient: attributes_for(:recipient)
+        post :create, recipient: attributes
         response.should redirect_to Recipient.last
       end
 
@@ -141,18 +145,17 @@ describe RecipientsController , type: :controller, authenticated: true do
       end
 
       it "does not changes @recipient's attributes" do
-          put :update, id: @recipient,
-          recipient: attributes_for(:recipient, group_number: nil)
-          @recipient.reload
-          @recipient.group_number.should eq(777)
+        put :update, id: @recipient,
+        recipient: attributes_for(:recipient, group_number: nil)
+        @recipient.reload
+        @recipient.group_number.should eq(777)
       end
 
       it "re-renders the edit method" do
-          put :update, id: @recipient, recipient: attributes_for(:recipient, group_number: nil)
-          response.should render_template :edit
+        put :update, id: @recipient, recipient: attributes_for(:recipient, group_number: nil)
+        response.should render_template :edit
       end
     end
-
   end
 
   describe 'DELETE destroy' do
@@ -161,8 +164,8 @@ describe RecipientsController , type: :controller, authenticated: true do
     end
 
     it "deletes the recipient" do
-    expect{
-      delete :destroy, id: @recipient
+      expect{
+        delete :destroy, id: @recipient
       }.to change(Recipient, :count).by(-1)
     end
 
@@ -171,5 +174,4 @@ describe RecipientsController , type: :controller, authenticated: true do
       response.should redirect_to recipients_url(:only_path => true)
     end
   end
-
 end

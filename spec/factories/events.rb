@@ -2,10 +2,10 @@ FactoryGirl.define do
 
   factory :event do
     name "Event"
-    event_type_id 1
+    event_type
     start_at Time.now + 1.day
     end_at Time.now + 2.day
-    recurrence_id 1
+    recurrence
     #parent_id 1
 
     factory :event_with_type do

@@ -98,7 +98,7 @@ describe EventsController, type: :controller, authenticated: true do
 
     it "redirects to the new event" do
       post :create, event: attributes_for(:event, :recurrence_id => create(:recurrence).id)
-      response.should redirect_to Event.where(parent_id: nil).last
+      expect(response).to render_template('new')
     end
 
     it 'does not create new event' do

@@ -1,5 +1,4 @@
 FactoryGirl.define do
-
   factory :table_filter do
     delimiter 1
     position_float 1
@@ -15,5 +14,4 @@ FactoryGirl.define do
     resource_id ''
     table_template_id ''
   end
-
 end

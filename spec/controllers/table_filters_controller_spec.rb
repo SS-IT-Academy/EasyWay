@@ -50,25 +50,32 @@ describe TableFiltersController, type: :controller, authenticated: true do
   end
   
   context "POST create" do
+    let(:attributes) do
+      attributes_for(:table_filter,
+        table_template_id: @table_template.id,
+        resource_id: create(:resource).id
+      )
+    end
+    
     it "expected creating new TableFilter" do
       expect{
-        post :create, table_filter: attributes_for(:table_filter), table_template_id: @table_template.id
+        post :create, table_filter: attributes 
       }.to change(TableFilter,:count).by(1)
     end
 
     it "redirects to the new TableFilter" do
-      post :create, table_filter: attributes_for(:table_filter), table_template_id: @table_template.id
+      post :create, table_filter: attributes
       response.should redirect_to TableFilter.last
     end
 
     it "does not create new TableFilter" do
       expect{
-        post :create, table_filter: attributes_for(:invalid_table_filter), table_template_id: @table_template.id
+        post :create, table_filter: attributes_for(:invalid_table_filter)
       }.to_not change(TableFilter,:count)
     end
 
     it "render new action page" do
-      post :create, table_filter: attributes_for(:invalid_table_filter), table_template_id: @table_template.id
+      post :create, table_filter: attributes_for(:invalid_table_filter)
       response.should render_template :new
     end
   end

@@ -1,7 +1,7 @@
 class TableFiltersController < ApplicationController
   # GET /table_filters
   # GET /table_filters.json
-  before_filter :set_table_template, only: [:index, :new, :edit, :create]
+  before_filter :set_table_template, only: [:index, :new, :edit]
 
   def index
     @table_filters = TableFilter.where(table_template_id: @table_template.id).all
@@ -42,6 +42,7 @@ class TableFiltersController < ApplicationController
   # POST /table_filters.json
   def create
     @table_filter = TableFilter.new(params[:table_filter])
+    load_teble_template
 
     respond_to do |format|
       if @table_filter.save

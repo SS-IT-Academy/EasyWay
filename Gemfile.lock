@@ -186,6 +186,8 @@ GEM
     less-rails (2.6.0)
       actionpack (>= 3.1)
       less (~> 2.6.0)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     libv8 (3.16.14.13)
     listen (3.0.6)
       rb-fsevent (>= 0.9.3)
@@ -492,6 +494,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   less-rails
+  letter_opener
   metric_fu
   minitest
   nested_form

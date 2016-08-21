@@ -94,6 +94,7 @@ group :development, :test do
   gem 'pronto-poper'
   gem 'pronto-rails_best_practices'
   gem 'pronto-rails_schema'
+  gem 'letter_opener'
   
   #gem 'pronto-reek'
 #  gem 'spork', github: 'sporkrb/spork'

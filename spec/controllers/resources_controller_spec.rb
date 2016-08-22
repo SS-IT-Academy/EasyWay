@@ -33,8 +33,9 @@ describe ResourcesController, type: :controller, authenticated: true do
   let(:resource) { create(:resource) }
 
   describe "GET index" do
-    it "assigns all resources as @resources" do
+    it "assigns all resources as @resources", authorized: true do
       resource = Resource.create! valid_attributes
+      @ability.can :read, Resource
       get :index, {}, valid_session
       assigns(:resources).should eq([resource])
     end
@@ -99,29 +100,29 @@ describe ResourcesController, type: :controller, authenticated: true do
     end
   end
 
-  describe "PUT update" do
+  describe "PUT update", authorized: true do
+    before(:each) do
+      @ability.can :update, Resource
+    end
+
     describe "with valid params" do
       it "updates the requested resource" do
-        #resource = FactoryGirl.create :resource
-        # Assuming there are no other resources in the database, this
-        # specifies that the Resource created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
+        resource = create(:resource)
         Resource.any_instance.should_receive(:update_attributes).with({ "description" => "MyString" })
-        put :update, {:id => resource.to_param, :resource => { "description" => "MyString" }}, valid_session
+        put :update, {:id => resource.id, :resource => { "description" => "MyString" }}, valid_session
       end
 
-      # it "assigns the requested resource as @resource" do
-      #   #resource = Resource.create! valid_attributes
-      #   put :update, {:id => resource.id, :resource => valid_attributes}, valid_session
-      #   assigns(:resource).should eq(resource)
-      # end
+      it "assigns the requested resource as @resource" do
+        resource = create(:resource)
+        put :update, {:id => resource.id, :resource => valid_attributes}, valid_session
+        assigns(:resource).should eq(resource)
+      end
 
-      # it "redirects to the resource" do
-      #   #resource = Resource.create! valid_attributes
-      #   put :update, {:id => resource.id, :resource => valid_attributes}, valid_session
-      #   response.should redirect_to(resource)
-      # end
+      it "redirects to the resource" do
+        resource = create(:resource)
+        put :update, {:id => resource.id, :resource => valid_attributes}, valid_session
+        response.should redirect_to(resource)
+      end
     end
 
     describe "with invalid params" do
@@ -134,7 +135,7 @@ describe ResourcesController, type: :controller, authenticated: true do
       end
 
       it "re-renders the 'edit' template" do
-        resource = Resource.create! valid_attributes
+        resource = create(:resource)
         # Trigger the behavior that occurs when invalid params are submitted
         Resource.any_instance.stub(:save).and_return(false)
         put :update, {:id => resource.to_param, :resource => { "description" => "invalid value" }}, valid_session
@@ -143,9 +144,13 @@ describe ResourcesController, type: :controller, authenticated: true do
     end
   end
 
-  describe "DELETE destroy" do
+  describe "DELETE destroy", authorized: true do
+    before(:each) do
+      @ability.can :destroy, Resource
+    end
+
     it "destroys the requested resource" do
-      resource = Resource.create! valid_attributes
+      resource = create(:resource)
       expect {
         delete :destroy, {:id => resource.to_param}, valid_session
       }.to change(Resource, :count).by(-1)

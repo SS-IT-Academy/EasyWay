@@ -7,6 +7,7 @@ class ResourcesController < ApplicationController
   # GET /resources.json
   def index
     @resources = Resource.eager_load(:resource_type).all
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @resources }

@@ -4,7 +4,6 @@
 
 /log/*.log
 /tmp
-
 doc/
 *.swp
 *~
@@ -14,6 +13,7 @@ doc/
 .metadata
 /nbproject/
 
+/spec/reports/
 /coverage/
 /public/assets
 db/*.sqlite3

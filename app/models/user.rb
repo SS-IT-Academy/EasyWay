@@ -15,11 +15,11 @@ class User < ActiveRecord::Base
 #   attr_accessor :password, :new_password, :remember_me
 #   before_save :encrypt_password
   
-#   validates_confirmation_of :password
-#   validates_presence_of :password, :on => :create
-#   validates_presence_of :email
+   validates_confirmation_of :password
+   validates_presence_of :password, :on => :create
+   validates_presence_of :email
    validates_presence_of :username, :on => :create
-#   validates_uniqueness_of :email
+   validates_uniqueness_of :email
    validates_uniqueness_of :username
   def default_values
     self.roleid ||= 1
@@ -49,12 +49,12 @@ class User < ActiveRecord::Base
 #     nil
 #   end
 
-  def initialize(attributes = {})
-    super # must allow the active record to initialize!
-    attributes.each do |name, value|
-      send("#{name}=", value)
-    end
-  end
+  # def initialize(attributes = {})
+  #   super # must allow the active record to initialize!
+  #   attributes.each do |name, value|
+  #     send("#{name}=", value)
+  #   end
+  # end
 
 #   def encrypt_password
 #     if password.present?

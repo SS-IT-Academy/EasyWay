@@ -1,8 +1,10 @@
 class TableCellItemsController < ApplicationController
   # GET /table_cell_items
   # GET /table_cell_items.json
+  before_filter :set_table_template, only: [:index, :new, :edit]
+
   def index
-    @table_cell_items = TableCellItem.all
+    @table_cell_items = TableCellItem.where(table_template_id: @table_template.id).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +27,7 @@ class TableCellItemsController < ApplicationController
   # GET /table_cell_items/new.json
   def new
     @table_cell_item = TableCellItem.new
-    @table_template = TableTemplate.find(params[:table_template])
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @table_cell_item }
@@ -41,6 +43,7 @@ class TableCellItemsController < ApplicationController
   # POST /table_cell_items.json
   def create
     @table_cell_item = TableCellItem.new(params[:table_cell_item])
+    load_teble_template
 
     respond_to do |format|
       if @table_cell_item.save
@@ -57,6 +60,7 @@ class TableCellItemsController < ApplicationController
   # PUT /table_cell_items/1.json
   def update
     @table_cell_item = TableCellItem.find(params[:id])
+    load_teble_template
 
     respond_to do |format|
       if @table_cell_item.update_attributes(params[:table_cell_item])
@@ -78,6 +82,23 @@ class TableCellItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to table_cell_items_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+  
+  def set_table_template
+    @table_template = TableTemplate.find(params[:table_template_id])
+  end
+
+  def load_teble_template
+    begin
+      table_template_id = (params[:table_cell_item] && params[:table_cell_item][:table_template_id]) || @table_cell_item.table_template_id
+      @table_template = TableTemplate.find(table_template_id)
+    rescue => e
+      logger.error e.to_s
+      @table_cell_item.errors.add(:base, e.to_s)
+      @table_template ||= TableTemplate.last
     end
   end
 end

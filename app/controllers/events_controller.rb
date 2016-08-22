@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 
-  before_filter :find_event, only:[:show, :edit, :update, :destroy]
+  before_filter :find_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
@@ -59,6 +59,7 @@ class EventsController < ApplicationController
     duration = @event.get_duration params  
     @event.recurrence ||= Recurrence.find(@event.recurrence_id.to_i) if @event.recurrence_id
     @event.create_children_event(duration)
+
     respond_to do |format|
       if @event.save     
         if params[:resources]

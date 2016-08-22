@@ -22,7 +22,7 @@ gem 'recaptcha', require: 'recaptcha/rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
-gem 'thin' 
+gem 'thin'
 gem 'nested_form'
 gem 'railties'
 #gem 'simplecov'
@@ -80,9 +80,14 @@ group :test do
   gem 'simplecov-rcov'
   gem 'ci_reporter', :git => 'git://github.com/nicksieger/ci_reporter.git'
   gem 'ci_reporter_rspec'
-end  
+  gem 'cucumber-rails', require: false
+  gem 'poltergeist'
+  gem 'webmock'
+  gem 'phantomjs', require: 'phantomjs/poltergeist'
+  gem 'chronic'
+end
 
-group :development, :test do  
+group :development, :test do
   gem 'metric_fu'
   gem 'rubycritic', require: false
   gem 'addressable', '~>2.3.0'
@@ -95,11 +100,11 @@ group :development, :test do
   gem 'pronto-rails_best_practices'
   gem 'pronto-rails_schema'
   gem 'letter_opener'
-  
+
   #gem 'pronto-reek'
 #  gem 'spork', github: 'sporkrb/spork'
 #  gem 'spork-rails'
-  gem 'spring' 
+  gem 'spring'
 end
 
 group :production do

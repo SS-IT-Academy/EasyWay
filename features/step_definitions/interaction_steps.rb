@@ -1,5 +1,14 @@
 When(/^I click (?:|on) '([\w\s]+)' button(?:|-)(\w+)?$/) do |target, tag|
-  button = tag ? find(tag, text: /#{target}/i, exact: false) : find_button(target)
+  button = if tag.blank?
+    find_button(target)
+  elsif tag == 'link'
+    find('a', text: /#{target}/i, exact: false)
+  elsif tag == 'submit'
+    find("input[type='submit'][value*=\"#{target}\"]", exact: false)
+  else
+    find(tag, text: /#{target}/i, exact: false)
+  end
+
   button.click
   wait_for_ajax
 end

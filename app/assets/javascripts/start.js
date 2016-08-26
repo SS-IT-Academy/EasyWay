@@ -1,1 +1,3 @@
-$('#slideshow1').slideshow();
+if $('#slideshow1').slideshow { 
+  $('#slideshow1').slideshow();
+}  

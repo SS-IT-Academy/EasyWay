@@ -2,7 +2,8 @@ class Recurrence < ActiveRecord::Base
 	include IceCube
 
   attr_accessible :repetition, :hour_duration, :minute_duration
-  
+
+  belongs_to :event
   has_many :events
 
   serialize :repetition, Hash

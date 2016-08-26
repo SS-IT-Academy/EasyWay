@@ -7,3 +7,11 @@ end
 Then(/^I should wait for (\d+) second\(s\)$/) do |number|
   sleep number.to_i
 end
+
+Then(/^I should see (?:|the\s)(screenshot|page)$/) do |type|
+  if type == 'page'
+    save_and_open_page
+  else
+    save_and_open_screenshot
+  end
+end

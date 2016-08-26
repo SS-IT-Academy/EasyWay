@@ -1,7 +1,8 @@
-DatabaseCleaner.strategy = DatabaseCleaner::NullStrategy
+#DatabaseCleaner.strategy = DatabaseCleaner::NullStrategy
+DatabaseCleaner.strategy = :truncation
 
 After do
-  Event.destroy_all
   ActiveRecord::Base.transaction do
+    DatabaseCleaner.clean
   end
 end

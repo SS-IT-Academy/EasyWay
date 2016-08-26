@@ -1,7 +1,8 @@
 require 'yaml'
 FactoryGirl.define do
-
 	factory :recurrence do
+    hour_duration 2
+    minute_duration 30
 		repetition YAML.load(<<-REPETITION
 ---
 :validations:

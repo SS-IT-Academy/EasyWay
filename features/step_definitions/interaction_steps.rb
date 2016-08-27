@@ -8,8 +8,12 @@ When(/^I click (?:|on) '([\w\s]+)' button(?:|-)(\w+)?$/) do |target, tag|
   else
     find(tag, text: /#{target}/i, exact: false)
   end
-
-  button.click
+  # if button['data-method']
+  #   Kernel.puts "button['data-method']: #{button['data-method']}, href: #{button['href']}"
+  #   page.driver.browser.submit "#{button['data-method']}", button['href'], {}#("projects/" + proj.id.to_s + "/log?upload_path=" + f.to_path)
+  # else  
+    button.trigger('click')
+  # end  
   wait_for_ajax
 end
 

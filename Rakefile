@@ -9,4 +9,4 @@ if ENV['GENERATE_REPORTS'] == 'true'
   task :rspec => 'ci:setup:rspec'
 end
 
-EasyW::Application.load_tasks
+EasyWay::Application.load_tasks

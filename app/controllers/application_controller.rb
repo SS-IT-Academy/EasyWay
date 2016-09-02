@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   before_filter :guest_menu
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :authenticate_user!
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to resources_path, :notice => exception.message
